@@ -40,7 +40,7 @@ Sensorless vector control is used in the default parameters.
  .. code-block:: none
 
 
-    Execution time: 2.56 s
+    Execution time: 2.57 s
 
 
 
@@ -111,7 +111,7 @@ Sensorless vector control is used in the default parameters.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.113 seconds)
+   **Total running time of the script:** ( 0 minutes  3.142 seconds)
 
 
 .. _sphx_glr_download_auto_examples_im_plot_vector_ctrl_im_2kW.py:

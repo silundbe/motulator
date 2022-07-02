@@ -60,7 +60,7 @@ parameters correspond to an open-loop V/Hz control.
  .. code-block:: none
 
 
-    Execution time: 13.53 s
+    Execution time: 13.61 s
 
 
 
@@ -112,7 +112,7 @@ parameters correspond to an open-loop V/Hz control.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  15.055 seconds)
+   **Total running time of the script:** ( 0 minutes  15.150 seconds)
 
 
 .. _sphx_glr_download_auto_examples_im_plot_vhz_ctrl_im_2kW.py:

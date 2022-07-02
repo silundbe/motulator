@@ -43,7 +43,7 @@ Sensorless vector control is used in the default parameters.
 
     SynchronousMotorVectorCtrlPars(sensorless=True, T_s=0.00025, delay=1, alpha_c=1256.6370614359173, alpha_fw=125.66370614359172, alpha_s=25.132741228718345, tau_M_max=40.2, i_s_max=43.84062043356595, i_sd_min=5.480077554195744, k_u=0.95, w_nom=664.7610054996002, R_s=0.54, L_d=0.0415, L_q=0.0062, psi_f=0, p=2, J=0.015, w_o=502.6548245743669)
 
-    Execution time: 11.22 s
+    Execution time: 10.14 s
 
 
 
@@ -112,7 +112,7 @@ Sensorless vector control is used in the default parameters.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  12.105 seconds)
+   **Total running time of the script:** ( 0 minutes  10.939 seconds)
 
 
 .. _sphx_glr_download_auto_examples_sm_plot_vector_ctrl_syrm_7kW.py:
