@@ -1,0 +1,640 @@
+:py:mod:`motulator.model.converter`
+===================================
+
+.. py:module:: motulator.model.converter
+
+.. autoapi-nested-parse::
+
+   ThThis module contains power converter models.
+
+   An inverter with constant DC-bus voltage and a frequency converter with a diode
+   front-end rectifier are modeled. Complex space vectors are used also for duty
+   ratios and switching states, wherever applicable. In this module, all space
+   vectors are in stationary coordinates. The default values correspond to a
+   2.2-kW 400-V motor drive.
+
+   ..
+       !! processed by numpydoc !!
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   motulator.model.converter.Inverter
+   motulator.model.converter.PWMInverter
+   motulator.model.converter.FrequencyConverter
+
+
+
+
+.. py:class:: Inverter
+
+   
+   Inverter with constant DC-bus voltage and switching-cycle averaging.
+
+   :param u_dc0: DC-bus voltage.
+   :type u_dc0: float
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:attribute:: u_dc0
+      :annotation: :float = 540
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: q
+      :annotation: :complex
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: ac_voltage(q, u_dc)
+      :staticmethod:
+
+      
+      Compute the AC-side voltage of a lossless inverter.
+
+      :param q: Duty ratio vector (switching state vector in subclasses).
+      :type q: complex
+      :param u_dc: DC-bus voltage.
+      :type u_dc: float
+
+      :returns: **u_ac** -- AC-side voltage.
+      :rtype: complex
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: dc_current(q, i_ac)
+      :staticmethod:
+
+      
+      Compute the DC-side current of a lossless inverter.
+
+      :param q: Duty ratio vector (switching state vector in subclasses).
+      :type q: complex
+      :param i_ac: AC-side current.
+      :type i_ac: complex
+
+      :returns: **i_dc** -- DC-side current.
+      :rtype: float
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: pwm(d_abc)
+      :staticmethod:
+
+      
+      Zero-order hold of the duty ratios over the sampling period.
+
+      The output arrays are compatible with the solver.
+
+      :param d_abc: Duty ratios in the range [0, 1].
+      :type d_abc: array_like of floats, shape (3,)
+
+      :returns: * **tn_sw** (*ndarray, shape (1,2)*) -- Normalized switching instant, tn_sw = [0, 1].
+                * **q** (*complex ndarray, shape (1,)*) -- Duty ratio vector, having a shape compatible with the solver.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: meas_dc_voltage(self)
+
+      
+      Measure the DC-bus voltage.
+
+      :returns: DC-bus voltage.
+      :rtype: float
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+.. py:class:: PWMInverter
+
+   Bases: :py:obj:`Inverter`
+
+   
+   PWM inverter with constant DC-bus voltage.
+
+   This extends the Inverter class with pulse-width modulation.
+
+   :param N: Amount of PWM quantization levels. The default is 2**12.
+   :type N: int, optional
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:attribute:: N
+      :annotation: :int
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: falling_edge
+      :annotation: :bool
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: pwm(self, d_abc)
+
+      
+      Compute the normalized switching instants and the switching states.
+
+      :param d_abc: Duty ratios in the range [0, 1].
+      :type d_abc: array_like of floats, shape (3,)
+
+      :returns: * **tn_sw** (*ndarray, shape (4,2)*) -- Normalized switching instants, tn_sw = [0, t1, t2, t3, 1].
+                * **q** (*complex ndarray, shape (4,)*) -- Switching state vectors corresponding to the switching instants.
+                  For example, the switching state q[1] is applied at the interval
+                  tn_sw[1].
+
+      .. rubric:: Notes
+
+      Switching instants t_sw split the sampling period T_s into
+      four spans. No switching (e.g. da = 0 or da = 1) or simultaneous
+      switching instants (e.g da == db) lead to zero spans, i.e.,
+      t_sw[i] == t_sw[i].
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+.. py:class:: FrequencyConverter
+
+   Bases: :py:obj:`PWMInverter`
+
+   
+   Frequency converter.
+
+   This extends the PWMInverter class with models for a strong grid, a
+   three-phase diode-bridge rectifier, an LC filter, and a three-phase
+   inverter.
+
+   :param L: DC-bus inductance.
+   :type L: float
+   :param C: DC-bus capacitance.
+   :type C: float
+   :param U_g: Grid voltage (line-line, rms).
+   :type U_g: float
+   :param f_g: Grid frequency.
+   :type f_g: float
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:attribute:: L
+      :annotation: :float = 0.002
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: C
+      :annotation: :float = 0.000235
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: U_g
+      :annotation: :float = 400
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: f_g
+      :annotation: :float = 50
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: i_L0
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: u_dc0
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: u_g
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: w_g
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: __post_init__(self)
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: grid_voltages(self, t)
+
+      
+      Compute three-phase grid voltages.
+
+      :param t: Time.
+      :type t: float
+
+      :returns: **u_g_abc** -- The phase voltages.
+      :rtype: ndarray of floats, shape (3,)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: f(self, t, u_dc, i_L, i_dc)
+
+      
+      Compute the state derivatives.
+
+      :param t: Time.
+      :type t: float
+      :param u_dc: DC-bus voltage over the capacitor.
+      :type u_dc: float
+      :param i_L: DC-bus inductor current.
+      :type i_L: float
+      :param i_dc: Current to the inverter.
+      :type i_dc: float
+
+      :returns: Time derivative of the state vector, [du_dc, d_iL]
+      :rtype: list, length 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+

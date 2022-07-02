@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tutorial &mdash; motulator 0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Examples" href="../auto_examples/index.html" />
+    <link rel="prev" title="Usage" href="usage.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> motulator
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#welcome-to-motulator-s-tutorial">Welcome to motulator’s tutorial!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-configure-parameters">How to configure parameters</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../auto_examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auto_examples/index.html#getting-started-examples">Getting started examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auto_examples/index.html#examples-on-induction-motors">Examples on induction motors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auto_examples/index.html#examples-on-synchronous-motors">Examples on synchronous motors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../autoapi/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">motulator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Tutorial</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/parts/tutorial.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="tutorial">
+<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this heading"></a></h1>
+<div class="section" id="welcome-to-motulator-s-tutorial">
+<h2>Welcome to motulator’s tutorial!<a class="headerlink" href="#welcome-to-motulator-s-tutorial" title="Permalink to this heading"></a></h2>
+<p>This tutorial is an in depth version of <a class="reference internal" href="usage.html"><span class="doc">Usage</span></a>. This tutorial features a how-to guide for motulator features, such as running multiple simulations in parallel and the configuring of the motor and control parameters.</p>
+</div>
+<div class="section" id="how-to-configure-parameters">
+<h2>How to configure parameters<a class="headerlink" href="#how-to-configure-parameters" title="Permalink to this heading"></a></h2>
+<p>Motulator simulation tool is based on the control of an induction motor
+or synchronous motor drive. Motulator includes scalar control (or
+Volts-per-Hertz-control) and rotor-flux-oriented vector control. In
+order to build the link between the continuous-time design and
+discrete-time implementation, all the control algorithms are implemented
+in the discrete-time domain based on forward Euler approximation.</p>
+<p>The module motulator/model/im.py describes the induction motor model
+data according to the Γ model (Gamma model). The Γ model is chosen,
+since it can be extended with the magnetic saturation model in a
+staightforward manner. If the magnetic saturation is omitted, the Γ
+model is mathematically identical to the inverse-Γ model of the
+induction motor, which is shown below:</p>
+<a class="reference external image-reference" href="."><img alt="alternate text" src="../_images/Inverse-gamma_model.png" style="width: 843.0px; height: 185.0px;" /></a>
+<p>Motor model can be created by constructing the induction motor object as
+shown below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">motulator</span> <span class="k">as</span> <span class="nn">mt</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Motor model with custom parameters</span>
+<span class="n">motor</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">InductionMotor</span><span class="p">(</span><span class="n">R_s</span><span class="o">=</span><span class="mf">3.7</span><span class="p">,</span> <span class="n">R_r</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">L_ell</span><span class="o">=.</span><span class="mi">023</span><span class="p">,</span> <span class="n">L_s</span><span class="o">=.</span><span class="mi">245</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here the motor parameters mean the following: R_s is stator resistance,
+R_r is rotor resistance, L_ell is leakage inductance, L_s is stator
+inductance and p is the number of pole pairs. The value of parameters
+R_s, R_r, L_ell, L_s and p can be configured by changing their values
+when passing to mt.InductionMotor constructor.</p>
+<p>The rated values of the motor are important for configuring how figures
+are plotted:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute base values based on the nominal values (just for figures)</span>
+<span class="n">base</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">BaseValues</span><span class="p">(</span><span class="n">U_nom</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span>        <span class="c1"># Line-line rms voltage</span>
+                     <span class="n">I_nom</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>          <span class="c1"># Rms current</span>
+                     <span class="n">f_nom</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>         <span class="c1"># Frequency</span>
+                     <span class="n">tau_nom</span><span class="o">=</span><span class="mf">14.6</span><span class="p">,</span>     <span class="c1"># Torque</span>
+                     <span class="n">P_nom</span><span class="o">=</span><span class="mf">2.2e3</span><span class="p">,</span>      <span class="c1"># Power</span>
+                     <span class="n">p</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>              <span class="c1"># Number of pole pairs</span>
+</pre></div>
+</div>
+<p>To configure the mechanics model and converter model parameters, the
+following parameters are passed into their class constructors:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mech</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">Mechanics</span><span class="p">(</span><span class="n">J</span><span class="o">=.</span><span class="mi">015</span><span class="p">)</span>         <span class="c1"># Mechanics model with custom parameters</span>
+<span class="n">conv</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">Inverter</span><span class="p">(</span><span class="n">u_dc0</span><span class="o">=</span><span class="mi">540</span><span class="p">)</span>       <span class="c1"># Inverter model with custom parameters</span>
+</pre></div>
+</div>
+<p>Here J is the total moment of inertia of the motor and u_dc0 is the
+DC-bus voltage of inverter. After all of that has been configured, the
+continuous-time model for an induction motor drive can be constructed
+with the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mdl</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">InductionMotorDrive</span><span class="p">(</span><span class="n">motor</span><span class="p">,</span> <span class="n">mech</span><span class="p">,</span> <span class="n">conv</span><span class="p">)</span>  <span class="c1"># System model</span>
+</pre></div>
+</div>
+<p>This interconnects the subsystems of an induction motor drive and
+provides an interface for the solver. More complicated systems could be
+modeled using a similar template.</p>
+<p>Motulator includes Volts-per-Hertz-control and rotor-flux-oriented
+vector control, which are configured similarly to how the system model
+is configured. In the case of vector control, the configuration for the
+parameters of the control system can look something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Control system</span>
+<span class="n">ctrl</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">InductionMotorVectorCtrl</span><span class="p">(</span><span class="n">mt</span><span class="o">.</span><span class="n">InductionMotorVectorCtrlPars</span><span class="p">(</span>
+    <span class="n">sensorless</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>                <span class="c1"># Enable sensorless mode</span>
+    <span class="n">T_s</span><span class="o">=</span><span class="mf">250e-6</span><span class="p">,</span>                     <span class="c1"># Sampling period</span>
+    <span class="n">delay</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>                        <span class="c1"># Amount of computational delay</span>
+    <span class="n">alpha_c</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">200</span><span class="p">,</span>            <span class="c1"># Current-control bandwidth</span>
+    <span class="n">alpha_o</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">40</span><span class="p">,</span>             <span class="c1"># Observer bandwidth</span>
+    <span class="n">alpha_s</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span>              <span class="c1"># Speed-control bandwidth</span>
+    <span class="n">psi_R_nom</span><span class="o">=.</span><span class="mi">9</span><span class="p">,</span>                   <span class="c1"># Nominal rotor flux</span>
+    <span class="n">i_s_max</span><span class="o">=</span><span class="mf">1.5</span><span class="o">*</span><span class="n">base</span><span class="o">.</span><span class="n">i</span><span class="p">,</span>             <span class="c1"># Current limit</span>
+    <span class="n">tau_M_max</span><span class="o">=</span><span class="mf">1.5</span><span class="o">*</span><span class="n">base</span><span class="o">.</span><span class="n">tau_nom</span><span class="p">,</span>     <span class="c1"># Torque limit (for the speed ctrl)</span>
+    <span class="n">J</span><span class="o">=.</span><span class="mi">015</span><span class="p">,</span>                         <span class="c1"># Inertia estimate (for the speed ctrl)</span>
+    <span class="n">p</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>                            <span class="c1"># Number of pole pairs</span>
+    <span class="c1"># Inverse-Gamma model parameter estimates</span>
+    <span class="n">R_s</span><span class="o">=</span><span class="mf">3.7</span><span class="p">,</span> <span class="n">R_R</span><span class="o">=</span><span class="mf">2.1</span><span class="p">,</span> <span class="n">L_sgm</span><span class="o">=.</span><span class="mi">021</span><span class="p">,</span> <span class="n">L_M</span><span class="o">=.</span><span class="mi">224</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Speed reference and the external load torque for the induction motors
+can be configured in this way:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the speed reference and the external load torque</span>
+<span class="n">ctrl</span><span class="o">.</span><span class="n">w_m_ref</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="p">(</span><span class="n">t</span> <span class="o">&gt;</span> <span class="o">.</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="o">.</span><span class="mi">5</span><span class="o">*</span><span class="n">base</span><span class="o">.</span><span class="n">w</span><span class="p">)</span>
+<span class="n">mdl</span><span class="o">.</span><span class="n">mech</span><span class="o">.</span><span class="n">tau_L_ext</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="p">(</span><span class="n">t</span> <span class="o">&gt;</span> <span class="o">.</span><span class="mi">75</span><span class="p">)</span><span class="o">*</span><span class="n">base</span><span class="o">.</span><span class="n">tau_nom</span>
+</pre></div>
+</div>
+<p>Simulation object has a simulate function, that solves the
+continuous-time model and calls the discrete-time controller. Base
+values for plotting figures is determined by base parameter and the
+simulation stop time is determined by t_stop parameter (which is 1 by
+default). Simulation object is created as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the simulation object</span>
+<span class="n">sim</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">Simulation</span><span class="p">(</span><span class="n">mdl</span><span class="p">,</span> <span class="n">ctrl</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="n">base</span><span class="p">,</span> <span class="n">t_stop</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To simulate the simulation object, run the command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">simulate</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Plotting can be done either by plotting figures in SI units:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Or alternatively plotting figures in per units:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mt</span><span class="o">.</span><span class="n">plot_pu</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In this tutorial, induction motor was used to simulate the model. However, motulator also supports functionality for synchronous motors
+and more (see <a class="reference internal" href="../index.html#examples"><span class="std std-ref">Examples</span></a>). More detailed information on configuration parameters can be found from <a class="reference internal" href="../index.html#contents"><span class="std std-ref">Contents</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The full version of this tutorial is not finished yet. The tutorial continues from here as more functionalities are later added to motulator.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="usage.html" class="btn btn-neutral float-left" title="Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../auto_examples/index.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Aalto Electric Drives.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

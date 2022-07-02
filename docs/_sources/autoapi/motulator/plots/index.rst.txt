@@ -1,0 +1,136 @@
+:py:mod:`motulator.plots`
+=========================
+
+.. py:module:: motulator.plots
+
+.. autoapi-nested-parse::
+
+   This module contains example plotting scripts.
+
+   ..
+       !! processed by numpydoc !!
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   motulator.plots.plot
+   motulator.plots.plot_pu
+   motulator.plots.plot_extra_pu
+   motulator.plots.save_plot
+
+
+
+.. py:function:: plot(sim)
+
+   
+   Plot example figures in SI units.
+
+   :param sim: Should contain the simulated data.
+   :type sim: Simulation object
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:function:: plot_pu(sim)
+
+   
+   Plot example figures in per units.
+
+   :param sim: Should contain the simulated data.
+   :type sim: Simulation object
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:function:: plot_extra_pu(sim, t_zoom=(1.1, 1.125))
+
+   
+   Plot extra waveforms for a motor drive with a diode bridge.
+
+   :param sim: Should contain the simulated data.
+   :type sim: Simulation object
+   :param t_zoom: Time span. The default is (1.1, 1.125).
+   :type t_zoom: 2-tuple, optional
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:function:: save_plot(name)
+
+   
+   Save figures.
+
+   This saves figures in a folder "figures" in the current directory. If the
+   folder doesn't exist, it is created.
+
+   :param name: Name for the figure
+   :type name: string
+   :param plt: Handle for the figure to be saved
+   :type plt: object
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+

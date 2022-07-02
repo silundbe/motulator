@@ -1,0 +1,341 @@
+:py:mod:`motulator.model.sm`
+============================
+
+.. py:module:: motulator.model.sm
+
+.. autoapi-nested-parse::
+
+   This module contains continuous-time models for synchronous motors.
+
+   The motor model can be parametrized to represent permanent-magnet synchronous
+   motors and synchronous reluctance motors. Peak-valued complex space vectors are
+   used. The default values correspond to a 2.2-kW permanent-magnet synchronous
+   motor.
+
+   ..
+       !! processed by numpydoc !!
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   motulator.model.sm.SynchronousMotor
+
+
+
+
+.. py:class:: SynchronousMotor
+
+   
+   Synchronous motor model.
+
+   This models a synchronous motor in rotor coordinates.
+
+   :param p: Number of pole pairs.
+   :type p: int
+   :param R_s: Stator resistance.
+   :type R_s: float
+   :param L_d: d-axis inductance.
+   :type L_d: float
+   :param L_q: q-axis inductance.
+   :type L_q: float
+   :param psi_f: PM flux linkage.
+   :type psi_f: float
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:attribute:: p
+      :annotation: :int = 3
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: R_s
+      :annotation: :float = 3.6
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: L_d
+      :annotation: :float = 0.036
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: L_q
+      :annotation: :float = 0.051
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: psi_f
+      :annotation: :float = 0.545
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: psi_s0
+      :annotation: :complex
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: __post_init__(self)
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: current(self, psi_s)
+
+      
+      Compute the stator current.
+
+      :param psi_s: Stator flux linkage.
+      :type psi_s: complex
+
+      :returns: **i_s** -- Stator current.
+      :rtype: complex
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: torque(self, psi_s, i_s)
+
+      
+      Compute the electromagnetic torque.
+
+      :param psi_s: Stator flux linkage.
+      :type psi_s: complex
+      :param i_s: Stator current.
+      :type i_s: complex
+
+      :returns: **tau_M** -- Electromagnetic torque.
+      :rtype: float
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: f(self, psi_s, i_s, u_s, w_M)
+
+      
+      Compute the state derivative.
+
+      :param psi_s: Stator flux linkage.
+      :type psi_s: complex
+      :param u_s: Stator voltage.
+      :type u_s: complex
+      :param w_M: Rotor angular speed (in mechanical rad/s).
+      :type w_M: float
+
+      :returns: **dpsi_s** -- Time derivative of the stator flux linkage.
+      :rtype: complex
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: meas_currents(self)
+
+      
+      Measure the phase currents at the end of the sampling period.
+
+      :returns: **i_s_abc** -- Phase currents.
+      :rtype: 3-tuple of floats
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+

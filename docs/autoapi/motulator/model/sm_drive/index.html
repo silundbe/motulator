@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>motulator.model.sm_drive &mdash; motulator 0 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/sg_gallery-rendered-html.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/clipboard.min.js"></script>
+        <script src="../../../../_static/copybutton.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> motulator
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../parts/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../parts/usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../parts/tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../auto_examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../auto_examples/index.html#getting-started-examples">Getting started examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../auto_examples/index.html#examples-on-induction-motors">Examples on induction motors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../auto_examples/index.html#examples-on-synchronous-motors">Examples on synchronous motors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">motulator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">motulator.model.sm_drive</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/autoapi/motulator/model/sm_drive/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="module-motulator.model.sm_drive">
+<span id="motulator-model-sm-drive"></span><h1><a class="reference internal" href="#module-motulator.model.sm_drive" title="motulator.model.sm_drive"><code class="xref py py-mod docutils literal notranslate"><span class="pre">motulator.model.sm_drive</span></code></a><a class="headerlink" href="#module-motulator.model.sm_drive" title="Permalink to this heading"></a></h1>
+<p>This module contains continuous-time models for synchronous motor drives.</p>
+<p>Peak-valued complex space vectors are used. The default values correspond to a
+2.2-kW permanent-magnet synchronous motor.</p>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+<div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#motulator.model.sm_drive.SynchronousMotorDrive" title="motulator.model.sm_drive.SynchronousMotorDrive"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SynchronousMotorDrive</span></code></a></p></td>
+<td><p>Continuous-time model for a synchronous motor drive.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="motulator.model.sm_drive.SynchronousMotorDrive">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">motulator.model.sm_drive.</span></span><span class="sig-name descname"><span class="pre">SynchronousMotorDrive</span></span><a class="reference internal" href="../../../../_modules/motulator/model/sm_drive.html#SynchronousMotorDrive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.sm_drive.SynchronousMotorDrive" title="Permalink to this definition"></a></dt>
+<dd><p>Continuous-time model for a synchronous motor drive.</p>
+<p>This interconnects the subsystems of a synchronous motor drive and provides
+an interface to the solver. More complicated systems could be modeled using
+a similar template.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>motor</strong> (<a class="reference internal" href="../sm/index.html#motulator.model.sm.SynchronousMotor" title="motulator.model.sm.SynchronousMotor"><em>SynchronousMotor</em></a>) – Synchronous motor model.</p></li>
+<li><p><strong>mech</strong> (<a class="reference internal" href="../mech/index.html#motulator.model.mech.Mechanics" title="motulator.model.mech.Mechanics"><em>Mechanics</em></a>) – Mechanics model.</p></li>
+<li><p><strong>conv</strong> (<a class="reference internal" href="../converter/index.html#motulator.model.converter.Inverter" title="motulator.model.converter.Inverter"><em>Inverter</em></a><em> | </em><a class="reference internal" href="../converter/index.html#motulator.model.converter.PWMInverter" title="motulator.model.converter.PWMInverter"><em>PWMInverter</em></a>) – Inverter model.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="motulator.model.sm_drive.SynchronousMotorDrive.motor">
+<span class="sig-name descname"><span class="pre">motor</span></span><em class="property"><span class="w"> </span><span class="pre">:model.sm.SynchronousMotor</span></em><a class="reference internal" href="../../../../_modules/motulator/model/sm_drive.html#SynchronousMotorDrive.motor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.sm_drive.SynchronousMotorDrive.motor" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="motulator.model.sm_drive.SynchronousMotorDrive.mech">
+<span class="sig-name descname"><span class="pre">mech</span></span><em class="property"><span class="w"> </span><span class="pre">:model.mech.Mechanics</span></em><a class="reference internal" href="../../../../_modules/motulator/model/sm_drive.html#SynchronousMotorDrive.mech"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.sm_drive.SynchronousMotorDrive.mech" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="motulator.model.sm_drive.SynchronousMotorDrive.conv">
+<span class="sig-name descname"><span class="pre">conv</span></span><em class="property"><span class="w"> </span><span class="pre">:Inverter</span> <span class="pre">|</span> <span class="pre">PWMInverter</span></em><a class="reference internal" href="../../../../_modules/motulator/model/sm_drive.html#SynchronousMotorDrive.conv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.sm_drive.SynchronousMotorDrive.conv" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="motulator.model.sm_drive.SynchronousMotorDrive.data">
+<span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="w"> </span><span class="pre">:sklearn.utils.Bunch</span></em><a class="reference internal" href="../../../../_modules/motulator/model/sm_drive.html#SynchronousMotorDrive.data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.sm_drive.SynchronousMotorDrive.data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="motulator.model.sm_drive.SynchronousMotorDrive.t0">
+<span class="sig-name descname"><span class="pre">t0</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="reference internal" href="../../../../_modules/motulator/model/sm_drive.html#SynchronousMotorDrive.t0"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.sm_drive.SynchronousMotorDrive.t0" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="motulator.model.sm_drive.SynchronousMotorDrive.__post_init__">
+<span class="sig-name descname"><span class="pre">__post_init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/model/sm_drive.html#SynchronousMotorDrive.__post_init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.sm_drive.SynchronousMotorDrive.__post_init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="motulator.model.sm_drive.SynchronousMotorDrive.get_initial_values">
+<span class="sig-name descname"><span class="pre">get_initial_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/model/sm_drive.html#SynchronousMotorDrive.get_initial_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.sm_drive.SynchronousMotorDrive.get_initial_values" title="Permalink to this definition"></a></dt>
+<dd><p>Get the initial values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>x0</strong> – Initial values of the state variables.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>complex list, length 2</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="motulator.model.sm_drive.SynchronousMotorDrive.set_initial_values">
+<span class="sig-name descname"><span class="pre">set_initial_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/model/sm_drive.html#SynchronousMotorDrive.set_initial_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.sm_drive.SynchronousMotorDrive.set_initial_values" title="Permalink to this definition"></a></dt>
+<dd><p>Set the initial values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x0</strong> (<em>complex ndarray</em>) – Initial values of the state variables.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="motulator.model.sm_drive.SynchronousMotorDrive.f">
+<span class="sig-name descname"><span class="pre">f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/model/sm_drive.html#SynchronousMotorDrive.f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.sm_drive.SynchronousMotorDrive.f" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the complete state derivative list for the solver.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> (<em>float</em>) – Time.</p></li>
+<li><p><strong>x</strong> (<em>complex ndarray</em>) – State vector.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>State derivatives.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>complex list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="motulator.model.sm_drive.SynchronousMotorDrive.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sol</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/model/sm_drive.html#SynchronousMotorDrive.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.sm_drive.SynchronousMotorDrive.save" title="Permalink to this definition"></a></dt>
+<dd><p>Save the solution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sol</strong> (<em>Bunch object</em>) – Solution from the solver.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="motulator.model.sm_drive.SynchronousMotorDrive.post_process">
+<span class="sig-name descname"><span class="pre">post_process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/model/sm_drive.html#SynchronousMotorDrive.post_process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.sm_drive.SynchronousMotorDrive.post_process" title="Permalink to this definition"></a></dt>
+<dd><p>Transform the lists to the ndarray format and post-process them.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Aalto Electric Drives.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

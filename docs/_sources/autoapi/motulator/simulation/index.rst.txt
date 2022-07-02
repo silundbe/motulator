@@ -1,0 +1,118 @@
+:py:mod:`motulator.simulation`
+==============================
+
+.. py:module:: motulator.simulation
+
+.. autoapi-nested-parse::
+
+   This module contains the simulation class.
+
+   ..
+       !! processed by numpydoc !!
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   motulator.simulation.Simulation
+
+
+
+
+.. py:class:: Simulation(mdl=None, ctrl=None, base=None, t_stop=1)
+
+   Simulation class.
+
+   Each simulation object has a system model object and a controller object.
+
+
+
+   :param mdl: Continuous-time system model.
+   :type mdl: (InductionMotorDrive | SynchronousMotorDrive)
+   :param ctrl:     InductionMotorVHzCtrl)
+                Discrete-time controller.
+   :type ctrl: (SynchronousMotorVectorCtrl | InductionMotorVectorCtrl |
+   :param base: Base values for plotting figures.
+   :type base: BaseValues, optional
+   :param t_stop: Simulation stop time. The default is 1.
+   :type t_stop: float, optional
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:method:: simulate(self, max_step=np.inf)
+
+      
+      Solve the continuous-time model and call the discrete-time controller.
+
+      :param max_step: Max step size of the solver. The default is inf.
+      :type max_step: float, optional
+
+      .. rubric:: Notes
+
+      Other options of solve_ivp could be easily changed if needed, but, for
+      simplicity, only max_step is included as an option of this method.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: save_mat(self, name='sim')
+
+      
+      Save the simulation data into MATLAB .mat files.
+
+      :param name: Name for the simulation instance. The default is 'sim'.
+      :type name: str, optional
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+

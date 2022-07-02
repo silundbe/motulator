@@ -1,0 +1,76 @@
+:py:mod:`motulator`
+===================
+
+.. py:module:: motulator
+
+.. autoapi-nested-parse::
+
+   
+   motulator: Motor Drive Simulator in Python
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+Subpackages
+-----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 3
+
+   control/index.rst
+   model/index.rst
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   helpers/index.rst
+   plots/index.rst
+   simulation/index.rst
+
+
+Package Contents
+----------------
+
+.. py:data:: PATH
+   
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
