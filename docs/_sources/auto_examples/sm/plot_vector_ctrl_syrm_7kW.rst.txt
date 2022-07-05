@@ -18,19 +18,123 @@
 .. _sphx_glr_auto_examples_sm_plot_vector_ctrl_syrm_7kW.py:
 
 
-Example simulation script: vector-controlled 6.7-kW SyRM drive.
-===============================================================
+Vector-controlled 6.7-kW SyRM drive
+===================================
 
-Sensorless vector control is used in the default parameters.
+This example simulates sensorless vector control of a 6.7-kW SyRM drive.
 
-.. GENERATED FROM PYTHON SOURCE LINES 8-62
+.. GENERATED FROM PYTHON SOURCE LINES 10-11
+
+Import the packages and start the timer.
+
+.. GENERATED FROM PYTHON SOURCE LINES 11-17
+
+.. code-block:: default
+
+
+    from time import time
+    import numpy as np
+    import motulator as mt
+    start_time = time()
 
 
 
-.. image-sg:: /auto_examples/sm/images/sphx_glr_plot_vector_ctrl_syrm_7kW_001.png
-   :alt: plot vector ctrl syrm 7kW
-   :srcset: /auto_examples/sm/images/sphx_glr_plot_vector_ctrl_syrm_7kW_001.png
-   :class: sphx-glr-single-img
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 18-19
+
+Compute base values based on the nominal values (just for figures).
+
+.. GENERATED FROM PYTHON SOURCE LINES 19-22
+
+.. code-block:: default
+
+    base = mt.BaseValues(
+        U_nom=370, I_nom=15.5, f_nom=105.8, tau_nom=20.1, P_nom=6.7e3, p=2)
+
+
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 23-24
+
+Configure the system model.
+
+.. GENERATED FROM PYTHON SOURCE LINES 24-30
+
+.. code-block:: default
+
+
+    motor = mt.SynchronousMotor(p=2, R_s=.54, L_d=41.5e-3, L_q=6.2e-3, psi_f=0)
+    mech = mt.Mechanics(J=.015)
+    conv = mt.Inverter()
+    mdl = mt.SynchronousMotorDrive(motor, mech, conv)
+
+
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 31-32
+
+Configure the control system. You may also try to change the parameters.
+
+.. GENERATED FROM PYTHON SOURCE LINES 32-47
+
+.. code-block:: default
+
+
+    pars = mt.SynchronousMotorVectorCtrlPars(
+        sensorless=True,
+        T_s=250e-6, delay=1,
+        alpha_c=2*np.pi*200, alpha_fw=2*np.pi*20, alpha_s=2*np.pi*4,
+        w_o=2*np.pi*80,  # Used only in the sensorless mode
+        tau_M_max=2*base.tau_nom,
+        i_s_max=2*base.i,
+        i_sd_min=.25*base.i,  # Can be 0 in the sensored mode
+        k_u=.95, w_nom=2*np.pi*105.8,
+        p=2, R_s=.54, L_d=41.5e-3, L_q=6.2e-3, psi_f=0,
+        J=.015)
+    # pars.plot(base)  # Plot control look-up tables
+    ctrl = mt.SynchronousMotorVectorCtrl(pars)
+
+
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 48-49
+
+Set the speed reference and the external load torque.
+
+.. GENERATED FROM PYTHON SOURCE LINES 49-61
+
+.. code-block:: default
+
+
+    # Speed reference
+    times = np.array([0, .125, .25, .375, .5, .625, .75, .875, 1])*4
+    values = np.array([0,  0, 1, 1, 0, -1, -1, 0, 0])*base.w
+    ctrl.w_m_ref = mt.Sequence(times, values)
+    # External load torque
+    times = np.array([0, .125, .125, .875, .875, 1])*4
+    values = np.array([0, 0, 1, 1, 0, 0])*base.tau_nom
+    mdl.mech.tau_L_ext = mt.Sequence(times, values)
+    # Print the system model and controller parameters
+    print(str(mdl)+'\n\n'+str(ctrl))
+
+
+
 
 
 .. rst-class:: sphx-glr-script-out
@@ -43,76 +147,66 @@ Sensorless vector control is used in the default parameters.
 
     SynchronousMotorVectorCtrlPars(sensorless=True, T_s=0.00025, delay=1, alpha_c=1256.6370614359173, alpha_fw=125.66370614359172, alpha_s=25.132741228718345, tau_M_max=40.2, i_s_max=43.84062043356595, i_sd_min=5.480077554195744, k_u=0.95, w_nom=664.7610054996002, R_s=0.54, L_d=0.0415, L_q=0.0062, psi_f=0, p=2, J=0.015, w_o=502.6548245743669)
 
-    Execution time: 10.14 s
 
 
 
+.. GENERATED FROM PYTHON SOURCE LINES 62-63
 
+Create the simulation object and simulate it.
 
-
-|
+.. GENERATED FROM PYTHON SOURCE LINES 63-69
 
 .. code-block:: default
 
-    from time import time
-    import numpy as np
-    import motulator as mt
 
-    # Start computing the execution time
-    start_time = time()
-
-    # Base values
-    base = mt.BaseValues(U_nom=370, I_nom=15.5, f_nom=105.8, tau_nom=20.1,
-                         P_nom=6.7e3, p=2)
-
-    # System model
-    motor = mt.SynchronousMotor(p=2, R_s=.54, L_d=41.5e-3, L_q=6.2e-3, psi_f=0)
-    mech = mt.Mechanics(J=.015)
-    conv = mt.Inverter()
-    mdl = mt.SynchronousMotorDrive(motor, mech, conv)
-
-    # Controller
-    pars = mt.SynchronousMotorVectorCtrlPars(
-        sensorless=True,
-        T_s=250e-6, delay=1,
-        alpha_c=2*np.pi*200, alpha_fw=2*np.pi*20, alpha_s=2*np.pi*4,
-        w_o=2*np.pi*80,     # Used only in the sensorless mode
-        tau_M_max=2*base.tau_nom,
-        i_s_max=2*base.i,
-        i_sd_min=.25*base.i,  # Can be 0 in the sensored mode
-        k_u=.95, w_nom=2*np.pi*105.8,
-        p=2, R_s=.54, L_d=41.5e-3, L_q=6.2e-3, psi_f=0,
-        J=.015)
-    # pars.plot(base)  # Plot control look-up tables
-    ctrl = mt.SynchronousMotorVectorCtrl(pars)
-
-    # Set the speed reference and the external load torque
-    # Speed reference
-    times = np.array([0, .125, .25, .375, .5, .625,  .75, .875, 1])*4
-    values = np.array([0,  0, 1,   1, 0,  -1, -1,   0, 0])*base.w
-    ctrl.w_m_ref = mt.Sequence(times, values)
-    # External load torque
-    times = np.array([0, .125, .125, .875, .875, 1])*4
-    values = np.array([0, 0, 1, 1, 0, 0])*base.tau_nom
-    mdl.mech.tau_L_ext = mt.Sequence(times, values)
-
-    # Print the system model and controller parameters
-    print(str(mdl)+'\n\n'+str(ctrl))
-
-    # Create the simulation object and simulate it
     sim = mt.Simulation(mdl, ctrl, base=base, t_stop=4)
     sim.simulate()
-
     # Print the execution time
     print('\nExecution time: {:.2f} s'.format((time() - start_time)))
 
-    # Plot results
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+
+    Execution time: 10.24 s
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 70-71
+
+Plot results in per-unit values.
+
+.. GENERATED FROM PYTHON SOURCE LINES 71-74
+
+.. code-block:: default
+
+
     mt.plot_pu(sim)
+    # mt.plot(sim)
+
+
+
+.. image-sg:: /auto_examples/sm/images/sphx_glr_plot_vector_ctrl_syrm_7kW_001.png
+   :alt: plot vector ctrl syrm 7kW
+   :srcset: /auto_examples/sm/images/sphx_glr_plot_vector_ctrl_syrm_7kW_001.png
+   :class: sphx-glr-single-img
+
+
+
+
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  10.939 seconds)
+   **Total running time of the script:** ( 0 minutes  11.135 seconds)
 
 
 .. _sphx_glr_download_auto_examples_sm_plot_vector_ctrl_syrm_7kW.py:

@@ -48,29 +48,3 @@ Submodules
    simulation/index.rst
 
 
-Package Contents
-----------------
-
-.. py:data:: PATH
-   
-
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   ..
-       !! processed by numpydoc !!
-

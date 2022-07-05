@@ -7,42 +7,9 @@
 Examples
 ========
 
-A collection of Python scripts that demonstrate how to use motulator.
-
-.. raw:: html
-
-    <div class="sphx-glr-clear"></div>
+A collection of Python scripts that demonstrate how to use *motulator*.
 
 
-
-.. _sphx_glr_auto_examples_getting_started:
-
-Getting started examples
-========================
-
-A collection of Python scripts that aim to demonstrate the basic usage of motulator.
-
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="This is a basic tutorial on how to use the motulator. In order to plot matlab figures on to the...">
-
-.. only:: html
-
- .. figure:: /auto_examples/getting_started/images/thumb/sphx_glr_motulator_basic_tutorial_thumb.png
-     :alt: Motulator basic tutorial
-
-     :ref:`sphx_glr_auto_examples_getting_started_motulator_basic_tutorial.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/getting_started/motulator_basic_tutorial
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>
@@ -51,10 +18,9 @@ A collection of Python scripts that aim to demonstrate the basic usage of motula
 
 .. _sphx_glr_auto_examples_im:
 
-Examples on induction motors
-============================
+Induction Motor Drives
+----------------------
 
-These example scripts use the induction motor drive for simulating a model.
 
 
 .. raw:: html
@@ -64,7 +30,7 @@ These example scripts use the induction motor drive for simulating a model.
 .. only:: html
 
  .. figure:: /auto_examples/im/images/thumb/sphx_glr_plot_vhz_ctrl_im_2kW_thumb.png
-     :alt: Example simulation script: V/Hz-controlled 2.2-kW induction motor drive.
+     :alt: V/Hz-controlled 2.2-kW induction motor drive
 
      :ref:`sphx_glr_auto_examples_im_plot_vhz_ctrl_im_2kW.py`
 
@@ -80,12 +46,12 @@ These example scripts use the induction motor drive for simulating a model.
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Sensorless vector control is used in the default parameters.">
+    <div class="sphx-glr-thumbcontainer" tooltip="This example simulates sensorless vector control of a 2.2-kW induction motor drive.">
 
 .. only:: html
 
  .. figure:: /auto_examples/im/images/thumb/sphx_glr_plot_vector_ctrl_im_2kW_thumb.png
-     :alt: Example simulation script: vector-controlled 2.2-kW induction motor drive.
+     :alt: Vector-controlled 2.2-kW induction motor drive
 
      :ref:`sphx_glr_auto_examples_im_plot_vector_ctrl_im_2kW.py`
 
@@ -106,20 +72,19 @@ These example scripts use the induction motor drive for simulating a model.
 
 .. _sphx_glr_auto_examples_sm:
 
-Examples on synchronous motors
-==============================
+Synchronous Motor Drives
+------------------------
 
-These example scripts use the synchronous motor drive for simulating a model.
 
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Sensorless vector control is used in the default parameters.">
+    <div class="sphx-glr-thumbcontainer" tooltip="This example simulates sensorless vector control of a 2.2-kW PMSM drive.">
 
 .. only:: html
 
  .. figure:: /auto_examples/sm/images/thumb/sphx_glr_plot_vector_ctrl_pmsm_2kW_thumb.png
-     :alt: Example simulation script: vector-controlled 2.2-kW PMSM drive.
+     :alt: Vector-controlled 2.2-kW PMSM drive
 
      :ref:`sphx_glr_auto_examples_sm_plot_vector_ctrl_pmsm_2kW.py`
 
@@ -135,12 +100,12 @@ These example scripts use the synchronous motor drive for simulating a model.
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Sensorless vector control is used in the default parameters.">
+    <div class="sphx-glr-thumbcontainer" tooltip="This example simulates sensorless vector control of a 6.7-kW SyRM drive.">
 
 .. only:: html
 
  .. figure:: /auto_examples/sm/images/thumb/sphx_glr_plot_vector_ctrl_syrm_7kW_thumb.png
-     :alt: Example simulation script: vector-controlled 6.7-kW SyRM drive.
+     :alt: Vector-controlled 6.7-kW SyRM drive
 
      :ref:`sphx_glr_auto_examples_sm_plot_vector_ctrl_syrm_7kW.py`
 
