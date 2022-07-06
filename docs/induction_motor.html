@@ -58,6 +58,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Induction Motor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="synchronous_motor.html">Synchronous Motor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mechanics.html">Mechanics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="converters.html">Converters</a></li>
 </ul>
 
         </div>
@@ -88,11 +89,11 @@
 <h1>Induction Motor<a class="headerlink" href="#induction-motor" title="Permalink to this heading"></a></h1>
 <p>Continuous-time induction motor models are given in the module <a class="reference internal" href="autoapi/motulator/model/im/index.html#module-motulator.model.im" title="motulator.model.im"><code class="xref py py-mod docutils literal notranslate"><span class="pre">motulator.model.im</span></code></a>. Peak-valued complex space vectors are used. The models are implemented in stator coordinates. A Γ-equivalent model is used since it can be extended with the magnetic saturation model in a staightforward manner <a class="footnote-reference brackets" href="#id3" id="id1">1</a>.</p>
 <div class="figure align-center" id="id5">
-<a class="reference external image-reference" href="."><img alt="Gamma-model of an induction motor" src="_images/im_gamma.svg" width="50%" /></a>
+<a class="reference external image-reference" href="."><img alt="Gamma-model of an induction motor" src="_images/im_gamma.svg" width="100%" /></a>
 <p class="caption"><span class="caption-text">Γ model.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
 </div>
 <div class="figure align-center" id="id6">
-<a class="reference external image-reference" href="."><img alt="Block diagram of an induction motor model" src="_images/im_block.svg" width="40%" /></a>
+<a class="reference external image-reference" href="."><img alt="Block diagram of an induction motor model" src="_images/im_block.svg" width="100%" /></a>
 <p class="caption"><span class="caption-text">Block diagram of the motor model. The magnetic model includes the flux equations (or, optionally, saturation characteristics) and the torque equation.</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
 </div>
 <p>The voltage equations are</p>
@@ -117,7 +118,7 @@ model parameters as follows:</p>
 R_\mathrm{R} &amp;= \left(\frac{L_\mathrm{s}}{L_\mathrm{s} + L_\ell}\right)^2 R_\mathrm{r} \\
 L_\mathrm{M} &amp;=  L_\mathrm{s} - L_\sigma\end{split}\]</div>
 <div class="figure align-center" id="id7">
-<a class="reference external image-reference" href="."><img alt="Inverse-Gamma model of an induction motor" src="_images/im_inv_gamma.svg" width="50%" /></a>
+<a class="reference external image-reference" href="."><img alt="Inverse-Gamma model of an induction motor" src="_images/im_inv_gamma.svg" width="100%" /></a>
 <p class="caption"><span class="caption-text">Inverse-Γ model.</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
 </div>
 <p>Example control methods in the module <a class="reference internal" href="autoapi/motulator/control/im_vector/index.html#module-motulator.control.im_vector" title="motulator.control.im_vector"><code class="xref py py-mod docutils literal notranslate"><span class="pre">motulator.control.im_vector</span></code></a> are based on the
