@@ -96,13 +96,14 @@
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="n">complex2abc</span>
-<span class="kn">from</span> <span class="nn">model.mech</span> <span class="kn">import</span> <span class="n">Mechanics</span>
+
+<span class="kn">from</span> <span class="nn">motulator.helpers</span> <span class="kn">import</span> <span class="n">complex2abc</span>
+<span class="kn">from</span> <span class="nn">motulator.model.mech</span> <span class="kn">import</span> <span class="n">Mechanics</span>
 
 
 <span class="c1"># %%</span>
 <span class="nd">@dataclass</span>
-<div class="viewcode-block" id="SynchronousMotor"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.model.sm.SynchronousMotor">[docs]</a><span class="k">class</span> <span class="nc">SynchronousMotor</span><span class="p">:</span>
+<div class="viewcode-block" id="SynchronousMotor"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.SynchronousMotor">[docs]</a><span class="k">class</span> <span class="nc">SynchronousMotor</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Synchronous motor model.</span>
 
@@ -122,21 +123,21 @@
 <span class="sd">        PM flux linkage.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="SynchronousMotor.p"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.model.sm.SynchronousMotor.p">[docs]</a>    <span class="n">p</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span></div>
-<div class="viewcode-block" id="SynchronousMotor.R_s"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.model.sm.SynchronousMotor.R_s">[docs]</a>    <span class="n">R_s</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.6</span></div>
-<div class="viewcode-block" id="SynchronousMotor.L_d"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.model.sm.SynchronousMotor.L_d">[docs]</a>    <span class="n">L_d</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">.</span><span class="mi">036</span></div>
-<div class="viewcode-block" id="SynchronousMotor.L_q"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.model.sm.SynchronousMotor.L_q">[docs]</a>    <span class="n">L_q</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">.</span><span class="mi">051</span></div>
-<div class="viewcode-block" id="SynchronousMotor.psi_f"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.model.sm.SynchronousMotor.psi_f">[docs]</a>    <span class="n">psi_f</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">.</span><span class="mi">545</span></div>
+<div class="viewcode-block" id="SynchronousMotor.p"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.SynchronousMotor.p">[docs]</a>    <span class="n">p</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span></div>
+<div class="viewcode-block" id="SynchronousMotor.R_s"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.SynchronousMotor.R_s">[docs]</a>    <span class="n">R_s</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.6</span></div>
+<div class="viewcode-block" id="SynchronousMotor.L_d"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.SynchronousMotor.L_d">[docs]</a>    <span class="n">L_d</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">.</span><span class="mi">036</span></div>
+<div class="viewcode-block" id="SynchronousMotor.L_q"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.SynchronousMotor.L_q">[docs]</a>    <span class="n">L_q</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">.</span><span class="mi">051</span></div>
+<div class="viewcode-block" id="SynchronousMotor.psi_f"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.SynchronousMotor.psi_f">[docs]</a>    <span class="n">psi_f</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">.</span><span class="mi">545</span></div>
     <span class="c1"># The rotor position from the mechanics subsystem is needed only for the</span>
     <span class="c1"># coordinate transformation in the measure_currents method</span>
     <span class="n">_mech</span><span class="p">:</span> <span class="n">Mechanics</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
     <span class="c1"># Initial value</span>
-<div class="viewcode-block" id="SynchronousMotor.psi_s0"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.model.sm.SynchronousMotor.psi_s0">[docs]</a>    <span class="n">psi_s0</span><span class="p">:</span> <span class="nb">complex</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+<div class="viewcode-block" id="SynchronousMotor.psi_s0"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.SynchronousMotor.psi_s0">[docs]</a>    <span class="n">psi_s0</span><span class="p">:</span> <span class="nb">complex</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="SynchronousMotor.__post_init__"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.model.sm.SynchronousMotor.__post_init__">[docs]</a>    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SynchronousMotor.__post_init__"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.SynchronousMotor.__post_init__">[docs]</a>    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">psi_s0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">psi_f</span> <span class="o">+</span> <span class="mi">0</span><span class="n">j</span></div>
 
-<div class="viewcode-block" id="SynchronousMotor.current"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.model.sm.SynchronousMotor.current">[docs]</a>    <span class="k">def</span> <span class="nf">current</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psi_s</span><span class="p">):</span>
+<div class="viewcode-block" id="SynchronousMotor.current"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.SynchronousMotor.current">[docs]</a>    <span class="k">def</span> <span class="nf">current</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psi_s</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute the stator current.</span>
 
@@ -154,7 +155,7 @@
         <span class="n">i_s</span> <span class="o">=</span> <span class="p">(</span><span class="n">psi_s</span><span class="o">.</span><span class="n">real</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">psi_f</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">L_d</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">psi_s</span><span class="o">.</span><span class="n">imag</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">L_q</span>
         <span class="k">return</span> <span class="n">i_s</span></div>
 
-<div class="viewcode-block" id="SynchronousMotor.torque"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.model.sm.SynchronousMotor.torque">[docs]</a>    <span class="k">def</span> <span class="nf">torque</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psi_s</span><span class="p">,</span> <span class="n">i_s</span><span class="p">):</span>
+<div class="viewcode-block" id="SynchronousMotor.torque"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.SynchronousMotor.torque">[docs]</a>    <span class="k">def</span> <span class="nf">torque</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psi_s</span><span class="p">,</span> <span class="n">i_s</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute the electromagnetic torque.</span>
 
@@ -174,7 +175,7 @@
         <span class="n">tau_M</span> <span class="o">=</span> <span class="mf">1.5</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">i_s</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">psi_s</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">tau_M</span></div>
 
-<div class="viewcode-block" id="SynchronousMotor.f"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.model.sm.SynchronousMotor.f">[docs]</a>    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psi_s</span><span class="p">,</span> <span class="n">i_s</span><span class="p">,</span> <span class="n">u_s</span><span class="p">,</span> <span class="n">w_M</span><span class="p">):</span>
+<div class="viewcode-block" id="SynchronousMotor.f"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.SynchronousMotor.f">[docs]</a>    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psi_s</span><span class="p">,</span> <span class="n">i_s</span><span class="p">,</span> <span class="n">u_s</span><span class="p">,</span> <span class="n">w_M</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute the state derivative.</span>
 
@@ -196,7 +197,7 @@
         <span class="n">dpsi_s</span> <span class="o">=</span> <span class="n">u_s</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">R_s</span><span class="o">*</span><span class="n">i_s</span> <span class="o">-</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">*</span><span class="n">w_M</span><span class="o">*</span><span class="n">psi_s</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">dpsi_s</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="SynchronousMotor.meas_currents"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.model.sm.SynchronousMotor.meas_currents">[docs]</a>    <span class="k">def</span> <span class="nf">meas_currents</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SynchronousMotor.meas_currents"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.SynchronousMotor.meas_currents">[docs]</a>    <span class="k">def</span> <span class="nf">meas_currents</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Measure the phase currents at the end of the sampling period.</span>
 

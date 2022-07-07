@@ -93,7 +93,8 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">cycler</span> <span class="kn">import</span> <span class="n">cycler</span>
-<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="n">complex2abc</span>
+
+<span class="kn">from</span> <span class="nn">motulator.helpers</span> <span class="kn">import</span> <span class="n">complex2abc</span>
 
 <span class="c1"># Plotting parameters</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.prop_cycle&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cycler</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;brgcmyk&#39;</span><span class="p">)</span>
@@ -103,7 +104,7 @@
 
 
 <span class="c1"># %%</span>
-<div class="viewcode-block" id="plot"><a class="viewcode-back" href="../../autoapi/motulator/plots/index.html#motulator.plots.plot">[docs]</a><span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
+<div class="viewcode-block" id="plot"><a class="viewcode-back" href="../../autoapi/motulator/plots/index.html#motulator.plot">[docs]</a><span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plot example figures in SI units.</span>
 
@@ -194,7 +195,7 @@
 
 
 <span class="c1"># %%</span>
-<div class="viewcode-block" id="plot_pu"><a class="viewcode-back" href="../../autoapi/motulator/plots/index.html#motulator.plots.plot_pu">[docs]</a><span class="k">def</span> <span class="nf">plot_pu</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
+<div class="viewcode-block" id="plot_pu"><a class="viewcode-back" href="../../autoapi/motulator/plots/index.html#motulator.plot_pu">[docs]</a><span class="k">def</span> <span class="nf">plot_pu</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plot example figures in per units.</span>
 
@@ -286,7 +287,7 @@
 
 
 <span class="c1"># %%</span>
-<div class="viewcode-block" id="plot_extra_pu"><a class="viewcode-back" href="../../autoapi/motulator/plots/index.html#motulator.plots.plot_extra_pu">[docs]</a><span class="k">def</span> <span class="nf">plot_extra_pu</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">t_zoom</span><span class="o">=</span><span class="p">(</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.125</span><span class="p">)):</span>
+<div class="viewcode-block" id="plot_extra_pu"><a class="viewcode-back" href="../../autoapi/motulator/plots/index.html#motulator.plot_extra_pu">[docs]</a><span class="k">def</span> <span class="nf">plot_extra_pu</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">t_zoom</span><span class="o">=</span><span class="p">(</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.125</span><span class="p">)):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plot extra waveforms for a motor drive with a diode bridge.</span>
 
@@ -356,7 +357,7 @@
 
 
 <span class="c1"># %%</span>
-<div class="viewcode-block" id="save_plot"><a class="viewcode-back" href="../../autoapi/motulator/plots/index.html#motulator.plots.save_plot">[docs]</a><span class="k">def</span> <span class="nf">save_plot</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="save_plot"><a class="viewcode-back" href="../../autoapi/motulator/plots/index.html#motulator.save_plot">[docs]</a><span class="k">def</span> <span class="nf">save_plot</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Save figures.</span>
 

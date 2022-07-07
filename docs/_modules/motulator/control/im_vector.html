@@ -93,13 +93,14 @@
 <span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">Bunch</span>
-<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="n">abc2complex</span>
-<span class="kn">from</span> <span class="nn">control.common</span> <span class="kn">import</span> <span class="n">SpeedCtrl</span><span class="p">,</span> <span class="n">PWM</span><span class="p">,</span> <span class="n">Delay</span><span class="p">,</span> <span class="n">Datalogger</span>
+
+<span class="kn">from</span> <span class="nn">motulator.helpers</span> <span class="kn">import</span> <span class="n">abc2complex</span>
+<span class="kn">from</span> <span class="nn">motulator.control.common</span> <span class="kn">import</span> <span class="n">SpeedCtrl</span><span class="p">,</span> <span class="n">PWM</span><span class="p">,</span> <span class="n">Delay</span><span class="p">,</span> <span class="n">Datalogger</span>
 
 
 <span class="c1"># %%</span>
 <span class="nd">@dataclass</span>
-<div class="viewcode-block" id="InductionMotorVectorCtrlPars"><a class="viewcode-back" href="../../../autoapi/motulator/control/im_vector/index.html#motulator.control.im_vector.InductionMotorVectorCtrlPars">[docs]</a><span class="k">class</span> <span class="nc">InductionMotorVectorCtrlPars</span><span class="p">:</span>
+<div class="viewcode-block" id="InductionMotorVectorCtrlPars"><a class="viewcode-back" href="../../../autoapi/motulator/index.html#motulator.control.im_vector.InductionMotorVectorCtrlPars">[docs]</a><span class="k">class</span> <span class="nc">InductionMotorVectorCtrlPars</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Vector control parameters for an induction motor drive.</span>
 
@@ -133,7 +134,7 @@
 <div class="viewcode-block" id="InductionMotorVectorCtrlPars.J"><a class="viewcode-back" href="../../../autoapi/motulator/control/im_vector/index.html#motulator.control.im_vector.InductionMotorVectorCtrlPars.J">[docs]</a>    <span class="n">J</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">.</span><span class="mi">015</span></div></div>
 
 
-<div class="viewcode-block" id="InductionMotorVectorCtrl"><a class="viewcode-back" href="../../../autoapi/motulator/control/im_vector/index.html#motulator.control.im_vector.InductionMotorVectorCtrl">[docs]</a><span class="k">class</span> <span class="nc">InductionMotorVectorCtrl</span><span class="p">(</span><span class="n">Datalogger</span><span class="p">):</span>
+<div class="viewcode-block" id="InductionMotorVectorCtrl"><a class="viewcode-back" href="../../../autoapi/motulator/index.html#motulator.control.im_vector.InductionMotorVectorCtrl">[docs]</a><span class="k">class</span> <span class="nc">InductionMotorVectorCtrl</span><span class="p">(</span><span class="n">Datalogger</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Vector control for an induction motor drive.</span>
 

@@ -96,7 +96,7 @@
 
 <span class="c1"># %%</span>
 <span class="nd">@dataclass</span>
-<div class="viewcode-block" id="Mechanics"><a class="viewcode-back" href="../../../autoapi/motulator/model/mech/index.html#motulator.model.mech.Mechanics">[docs]</a><span class="k">class</span> <span class="nc">Mechanics</span><span class="p">:</span>
+<div class="viewcode-block" id="Mechanics"><a class="viewcode-back" href="../../../autoapi/motulator/model/mech/index.html#motulator.Mechanics">[docs]</a><span class="k">class</span> <span class="nc">Mechanics</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Mechanics subsystem.</span>
 
@@ -112,15 +112,15 @@
 <span class="sd">        External load torque as a function of time, `tau_L_ext(t)`.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="Mechanics.J"><a class="viewcode-back" href="../../../autoapi/motulator/model/mech/index.html#motulator.model.mech.Mechanics.J">[docs]</a>    <span class="n">J</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">.</span><span class="mi">015</span></div>
-<div class="viewcode-block" id="Mechanics.B"><a class="viewcode-back" href="../../../autoapi/motulator/model/mech/index.html#motulator.model.mech.Mechanics.B">[docs]</a>    <span class="n">B</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span></div>
-<div class="viewcode-block" id="Mechanics.tau_L_ext"><a class="viewcode-back" href="../../../autoapi/motulator/model/mech/index.html#motulator.model.mech.Mechanics.tau_L_ext">[docs]</a>    <span class="n">tau_L_ext</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<div class="viewcode-block" id="Mechanics.J"><a class="viewcode-back" href="../../../autoapi/motulator/model/mech/index.html#motulator.Mechanics.J">[docs]</a>    <span class="n">J</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">.</span><span class="mi">015</span></div>
+<div class="viewcode-block" id="Mechanics.B"><a class="viewcode-back" href="../../../autoapi/motulator/model/mech/index.html#motulator.Mechanics.B">[docs]</a>    <span class="n">B</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span></div>
+<div class="viewcode-block" id="Mechanics.tau_L_ext"><a class="viewcode-back" href="../../../autoapi/motulator/model/mech/index.html#motulator.Mechanics.tau_L_ext">[docs]</a>    <span class="n">tau_L_ext</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                                                 <span class="n">default</span><span class="o">=</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span></div>
     <span class="c1"># Initial values</span>
-<div class="viewcode-block" id="Mechanics.w_M0"><a class="viewcode-back" href="../../../autoapi/motulator/model/mech/index.html#motulator.model.mech.Mechanics.w_M0">[docs]</a>    <span class="n">w_M0</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></div>
-<div class="viewcode-block" id="Mechanics.theta_M0"><a class="viewcode-back" href="../../../autoapi/motulator/model/mech/index.html#motulator.model.mech.Mechanics.theta_M0">[docs]</a>    <span class="n">theta_M0</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></div>
+<div class="viewcode-block" id="Mechanics.w_M0"><a class="viewcode-back" href="../../../autoapi/motulator/model/mech/index.html#motulator.Mechanics.w_M0">[docs]</a>    <span class="n">w_M0</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></div>
+<div class="viewcode-block" id="Mechanics.theta_M0"><a class="viewcode-back" href="../../../autoapi/motulator/model/mech/index.html#motulator.Mechanics.theta_M0">[docs]</a>    <span class="n">theta_M0</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Mechanics.f"><a class="viewcode-back" href="../../../autoapi/motulator/model/mech/index.html#motulator.model.mech.Mechanics.f">[docs]</a>    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">w_M</span><span class="p">,</span> <span class="n">tau_M</span><span class="p">):</span>
+<div class="viewcode-block" id="Mechanics.f"><a class="viewcode-back" href="../../../autoapi/motulator/model/mech/index.html#motulator.Mechanics.f">[docs]</a>    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">w_M</span><span class="p">,</span> <span class="n">tau_M</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute the state derivative.</span>
 
@@ -143,7 +143,7 @@
         <span class="n">dtheta_M</span> <span class="o">=</span> <span class="n">w_M</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">dw_M</span><span class="p">,</span> <span class="n">dtheta_M</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="Mechanics.meas_speed"><a class="viewcode-back" href="../../../autoapi/motulator/model/mech/index.html#motulator.model.mech.Mechanics.meas_speed">[docs]</a>    <span class="k">def</span> <span class="nf">meas_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Mechanics.meas_speed"><a class="viewcode-back" href="../../../autoapi/motulator/model/mech/index.html#motulator.Mechanics.meas_speed">[docs]</a>    <span class="k">def</span> <span class="nf">meas_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Measure the rotor speed.</span>
 
@@ -159,7 +159,7 @@
         <span class="c1"># by means of the rotor angle, to be done later.</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_M0</span></div>
 
-<div class="viewcode-block" id="Mechanics.meas_position"><a class="viewcode-back" href="../../../autoapi/motulator/model/mech/index.html#motulator.model.mech.Mechanics.meas_position">[docs]</a>    <span class="k">def</span> <span class="nf">meas_position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Mechanics.meas_position"><a class="viewcode-back" href="../../../autoapi/motulator/model/mech/index.html#motulator.Mechanics.meas_position">[docs]</a>    <span class="k">def</span> <span class="nf">meas_position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Measure the rotor angle.</span>
 

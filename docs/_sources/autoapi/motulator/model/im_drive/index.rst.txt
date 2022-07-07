@@ -85,7 +85,7 @@ Classes
           !! processed by numpydoc !!
 
    .. py:attribute:: mech
-      :annotation: :model.mech.Mechanics
+      :annotation: :motulator.model.mech.Mechanics
 
       
 
@@ -358,7 +358,7 @@ Classes
    ..
        !! processed by numpydoc !!
    .. py:attribute:: conv
-      :annotation: :model.converter.FrequencyConverter
+      :annotation: :motulator.model.converter.FrequencyConverter
 
       
 

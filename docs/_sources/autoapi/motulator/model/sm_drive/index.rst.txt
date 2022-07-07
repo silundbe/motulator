@@ -60,7 +60,7 @@ Classes
    ..
        !! processed by numpydoc !!
    .. py:attribute:: motor
-      :annotation: :model.sm.SynchronousMotor
+      :annotation: :motulator.model.sm.SynchronousMotor
 
       
 
@@ -83,7 +83,7 @@ Classes
           !! processed by numpydoc !!
 
    .. py:attribute:: mech
-      :annotation: :model.mech.Mechanics
+      :annotation: :motulator.model.mech.Mechanics
 
       
 

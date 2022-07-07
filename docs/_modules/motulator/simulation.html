@@ -96,7 +96,7 @@
 
 
 <span class="c1"># %%</span>
-<div class="viewcode-block" id="Simulation"><a class="viewcode-back" href="../../autoapi/motulator/simulation/index.html#motulator.simulation.Simulation">[docs]</a><span class="k">class</span> <span class="nc">Simulation</span><span class="p">:</span>
+<div class="viewcode-block" id="Simulation"><a class="viewcode-back" href="../../autoapi/motulator/simulation/index.html#motulator.Simulation">[docs]</a><span class="k">class</span> <span class="nc">Simulation</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Simulation class.</span>
 
@@ -124,7 +124,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">base</span> <span class="o">=</span> <span class="n">base</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">t_stop</span> <span class="o">=</span> <span class="n">t_stop</span>
 
-<div class="viewcode-block" id="Simulation.simulate"><a class="viewcode-back" href="../../autoapi/motulator/simulation/index.html#motulator.simulation.Simulation.simulate">[docs]</a>    <span class="k">def</span> <span class="nf">simulate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_step</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">):</span>
+<div class="viewcode-block" id="Simulation.simulate"><a class="viewcode-back" href="../../autoapi/motulator/simulation/index.html#motulator.Simulation.simulate">[docs]</a>    <span class="k">def</span> <span class="nf">simulate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_step</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Solve the continuous-time model and call the discrete-time controller.</span>
 
@@ -216,7 +216,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">post_process</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ctrl</span><span class="o">.</span><span class="n">post_process</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="Simulation.save_mat"><a class="viewcode-back" href="../../autoapi/motulator/simulation/index.html#motulator.simulation.Simulation.save_mat">[docs]</a>    <span class="k">def</span> <span class="nf">save_mat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;sim&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Simulation.save_mat"><a class="viewcode-back" href="../../autoapi/motulator/simulation/index.html#motulator.Simulation.save_mat">[docs]</a>    <span class="k">def</span> <span class="nf">save_mat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;sim&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Save the simulation data into MATLAB .mat files.</span>
 

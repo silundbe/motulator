@@ -96,12 +96,12 @@
 <span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>
 <span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="n">complex2abc</span>
+<span class="kn">from</span> <span class="nn">motulator.helpers</span> <span class="kn">import</span> <span class="n">complex2abc</span>
 
 
 <span class="c1"># %%</span>
 <span class="nd">@dataclass</span>
-<div class="viewcode-block" id="InductionMotor"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.model.im.InductionMotor">[docs]</a><span class="k">class</span> <span class="nc">InductionMotor</span><span class="p">:</span>
+<div class="viewcode-block" id="InductionMotor"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.InductionMotor">[docs]</a><span class="k">class</span> <span class="nc">InductionMotor</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Induction motor model.</span>
 
@@ -134,17 +134,17 @@
 <span class="sd">       Trans. Ind. Appl., 1989, https://doi.org/10.1109/28.44251.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="InductionMotor.p"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.model.im.InductionMotor.p">[docs]</a>    <span class="n">p</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span></div>
+<div class="viewcode-block" id="InductionMotor.p"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.InductionMotor.p">[docs]</a>    <span class="n">p</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span></div>
     <span class="c1"># Gamma parameters</span>
-<div class="viewcode-block" id="InductionMotor.R_s"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.model.im.InductionMotor.R_s">[docs]</a>    <span class="n">R_s</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.7</span></div>
-<div class="viewcode-block" id="InductionMotor.R_r"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.model.im.InductionMotor.R_r">[docs]</a>    <span class="n">R_r</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.5</span></div>
-<div class="viewcode-block" id="InductionMotor.L_ell"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.model.im.InductionMotor.L_ell">[docs]</a>    <span class="n">L_ell</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">.</span><span class="mi">023</span></div>
-<div class="viewcode-block" id="InductionMotor.L_s"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.model.im.InductionMotor.L_s">[docs]</a>    <span class="n">L_s</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">.</span><span class="mi">245</span></div>
+<div class="viewcode-block" id="InductionMotor.R_s"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.InductionMotor.R_s">[docs]</a>    <span class="n">R_s</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.7</span></div>
+<div class="viewcode-block" id="InductionMotor.R_r"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.InductionMotor.R_r">[docs]</a>    <span class="n">R_r</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.5</span></div>
+<div class="viewcode-block" id="InductionMotor.L_ell"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.InductionMotor.L_ell">[docs]</a>    <span class="n">L_ell</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">.</span><span class="mi">023</span></div>
+<div class="viewcode-block" id="InductionMotor.L_s"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.InductionMotor.L_s">[docs]</a>    <span class="n">L_s</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">.</span><span class="mi">245</span></div>
     <span class="c1"># Initial values</span>
-<div class="viewcode-block" id="InductionMotor.psi_ss0"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.model.im.InductionMotor.psi_ss0">[docs]</a>    <span class="n">psi_ss0</span><span class="p">:</span> <span class="nb">complex</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="n">j</span><span class="p">)</span></div>
-<div class="viewcode-block" id="InductionMotor.psi_rs0"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.model.im.InductionMotor.psi_rs0">[docs]</a>    <span class="n">psi_rs0</span><span class="p">:</span> <span class="nb">complex</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="n">j</span><span class="p">)</span></div>
+<div class="viewcode-block" id="InductionMotor.psi_ss0"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.InductionMotor.psi_ss0">[docs]</a>    <span class="n">psi_ss0</span><span class="p">:</span> <span class="nb">complex</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="n">j</span><span class="p">)</span></div>
+<div class="viewcode-block" id="InductionMotor.psi_rs0"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.InductionMotor.psi_rs0">[docs]</a>    <span class="n">psi_rs0</span><span class="p">:</span> <span class="nb">complex</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="n">j</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="InductionMotor.currents"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.model.im.InductionMotor.currents">[docs]</a>    <span class="k">def</span> <span class="nf">currents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psi_ss</span><span class="p">,</span> <span class="n">psi_rs</span><span class="p">):</span>
+<div class="viewcode-block" id="InductionMotor.currents"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.InductionMotor.currents">[docs]</a>    <span class="k">def</span> <span class="nf">currents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psi_ss</span><span class="p">,</span> <span class="n">psi_rs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute the stator and rotor currents.</span>
 
@@ -167,7 +167,7 @@
         <span class="n">i_ss</span> <span class="o">=</span> <span class="n">psi_ss</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">L_s</span> <span class="o">-</span> <span class="n">i_rs</span>
         <span class="k">return</span> <span class="n">i_ss</span><span class="p">,</span> <span class="n">i_rs</span></div>
 
-<div class="viewcode-block" id="InductionMotor.torque"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.model.im.InductionMotor.torque">[docs]</a>    <span class="k">def</span> <span class="nf">torque</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psi_ss</span><span class="p">,</span> <span class="n">i_ss</span><span class="p">):</span>
+<div class="viewcode-block" id="InductionMotor.torque"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.InductionMotor.torque">[docs]</a>    <span class="k">def</span> <span class="nf">torque</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psi_ss</span><span class="p">,</span> <span class="n">i_ss</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute the electromagnetic torque.</span>
 
@@ -187,7 +187,7 @@
         <span class="n">tau_M</span> <span class="o">=</span> <span class="mf">1.5</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">i_ss</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">psi_ss</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">tau_M</span></div>
 
-<div class="viewcode-block" id="InductionMotor.f"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.model.im.InductionMotor.f">[docs]</a>    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psi_ss</span><span class="p">,</span> <span class="n">psi_rs</span><span class="p">,</span> <span class="n">u_ss</span><span class="p">,</span> <span class="n">w_M</span><span class="p">):</span>
+<div class="viewcode-block" id="InductionMotor.f"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.InductionMotor.f">[docs]</a>    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psi_ss</span><span class="p">,</span> <span class="n">psi_rs</span><span class="p">,</span> <span class="n">u_ss</span><span class="p">,</span> <span class="n">w_M</span><span class="p">):</span>
         <span class="c1"># pylint: disable=R0913</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute the state derivatives.</span>
@@ -214,7 +214,7 @@
         <span class="n">dpsi_rs</span> <span class="o">=</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">R_r</span><span class="o">*</span><span class="n">i_rs</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">*</span><span class="n">w_M</span><span class="o">*</span><span class="n">psi_rs</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">dpsi_ss</span><span class="p">,</span> <span class="n">dpsi_rs</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="InductionMotor.meas_currents"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.model.im.InductionMotor.meas_currents">[docs]</a>    <span class="k">def</span> <span class="nf">meas_currents</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="InductionMotor.meas_currents"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.InductionMotor.meas_currents">[docs]</a>    <span class="k">def</span> <span class="nf">meas_currents</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Measure the phase currents at the end of the sampling period.</span>
 
@@ -233,7 +233,7 @@
 
 <span class="c1"># %%</span>
 <span class="nd">@dataclass</span>
-<div class="viewcode-block" id="SaturableStatorInductance"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.model.im.SaturableStatorInductance">[docs]</a><span class="k">class</span> <span class="nc">SaturableStatorInductance</span><span class="p">:</span>
+<div class="viewcode-block" id="SaturableStatorInductance"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.SaturableStatorInductance">[docs]</a><span class="k">class</span> <span class="nc">SaturableStatorInductance</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Stator inductance saturation model.</span>
 
@@ -257,11 +257,11 @@
 <span class="sd">       https://doi.org/10.1109/TIA.2012.2190818</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="SaturableStatorInductance.L_su"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.model.im.SaturableStatorInductance.L_su">[docs]</a>    <span class="n">L_su</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">.</span><span class="mi">34</span></div>
-<div class="viewcode-block" id="SaturableStatorInductance.beta"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.model.im.SaturableStatorInductance.beta">[docs]</a>    <span class="n">beta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">.</span><span class="mi">84</span></div>
-<div class="viewcode-block" id="SaturableStatorInductance.S"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.model.im.SaturableStatorInductance.S">[docs]</a>    <span class="n">S</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">7.</span></div>
+<div class="viewcode-block" id="SaturableStatorInductance.L_su"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.SaturableStatorInductance.L_su">[docs]</a>    <span class="n">L_su</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">.</span><span class="mi">34</span></div>
+<div class="viewcode-block" id="SaturableStatorInductance.beta"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.SaturableStatorInductance.beta">[docs]</a>    <span class="n">beta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">.</span><span class="mi">84</span></div>
+<div class="viewcode-block" id="SaturableStatorInductance.S"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.SaturableStatorInductance.S">[docs]</a>    <span class="n">S</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">7.</span></div>
 
-<div class="viewcode-block" id="SaturableStatorInductance.__call__"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.model.im.SaturableStatorInductance.__call__">[docs]</a>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psi_s</span><span class="p">):</span>
+<div class="viewcode-block" id="SaturableStatorInductance.__call__"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.SaturableStatorInductance.__call__">[docs]</a>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psi_s</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -280,7 +280,7 @@
 
 <span class="c1"># %%</span>
 <span class="nd">@dataclass</span>
-<div class="viewcode-block" id="InductionMotorSaturated"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.model.im.InductionMotorSaturated">[docs]</a><span class="k">class</span> <span class="nc">InductionMotorSaturated</span><span class="p">(</span><span class="n">InductionMotor</span><span class="p">):</span>
+<div class="viewcode-block" id="InductionMotorSaturated"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.InductionMotorSaturated">[docs]</a><span class="k">class</span> <span class="nc">InductionMotorSaturated</span><span class="p">(</span><span class="n">InductionMotor</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Induction motor model with main-flux saturation.</span>
 
@@ -293,9 +293,9 @@
 <span class="sd">        Saturable stator inductance, L_s = L_s(psi_s)</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="InductionMotorSaturated.L_s"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.model.im.InductionMotorSaturated.L_s">[docs]</a>    <span class="n">L_s</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">SaturableStatorInductance</span><span class="p">()</span></div>
+<div class="viewcode-block" id="InductionMotorSaturated.L_s"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.InductionMotorSaturated.L_s">[docs]</a>    <span class="n">L_s</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">SaturableStatorInductance</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="InductionMotorSaturated.currents"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.model.im.InductionMotorSaturated.currents">[docs]</a>    <span class="k">def</span> <span class="nf">currents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psi_ss</span><span class="p">,</span> <span class="n">psi_rs</span><span class="p">):</span>
+<div class="viewcode-block" id="InductionMotorSaturated.currents"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.InductionMotorSaturated.currents">[docs]</a>    <span class="k">def</span> <span class="nf">currents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psi_ss</span><span class="p">,</span> <span class="n">psi_rs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This method overrides the base class method.</span>
 

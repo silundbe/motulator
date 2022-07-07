@@ -93,14 +93,15 @@
 <span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">Bunch</span>
-<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="n">abc2complex</span>
-<span class="kn">from</span> <span class="nn">control.common</span> <span class="kn">import</span> <span class="n">SpeedCtrl</span><span class="p">,</span> <span class="n">PWM</span><span class="p">,</span> <span class="n">Datalogger</span><span class="p">,</span> <span class="n">Delay</span>
-<span class="kn">from</span> <span class="nn">control.sm_torque</span> <span class="kn">import</span> <span class="n">TorqueCharacteristics</span>
+
+<span class="kn">from</span> <span class="nn">motulator.helpers</span> <span class="kn">import</span> <span class="n">abc2complex</span>
+<span class="kn">from</span> <span class="nn">motulator.control.common</span> <span class="kn">import</span> <span class="n">SpeedCtrl</span><span class="p">,</span> <span class="n">PWM</span><span class="p">,</span> <span class="n">Datalogger</span><span class="p">,</span> <span class="n">Delay</span>
+<span class="kn">from</span> <span class="nn">motulator.control.sm_torque</span> <span class="kn">import</span> <span class="n">TorqueCharacteristics</span>
 
 
 <span class="c1"># %%</span>
 <span class="nd">@dataclass</span>
-<div class="viewcode-block" id="SynchronousMotorVectorCtrlPars"><a class="viewcode-back" href="../../../autoapi/motulator/control/sm_vector/index.html#motulator.control.sm_vector.SynchronousMotorVectorCtrlPars">[docs]</a><span class="k">class</span> <span class="nc">SynchronousMotorVectorCtrlPars</span><span class="p">:</span>
+<div class="viewcode-block" id="SynchronousMotorVectorCtrlPars"><a class="viewcode-back" href="../../../autoapi/motulator/index.html#motulator.control.sm_vector.SynchronousMotorVectorCtrlPars">[docs]</a><span class="k">class</span> <span class="nc">SynchronousMotorVectorCtrlPars</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Control system parameters for synchronous motors.</span>
 
@@ -168,7 +169,7 @@
         <span class="c1"># tq.plot_flux_loci(self.i_s_max, base)</span>
 
 
-<div class="viewcode-block" id="SynchronousMotorVectorCtrl"><a class="viewcode-back" href="../../../autoapi/motulator/control/sm_vector/index.html#motulator.control.sm_vector.SynchronousMotorVectorCtrl">[docs]</a><span class="k">class</span> <span class="nc">SynchronousMotorVectorCtrl</span><span class="p">(</span><span class="n">Datalogger</span><span class="p">):</span>
+<div class="viewcode-block" id="SynchronousMotorVectorCtrl"><a class="viewcode-back" href="../../../autoapi/motulator/index.html#motulator.control.sm_vector.SynchronousMotorVectorCtrl">[docs]</a><span class="k">class</span> <span class="nc">SynchronousMotorVectorCtrl</span><span class="p">(</span><span class="n">Datalogger</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Vector control for a synchronous motor drive.</span>
 

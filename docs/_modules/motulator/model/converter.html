@@ -97,12 +97,12 @@
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="n">abc2complex</span>
+<span class="kn">from</span> <span class="nn">motulator.helpers</span> <span class="kn">import</span> <span class="n">abc2complex</span>
 
 
 <span class="c1"># %%</span>
 <span class="nd">@dataclass</span>
-<div class="viewcode-block" id="Inverter"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.model.converter.Inverter">[docs]</a><span class="k">class</span> <span class="nc">Inverter</span><span class="p">:</span>
+<div class="viewcode-block" id="Inverter"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.Inverter">[docs]</a><span class="k">class</span> <span class="nc">Inverter</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Inverter with constant DC-bus voltage and switching-cycle averaging.</span>
 
@@ -112,13 +112,13 @@
 <span class="sd">        DC-bus voltage.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="Inverter.u_dc0"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.model.converter.Inverter.u_dc0">[docs]</a>    <span class="n">u_dc0</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">540</span></div>
+<div class="viewcode-block" id="Inverter.u_dc0"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.Inverter.u_dc0">[docs]</a>    <span class="n">u_dc0</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">540</span></div>
     <span class="c1"># Here q is the duty ratio vector. In the subclasses where the PWM is</span>
     <span class="c1"># modeled, the variable `q` refers to the switching state vector.</span>
-<div class="viewcode-block" id="Inverter.q"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.model.converter.Inverter.q">[docs]</a>    <span class="n">q</span><span class="p">:</span> <span class="nb">complex</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="n">j</span><span class="p">)</span></div>
+<div class="viewcode-block" id="Inverter.q"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.Inverter.q">[docs]</a>    <span class="n">q</span><span class="p">:</span> <span class="nb">complex</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="n">j</span><span class="p">)</span></div>
 
     <span class="nd">@staticmethod</span>
-<div class="viewcode-block" id="Inverter.ac_voltage"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.model.converter.Inverter.ac_voltage">[docs]</a>    <span class="k">def</span> <span class="nf">ac_voltage</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">u_dc</span><span class="p">):</span>
+<div class="viewcode-block" id="Inverter.ac_voltage"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.Inverter.ac_voltage">[docs]</a>    <span class="k">def</span> <span class="nf">ac_voltage</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">u_dc</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute the AC-side voltage of a lossless inverter.</span>
 
@@ -139,7 +139,7 @@
         <span class="k">return</span> <span class="n">u_ac</span></div>
 
     <span class="nd">@staticmethod</span>
-<div class="viewcode-block" id="Inverter.dc_current"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.model.converter.Inverter.dc_current">[docs]</a>    <span class="k">def</span> <span class="nf">dc_current</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">i_ac</span><span class="p">):</span>
+<div class="viewcode-block" id="Inverter.dc_current"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.Inverter.dc_current">[docs]</a>    <span class="k">def</span> <span class="nf">dc_current</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">i_ac</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute the DC-side current of a lossless inverter.</span>
 
@@ -160,7 +160,7 @@
         <span class="k">return</span> <span class="n">i_dc</span></div>
 
     <span class="nd">@staticmethod</span>
-<div class="viewcode-block" id="Inverter.pwm"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.model.converter.Inverter.pwm">[docs]</a>    <span class="k">def</span> <span class="nf">pwm</span><span class="p">(</span><span class="n">d_abc</span><span class="p">):</span>
+<div class="viewcode-block" id="Inverter.pwm"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.Inverter.pwm">[docs]</a>    <span class="k">def</span> <span class="nf">pwm</span><span class="p">(</span><span class="n">d_abc</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Zero-order hold of the duty ratios over the sampling period.</span>
 
@@ -183,7 +183,7 @@
         <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="n">abc2complex</span><span class="p">(</span><span class="n">d_abc</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">tn_sw</span><span class="p">,</span> <span class="n">q</span></div>
 
-<div class="viewcode-block" id="Inverter.meas_dc_voltage"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.model.converter.Inverter.meas_dc_voltage">[docs]</a>    <span class="k">def</span> <span class="nf">meas_dc_voltage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Inverter.meas_dc_voltage"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.Inverter.meas_dc_voltage">[docs]</a>    <span class="k">def</span> <span class="nf">meas_dc_voltage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Measure the DC-bus voltage.</span>
 
@@ -198,7 +198,7 @@
 
 <span class="c1"># %%</span>
 <span class="nd">@dataclass</span>
-<div class="viewcode-block" id="PWMInverter"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.model.converter.PWMInverter">[docs]</a><span class="k">class</span> <span class="nc">PWMInverter</span><span class="p">(</span><span class="n">Inverter</span><span class="p">):</span>
+<div class="viewcode-block" id="PWMInverter"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.PWMInverter">[docs]</a><span class="k">class</span> <span class="nc">PWMInverter</span><span class="p">(</span><span class="n">Inverter</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    PWM inverter with constant DC-bus voltage.</span>
 
@@ -210,11 +210,11 @@
 <span class="sd">        Amount of PWM quantization levels. The default is 2**12.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="PWMInverter.N"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.model.converter.PWMInverter.N">[docs]</a>    <span class="n">N</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="mi">12</span></div>
+<div class="viewcode-block" id="PWMInverter.N"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.PWMInverter.N">[docs]</a>    <span class="n">N</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="mi">12</span></div>
     <span class="c1"># Stores the carrier direction</span>
-<div class="viewcode-block" id="PWMInverter.falling_edge"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.model.converter.PWMInverter.falling_edge">[docs]</a>    <span class="n">falling_edge</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+<div class="viewcode-block" id="PWMInverter.falling_edge"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.PWMInverter.falling_edge">[docs]</a>    <span class="n">falling_edge</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="PWMInverter.pwm"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.model.converter.PWMInverter.pwm">[docs]</a>    <span class="k">def</span> <span class="nf">pwm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_abc</span><span class="p">):</span>
+<div class="viewcode-block" id="PWMInverter.pwm"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.PWMInverter.pwm">[docs]</a>    <span class="k">def</span> <span class="nf">pwm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_abc</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute the normalized switching instants and the switching states.</span>
 
@@ -266,7 +266,7 @@
 
 <span class="c1"># %%</span>
 <span class="nd">@dataclass</span>
-<div class="viewcode-block" id="FrequencyConverter"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.model.converter.FrequencyConverter">[docs]</a><span class="k">class</span> <span class="nc">FrequencyConverter</span><span class="p">(</span><span class="n">PWMInverter</span><span class="p">):</span>
+<div class="viewcode-block" id="FrequencyConverter"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.FrequencyConverter">[docs]</a><span class="k">class</span> <span class="nc">FrequencyConverter</span><span class="p">(</span><span class="n">PWMInverter</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Frequency converter.</span>
 
@@ -286,25 +286,25 @@
 <span class="sd">        Grid frequency.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="FrequencyConverter.L"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.model.converter.FrequencyConverter.L">[docs]</a>    <span class="n">L</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2e-3</span></div>
-<div class="viewcode-block" id="FrequencyConverter.C"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.model.converter.FrequencyConverter.C">[docs]</a>    <span class="n">C</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">235e-6</span></div>
-<div class="viewcode-block" id="FrequencyConverter.U_g"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.model.converter.FrequencyConverter.U_g">[docs]</a>    <span class="n">U_g</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">400</span></div>
-<div class="viewcode-block" id="FrequencyConverter.f_g"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.model.converter.FrequencyConverter.f_g">[docs]</a>    <span class="n">f_g</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">50</span></div>
+<div class="viewcode-block" id="FrequencyConverter.L"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.FrequencyConverter.L">[docs]</a>    <span class="n">L</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2e-3</span></div>
+<div class="viewcode-block" id="FrequencyConverter.C"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.FrequencyConverter.C">[docs]</a>    <span class="n">C</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">235e-6</span></div>
+<div class="viewcode-block" id="FrequencyConverter.U_g"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.FrequencyConverter.U_g">[docs]</a>    <span class="n">U_g</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">400</span></div>
+<div class="viewcode-block" id="FrequencyConverter.f_g"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.FrequencyConverter.f_g">[docs]</a>    <span class="n">f_g</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">50</span></div>
     <span class="c1"># Initial value of the DC-bus inductor current</span>
-<div class="viewcode-block" id="FrequencyConverter.i_L0"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.model.converter.FrequencyConverter.i_L0">[docs]</a>    <span class="n">i_L0</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></div>
+<div class="viewcode-block" id="FrequencyConverter.i_L0"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.FrequencyConverter.i_L0">[docs]</a>    <span class="n">i_L0</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></div>
     <span class="c1"># Initial value of the DC-bus voltage</span>
-<div class="viewcode-block" id="FrequencyConverter.u_dc0"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.model.converter.FrequencyConverter.u_dc0">[docs]</a>    <span class="n">u_dc0</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+<div class="viewcode-block" id="FrequencyConverter.u_dc0"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.FrequencyConverter.u_dc0">[docs]</a>    <span class="n">u_dc0</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
     <span class="c1"># Peak-valued line-neutral grid voltage</span>
-<div class="viewcode-block" id="FrequencyConverter.u_g"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.model.converter.FrequencyConverter.u_g">[docs]</a>    <span class="n">u_g</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+<div class="viewcode-block" id="FrequencyConverter.u_g"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.FrequencyConverter.u_g">[docs]</a>    <span class="n">u_g</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
     <span class="c1"># Grid angular frequeyncy</span>
-<div class="viewcode-block" id="FrequencyConverter.w_g"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.model.converter.FrequencyConverter.w_g">[docs]</a>    <span class="n">w_g</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+<div class="viewcode-block" id="FrequencyConverter.w_g"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.FrequencyConverter.w_g">[docs]</a>    <span class="n">w_g</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="FrequencyConverter.__post_init__"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.model.converter.FrequencyConverter.__post_init__">[docs]</a>    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="FrequencyConverter.__post_init__"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.FrequencyConverter.__post_init__">[docs]</a>    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">u_dc0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">U_g</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">u_g</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">U_g</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">w_g</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">f_g</span></div>
 
-<div class="viewcode-block" id="FrequencyConverter.grid_voltages"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.model.converter.FrequencyConverter.grid_voltages">[docs]</a>    <span class="k">def</span> <span class="nf">grid_voltages</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+<div class="viewcode-block" id="FrequencyConverter.grid_voltages"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.FrequencyConverter.grid_voltages">[docs]</a>    <span class="k">def</span> <span class="nf">grid_voltages</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute three-phase grid voltages.</span>
 
@@ -325,7 +325,7 @@
                                      <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta_g</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">3</span><span class="p">)])</span>
         <span class="k">return</span> <span class="n">u_g_abc</span></div>
 
-<div class="viewcode-block" id="FrequencyConverter.f"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.model.converter.FrequencyConverter.f">[docs]</a>    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">u_dc</span><span class="p">,</span> <span class="n">i_L</span><span class="p">,</span> <span class="n">i_dc</span><span class="p">):</span>
+<div class="viewcode-block" id="FrequencyConverter.f"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.FrequencyConverter.f">[docs]</a>    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">u_dc</span><span class="p">,</span> <span class="n">i_L</span><span class="p">,</span> <span class="n">i_dc</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute the state derivatives.</span>
 

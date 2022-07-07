@@ -344,7 +344,7 @@ Classes
 
 .. py:class:: InductionMotorVHzCtrl(pars)
 
-   Bases: :py:obj:`control.common.Datalogger`
+   Bases: :py:obj:`motulator.control.common.Datalogger`
 
    V/Hz control with the stator current feedback.
 

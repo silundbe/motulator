@@ -48,3 +48,4615 @@ Submodules
    simulation/index.rst
 
 
+Package Contents
+----------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   motulator.Simulation
+   motulator.Mechanics
+   motulator.Inverter
+   motulator.PWMInverter
+   motulator.FrequencyConverter
+   motulator.InductionMotor
+   motulator.InductionMotorSaturated
+   motulator.SaturableStatorInductance
+   motulator.SynchronousMotor
+   motulator.InductionMotorDrive
+   motulator.InductionMotorDriveDiode
+   motulator.SynchronousMotorDrive
+   motulator.InductionMotorVHzCtrl
+   motulator.InductionMotorVHzCtrlPars
+   motulator.InductionMotorVectorCtrl
+   motulator.InductionMotorVectorCtrlPars
+   motulator.SynchronousMotorVectorCtrl
+   motulator.SynchronousMotorVectorCtrlPars
+   motulator.BaseValues
+   motulator.Sequence
+   motulator.Step
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   motulator.abc2complex
+   motulator.complex2abc
+   motulator.plot
+   motulator.plot_pu
+   motulator.plot_extra_pu
+
+
+
+.. py:class:: Simulation(mdl=None, ctrl=None, base=None, t_stop=1)
+
+   Simulation class.
+
+   Each simulation object has a system model object and a controller object.
+
+
+
+   :param mdl: Continuous-time system model.
+   :type mdl: (InductionMotorDrive | SynchronousMotorDrive)
+   :param ctrl:     InductionMotorVHzCtrl)
+                Discrete-time controller.
+   :type ctrl: (SynchronousMotorVectorCtrl | InductionMotorVectorCtrl |
+   :param base: Base values for plotting figures.
+   :type base: BaseValues, optional
+   :param t_stop: Simulation stop time. The default is 1.
+   :type t_stop: float, optional
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:method:: simulate(self, max_step=np.inf)
+
+      
+      Solve the continuous-time model and call the discrete-time controller.
+
+      :param max_step: Max step size of the solver. The default is inf.
+      :type max_step: float, optional
+
+      .. rubric:: Notes
+
+      Other options of solve_ivp could be easily changed if needed, but, for
+      simplicity, only max_step is included as an option of this method.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: save_mat(self, name='sim')
+
+      
+      Save the simulation data into MATLAB .mat files.
+
+      :param name: Name for the simulation instance. The default is 'sim'.
+      :type name: str, optional
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+.. py:class:: Mechanics
+
+   
+   Mechanics subsystem.
+
+   This models an equation of motion for stiff mechanics.
+
+   :param J: Total moment of inertia.
+   :type J: float
+   :param B: Viscous damping coefficient.
+   :type B: float
+   :param tau_L_ext: External load torque as a function of time, `tau_L_ext(t)`.
+   :type tau_L_ext: function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:attribute:: J
+      :annotation: :float = 0.015
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: B
+      :annotation: :float = 0
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: tau_L_ext
+      :annotation: :collections.abc.Callable[[float], float]
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: w_M0
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: theta_M0
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: f(self, t, w_M, tau_M)
+
+      
+      Compute the state derivative.
+
+      :param t: Time.
+      :type t: float
+      :param w_M: Rotor angular speed (in mechanical rad/s).
+      :type w_M: float
+      :param tau_M: Electromagnetic torque.
+      :type tau_M: float
+
+      :returns: Time derivative of the state vector.
+      :rtype: list, length 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: meas_speed(self)
+
+      
+      Measure the rotor speed.
+
+      This returns the rotor speed at the end of the sampling period.
+
+      :returns: **w_M0** -- Rotor angular speed (in mechanical rad/s).
+      :rtype: float
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: meas_position(self)
+
+      
+      Measure the rotor angle.
+
+      This returns the rotor angle at the end of the sampling period.
+
+      :returns: **theta_M0** -- Rotor angle (in mechanical rad).
+      :rtype: float
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+.. py:class:: Inverter
+
+   
+   Inverter with constant DC-bus voltage and switching-cycle averaging.
+
+   :param u_dc0: DC-bus voltage.
+   :type u_dc0: float
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:attribute:: u_dc0
+      :annotation: :float = 540
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: q
+      :annotation: :complex
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: ac_voltage(q, u_dc)
+      :staticmethod:
+
+      
+      Compute the AC-side voltage of a lossless inverter.
+
+      :param q: Duty ratio vector (switching state vector in subclasses).
+      :type q: complex
+      :param u_dc: DC-bus voltage.
+      :type u_dc: float
+
+      :returns: **u_ac** -- AC-side voltage.
+      :rtype: complex
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: dc_current(q, i_ac)
+      :staticmethod:
+
+      
+      Compute the DC-side current of a lossless inverter.
+
+      :param q: Duty ratio vector (switching state vector in subclasses).
+      :type q: complex
+      :param i_ac: AC-side current.
+      :type i_ac: complex
+
+      :returns: **i_dc** -- DC-side current.
+      :rtype: float
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: pwm(d_abc)
+      :staticmethod:
+
+      
+      Zero-order hold of the duty ratios over the sampling period.
+
+      The output arrays are compatible with the solver.
+
+      :param d_abc: Duty ratios in the range [0, 1].
+      :type d_abc: array_like of floats, shape (3,)
+
+      :returns: * **tn_sw** (*ndarray, shape (1,2)*) -- Normalized switching instant, tn_sw = [0, 1].
+                * **q** (*complex ndarray, shape (1,)*) -- Duty ratio vector, having a shape compatible with the solver.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: meas_dc_voltage(self)
+
+      
+      Measure the DC-bus voltage.
+
+      :returns: DC-bus voltage.
+      :rtype: float
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+.. py:class:: PWMInverter
+
+   Bases: :py:obj:`Inverter`
+
+   
+   PWM inverter with constant DC-bus voltage.
+
+   This extends the Inverter class with pulse-width modulation.
+
+   :param N: Amount of PWM quantization levels. The default is 2**12.
+   :type N: int, optional
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:attribute:: N
+      :annotation: :int
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: falling_edge
+      :annotation: :bool
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: pwm(self, d_abc)
+
+      
+      Compute the normalized switching instants and the switching states.
+
+      :param d_abc: Duty ratios in the range [0, 1].
+      :type d_abc: array_like of floats, shape (3,)
+
+      :returns: * **tn_sw** (*ndarray, shape (4,2)*) -- Normalized switching instants, tn_sw = [0, t1, t2, t3, 1].
+                * **q** (*complex ndarray, shape (4,)*) -- Switching state vectors corresponding to the switching instants.
+                  For example, the switching state q[1] is applied at the interval
+                  tn_sw[1].
+
+      .. rubric:: Notes
+
+      Switching instants t_sw split the sampling period T_s into
+      four spans. No switching (e.g. da = 0 or da = 1) or simultaneous
+      switching instants (e.g da == db) lead to zero spans, i.e.,
+      t_sw[i] == t_sw[i].
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+.. py:class:: FrequencyConverter
+
+   Bases: :py:obj:`PWMInverter`
+
+   
+   Frequency converter.
+
+   This extends the PWMInverter class with models for a strong grid, a
+   three-phase diode-bridge rectifier, an LC filter, and a three-phase
+   inverter.
+
+   :param L: DC-bus inductance.
+   :type L: float
+   :param C: DC-bus capacitance.
+   :type C: float
+   :param U_g: Grid voltage (line-line, rms).
+   :type U_g: float
+   :param f_g: Grid frequency.
+   :type f_g: float
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:attribute:: L
+      :annotation: :float = 0.002
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: C
+      :annotation: :float = 0.000235
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: U_g
+      :annotation: :float = 400
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: f_g
+      :annotation: :float = 50
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: i_L0
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: u_dc0
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: u_g
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: w_g
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: __post_init__(self)
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: grid_voltages(self, t)
+
+      
+      Compute three-phase grid voltages.
+
+      :param t: Time.
+      :type t: float
+
+      :returns: **u_g_abc** -- The phase voltages.
+      :rtype: ndarray of floats, shape (3,)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: f(self, t, u_dc, i_L, i_dc)
+
+      
+      Compute the state derivatives.
+
+      :param t: Time.
+      :type t: float
+      :param u_dc: DC-bus voltage over the capacitor.
+      :type u_dc: float
+      :param i_L: DC-bus inductor current.
+      :type i_L: float
+      :param i_dc: Current to the inverter.
+      :type i_dc: float
+
+      :returns: Time derivative of the state vector, [du_dc, d_iL]
+      :rtype: list, length 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+.. py:class:: InductionMotor
+
+   
+   Induction motor model.
+
+   An induction motor is modeled using the Gamma-equivalent model [R743146ac54e0-1]_. The
+   model is implemented in stator coordinates.
+
+   :param p: Number of pole pairs.
+   :type p: int
+   :param R_s: Stator resistance.
+   :type R_s: float
+   :param R_r: Rotor resistance.
+   :type R_r: float
+   :param L_ell: Leakage inductance.
+   :type L_ell: float
+   :param L_s: Stator inductance.
+   :type L_s: float
+
+   .. rubric:: Notes
+
+   The Gamma model is chosen here since it can be extended with the magnetic
+   saturation model in a staightforward manner. If the magnetic saturation is
+   omitted, the Gamma model is mathematically identical to the inverse-Gamma
+   and T models [R743146ac54e0-1]_.
+
+   .. rubric:: References
+
+   .. [R743146ac54e0-1] Slemon, "Modelling of induction machines for electric drives," IEEE
+      Trans. Ind. Appl., 1989, https://doi.org/10.1109/28.44251.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:attribute:: p
+      :annotation: :int = 2
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: R_s
+      :annotation: :float = 3.7
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: R_r
+      :annotation: :float = 2.5
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: L_ell
+      :annotation: :float = 0.023
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: L_s
+      :annotation: :float = 0.245
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: psi_ss0
+      :annotation: :complex
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: psi_rs0
+      :annotation: :complex
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: currents(self, psi_ss, psi_rs)
+
+      
+      Compute the stator and rotor currents.
+
+      :param psi_ss: Stator flux linkage.
+      :type psi_ss: complex
+      :param psi_rs: Rotor flux linkage.
+      :type psi_rs: complex
+
+      :returns: * **i_ss** (*complex*) -- Stator current.
+                * **i_rs** (*complex*) -- Rotor current.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: torque(self, psi_ss, i_ss)
+
+      
+      Compute the electromagnetic torque.
+
+      :param psi_ss: Stator flux linkage.
+      :type psi_ss: complex
+      :param i_ss: Stator current.
+      :type i_ss: complex
+
+      :returns: **tau_M** -- Electromagnetic torque.
+      :rtype: float
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: f(self, psi_ss, psi_rs, u_ss, w_M)
+
+      
+      Compute the state derivatives.
+
+      :param psi_ss: Stator flux linkage.
+      :type psi_ss: complex
+      :param psi_rs: Rotor flux linkage.
+      :type psi_rs: complex
+      :param u_ss: Stator voltage.
+      :type u_ss: complex
+      :param w_M: Rotor angular speed (in mechanical rad/s).
+      :type w_M: float
+
+      :returns: Time derivative of the state vector, [dpsi_ss, dpsi_rs]
+      :rtype: complex list, length 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: meas_currents(self)
+
+      
+      Measure the phase currents at the end of the sampling period.
+
+      :returns: **i_s_abc** -- Phase currents.
+      :rtype: 3-tuple of floats
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+.. py:class:: InductionMotorSaturated
+
+   Bases: :py:obj:`InductionMotor`
+
+   
+   Induction motor model with main-flux saturation.
+
+   This extends the InductionMotor class with a main-flux magnetic saturation
+   model.
+
+   :param L_s: Saturable stator inductance, L_s = L_s(psi_s)
+   :type L_s: Callable[[float], float]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:attribute:: L_s
+      :annotation: :collections.abc.Callable[[float], float]
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: currents(self, psi_ss, psi_rs)
+
+      
+      This method overrides the base class method.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+.. py:class:: SaturableStatorInductance
+
+   
+   Stator inductance saturation model.
+
+   This saturation model is given by [Rbf46b462ba88-2]_::
+
+       L_s(psi_s) = L_su/(1 + (beta*abs(psi_s)**S)
+
+   :param L_su: Unsaturated stator inductance.
+   :type L_su: float
+   :param beta: Positive coefficient.
+   :type beta: float
+   :param S: Positive coefficient.
+   :type S: float
+
+   .. rubric:: References
+
+   .. [Rbf46b462ba88-2] Qu, Ranta, Hinkkanen, Luomi, "Loss-minimizing flux level control of
+      induction motor drives," IEEE Trans. Ind. Appl., 2021,
+      https://doi.org/10.1109/TIA.2012.2190818
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:attribute:: L_su
+      :annotation: :float = 0.34
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: beta
+      :annotation: :float = 0.84
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: S
+      :annotation: :float = 7.0
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: __call__(self, psi_s)
+
+      
+      :param psi_s: Stator flux linkage.
+      :type psi_s: float or complex
+
+      :returns: **L_s** -- Saturated value of the stator inductance.
+      :rtype: float
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+.. py:class:: SynchronousMotor
+
+   
+   Synchronous motor model.
+
+   This models a synchronous motor in rotor coordinates.
+
+   :param p: Number of pole pairs.
+   :type p: int
+   :param R_s: Stator resistance.
+   :type R_s: float
+   :param L_d: d-axis inductance.
+   :type L_d: float
+   :param L_q: q-axis inductance.
+   :type L_q: float
+   :param psi_f: PM flux linkage.
+   :type psi_f: float
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:attribute:: p
+      :annotation: :int = 3
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: R_s
+      :annotation: :float = 3.6
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: L_d
+      :annotation: :float = 0.036
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: L_q
+      :annotation: :float = 0.051
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: psi_f
+      :annotation: :float = 0.545
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: psi_s0
+      :annotation: :complex
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: __post_init__(self)
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: current(self, psi_s)
+
+      
+      Compute the stator current.
+
+      :param psi_s: Stator flux linkage.
+      :type psi_s: complex
+
+      :returns: **i_s** -- Stator current.
+      :rtype: complex
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: torque(self, psi_s, i_s)
+
+      
+      Compute the electromagnetic torque.
+
+      :param psi_s: Stator flux linkage.
+      :type psi_s: complex
+      :param i_s: Stator current.
+      :type i_s: complex
+
+      :returns: **tau_M** -- Electromagnetic torque.
+      :rtype: float
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: f(self, psi_s, i_s, u_s, w_M)
+
+      
+      Compute the state derivative.
+
+      :param psi_s: Stator flux linkage.
+      :type psi_s: complex
+      :param u_s: Stator voltage.
+      :type u_s: complex
+      :param w_M: Rotor angular speed (in mechanical rad/s).
+      :type w_M: float
+
+      :returns: **dpsi_s** -- Time derivative of the stator flux linkage.
+      :rtype: complex
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: meas_currents(self)
+
+      
+      Measure the phase currents at the end of the sampling period.
+
+      :returns: **i_s_abc** -- Phase currents.
+      :rtype: 3-tuple of floats
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+.. py:class:: InductionMotorDrive
+
+   
+   Continuous-time model for an induction motor drive.
+
+   This interconnects the subsystems of an induction motor drive and provides
+   an interface to the solver. More complicated systems could be modeled using
+   a similar template.
+
+   :param motor: Induction motor model.
+   :type motor: InductionMotor | InductionMotorSaturated
+   :param mech: Mechanics model.
+   :type mech: Mechanics
+   :param conv: Inverter model.
+   :type conv: Inverter | PWMInverter
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:attribute:: motor
+      :annotation: :InductionMotor | InductionMotorSaturated
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: mech
+      :annotation: :motulator.model.mech.Mechanics
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: conv
+      :annotation: :Inverter | PWMInverter
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: data
+      :annotation: :sklearn.utils.Bunch
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: t0
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: __post_init__(self)
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: get_initial_values(self)
+
+      
+      Get the initial values.
+
+      :returns: **x0** -- Initial values of the state variables.
+      :rtype: complex list, length 4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: set_initial_values(self, t0, x0)
+
+      
+      Set the initial values.
+
+      :param x0: Initial values of the state variables.
+      :type x0: complex ndarray
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: f(self, t, x)
+
+      
+      Compute the complete state derivative list for the solver.
+
+      :param t: Time.
+      :type t: float
+      :param x: State vector.
+      :type x: complex ndarray
+
+      :returns: State derivatives.
+      :rtype: complex list
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: save(self, sol)
+
+      
+      Save the solution.
+
+      :param sol: Solution from the solver.
+      :type sol: Bunch object
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: post_process(self)
+
+      
+      Transform the lists to the ndarray format and post-process them.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+.. py:class:: InductionMotorDriveDiode
+
+   Bases: :py:obj:`InductionMotorDrive`
+
+   
+   Induction motor drive equipped with a diode bridge.
+
+   This models extends the InductionMotorDrive class with a model for a
+   three-phase diode bridge fed from stiff supply voltages. The DC bus is
+   modeled as an inductor and a capacitor.
+
+   :param conv: Frequency converter model.
+   :type conv: FrequencyConverter
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:attribute:: conv
+      :annotation: :motulator.model.converter.FrequencyConverter
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: __post_init__(self)
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: get_initial_values(self)
+
+      
+      Get the initial values.
+
+      :returns: **x0** -- Initial values of the state variables.
+      :rtype: complex list, length 4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: set_initial_values(self, t0, x0)
+
+      
+      Set the initial values.
+
+      :param x0: Initial values of the state variables.
+      :type x0: complex ndarray
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: f(self, t, x)
+
+      
+      Compute the complete state derivative list for the solver.
+
+      :param t: Time.
+      :type t: float
+      :param x: State vector.
+      :type x: complex ndarray
+
+      :returns: State derivatives.
+      :rtype: complex list
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: save(self, sol)
+
+      
+      Save the solution.
+
+      :param sol: Solution from the solver.
+      :type sol: Bunch object
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: post_process(self)
+
+      
+      Transform the lists to the ndarray format and post-process them.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+.. py:class:: SynchronousMotorDrive
+
+   
+   Continuous-time model for a synchronous motor drive.
+
+   This interconnects the subsystems of a synchronous motor drive and provides
+   an interface to the solver. More complicated systems could be modeled using
+   a similar template.
+
+   :param motor: Synchronous motor model.
+   :type motor: SynchronousMotor
+   :param mech: Mechanics model.
+   :type mech: Mechanics
+   :param conv: Inverter model.
+   :type conv: Inverter | PWMInverter
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:attribute:: motor
+      :annotation: :motulator.model.sm.SynchronousMotor
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: mech
+      :annotation: :motulator.model.mech.Mechanics
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: conv
+      :annotation: :Inverter | PWMInverter
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: data
+      :annotation: :sklearn.utils.Bunch
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: t0
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: __post_init__(self)
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: get_initial_values(self)
+
+      
+      Get the initial values.
+
+      :returns: **x0** -- Initial values of the state variables.
+      :rtype: complex list, length 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: set_initial_values(self, t0, x0)
+
+      
+      Set the initial values.
+
+      :param x0: Initial values of the state variables.
+      :type x0: complex ndarray
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: f(self, t, x)
+
+      
+      Compute the complete state derivative list for the solver.
+
+      :param t: Time.
+      :type t: float
+      :param x: State vector.
+      :type x: complex ndarray
+
+      :returns: State derivatives.
+      :rtype: complex list
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: save(self, sol)
+
+      
+      Save the solution.
+
+      :param sol: Solution from the solver.
+      :type sol: Bunch object
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: post_process(self)
+
+      
+      Transform the lists to the ndarray format and post-process them.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+.. py:class:: InductionMotorVHzCtrl(pars)
+
+   Bases: :py:obj:`motulator.control.common.Datalogger`
+
+   V/Hz control with the stator current feedback.
+
+   :param pars: Control parameters.
+   :type pars: InductionMotorVHzCtrlPars
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:method:: __call__(self, i_s_abc, u_dc)
+
+      
+      Main control loop.
+
+      :param i_s_abc: Phase currents.
+      :type i_s_abc: ndarray, shape (3,)
+      :param u_dc: DC-bus voltage.
+      :type u_dc: float
+
+      :returns: * **d_abc_ref** (*ndarray, shape (3,)*) -- Duty ratio references.
+                * **T_s** (*float*) -- Sampling period.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: stator_freq(self, w_s_ref, i_s)
+
+      
+      Compute the dynamic stator frequency.
+
+      This computes the dynamic stator frequency reference used in the
+      coordinate transformations.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: voltage_reference(self, w_s, i_s)
+
+      
+      Compute the stator voltage reference.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: __repr__(self)
+
+      
+      Return repr(self).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+.. py:class:: InductionMotorVHzCtrlPars
+
+   
+   V/Hz control parameters.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:attribute:: w_m_ref
+      :annotation: :collections.abc.Callable[[float], float]
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: sensorless
+      :annotation: :bool
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: T_s
+      :annotation: :float = 0.00025
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: delay
+      :annotation: :int = 1
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: psi_s_nom
+      :annotation: :float = 1.04
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: rate_limit
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: R_s
+      :annotation: :float = 3.7
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: R_R
+      :annotation: :float = 2.1
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: L_sgm
+      :annotation: :float = 0.021
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: L_M
+      :annotation: :float = 0.224
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: k_u
+      :annotation: :float = 1
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: k_w
+      :annotation: :float = 4
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+.. py:class:: InductionMotorVectorCtrl(pars=InductionMotorVectorCtrlPars())
+
+   Bases: :py:obj:`motulator.control.common.Datalogger`
+
+   Vector control for an induction motor drive.
+
+   This class interconnects the subsystems of the control system and
+   provides the interface to the solver.
+
+   :param pars: Control parameters.
+   :type pars: InductionMotorVectorControlPars
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:method:: __call__(self, i_s_abc, u_dc, *args)
+
+      
+      Main control loop.
+
+      :param i_s_abc: Phase currents.
+      :type i_s_abc: ndarray, shape (3,)
+      :param u_dc: DC-bus voltage.
+      :type u_dc: float
+      :param w_M: Rotor speed (in mechanical rad/s), only for the sensored control.
+      :type w_M: float, optional
+
+      :returns: * **d_abc_ref** (*ndarray, shape (3,)*) -- Duty ratio references.
+                * **T_s** (*float*) -- Sampling period.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: __repr__(self)
+
+      
+      Return repr(self).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+.. py:class:: InductionMotorVectorCtrlPars
+
+   
+   Vector control parameters for an induction motor drive.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:attribute:: w_m_ref
+      :annotation: :collections.abc.Callable[[float], float]
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: sensorless
+      :annotation: :bool = True
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: T_s
+      :annotation: :float = 0.00025
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: delay
+      :annotation: :int = 1
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: alpha_c
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: alpha_o
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: alpha_s
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: tau_M_max
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: i_s_max
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: psi_R_nom
+      :annotation: :float = 0.9
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: u_dc_nom
+      :annotation: :float = 540
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: R_s
+      :annotation: :float = 3.7
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: R_R
+      :annotation: :float = 2.1
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: L_sgm
+      :annotation: :float = 0.021
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: L_M
+      :annotation: :float = 0.224
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: p
+      :annotation: :int = 2
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: J
+      :annotation: :float = 0.015
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+.. py:class:: SynchronousMotorVectorCtrl(pars=SynchronousMotorVectorCtrlPars())
+
+   Bases: :py:obj:`motulator.control.common.Datalogger`
+
+   Vector control for a synchronous motor drive.
+
+   This class interconnects the subsystems of the control system and
+   provides the interface to the solver.
+
+
+
+   :param pars: Control parameters.
+   :type pars: SynchronousMotorVectorCtrlData
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:method:: __call__(self, i_s_abc, u_dc, *args)
+
+      
+      Main control loop.
+
+      :param i_s_abc: Phase currents.
+      :type i_s_abc: ndarray, shape (3,)
+      :param u_dc: DC-bus voltage.
+      :type u_dc: float
+      :param w_M: Rotor speed (in mechanical rad/s), for the sensored control.
+      :type w_M: float, optional
+      :param theta_M: Rotor angle (in mechanical rad), for the sensored control.
+      :type theta_M: float, optional
+
+      :returns: * **d_abc_ref** (*ndarray, shape (3,)*) -- Duty ratio references.
+                * **T_s** (*float*) -- Sampling period.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: __repr__(self)
+
+      
+      Return repr(self).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+.. py:class:: SynchronousMotorVectorCtrlPars
+
+   
+   Control system parameters for synchronous motors.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:attribute:: w_m_ref
+      :annotation: :collections.abc.Callable[[float], float]
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: sensorless
+      :annotation: :bool = True
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: T_s
+      :annotation: :float = 0.00025
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: delay
+      :annotation: :int = 1
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: alpha_c
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: alpha_fw
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: alpha_s
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: tau_M_max
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: i_s_max
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: i_sd_min
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: k_u
+      :annotation: :float = 0.95
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: w_nom
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: R_s
+      :annotation: :float = 3.6
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: L_d
+      :annotation: :float = 0.036
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: L_q
+      :annotation: :float = 0.051
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: psi_f
+      :annotation: :float = 0.545
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: p
+      :annotation: :int = 3
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: J
+      :annotation: :float = 0.015
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: w_o
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: __post_init__(self)
+
+      
+      Generate control look-up tables.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: plot(self, base)
+
+      
+      Plot control look-up tables.
+
+      :param base: Base values for scaling the plots.
+      :type base: BaseValues
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+.. py:class:: BaseValues
+
+   
+   Base values.
+
+   Base values are computed from the nominal values and the number of pole
+   pairs. They can be used, e.g., for scaling the plotted waveforms.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:attribute:: U_nom
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: I_nom
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: f_nom
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: P_nom
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: tau_nom
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: p
+      :annotation: :int
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: __post_init__(self)
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+.. py:function:: abc2complex(u)
+
+   
+   Transform three-phase quantities to a complex space vector.
+
+   :param u: Phase quantities.
+   :type u: array_like, shape (3,)
+
+   :returns: Complex space vector (peak-value scaling).
+   :rtype: complex
+
+   .. rubric:: Examples
+
+   >>> y = abc2complex([1, 2, 3])
+   >>> y
+   (-1-0.5773502691896258j)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:function:: complex2abc(u)
+
+   
+   Transform a complex space vector to three-phase quantities.
+
+   :param u: Complex space vector (peak-value scaling).
+   :type u: complex
+
+   :returns: Phase quantities.
+   :rtype: ndarray, shape (3,)
+
+   .. rubric:: Examples
+
+   >>> y = complex2abc(1-.5j)
+   >>> y
+   array([ 1.       , -0.9330127, -0.0669873])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:class:: Sequence(times, values, periodic=False)
+
+   Sequence generator.
+
+   This represents a sequence generator. The time array must be increasing.
+   The output values are interpolated between the data points.
+
+
+
+   :param times: Time values.
+   :type times: ndarray
+   :param values: Output values.
+   :type values: ndarray
+   :param periodic: Enables periodicity. The default is False.
+   :type periodic: bool, optional
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:method:: __call__(self, t)
+
+      
+      Interpolate the output.
+
+      :param t: Time.
+      :type t: float
+
+      :returns: Interpolated output.
+      :rtype: float or complex
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: __str__(self)
+
+      
+      Return str(self).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+.. py:class:: Step(step_time, step_value, initial_value=0)
+
+   Step function.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:method:: __call__(self, t)
+
+      
+      Step function.
+
+      :param t: Time.
+      :type t: float
+
+      :returns: Step output.
+      :rtype: float
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: __str__(self)
+
+      
+      Return str(self).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+.. py:function:: plot(sim)
+
+   
+   Plot example figures in SI units.
+
+   :param sim: Should contain the simulated data.
+   :type sim: Simulation object
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:function:: plot_pu(sim)
+
+   
+   Plot example figures in per units.
+
+   :param sim: Should contain the simulated data.
+   :type sim: Simulation object
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:function:: plot_extra_pu(sim, t_zoom=(1.1, 1.125))
+
+   
+   Plot extra waveforms for a motor drive with a diode bridge.
+
+   :param sim: Should contain the simulated data.
+   :type sim: Simulation object
+   :param t_zoom: Time span. The default is (1.1, 1.125).
+   :type t_zoom: 2-tuple, optional
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
