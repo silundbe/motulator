@@ -129,7 +129,7 @@ Classes
           !! processed by numpydoc !!
 
    .. py:attribute:: data
-      :annotation: :sklearn.utils.Bunch
+      :annotation: :motulator.helpers.Bunch
 
       
 

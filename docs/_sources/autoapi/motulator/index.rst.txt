@@ -1973,7 +1973,7 @@ Functions
           !! processed by numpydoc !!
 
    .. py:attribute:: data
-      :annotation: :sklearn.utils.Bunch
+      :annotation: :motulator.helpers.Bunch
 
       
 
@@ -2475,7 +2475,7 @@ Functions
           !! processed by numpydoc !!
 
    .. py:attribute:: data
-      :annotation: :sklearn.utils.Bunch
+      :annotation: :motulator.helpers.Bunch
 
       
 

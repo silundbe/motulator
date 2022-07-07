@@ -262,6 +262,97 @@
                 <span class="s1">&#39; step_value=</span><span class="si">{:.1f}</span><span class="s1">)&#39;</span><span class="p">)</span>
                 <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">step_time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">step_value</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">desc</span></div></div>
+
+
+<span class="c1"># %%</span>
+<span class="c1"># The Bunch class is from sklearn.utils:</span>
+<span class="c1">#</span>
+<span class="c1">#    https://github.com/scikit-learn/scikit-learn</span>
+<span class="c1">#</span>
+<span class="c1"># Its license is provided below.</span>
+<span class="c1">#</span>
+<span class="c1"># ----------------------------------------------------------------------------</span>
+<span class="c1"># BSD 3-Clause License</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright (c) 2007-2021 The scikit-learn developers.</span>
+<span class="c1"># All rights reserved.</span>
+<span class="c1">#</span>
+<span class="c1"># Redistribution and use in source and binary forms, with or without</span>
+<span class="c1"># modification, are permitted provided that the following conditions are met:</span>
+<span class="c1">#</span>
+<span class="c1"># * Redistributions of source code must retain the above copyright notice, this</span>
+<span class="c1">#   list of conditions and the following disclaimer.</span>
+<span class="c1">#</span>
+<span class="c1"># * Redistributions in binary form must reproduce the above copyright notice,</span>
+<span class="c1">#   this list of conditions and the following disclaimer in the documentation</span>
+<span class="c1">#   and/or other materials provided with the distribution.</span>
+<span class="c1">#</span>
+<span class="c1"># * Neither the name of the copyright holder nor the names of its</span>
+<span class="c1">#   contributors may be used to endorse or promote products derived from</span>
+<span class="c1">#   this software without specific prior written permission.</span>
+<span class="c1">#</span>
+<span class="c1"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;</span>
+<span class="c1"># AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE</span>
+<span class="c1"># IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE</span>
+<span class="c1"># ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE</span>
+<span class="c1"># LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR</span>
+<span class="c1"># CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF</span>
+<span class="c1"># SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS</span>
+<span class="c1"># INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN</span>
+<span class="c1"># CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)</span>
+<span class="c1"># ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE</span>
+<span class="c1"># POSSIBILITY OF SUCH DAMAGE.</span>
+<span class="c1"># ----------------------------------------------------------------------------</span>
+<span class="c1"># pylint: disable=raise-missing-from</span>
+<div class="viewcode-block" id="Bunch"><a class="viewcode-back" href="../../autoapi/motulator/helpers/index.html#motulator.helpers.Bunch">[docs]</a><span class="k">class</span> <span class="nc">Bunch</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Container object exposing keys as attributes.</span>
+<span class="sd">    Bunch objects are sometimes used as an output for functions and methods.</span>
+<span class="sd">    They extend dictionaries by enabling values to be accessed by key,</span>
+<span class="sd">    `bunch[&quot;value_key&quot;]`, or by an attribute, `bunch.value_key`.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.utils import Bunch</span>
+<span class="sd">    &gt;&gt;&gt; b = Bunch(a=1, b=2)</span>
+<span class="sd">    &gt;&gt;&gt; b[&#39;b&#39;]</span>
+<span class="sd">    2</span>
+<span class="sd">    &gt;&gt;&gt; b.b</span>
+<span class="sd">    2</span>
+<span class="sd">    &gt;&gt;&gt; b.a = 3</span>
+<span class="sd">    &gt;&gt;&gt; b[&#39;a&#39;]</span>
+<span class="sd">    3</span>
+<span class="sd">    &gt;&gt;&gt; b.c = 6</span>
+<span class="sd">    &gt;&gt;&gt; b[&#39;c&#39;]</span>
+<span class="sd">    6</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Bunch.__setattr__"><a class="viewcode-back" href="../../autoapi/motulator/helpers/index.html#motulator.helpers.Bunch.__setattr__">[docs]</a>    <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span></div>
+
+<div class="viewcode-block" id="Bunch.__dir__"><a class="viewcode-back" href="../../autoapi/motulator/helpers/index.html#motulator.helpers.Bunch.__dir__">[docs]</a>    <span class="k">def</span> <span class="fm">__dir__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Bunch.__getattr__"><a class="viewcode-back" href="../../autoapi/motulator/helpers/index.html#motulator.helpers.Bunch.__getattr__">[docs]</a>    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Bunch.__setstate__"><a class="viewcode-back" href="../../autoapi/motulator/helpers/index.html#motulator.helpers.Bunch.__setstate__">[docs]</a>    <span class="k">def</span> <span class="nf">__setstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="c1"># Bunch pickles generated with scikit-learn 0.16.* have an non</span>
+        <span class="c1"># empty __dict__. This causes a surprising behaviour when</span>
+        <span class="c1"># loading these pickles scikit-learn 0.17: reading bunch.key</span>
+        <span class="c1"># uses __dict__ but assigning to bunch.key use __setattr__ and</span>
+        <span class="c1"># only changes bunch[&#39;key&#39;]. More details can be found at:</span>
+        <span class="c1"># https://github.com/scikit-learn/scikit-learn/issues/6196.</span>
+        <span class="c1"># Overriding __setstate__ to be a noop has the effect of</span>
+        <span class="c1"># ignoring the pickled __dict__</span>
+        <span class="k">pass</span></div></div>
 </pre></div>
 
            </div>
