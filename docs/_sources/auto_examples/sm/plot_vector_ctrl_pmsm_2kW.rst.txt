@@ -25,9 +25,9 @@ This example simulates sensorless vector control of a 2.2-kW PMSM drive.
 
 .. GENERATED FROM PYTHON SOURCE LINES 10-11
 
-Import the packages and start the timer.
+Import the packages.
 
-.. GENERATED FROM PYTHON SOURCE LINES 11-17
+.. GENERATED FROM PYTHON SOURCE LINES 11-16
 
 .. code-block:: default
 
@@ -35,7 +35,6 @@ Import the packages and start the timer.
     from time import time
     import numpy as np
     import motulator as mt
-    start_time = time()
 
 
 
@@ -44,11 +43,11 @@ Import the packages and start the timer.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 18-19
+.. GENERATED FROM PYTHON SOURCE LINES 17-18
 
 Compute base values based on the nominal values (just for figures).
 
-.. GENERATED FROM PYTHON SOURCE LINES 19-23
+.. GENERATED FROM PYTHON SOURCE LINES 18-22
 
 .. code-block:: default
 
@@ -63,11 +62,11 @@ Compute base values based on the nominal values (just for figures).
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 24-25
+.. GENERATED FROM PYTHON SOURCE LINES 23-24
 
 Configure the system model. Enable PWM by uncommenting the line below.
 
-.. GENERATED FROM PYTHON SOURCE LINES 25-32
+.. GENERATED FROM PYTHON SOURCE LINES 24-31
 
 .. code-block:: default
 
@@ -85,11 +84,11 @@ Configure the system model. Enable PWM by uncommenting the line below.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 33-34
+.. GENERATED FROM PYTHON SOURCE LINES 32-33
 
-Configure the control system. You may also try to change the parameters.
+Configure the control system.
 
-.. GENERATED FROM PYTHON SOURCE LINES 34-39
+.. GENERATED FROM PYTHON SOURCE LINES 33-38
 
 .. code-block:: default
 
@@ -105,11 +104,11 @@ Configure the control system. You may also try to change the parameters.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 40-41
+.. GENERATED FROM PYTHON SOURCE LINES 39-40
 
 Set the speed reference and the external load torque.
 
-.. GENERATED FROM PYTHON SOURCE LINES 41-53
+.. GENERATED FROM PYTHON SOURCE LINES 40-52
 
 .. code-block:: default
 
@@ -142,16 +141,17 @@ Set the speed reference and the external load torque.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 54-55
+.. GENERATED FROM PYTHON SOURCE LINES 53-54
 
 Create the simulation object and simulate it.
 
-.. GENERATED FROM PYTHON SOURCE LINES 55-61
+.. GENERATED FROM PYTHON SOURCE LINES 54-61
 
 .. code-block:: default
 
 
     sim = mt.Simulation(mdl, ctrl, base=base, t_stop=4)
+    start_time = time()  # Start the timer
     sim.simulate()
     # Print the execution time
     print('\nExecution time: {:.2f} s'.format((time() - start_time)))
@@ -167,7 +167,7 @@ Create the simulation object and simulate it.
  .. code-block:: none
 
 
-    Execution time: 12.02 s
+    Execution time: 10.95 s
 
 
 
@@ -199,7 +199,7 @@ plot the results in SI units.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  12.884 seconds)
+   **Total running time of the script:** ( 0 minutes  11.835 seconds)
 
 
 .. _sphx_glr_download_auto_examples_sm_plot_vector_ctrl_pmsm_2kW.py:

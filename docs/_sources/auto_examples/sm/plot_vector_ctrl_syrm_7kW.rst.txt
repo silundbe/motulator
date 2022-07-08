@@ -25,9 +25,9 @@ This example simulates sensorless vector control of a 6.7-kW SyRM drive.
 
 .. GENERATED FROM PYTHON SOURCE LINES 10-11
 
-Import the packages and start the timer.
+Import the packages.
 
-.. GENERATED FROM PYTHON SOURCE LINES 11-17
+.. GENERATED FROM PYTHON SOURCE LINES 11-16
 
 .. code-block:: default
 
@@ -35,7 +35,6 @@ Import the packages and start the timer.
     from time import time
     import numpy as np
     import motulator as mt
-    start_time = time()
 
 
 
@@ -44,13 +43,14 @@ Import the packages and start the timer.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 18-19
+.. GENERATED FROM PYTHON SOURCE LINES 17-18
 
 Compute base values based on the nominal values (just for figures).
 
-.. GENERATED FROM PYTHON SOURCE LINES 19-22
+.. GENERATED FROM PYTHON SOURCE LINES 18-22
 
 .. code-block:: default
+
 
     base = mt.BaseValues(
         U_nom=370, I_nom=15.5, f_nom=105.8, tau_nom=20.1, P_nom=6.7e3, p=2)
@@ -154,12 +154,13 @@ Set the speed reference and the external load torque.
 
 Create the simulation object and simulate it.
 
-.. GENERATED FROM PYTHON SOURCE LINES 63-69
+.. GENERATED FROM PYTHON SOURCE LINES 63-70
 
 .. code-block:: default
 
 
     sim = mt.Simulation(mdl, ctrl, base=base, t_stop=4)
+    start_time = time()  # Start the timer
     sim.simulate()
     # Print the execution time
     print('\nExecution time: {:.2f} s'.format((time() - start_time)))
@@ -175,16 +176,16 @@ Create the simulation object and simulate it.
  .. code-block:: none
 
 
-    Execution time: 11.22 s
+    Execution time: 10.20 s
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 70-71
+.. GENERATED FROM PYTHON SOURCE LINES 71-72
 
 Plot results in per-unit values.
 
-.. GENERATED FROM PYTHON SOURCE LINES 71-74
+.. GENERATED FROM PYTHON SOURCE LINES 72-75
 
 .. code-block:: default
 
@@ -206,7 +207,7 @@ Plot results in per-unit values.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  12.095 seconds)
+   **Total running time of the script:** ( 0 minutes  11.091 seconds)
 
 
 .. _sphx_glr_download_auto_examples_sm_plot_vector_ctrl_syrm_7kW.py:

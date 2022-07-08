@@ -26,16 +26,15 @@ parameters correspond to an open-loop V/Hz control.
 
 .. GENERATED FROM PYTHON SOURCE LINES 10-11
 
-Import the packages and start the timer.
+Import the packages.
 
-.. GENERATED FROM PYTHON SOURCE LINES 11-16
+.. GENERATED FROM PYTHON SOURCE LINES 11-15
 
 .. code-block:: default
 
 
     from time import time
     import motulator as mt
-    start_time = time()
 
 
 
@@ -44,11 +43,11 @@ Import the packages and start the timer.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 17-18
+.. GENERATED FROM PYTHON SOURCE LINES 16-17
 
 Compute base values based on the nominal values (just for figures).
 
-.. GENERATED FROM PYTHON SOURCE LINES 18-22
+.. GENERATED FROM PYTHON SOURCE LINES 17-21
 
 .. code-block:: default
 
@@ -63,18 +62,18 @@ Compute base values based on the nominal values (just for figures).
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 23-24
+.. GENERATED FROM PYTHON SOURCE LINES 22-23
 
 Create the system model.
 
-.. GENERATED FROM PYTHON SOURCE LINES 24-37
+.. GENERATED FROM PYTHON SOURCE LINES 23-36
 
 .. code-block:: default
 
 
     # Saturation model
     L_s = mt.SaturableStatorInductance()
-    # Motor model with main-flux saturation included
+    # Γ-equivalent motor model with main-flux saturation included
     motor = mt.InductionMotorSaturated(
         R_s=3.7, R_r=2.5, L_ell=.023, L_s=L_s, p=2)
     # Mechanics model
@@ -91,11 +90,11 @@ Create the system model.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 38-39
+.. GENERATED FROM PYTHON SOURCE LINES 37-38
 
 Control system (parametrized as open-loop V/Hz control).
 
-.. GENERATED FROM PYTHON SOURCE LINES 39-43
+.. GENERATED FROM PYTHON SOURCE LINES 38-42
 
 .. code-block:: default
 
@@ -110,12 +109,12 @@ Control system (parametrized as open-loop V/Hz control).
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 44-46
+.. GENERATED FROM PYTHON SOURCE LINES 43-45
 
 Set the speed reference and the external load torque. More complicated
 signals could be defined as functions.
 
-.. GENERATED FROM PYTHON SOURCE LINES 46-50
+.. GENERATED FROM PYTHON SOURCE LINES 45-49
 
 .. code-block:: default
 
@@ -130,16 +129,17 @@ signals could be defined as functions.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 51-52
+.. GENERATED FROM PYTHON SOURCE LINES 50-51
 
 Create the simulation object and simulate it.
 
-.. GENERATED FROM PYTHON SOURCE LINES 52-58
+.. GENERATED FROM PYTHON SOURCE LINES 51-58
 
 .. code-block:: default
 
 
     sim = mt.Simulation(mdl, ctrl, base=base, t_stop=1.5)
+    start_time = time()  # Start the timer
     sim.simulate()
     # Print the execution time
     print('\nExecution time: {:.2f} s'.format((time() - start_time)))
@@ -155,7 +155,7 @@ Create the simulation object and simulate it.
  .. code-block:: none
 
 
-    Execution time: 13.72 s
+    Execution time: 13.15 s
 
 
 
@@ -213,7 +213,7 @@ Plot results in per-unit values.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  15.447 seconds)
+   **Total running time of the script:** ( 0 minutes  14.901 seconds)
 
 
 .. _sphx_glr_download_auto_examples_im_plot_vhz_ctrl_im_2kW.py:

@@ -87,6 +87,8 @@
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">This module contains vector control methods for an induction motor drive.</span>
 
+<span class="sd">The algorithms are written based on the inverse-Γ model.</span>
+
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>
@@ -124,7 +126,7 @@
     <span class="c1"># Nominal values</span>
 <div class="viewcode-block" id="InductionMotorVectorCtrlPars.psi_R_nom"><a class="viewcode-back" href="../../../autoapi/motulator/control/im_vector/index.html#motulator.control.im_vector.InductionMotorVectorCtrlPars.psi_R_nom">[docs]</a>    <span class="n">psi_R_nom</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">.</span><span class="mi">9</span></div>
 <div class="viewcode-block" id="InductionMotorVectorCtrlPars.u_dc_nom"><a class="viewcode-back" href="../../../autoapi/motulator/control/im_vector/index.html#motulator.control.im_vector.InductionMotorVectorCtrlPars.u_dc_nom">[docs]</a>    <span class="n">u_dc_nom</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">540</span></div>
-    <span class="c1"># Motor parameter estimates</span>
+    <span class="c1"># Motor parameter estimates (inverse-Γ model)</span>
 <div class="viewcode-block" id="InductionMotorVectorCtrlPars.R_s"><a class="viewcode-back" href="../../../autoapi/motulator/control/im_vector/index.html#motulator.control.im_vector.InductionMotorVectorCtrlPars.R_s">[docs]</a>    <span class="n">R_s</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.7</span></div>
 <div class="viewcode-block" id="InductionMotorVectorCtrlPars.R_R"><a class="viewcode-back" href="../../../autoapi/motulator/control/im_vector/index.html#motulator.control.im_vector.InductionMotorVectorCtrlPars.R_R">[docs]</a>    <span class="n">R_R</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.1</span></div>
 <div class="viewcode-block" id="InductionMotorVectorCtrlPars.L_sgm"><a class="viewcode-back" href="../../../autoapi/motulator/control/im_vector/index.html#motulator.control.im_vector.InductionMotorVectorCtrlPars.L_sgm">[docs]</a>    <span class="n">L_sgm</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">.</span><span class="mi">021</span></div>
@@ -326,7 +328,7 @@
 <span class="sd">        ----------</span>
 <span class="sd">        u_s_ref : complex</span>
 <span class="sd">            Unlimited stator voltage reference.</span>
-<span class="sd">        u_dc : float.</span>
+<span class="sd">        u_dc : float</span>
 <span class="sd">            DC-bus voltage.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>

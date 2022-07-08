@@ -102,11 +102,10 @@ to download the full example code</p>
 <span id="sphx-glr-auto-examples-im-plot-vector-ctrl-im-2kw-py"></span><h1>Vector-controlled 2.2-kW induction motor drive<a class="headerlink" href="#vector-controlled-2-2-kw-induction-motor-drive" title="Permalink to this heading"></a></h1>
 <p>This example simulates sensorless vector control of a 2.2-kW induction motor
 drive.</p>
-<p>Import the packages and start the timer.</p>
+<p>Import the packages.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">motulator</span> <span class="k">as</span> <span class="nn">mt</span>
-<span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Compute base values based on the nominal values (just for figures).</p>
@@ -119,8 +118,10 @@ drive.</p>
 </pre></div>
 </div>
 <p>Configure the system model. Enable PWM by uncommenting the line below.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Gamma-model of in induction motor</span>
-<span class="n">motor</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">InductionMotor</span><span class="p">(</span><span class="n">R_s</span><span class="o">=</span><span class="mf">3.7</span><span class="p">,</span> <span class="n">R_r</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">L_ell</span><span class="o">=.</span><span class="mi">023</span><span class="p">,</span> <span class="n">L_s</span><span class="o">=.</span><span class="mi">245</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Configure the induction motor using its inverse-Γ parameters</span>
+<span class="n">motor</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">InductionMotorInvGamma</span><span class="p">(</span><span class="n">R_s</span><span class="o">=</span><span class="mf">3.7</span><span class="p">,</span> <span class="n">R_R</span><span class="o">=</span><span class="mf">2.1</span><span class="p">,</span> <span class="n">L_sgm</span><span class="o">=.</span><span class="mi">021</span><span class="p">,</span> <span class="n">L_M</span><span class="o">=.</span><span class="mi">224</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># Alternatively configure the induction motor using its Γ parameters</span>
+<span class="c1"># motor = mt.InductionMotor(R_s=3.7, R_r=2.5, L_ell=.023, L_s=.245, p=2)</span>
 <span class="n">mech</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">Mechanics</span><span class="p">(</span><span class="n">J</span><span class="o">=.</span><span class="mi">015</span><span class="p">)</span>         <span class="c1"># Mechanics model</span>
 <span class="n">conv</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">Inverter</span><span class="p">(</span><span class="n">u_dc0</span><span class="o">=</span><span class="mi">540</span><span class="p">)</span>       <span class="c1"># Inverter model</span>
 <span class="c1"># conv = mt.PWMInverter(u_dc0=540)  # Inverter with PWM modeled</span>
@@ -142,7 +143,7 @@ parameter errors. This may happen in real drives as well.</p>
     <span class="n">tau_M_max</span><span class="o">=</span><span class="mf">1.5</span><span class="o">*</span><span class="n">base</span><span class="o">.</span><span class="n">tau_nom</span><span class="p">,</span>     <span class="c1"># Torque limit (for the speed ctrl)</span>
     <span class="n">J</span><span class="o">=.</span><span class="mi">015</span><span class="p">,</span>                         <span class="c1"># Inertia estimate (for the speed ctrl)</span>
     <span class="n">p</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>                            <span class="c1"># Number of pole pairs</span>
-    <span class="c1"># Inverse-Gamma model parameter estimates</span>
+    <span class="c1"># Inverse-Γ model parameter estimates</span>
     <span class="n">R_s</span><span class="o">=</span><span class="mf">3.7</span><span class="p">,</span> <span class="n">R_R</span><span class="o">=</span><span class="mf">2.1</span><span class="p">,</span> <span class="n">L_sgm</span><span class="o">=.</span><span class="mi">021</span><span class="p">,</span> <span class="n">L_M</span><span class="o">=.</span><span class="mi">224</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -160,13 +161,14 @@ created as functions.</p>
 </div>
 <p>Create the simulation object and simulate it.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">Simulation</span><span class="p">(</span><span class="n">mdl</span><span class="p">,</span> <span class="n">ctrl</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="n">base</span><span class="p">,</span> <span class="n">t_stop</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>  <span class="c1"># Start the timer</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">simulate</span><span class="p">()</span>
 <span class="c1"># Print the execution time</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Execution time: </span><span class="si">{:.2f}</span><span class="s1"> s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">((</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)))</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Execution time: 2.57 s
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Execution time: 2.36 s
 </pre></div>
 </div>
 <p>Plot results in per-unit values. By uncommenting the second line you can
@@ -175,7 +177,7 @@ plot the results in SI units.</p>
 <span class="c1"># mt.plot(sim)</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_plot_vector_ctrl_im_2kW_001.png" srcset="../../_images/sphx_glr_plot_vector_ctrl_im_2kW_001.png" alt="plot vector ctrl im 2kW" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  3.124 seconds)</p>
+<img src="../../_images/sphx_glr_plot_vector_ctrl_im_2kW_001.png" srcset="../../_images/sphx_glr_plot_vector_ctrl_im_2kW_001.png" alt="plot vector ctrl im 2kW" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.903 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-im-plot-vector-ctrl-im-2kw-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/8226abf765574092c6643b3724944116/plot_vector_ctrl_im_2kW.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_vector_ctrl_im_2kW.py</span></code></a></p>

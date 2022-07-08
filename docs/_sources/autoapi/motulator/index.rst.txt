@@ -64,6 +64,7 @@ Classes
    motulator.InductionMotor
    motulator.InductionMotorSaturated
    motulator.SaturableStatorInductance
+   motulator.InductionMotorInvGamma
    motulator.SynchronousMotor
    motulator.InductionMotorDrive
    motulator.InductionMotorDriveDiode
@@ -493,7 +494,7 @@ Functions
       
       Compute the AC-side voltage of a lossless inverter.
 
-      :param q: Duty ratio vector (switching state vector in subclasses).
+      :param q: Duty ratio vector (switching state vector in the subclasses).
       :type q: complex
       :param u_dc: DC-bus voltage.
       :type u_dc: float
@@ -1026,10 +1027,10 @@ Functions
 .. py:class:: InductionMotor
 
    
-   Induction motor model.
+   Γ-equivalent model of an induction motor.
 
-   An induction motor is modeled using the Gamma-equivalent model [R743146ac54e0-1]_. The
-   model is implemented in stator coordinates.
+   An induction motor is modeled using the Γ-equivalent model [R743146ac54e0-1]_. The model
+   is implemented in stator coordinates.
 
    :param p: Number of pole pairs.
    :type p: int
@@ -1044,10 +1045,10 @@ Functions
 
    .. rubric:: Notes
 
-   The Gamma model is chosen here since it can be extended with the magnetic
+   The Γ model is chosen here since it can be extended with the magnetic
    saturation model in a staightforward manner. If the magnetic saturation is
-   omitted, the Gamma model is mathematically identical to the inverse-Gamma
-   and T models [R743146ac54e0-1]_.
+   omitted, the Γ model is mathematically identical to the inverse-Γ and T
+   models [R743146ac54e0-1]_.
 
    .. rubric:: References
 
@@ -1356,7 +1357,7 @@ Functions
    Bases: :py:obj:`InductionMotor`
 
    
-   Induction motor model with main-flux saturation.
+   Γ-equivalent model of an induction motor model with main-flux saturation.
 
    This extends the InductionMotor class with a main-flux magnetic saturation
    model.
@@ -1542,6 +1543,205 @@ Functions
 
       :returns: **L_s** -- Saturated value of the stator inductance.
       :rtype: float
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+.. py:class:: InductionMotorInvGamma
+
+   Bases: :py:obj:`InductionMotor`
+
+   
+   Inverse-Γ model of an induction motor.
+
+   This extends the InductionMotor class (based on the Γ model) by providing
+   the interface for the inverse-Γ model parameters. Linear magnetics are
+   assumed. If magnetic saturation is to be modeled, the Γ model is preferred.
+
+   :param p: Number of pole pairs.
+   :type p: int
+   :param R_s: Stator resistance.
+   :type R_s: float
+   :param R_R: Rotor resistance.
+   :type R_R: float
+   :param L_sgm: Leakage inductance.
+   :type L_sgm: float
+   :param L_M: Magnetizing inductance.
+   :type L_M: float
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:attribute:: R_R
+      :annotation: :float = 2.1
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: L_sgm
+      :annotation: :float = 0.021
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: L_M
+      :annotation: :float = 0.224
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: R_r
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: L_ell
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:attribute:: L_s
+      :annotation: :float
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: __post_init__(self)
+
+      
+
 
 
 

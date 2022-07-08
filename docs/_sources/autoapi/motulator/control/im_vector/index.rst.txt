@@ -7,6 +7,8 @@
 
    This module contains vector control methods for an induction motor drive.
 
+   The algorithms are written based on the inverse-Γ model.
+
    ..
        !! processed by numpydoc !!
 
@@ -591,7 +593,7 @@ Classes
       :param u_s_ref: Unlimited stator voltage reference.
       :type u_s_ref: complex
       :param u_dc: DC-bus voltage.
-      :type u_dc: float.
+      :type u_dc: float
 
 
 

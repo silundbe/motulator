@@ -104,10 +104,10 @@
 <span class="nd">@dataclass</span>
 <div class="viewcode-block" id="InductionMotor"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.InductionMotor">[docs]</a><span class="k">class</span> <span class="nc">InductionMotor</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Induction motor model.</span>
+<span class="sd">    Γ-equivalent model of an induction motor.</span>
 
-<span class="sd">    An induction motor is modeled using the Gamma-equivalent model [1]_. The</span>
-<span class="sd">    model is implemented in stator coordinates.</span>
+<span class="sd">    An induction motor is modeled using the Γ-equivalent model [1]_. The model</span>
+<span class="sd">    is implemented in stator coordinates.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -124,10 +124,10 @@
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
-<span class="sd">    The Gamma model is chosen here since it can be extended with the magnetic</span>
+<span class="sd">    The Γ model is chosen here since it can be extended with the magnetic</span>
 <span class="sd">    saturation model in a staightforward manner. If the magnetic saturation is</span>
-<span class="sd">    omitted, the Gamma model is mathematically identical to the inverse-Gamma</span>
-<span class="sd">    and T models [1]_.</span>
+<span class="sd">    omitted, the Γ model is mathematically identical to the inverse-Γ and T</span>
+<span class="sd">    models [1]_.</span>
 
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
@@ -136,7 +136,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="InductionMotor.p"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.InductionMotor.p">[docs]</a>    <span class="n">p</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span></div>
-    <span class="c1"># Gamma parameters</span>
+    <span class="c1"># Γ parameters</span>
 <div class="viewcode-block" id="InductionMotor.R_s"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.InductionMotor.R_s">[docs]</a>    <span class="n">R_s</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.7</span></div>
 <div class="viewcode-block" id="InductionMotor.R_r"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.InductionMotor.R_r">[docs]</a>    <span class="n">R_r</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.5</span></div>
 <div class="viewcode-block" id="InductionMotor.L_ell"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.InductionMotor.L_ell">[docs]</a>    <span class="n">L_ell</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">.</span><span class="mi">023</span></div>
@@ -283,7 +283,7 @@
 <span class="nd">@dataclass</span>
 <div class="viewcode-block" id="InductionMotorSaturated"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.InductionMotorSaturated">[docs]</a><span class="k">class</span> <span class="nc">InductionMotorSaturated</span><span class="p">(</span><span class="n">InductionMotor</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Induction motor model with main-flux saturation.</span>
+<span class="sd">    Γ-equivalent model of an induction motor model with main-flux saturation.</span>
 
 <span class="sd">    This extends the InductionMotor class with a main-flux magnetic saturation</span>
 <span class="sd">    model.</span>
@@ -305,6 +305,50 @@
         <span class="n">i_rs</span> <span class="o">=</span> <span class="p">(</span><span class="n">psi_rs</span> <span class="o">-</span> <span class="n">psi_ss</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">L_ell</span>
         <span class="n">i_ss</span> <span class="o">=</span> <span class="n">psi_ss</span><span class="o">/</span><span class="n">L_s</span> <span class="o">-</span> <span class="n">i_rs</span>
         <span class="k">return</span> <span class="n">i_ss</span><span class="p">,</span> <span class="n">i_rs</span></div></div>
+
+
+<span class="c1"># %%</span>
+<span class="nd">@dataclass</span>
+<div class="viewcode-block" id="InductionMotorInvGamma"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.InductionMotorInvGamma">[docs]</a><span class="k">class</span> <span class="nc">InductionMotorInvGamma</span><span class="p">(</span><span class="n">InductionMotor</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Inverse-Γ model of an induction motor.</span>
+
+<span class="sd">    This extends the InductionMotor class (based on the Γ model) by providing</span>
+<span class="sd">    the interface for the inverse-Γ model parameters. Linear magnetics are</span>
+<span class="sd">    assumed. If magnetic saturation is to be modeled, the Γ model is preferred.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    p : int</span>
+<span class="sd">        Number of pole pairs.</span>
+<span class="sd">    R_s : float</span>
+<span class="sd">        Stator resistance.</span>
+<span class="sd">    R_R : float</span>
+<span class="sd">        Rotor resistance.</span>
+<span class="sd">    L_sgm : float</span>
+<span class="sd">        Leakage inductance.</span>
+<span class="sd">    L_M : float</span>
+<span class="sd">        Magnetizing inductance.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Inverse-Γ parameters</span>
+<div class="viewcode-block" id="InductionMotorInvGamma.R_R"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.InductionMotorInvGamma.R_R">[docs]</a>    <span class="n">R_R</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.1</span></div>
+<div class="viewcode-block" id="InductionMotorInvGamma.L_sgm"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.InductionMotorInvGamma.L_sgm">[docs]</a>    <span class="n">L_sgm</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">.</span><span class="mi">021</span></div>
+<div class="viewcode-block" id="InductionMotorInvGamma.L_M"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.InductionMotorInvGamma.L_M">[docs]</a>    <span class="n">L_M</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">.</span><span class="mi">224</span></div>
+    <span class="c1"># Γ parameters to be computed in the post init</span>
+<div class="viewcode-block" id="InductionMotorInvGamma.R_r"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.InductionMotorInvGamma.R_r">[docs]</a>    <span class="n">R_r</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></div>
+<div class="viewcode-block" id="InductionMotorInvGamma.L_ell"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.InductionMotorInvGamma.L_ell">[docs]</a>    <span class="n">L_ell</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></div>
+<div class="viewcode-block" id="InductionMotorInvGamma.L_s"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.InductionMotorInvGamma.L_s">[docs]</a>    <span class="n">L_s</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></div>
+    <span class="c1"># Initial value</span>
+    <span class="c1"># psi_Rs0: complex = field(repr=False, default=0j)</span>
+
+<div class="viewcode-block" id="InductionMotorInvGamma.__post_init__"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.InductionMotorInvGamma.__post_init__">[docs]</a>    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Convert the inverse-Γ parameters to the Γ parameters</span>
+        <span class="n">gamma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">L_M</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">L_M</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">L_sgm</span><span class="p">)</span>  <span class="c1"># Magnetic coupling factor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">L_s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">L_M</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">L_sgm</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">L_ell</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">L_sgm</span><span class="o">/</span><span class="n">gamma</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">R_r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">R_R</span><span class="o">/</span><span class="n">gamma</span><span class="o">**</span><span class="mi">2</span></div></div>
+        <span class="c1"># self.psi_rs0 = self.psi_Rs0/gamma</span>
 </pre></div>
 
            </div>

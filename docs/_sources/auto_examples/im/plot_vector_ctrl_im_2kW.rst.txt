@@ -26,9 +26,9 @@ drive.
 
 .. GENERATED FROM PYTHON SOURCE LINES 11-12
 
-Import the packages and start the timer.
+Import the packages.
 
-.. GENERATED FROM PYTHON SOURCE LINES 12-18
+.. GENERATED FROM PYTHON SOURCE LINES 12-17
 
 .. code-block:: default
 
@@ -36,7 +36,6 @@ Import the packages and start the timer.
     from time import time
     import numpy as np
     import motulator as mt
-    start_time = time()
 
 
 
@@ -45,11 +44,11 @@ Import the packages and start the timer.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 19-20
+.. GENERATED FROM PYTHON SOURCE LINES 18-19
 
 Compute base values based on the nominal values (just for figures).
 
-.. GENERATED FROM PYTHON SOURCE LINES 20-28
+.. GENERATED FROM PYTHON SOURCE LINES 19-27
 
 .. code-block:: default
 
@@ -68,17 +67,19 @@ Compute base values based on the nominal values (just for figures).
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 29-30
+.. GENERATED FROM PYTHON SOURCE LINES 28-29
 
 Configure the system model. Enable PWM by uncommenting the line below.
 
-.. GENERATED FROM PYTHON SOURCE LINES 30-38
+.. GENERATED FROM PYTHON SOURCE LINES 29-39
 
 .. code-block:: default
 
 
-    # Gamma-model of in induction motor
-    motor = mt.InductionMotor(R_s=3.7, R_r=2.5, L_ell=.023, L_s=.245, p=2)
+    # Configure the induction motor using its inverse-Γ parameters
+    motor = mt.InductionMotorInvGamma(R_s=3.7, R_R=2.1, L_sgm=.021, L_M=.224, p=2)
+    # Alternatively configure the induction motor using its Γ parameters
+    # motor = mt.InductionMotor(R_s=3.7, R_r=2.5, L_ell=.023, L_s=.245, p=2)
     mech = mt.Mechanics(J=.015)         # Mechanics model
     conv = mt.Inverter(u_dc0=540)       # Inverter model
     # conv = mt.PWMInverter(u_dc0=540)  # Inverter with PWM modeled
@@ -91,13 +92,13 @@ Configure the system model. Enable PWM by uncommenting the line below.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 39-42
+.. GENERATED FROM PYTHON SOURCE LINES 40-43
 
 Configure the control system. You may also try to change the parameters.
 Notice that the drive may become unstable if you for example have too large
 parameter errors. This may happen in real drives as well.
 
-.. GENERATED FROM PYTHON SOURCE LINES 42-58
+.. GENERATED FROM PYTHON SOURCE LINES 43-59
 
 .. code-block:: default
 
@@ -114,7 +115,7 @@ parameter errors. This may happen in real drives as well.
         tau_M_max=1.5*base.tau_nom,     # Torque limit (for the speed ctrl)
         J=.015,                         # Inertia estimate (for the speed ctrl)
         p=2,                            # Number of pole pairs
-        # Inverse-Gamma model parameter estimates
+        # Inverse-Γ model parameter estimates
         R_s=3.7, R_R=2.1, L_sgm=.021, L_M=.224))
 
 
@@ -124,13 +125,13 @@ parameter errors. This may happen in real drives as well.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 59-62
+.. GENERATED FROM PYTHON SOURCE LINES 60-63
 
 Set the speed reference and the external load torque. You may also try to
 uncomment the field-weakening sequence. More complicated sequences could be
 created as functions.
 
-.. GENERATED FROM PYTHON SOURCE LINES 62-71
+.. GENERATED FROM PYTHON SOURCE LINES 63-72
 
 .. code-block:: default
 
@@ -150,16 +151,17 @@ created as functions.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 72-73
+.. GENERATED FROM PYTHON SOURCE LINES 73-74
 
 Create the simulation object and simulate it.
 
-.. GENERATED FROM PYTHON SOURCE LINES 73-79
+.. GENERATED FROM PYTHON SOURCE LINES 74-81
 
 .. code-block:: default
 
 
     sim = mt.Simulation(mdl, ctrl, base=base, t_stop=1.5)
+    start_time = time()  # Start the timer
     sim.simulate()
     # Print the execution time
     print('\nExecution time: {:.2f} s'.format((time() - start_time)))
@@ -175,17 +177,17 @@ Create the simulation object and simulate it.
  .. code-block:: none
 
 
-    Execution time: 2.57 s
+    Execution time: 2.36 s
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 80-82
+.. GENERATED FROM PYTHON SOURCE LINES 82-84
 
 Plot results in per-unit values. By uncommenting the second line you can
 plot the results in SI units.
 
-.. GENERATED FROM PYTHON SOURCE LINES 82-85
+.. GENERATED FROM PYTHON SOURCE LINES 84-87
 
 .. code-block:: default
 
@@ -207,7 +209,7 @@ plot the results in SI units.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.124 seconds)
+   **Total running time of the script:** ( 0 minutes  2.903 seconds)
 
 
 .. _sphx_glr_download_auto_examples_im_plot_vector_ctrl_im_2kW.py:

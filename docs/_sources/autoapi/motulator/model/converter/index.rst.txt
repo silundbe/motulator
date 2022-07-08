@@ -108,7 +108,7 @@ Classes
       
       Compute the AC-side voltage of a lossless inverter.
 
-      :param q: Duty ratio vector (switching state vector in subclasses).
+      :param q: Duty ratio vector (switching state vector in the subclasses).
       :type q: complex
       :param u_dc: DC-bus voltage.
       :type u_dc: float
