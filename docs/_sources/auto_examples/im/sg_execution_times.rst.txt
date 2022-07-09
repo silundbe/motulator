@@ -5,10 +5,10 @@
 
 Computation times
 =================
-**00:18.761** total execution time for **auto_examples_im** files:
+**00:18.803** total execution time for **auto_examples_im** files:
 
 +----------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_im_plot_vhz_ctrl_im_2kW.py` (``plot_vhz_ctrl_im_2kW.py``)       | 00:15.562 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_im_plot_vhz_ctrl_im_2kW.py` (``plot_vhz_ctrl_im_2kW.py``)       | 00:15.600 | 0.0 MB |
 +----------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_im_plot_vector_ctrl_im_2kW.py` (``plot_vector_ctrl_im_2kW.py``) | 00:03.199 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_im_plot_vector_ctrl_im_2kW.py` (``plot_vector_ctrl_im_2kW.py``) | 00:03.202 | 0.0 MB |
 +----------------------------------------------------------------------------------------------+-----------+--------+

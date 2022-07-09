@@ -5,10 +5,10 @@
 
 Computation times
 =================
-**00:25.148** total execution time for **auto_examples_sm** files:
+**00:25.476** total execution time for **auto_examples_sm** files:
 
 +--------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_sm_plot_vector_ctrl_pmsm_2kW.py` (``plot_vector_ctrl_pmsm_2kW.py``) | 00:12.972 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_sm_plot_vector_ctrl_pmsm_2kW.py` (``plot_vector_ctrl_pmsm_2kW.py``) | 00:13.190 | 0.0 MB |
 +--------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_sm_plot_vector_ctrl_syrm_7kW.py` (``plot_vector_ctrl_syrm_7kW.py``) | 00:12.175 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_sm_plot_vector_ctrl_syrm_7kW.py` (``plot_vector_ctrl_syrm_7kW.py``) | 00:12.285 | 0.0 MB |
 +--------------------------------------------------------------------------------------------------+-----------+--------+
