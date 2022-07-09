@@ -568,19 +568,14 @@ Classes
    ..
        !! processed by numpydoc !!
 
-   .. py:method:: __call__(self, i_s_abc, u_dc, *args)
+   .. py:method:: __call__(self, mdl)
 
       
       Main control loop.
 
-      :param i_s_abc: Phase currents.
-      :type i_s_abc: ndarray, shape (3,)
-      :param u_dc: DC-bus voltage.
-      :type u_dc: float
-      :param w_M: Rotor speed (in mechanical rad/s), for the sensored control.
-      :type w_M: float, optional
-      :param theta_M: Rotor angle (in mechanical rad), for the sensored control.
-      :type theta_M: float, optional
+      :param mdl: Continuous-time model of a synchronous motor drive for getting the
+                  feedback signals.
+      :type mdl: SynchronousMotorDrive
 
       :returns: * **d_abc_ref** (*ndarray, shape (3,)*) -- Duty ratio references.
                 * **T_s** (*float*) -- Sampling period.

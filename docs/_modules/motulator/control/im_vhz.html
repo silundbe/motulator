@@ -181,16 +181,15 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">w_r_ref</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">desc</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span>
 
-<div class="viewcode-block" id="InductionMotorVHzCtrl.__call__"><a class="viewcode-back" href="../../../autoapi/motulator/control/im_vhz/index.html#motulator.control.im_vhz.InductionMotorVHzCtrl.__call__">[docs]</a>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i_s_abc</span><span class="p">,</span> <span class="n">u_dc</span><span class="p">):</span>
+<div class="viewcode-block" id="InductionMotorVHzCtrl.__call__"><a class="viewcode-back" href="../../../autoapi/motulator/control/im_vhz/index.html#motulator.control.im_vhz.InductionMotorVHzCtrl.__call__">[docs]</a>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mdl</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Main control loop.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        i_s_abc : ndarray, shape (3,)</span>
-<span class="sd">            Phase currents.</span>
-<span class="sd">        u_dc : float</span>
-<span class="sd">            DC-bus voltage.</span>
+<span class="sd">        mdl : InductionMotorDrive</span>
+<span class="sd">            Continuous-time model of an induction motor drive for getting the</span>
+<span class="sd">            feedback signals.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -202,6 +201,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Rate limit the frequency reference</span>
         <span class="n">w_m_ref</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rate_limiter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w_m_ref</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="p">))</span>
+
+        <span class="c1"># Measure the feedback signals</span>
+        <span class="n">i_s_abc</span> <span class="o">=</span> <span class="n">mdl</span><span class="o">.</span><span class="n">motor</span><span class="o">.</span><span class="n">meas_currents</span><span class="p">()</span>  <span class="c1"># Phase currents</span>
+        <span class="n">u_dc</span> <span class="o">=</span> <span class="n">mdl</span><span class="o">.</span><span class="n">conv</span><span class="o">.</span><span class="n">meas_dc_voltage</span><span class="p">()</span>  <span class="c1"># DC-bus voltage</span>
 
         <span class="c1"># Space vector transformation</span>
         <span class="n">i_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">theta_s</span><span class="p">)</span><span class="o">*</span><span class="n">abc2complex</span><span class="p">(</span><span class="n">i_s_abc</span><span class="p">)</span>

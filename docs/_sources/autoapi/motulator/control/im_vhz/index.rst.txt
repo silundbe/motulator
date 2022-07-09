@@ -354,15 +354,14 @@ Classes
    ..
        !! processed by numpydoc !!
 
-   .. py:method:: __call__(self, i_s_abc, u_dc)
+   .. py:method:: __call__(self, mdl)
 
       
       Main control loop.
 
-      :param i_s_abc: Phase currents.
-      :type i_s_abc: ndarray, shape (3,)
-      :param u_dc: DC-bus voltage.
-      :type u_dc: float
+      :param mdl: Continuous-time model of an induction motor drive for getting the
+                  feedback signals.
+      :type mdl: InductionMotorDrive
 
       :returns: * **d_abc_ref** (*ndarray, shape (3,)*) -- Duty ratio references.
                 * **T_s** (*float*) -- Sampling period.

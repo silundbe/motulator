@@ -168,18 +168,15 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">delay</span> <span class="o">=</span> <span class="n">Delay</span><span class="p">(</span><span class="n">pars</span><span class="o">.</span><span class="n">delay</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">desc</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span>
 
-<div class="viewcode-block" id="InductionMotorVectorCtrl.__call__"><a class="viewcode-back" href="../../../autoapi/motulator/control/im_vector/index.html#motulator.control.im_vector.InductionMotorVectorCtrl.__call__">[docs]</a>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i_s_abc</span><span class="p">,</span> <span class="n">u_dc</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<div class="viewcode-block" id="InductionMotorVectorCtrl.__call__"><a class="viewcode-back" href="../../../autoapi/motulator/control/im_vector/index.html#motulator.control.im_vector.InductionMotorVectorCtrl.__call__">[docs]</a>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mdl</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Main control loop.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        i_s_abc : ndarray, shape (3,)</span>
-<span class="sd">            Phase currents.</span>
-<span class="sd">        u_dc : float</span>
-<span class="sd">            DC-bus voltage.</span>
-<span class="sd">        w_M : float, optional</span>
-<span class="sd">            Rotor speed (in mechanical rad/s), only for the sensored control.</span>
+<span class="sd">        mdl : InductionMotorDrive</span>
+<span class="sd">            Continuous-time model of an induction motor drive for getting the</span>
+<span class="sd">            feedback signals.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -189,17 +186,22 @@
 <span class="sd">            Sampling period.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># Speed reference</span>
+        <span class="c1"># Get the speed reference</span>
         <span class="n">w_m_ref</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_m_ref</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="p">)</span>
 
-        <span class="c1"># States</span>
+        <span class="c1"># Measure the feedback signals</span>
+        <span class="n">i_s_abc</span> <span class="o">=</span> <span class="n">mdl</span><span class="o">.</span><span class="n">motor</span><span class="o">.</span><span class="n">meas_currents</span><span class="p">()</span>  <span class="c1"># Phase currents</span>
+        <span class="n">u_dc</span> <span class="o">=</span> <span class="n">mdl</span><span class="o">.</span><span class="n">conv</span><span class="o">.</span><span class="n">meas_dc_voltage</span><span class="p">()</span>  <span class="c1"># DC-bus voltage</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">sensorless</span><span class="p">:</span>
+            <span class="n">w_m</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">*</span><span class="n">mdl</span><span class="o">.</span><span class="n">mech</span><span class="o">.</span><span class="n">meas_speed</span><span class="p">()</span>  <span class="c1"># Rotor speed</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">w_m</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observer</span><span class="o">.</span><span class="n">w_m</span>  <span class="c1"># Get the estimated speed</span>
+
+        <span class="c1"># Get the states</span>
         <span class="n">u_s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pwm</span><span class="o">.</span><span class="n">realized_voltage</span>
         <span class="n">psi_R</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observer</span><span class="o">.</span><span class="n">psi_R</span>
         <span class="n">theta_s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observer</span><span class="o">.</span><span class="n">theta_s</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sensorless</span><span class="p">:</span>
-            <span class="n">w_m</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observer</span><span class="o">.</span><span class="n">w_m</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">w_m</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">*</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
         <span class="c1"># Space vector and coordinate transformation</span>
         <span class="n">i_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">theta_s</span><span class="p">)</span><span class="o">*</span><span class="n">abc2complex</span><span class="p">(</span><span class="n">i_s_abc</span><span class="p">)</span>
