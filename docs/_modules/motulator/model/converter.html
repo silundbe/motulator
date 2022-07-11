@@ -113,7 +113,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="Inverter.u_dc0"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.Inverter.u_dc0">[docs]</a>    <span class="n">u_dc0</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">540</span></div>
-    <span class="c1"># Here q is the duty ratio vector. In the subclasses where the PWM is</span>
+    <span class="c1"># Here `q` is the duty ratio vector. In the subclasses where the PWM is</span>
     <span class="c1"># modeled, the variable `q` refers to the switching state vector.</span>
 <div class="viewcode-block" id="Inverter.q"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.Inverter.q">[docs]</a>    <span class="n">q</span><span class="p">:</span> <span class="nb">complex</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="n">j</span><span class="p">)</span></div>
 
@@ -160,28 +160,30 @@
         <span class="k">return</span> <span class="n">i_dc</span></div>
 
     <span class="nd">@staticmethod</span>
-<div class="viewcode-block" id="Inverter.pwm"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.Inverter.pwm">[docs]</a>    <span class="k">def</span> <span class="nf">pwm</span><span class="p">(</span><span class="n">d_abc</span><span class="p">):</span>
+<div class="viewcode-block" id="Inverter.pwm"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.Inverter.pwm">[docs]</a>    <span class="k">def</span> <span class="nf">pwm</span><span class="p">(</span><span class="n">T_s</span><span class="p">,</span> <span class="n">d_abc</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Zero-order hold of the duty ratios over the sampling period.</span>
+<span class="sd">        Zero-order hold of the duty ratio over the sampling period.</span>
 
 <span class="sd">        The output arrays are compatible with the solver.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
+<span class="sd">        T_s : float</span>
+<span class="sd">            Sampling period.</span>
 <span class="sd">        d_abc : array_like of floats, shape (3,)</span>
 <span class="sd">            Duty ratios in the range [0, 1].</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        tn_sw : ndarray, shape (1,2)</span>
-<span class="sd">            Normalized switching instant, tn_sw = [0, 1].</span>
+<span class="sd">        t_step : ndarray, shape (1,)</span>
+<span class="sd">            Sampling period as an array compatible with the solver.</span>
 <span class="sd">        q : complex ndarray, shape (1,)</span>
-<span class="sd">            Duty ratio vector, having a shape compatible with the solver.</span>
+<span class="sd">            Duty ratio vector as an array compatible with the solver.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">tn_sw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
-        <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="n">abc2complex</span><span class="p">(</span><span class="n">d_abc</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">tn_sw</span><span class="p">,</span> <span class="n">q</span></div>
+        <span class="n">t_step</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">T_s</span><span class="p">])</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">abc2complex</span><span class="p">(</span><span class="n">d_abc</span><span class="p">)])</span>
+        <span class="k">return</span> <span class="n">t_step</span><span class="p">,</span> <span class="n">q</span></div>
 
 <div class="viewcode-block" id="Inverter.meas_dc_voltage"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.Inverter.meas_dc_voltage">[docs]</a>    <span class="k">def</span> <span class="nf">meas_dc_voltage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -212,56 +214,59 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="PWMInverter.N"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.PWMInverter.N">[docs]</a>    <span class="n">N</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="mi">12</span></div>
     <span class="c1"># Stores the carrier direction</span>
-<div class="viewcode-block" id="PWMInverter.falling_edge"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.PWMInverter.falling_edge">[docs]</a>    <span class="n">falling_edge</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+<div class="viewcode-block" id="PWMInverter.rising_edge"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.PWMInverter.rising_edge">[docs]</a>    <span class="n">rising_edge</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="PWMInverter.pwm"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.PWMInverter.pwm">[docs]</a>    <span class="k">def</span> <span class="nf">pwm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_abc</span><span class="p">):</span>
+<div class="viewcode-block" id="PWMInverter.pwm"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.PWMInverter.pwm">[docs]</a>    <span class="k">def</span> <span class="nf">pwm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">T_s</span><span class="p">,</span> <span class="n">d_abc</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Compute the normalized switching instants and the switching states.</span>
+<span class="sd">        Compute the the switching states and their durations.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
+<span class="sd">        T_s : float</span>
+<span class="sd">            Sampling period (either half or full carrier period).</span>
 <span class="sd">        d_abc : array_like of floats, shape (3,)</span>
 <span class="sd">            Duty ratios in the range [0, 1].</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        tn_sw : ndarray, shape (4,2)</span>
-<span class="sd">            Normalized switching instants, tn_sw = [0, t1, t2, t3, 1].</span>
+<span class="sd">        t_steps : ndarray, shape (4,)</span>
+<span class="sd">            Switching state durations, `[t0, t1, t2, t3]`.</span>
 <span class="sd">        q : complex ndarray, shape (4,)</span>
-<span class="sd">            Switching state vectors corresponding to the switching instants.</span>
-<span class="sd">            For example, the switching state q[1] is applied at the interval</span>
-<span class="sd">            tn_sw[1].</span>
+<span class="sd">            Switching state vectors, `[0, q1, q2, 0]`, where `q1` and `q2` are</span>
+<span class="sd">            active vectors.</span>
 
 <span class="sd">        Notes</span>
 <span class="sd">        -----</span>
-<span class="sd">        Switching instants t_sw split the sampling period T_s into</span>
-<span class="sd">        four spans. No switching (e.g. da = 0 or da = 1) or simultaneous</span>
-<span class="sd">        switching instants (e.g da == db) lead to zero spans, i.e.,</span>
-<span class="sd">        t_sw[i] == t_sw[i].</span>
+<span class="sd">        Switching instants split the sampling period `T_s` into</span>
+<span class="sd">        four subperiods. No switching (e.g. `d_a == 0` or `d_a == 1`) or</span>
+<span class="sd">        simultaneous switching instants (e.g `d_a == d_b`) lead to zero length</span>
+<span class="sd">        of the corresponding subperiods.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Quantize the duty ratios to N levels</span>
         <span class="n">d_abc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">d_abc</span><span class="p">))</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span>
-        <span class="c1"># Initialize the normalized switching instant array</span>
-        <span class="n">tn_sw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-        <span class="n">tn_sw</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="c1"># Could be understood as a carrier comparison</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">falling_edge</span><span class="p">:</span>
-            <span class="c1"># Normalized switching instants (zero crossing instants)</span>
-            <span class="n">tn_sw</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">d_abc</span><span class="p">)</span>
-            <span class="n">tn_sw</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">tn_sw</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
-            <span class="c1"># Compute the switching state array</span>
-            <span class="n">q_abc</span> <span class="o">=</span> <span class="p">(</span><span class="n">tn_sw</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">d_abc</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+        <span class="c1"># Normalized switching instants and switching states</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rising_edge</span><span class="p">:</span>
+            <span class="c1"># t_n = [0, t_n1, t_n2, t_n3]</span>
+            <span class="n">t_n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">d_abc</span><span class="p">))</span>
+            <span class="c1"># q_abc = [[0, 0, 0], [q_abc1], [q_abc2], [1, 1, 1]]</span>
+            <span class="n">q_abc</span> <span class="o">=</span> <span class="p">(</span><span class="n">t_n</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">d_abc</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># Rising edge</span>
-            <span class="n">tn_sw</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">d_abc</span><span class="p">)</span>
-            <span class="n">tn_sw</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">tn_sw</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
-            <span class="n">q_abc</span> <span class="o">=</span> <span class="p">(</span><span class="n">tn_sw</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">d_abc</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+            <span class="n">t_n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">d_abc</span><span class="p">))</span>
+            <span class="n">q_abc</span> <span class="o">=</span> <span class="p">(</span><span class="n">t_n</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">d_abc</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+        <span class="c1"># Durations of switching states: t_steps = [t0, t1, t2, t3]</span>
+        <span class="n">t_steps</span> <span class="o">=</span> <span class="n">T_s</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">t_n</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Array of the switching state space vectors, q = [0, q1, q2, 0]</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">abc2complex</span><span class="p">(</span><span class="n">q_abc</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
         <span class="c1"># Change the carrier direction for the next call</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">falling_edge</span> <span class="o">=</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">falling_edge</span>
-        <span class="c1"># Switching state space vector</span>
-        <span class="n">q</span> <span class="o">=</span> <span class="n">abc2complex</span><span class="p">(</span><span class="n">q_abc</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">tn_sw</span><span class="p">,</span> <span class="n">q</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rising_edge</span> <span class="o">=</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">rising_edge</span>
+
+        <span class="c1"># If needed, alternatively q_abc could be returned</span>
+        <span class="k">return</span> <span class="n">t_steps</span><span class="p">,</span> <span class="n">q</span></div></div>
 
 
 <span class="c1"># %%</span>

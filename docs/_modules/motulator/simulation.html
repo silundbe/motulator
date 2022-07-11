@@ -139,52 +139,39 @@
 <span class="sd">        simplicity, only max_step is included as an option of this method.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="n">d_abc</span><span class="p">,</span> <span class="n">t_span</span><span class="p">):</span>
-            <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Solve the continuous-time model over t_span.</span>
-
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">            d_abc : array_like of floats, shape (3,)</span>
-<span class="sd">                Duty ratio references in the interval [0, 1].</span>
-<span class="sd">            t_span : 2-tuple of floats</span>
-<span class="sd">                Interval of integration (t0, tf). The solver starts with t=t0</span>
-<span class="sd">                and integrates until it reaches t=tf.</span>
-
-<span class="sd">            &quot;&quot;&quot;</span>
-            <span class="c1"># Sampling period</span>
-            <span class="n">T_s</span> <span class="o">=</span> <span class="n">t_span</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">t_span</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="c1"># Compute the normalized switching spans and corresponding states</span>
-            <span class="n">tn_sw</span><span class="p">,</span> <span class="n">q_sw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">conv</span><span class="o">.</span><span class="n">pwm</span><span class="p">(</span><span class="n">d_abc</span><span class="p">)</span>
-            <span class="c1"># Convert the normalized switching spans to seconds</span>
-            <span class="n">t_sw</span> <span class="o">=</span> <span class="n">t_span</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">T_s</span><span class="o">*</span><span class="n">tn_sw</span>
-            <span class="c1"># Loop over the switching time spans</span>
-            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">t_sw_span</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">t_sw</span><span class="p">):</span>
-                <span class="c1"># Update the switching states (constant over the time span)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">conv</span><span class="o">.</span><span class="n">q</span> <span class="o">=</span> <span class="n">q_sw</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-                <span class="c1"># Skip possible zero time spans</span>
-                <span class="k">if</span> <span class="n">t_sw_span</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">t_sw_span</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
-                    <span class="c1"># Get initial values</span>
-                    <span class="n">x0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">get_initial_values</span><span class="p">()</span>
-                    <span class="c1"># Integrate</span>
-                    <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="n">t_sw_span</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span>
-                                    <span class="n">max_step</span><span class="o">=</span><span class="n">max_step</span><span class="p">)</span>
-                    <span class="c1"># Set the new initial values (last points of the solution)</span>
-                    <span class="n">t0_new</span><span class="p">,</span> <span class="n">x0_new</span> <span class="o">=</span> <span class="n">t_sw_span</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">set_initial_values</span><span class="p">(</span><span class="n">t0_new</span><span class="p">,</span> <span class="n">x0_new</span><span class="p">)</span>
-                    <span class="c1"># Data logging</span>
-                    <span class="n">sol</span><span class="o">.</span><span class="n">q</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">conv</span><span class="o">.</span><span class="n">q</span><span class="p">]</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">sol</span><span class="p">)</span>
-
         <span class="c1"># Simulation loop</span>
         <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">t0</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_stop</span><span class="p">:</span>
+
             <span class="c1"># Run the digital controller</span>
-            <span class="n">d_abc_ref</span><span class="p">,</span> <span class="n">T_s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ctrl</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="p">)</span>
+            <span class="n">T_s</span><span class="p">,</span> <span class="n">d_abc_ref</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ctrl</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="p">)</span>
+
             <span class="c1"># Model the computational delay</span>
             <span class="n">d_abc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ctrl</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="n">d_abc_ref</span><span class="p">)</span>
-            <span class="c1"># Simulate the continuous-time model over the sampling period</span>
-            <span class="n">solve</span><span class="p">(</span><span class="n">d_abc</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">t0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">t0</span><span class="o">+</span><span class="n">T_s</span><span class="p">])</span>
+
+            <span class="c1"># Arrays of switching states and their durations</span>
+            <span class="n">t_steps</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">conv</span><span class="o">.</span><span class="n">pwm</span><span class="p">(</span><span class="n">T_s</span><span class="p">,</span> <span class="n">d_abc</span><span class="p">)</span>
+
+            <span class="c1"># Loop over the sampling period T_s</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">t_step</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">t_steps</span><span class="p">):</span>
+
+                <span class="k">if</span> <span class="n">t_step</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="c1"># Update the switching state</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">conv</span><span class="o">.</span><span class="n">q</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+                    <span class="c1"># Get initial values</span>
+                    <span class="n">x0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">get_initial_values</span><span class="p">()</span>
+
+                    <span class="c1"># Integrate over t_span</span>
+                    <span class="n">t_span</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">t0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">t0</span><span class="o">+</span><span class="n">t_step</span><span class="p">)</span>
+                    <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="n">t_span</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">max_step</span><span class="o">=</span><span class="n">max_step</span><span class="p">)</span>
+
+                    <span class="c1"># Set the new initial values (last points of the solution)</span>
+                    <span class="n">t0_new</span><span class="p">,</span> <span class="n">x0_new</span> <span class="o">=</span> <span class="n">t_span</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">set_initial_values</span><span class="p">(</span><span class="n">t0_new</span><span class="p">,</span> <span class="n">x0_new</span><span class="p">)</span>
+
+                    <span class="c1"># Save the solution</span>
+                    <span class="n">sol</span><span class="o">.</span><span class="n">q</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">conv</span><span class="o">.</span><span class="n">q</span><span class="p">]</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">sol</span><span class="p">)</span>
 
         <span class="c1"># Call the post-processing functions</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">post_process</span><span class="p">()</span>

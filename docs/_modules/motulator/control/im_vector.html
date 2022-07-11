@@ -180,10 +180,10 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        d_abc_ref : ndarray, shape (3,)</span>
-<span class="sd">            Duty ratio references.</span>
 <span class="sd">        T_s : float</span>
 <span class="sd">            Sampling period.</span>
+<span class="sd">        d_abc_ref : ndarray, shape (3,)</span>
+<span class="sd">            Duty ratio references.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Get the speed reference</span>
@@ -227,7 +227,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">observer</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">i_s</span><span class="p">,</span> <span class="n">w_s</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">T_s</span>
 
-        <span class="k">return</span> <span class="n">d_abc_ref</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">T_s</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">T_s</span><span class="p">,</span> <span class="n">d_abc_ref</span></div>
 
 <div class="viewcode-block" id="InductionMotorVectorCtrl.__repr__"><a class="viewcode-back" href="../../../autoapi/motulator/control/im_vector/index.html#motulator.control.im_vector.InductionMotorVectorCtrl.__repr__">[docs]</a>    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">desc</span></div></div>

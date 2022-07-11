@@ -164,19 +164,21 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: pwm(d_abc)
+   .. py:method:: pwm(T_s, d_abc)
       :staticmethod:
 
       
-      Zero-order hold of the duty ratios over the sampling period.
+      Zero-order hold of the duty ratio over the sampling period.
 
       The output arrays are compatible with the solver.
 
+      :param T_s: Sampling period.
+      :type T_s: float
       :param d_abc: Duty ratios in the range [0, 1].
       :type d_abc: array_like of floats, shape (3,)
 
-      :returns: * **tn_sw** (*ndarray, shape (1,2)*) -- Normalized switching instant, tn_sw = [0, 1].
-                * **q** (*complex ndarray, shape (1,)*) -- Duty ratio vector, having a shape compatible with the solver.
+      :returns: * **t_step** (*ndarray, shape (1,)*) -- Sampling period as an array compatible with the solver.
+                * **q** (*complex ndarray, shape (1,)*) -- Duty ratio vector as an array compatible with the solver.
 
 
 
@@ -272,7 +274,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:attribute:: falling_edge
+   .. py:attribute:: rising_edge
       :annotation: :bool
 
       
@@ -295,25 +297,26 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: pwm(self, d_abc)
+   .. py:method:: pwm(self, T_s, d_abc)
 
       
-      Compute the normalized switching instants and the switching states.
+      Compute the the switching states and their durations.
 
+      :param T_s: Sampling period (either half or full carrier period).
+      :type T_s: float
       :param d_abc: Duty ratios in the range [0, 1].
       :type d_abc: array_like of floats, shape (3,)
 
-      :returns: * **tn_sw** (*ndarray, shape (4,2)*) -- Normalized switching instants, tn_sw = [0, t1, t2, t3, 1].
-                * **q** (*complex ndarray, shape (4,)*) -- Switching state vectors corresponding to the switching instants.
-                  For example, the switching state q[1] is applied at the interval
-                  tn_sw[1].
+      :returns: * **t_steps** (*ndarray, shape (4,)*) -- Switching state durations, `[t0, t1, t2, t3]`.
+                * **q** (*complex ndarray, shape (4,)*) -- Switching state vectors, `[0, q1, q2, 0]`, where `q1` and `q2` are
+                  active vectors.
 
       .. rubric:: Notes
 
-      Switching instants t_sw split the sampling period T_s into
-      four spans. No switching (e.g. da = 0 or da = 1) or simultaneous
-      switching instants (e.g da == db) lead to zero spans, i.e.,
-      t_sw[i] == t_sw[i].
+      Switching instants split the sampling period `T_s` into
+      four subperiods. No switching (e.g. `d_a == 0` or `d_a == 1`) or
+      simultaneous switching instants (e.g `d_a == d_b`) lead to zero length
+      of the corresponding subperiods.
 
 
 

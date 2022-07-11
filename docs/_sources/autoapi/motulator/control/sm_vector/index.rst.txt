@@ -577,8 +577,8 @@ Classes
                   feedback signals.
       :type mdl: SynchronousMotorDrive
 
-      :returns: * **d_abc_ref** (*ndarray, shape (3,)*) -- Duty ratio references.
-                * **T_s** (*float*) -- Sampling period.
+      :returns: * **T_s** (*float*) -- Sampling period.
+                * **d_abc_ref** (*ndarray, shape (3,)*) -- Duty ratio references.
 
 
 

@@ -155,7 +155,7 @@ Create the simulation object and simulate it.
  .. code-block:: none
 
 
-    Execution time: 13.77 s
+    Execution time: 13.67 s
 
 
 
@@ -213,7 +213,7 @@ Plot results in per-unit values.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  15.600 seconds)
+   **Total running time of the script:** ( 0 minutes  15.467 seconds)
 
 
 .. _sphx_glr_download_auto_examples_im_plot_vhz_ctrl_im_2kW.py:
