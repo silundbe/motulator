@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>motulator.model.im_drive &mdash; motulator 0 documentation</title>
+  <title>motulator.model.im_drive &mdash; motulator 0.0.7 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
@@ -52,6 +52,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">System Models</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../system.html">Motor Drive System</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../induction_motor.html">Induction Motor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../synchronous_motor.html">Synchronous Motor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../mechanics.html">Mechanics</a></li>
@@ -85,7 +86,7 @@
   <h1>Source code for motulator.model.im_drive</h1><div class="highlight"><pre>
 <span></span><span class="c1"># pylint: disable=C0103</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">This module contains continuous-time models for induction motor drives.</span>
+<span class="sd">Continuous-time models for induction motor drives.</span>
 
 <span class="sd">Peak-valued complex space vectors are used. The space vector models are</span>
 <span class="sd">implemented in stator coordinates. The default values correspond to a 2.2-kW</span>
@@ -99,7 +100,7 @@
 <span class="kn">from</span> <span class="nn">motulator.helpers</span> <span class="kn">import</span> <span class="n">abc2complex</span><span class="p">,</span> <span class="n">Bunch</span>
 <span class="kn">from</span> <span class="nn">motulator.model.im</span> <span class="kn">import</span> <span class="n">InductionMotor</span><span class="p">,</span> <span class="n">InductionMotorSaturated</span>
 <span class="kn">from</span> <span class="nn">motulator.model.mech</span> <span class="kn">import</span> <span class="n">Mechanics</span>
-<span class="kn">from</span> <span class="nn">motulator.model.converter</span> <span class="kn">import</span> <span class="n">Inverter</span><span class="p">,</span> <span class="n">PWMInverter</span><span class="p">,</span> <span class="n">FrequencyConverter</span>
+<span class="kn">from</span> <span class="nn">motulator.model.converter</span> <span class="kn">import</span> <span class="n">Inverter</span><span class="p">,</span> <span class="n">FrequencyConverter</span>
 
 
 <span class="c1"># %%</span>
@@ -118,13 +119,13 @@
 <span class="sd">        Induction motor model.</span>
 <span class="sd">    mech : Mechanics</span>
 <span class="sd">        Mechanics model.</span>
-<span class="sd">    conv : Inverter | PWMInverter</span>
+<span class="sd">    conv : Inverter</span>
 <span class="sd">        Inverter model.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="InductionMotorDrive.motor"><a class="viewcode-back" href="../../../autoapi/motulator/model/im_drive/index.html#motulator.InductionMotorDrive.motor">[docs]</a>    <span class="n">motor</span><span class="p">:</span> <span class="n">InductionMotor</span> <span class="o">|</span> <span class="n">InductionMotorSaturated</span> <span class="o">=</span> <span class="n">InductionMotor</span><span class="p">()</span></div>
 <div class="viewcode-block" id="InductionMotorDrive.mech"><a class="viewcode-back" href="../../../autoapi/motulator/model/im_drive/index.html#motulator.InductionMotorDrive.mech">[docs]</a>    <span class="n">mech</span><span class="p">:</span> <span class="n">Mechanics</span> <span class="o">=</span> <span class="n">Mechanics</span><span class="p">()</span></div>
-<div class="viewcode-block" id="InductionMotorDrive.conv"><a class="viewcode-back" href="../../../autoapi/motulator/model/im_drive/index.html#motulator.InductionMotorDrive.conv">[docs]</a>    <span class="n">conv</span><span class="p">:</span> <span class="n">Inverter</span> <span class="o">|</span> <span class="n">PWMInverter</span> <span class="o">=</span> <span class="n">Inverter</span><span class="p">()</span></div>
+<div class="viewcode-block" id="InductionMotorDrive.conv"><a class="viewcode-back" href="../../../autoapi/motulator/model/im_drive/index.html#motulator.InductionMotorDrive.conv">[docs]</a>    <span class="n">conv</span><span class="p">:</span> <span class="n">Inverter</span> <span class="o">=</span> <span class="n">Inverter</span><span class="p">()</span></div>
     <span class="c1"># Stores the solution data</span>
 <div class="viewcode-block" id="InductionMotorDrive.data"><a class="viewcode-back" href="../../../autoapi/motulator/model/im_drive/index.html#motulator.InductionMotorDrive.data">[docs]</a>    <span class="n">data</span><span class="p">:</span> <span class="n">Bunch</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default_factory</span><span class="o">=</span><span class="n">Bunch</span><span class="p">)</span></div>
     <span class="c1"># Initial time</span>

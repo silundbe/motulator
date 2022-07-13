@@ -5,7 +5,7 @@
 
 .. autoapi-nested-parse::
 
-   This module contains various helper functions and classes.
+   Helper functions and classes.
 
    ..
        !! processed by numpydoc !!

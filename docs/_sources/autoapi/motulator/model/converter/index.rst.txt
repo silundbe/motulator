@@ -5,7 +5,7 @@
 
 .. autoapi-nested-parse::
 
-   This module contains power converter models.
+   Power converter models.
 
    An inverter with constant DC-bus voltage and a frequency converter with a diode
    front-end rectifier are modeled. Complex space vectors are used also for duty
@@ -26,7 +26,6 @@ Classes
 .. autoapisummary::
 
    motulator.model.converter.Inverter
-   motulator.model.converter.PWMInverter
    motulator.model.converter.FrequencyConverter
 
 
@@ -108,7 +107,7 @@ Classes
       
       Compute the AC-side voltage of a lossless inverter.
 
-      :param q: Duty ratio vector (switching state vector in the subclasses).
+      :param q: Switching state vector.
       :type q: complex
       :param u_dc: DC-bus voltage.
       :type u_dc: float
@@ -139,46 +138,13 @@ Classes
       
       Compute the DC-side current of a lossless inverter.
 
-      :param q: Duty ratio vector (switching state vector in subclasses).
+      :param q: Switching state vector.
       :type q: complex
       :param i_ac: AC-side current.
       :type i_ac: complex
 
       :returns: **i_dc** -- DC-side current.
       :rtype: float
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-   .. py:method:: pwm(T_s, d_abc)
-      :staticmethod:
-
-      
-      Zero-order hold of the duty ratio over the sampling period.
-
-      The output arrays are compatible with the solver.
-
-      :param T_s: Sampling period.
-      :type T_s: float
-      :param d_abc: Duty ratios in the range [0, 1].
-      :type d_abc: array_like of floats, shape (3,)
-
-      :returns: * **t_step** (*ndarray, shape (1,)*) -- Sampling period as an array compatible with the solver.
-                * **q** (*complex ndarray, shape (1,)*) -- Duty ratio vector as an array compatible with the solver.
 
 
 
@@ -223,127 +189,14 @@ Classes
           !! processed by numpydoc !!
 
 
-.. py:class:: PWMInverter
+.. py:class:: FrequencyConverter
 
    Bases: :py:obj:`Inverter`
 
    
-   PWM inverter with constant DC-bus voltage.
-
-   This extends the Inverter class with pulse-width modulation.
-
-   :param N: Amount of PWM quantization levels. The default is 2**12.
-   :type N: int, optional
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   ..
-       !! processed by numpydoc !!
-   .. py:attribute:: N
-      :annotation: :int
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-   .. py:attribute:: rising_edge
-      :annotation: :bool
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-   .. py:method:: pwm(self, T_s, d_abc)
-
-      
-      Compute the the switching states and their durations.
-
-      :param T_s: Sampling period (either half or full carrier period).
-      :type T_s: float
-      :param d_abc: Duty ratios in the range [0, 1].
-      :type d_abc: array_like of floats, shape (3,)
-
-      :returns: * **t_steps** (*ndarray, shape (4,)*) -- Switching state durations, `[t0, t1, t2, t3]`.
-                * **q** (*complex ndarray, shape (4,)*) -- Switching state vectors, `[0, q1, q2, 0]`, where `q1` and `q2` are
-                  active vectors.
-
-      .. rubric:: Notes
-
-      Switching instants split the sampling period `T_s` into
-      four subperiods. No switching (e.g. `d_a == 0` or `d_a == 1`) or
-      simultaneous switching instants (e.g `d_a == d_b`) lead to zero length
-      of the corresponding subperiods.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-
-.. py:class:: FrequencyConverter
-
-   Bases: :py:obj:`PWMInverter`
-
-   
    Frequency converter.
 
-   This extends the PWMInverter class with models for a strong grid, a
+   This extends the Inverter class with models for a strong grid, a
    three-phase diode-bridge rectifier, an LC filter, and a three-phase
    inverter.
 

@@ -5,7 +5,7 @@
 
 .. autoapi-nested-parse::
 
-   This module contains vector control methods for an induction motor drive.
+   Vector control methods for induction motor drives.
 
    The algorithms are written based on the inverse-Γ model.
 
@@ -101,29 +101,6 @@ Classes
 
    .. py:attribute:: T_s
       :annotation: :float = 0.00025
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-   .. py:attribute:: delay
-      :annotation: :int = 1
 
       
 
@@ -447,8 +424,6 @@ Classes
 
 .. py:class:: InductionMotorVectorCtrl(pars=InductionMotorVectorCtrlPars())
 
-   Bases: :py:obj:`motulator.control.common.Datalogger`
-
    Vector control for an induction motor drive.
 
    This class interconnects the subsystems of the control system and
@@ -471,6 +446,29 @@ Classes
 
       :returns: * **T_s** (*float*) -- Sampling period.
                 * **d_abc_ref** (*ndarray, shape (3,)*) -- Duty ratio references.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: post_process(self)
+
+      
+      Transform the lists to the ndarray format.
+
 
 
 

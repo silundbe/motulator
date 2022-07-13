@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vector-controlled 2.2-kW induction motor drive &mdash; motulator 0 documentation</title>
+  <title>Vector-Controlled 2.2-kW Induction Motor Drive &mdash; motulator 0.0.7 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
@@ -26,8 +26,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Vector-controlled 2.2-kW PMSM drive" href="../sm/plot_vector_ctrl_pmsm_2kW.html" />
-    <link rel="prev" title="V/Hz-controlled 2.2-kW induction motor drive" href="plot_vhz_ctrl_im_2kW.html" /> 
+    <link rel="next" title="Vector-Controlled 2.2-kW PMSM Drive" href="../sm/plot_vector_ctrl_pmsm_2kW.html" />
+    <link rel="prev" title="V/Hz-Controlled 2.2-kW Induction Motor Drive" href="plot_vhz_ctrl_im_2kW.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,8 +51,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../../usage.html">Usage</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Examples</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#induction-motor-drives">Induction Motor Drives</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="plot_vhz_ctrl_im_2kW.html">V/Hz-controlled 2.2-kW induction motor drive</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Vector-controlled 2.2-kW induction motor drive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_vhz_ctrl_im_2kW.html">V/Hz-Controlled 2.2-kW Induction Motor Drive</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Vector-Controlled 2.2-kW Induction Motor Drive</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../index.html#synchronous-motor-drives">Synchronous Motor Drives</a></li>
@@ -62,6 +62,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">System Models</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../system.html">Motor Drive System</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../induction_motor.html">Induction Motor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../synchronous_motor.html">Synchronous Motor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../mechanics.html">Mechanics</a></li>
@@ -83,7 +84,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../index.html">Examples</a> &raquo;</li>
-      <li>Vector-controlled 2.2-kW induction motor drive</li>
+      <li>Vector-Controlled 2.2-kW Induction Motor Drive</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/auto_examples/im/plot_vector_ctrl_im_2kW.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -99,7 +100,7 @@
 to download the full example code</p>
 </div>
 <div class="sphx-glr-example-title section" id="vector-controlled-2-2-kw-induction-motor-drive">
-<span id="sphx-glr-auto-examples-im-plot-vector-ctrl-im-2kw-py"></span><h1>Vector-controlled 2.2-kW induction motor drive<a class="headerlink" href="#vector-controlled-2-2-kw-induction-motor-drive" title="Permalink to this heading"></a></h1>
+<span id="sphx-glr-auto-examples-im-plot-vector-ctrl-im-2kw-py"></span><h1>Vector-Controlled 2.2-kW Induction Motor Drive<a class="headerlink" href="#vector-controlled-2-2-kw-induction-motor-drive" title="Permalink to this heading"></a></h1>
 <p>This example simulates sensorless vector control of a 2.2-kW induction motor
 drive.</p>
 <p>Import the packages.</p>
@@ -117,14 +118,13 @@ drive.</p>
                      <span class="n">p</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>              <span class="c1"># Number of pole pairs</span>
 </pre></div>
 </div>
-<p>Configure the system model. Enable PWM by uncommenting the line below.</p>
+<p>Configure the system model.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Configure the induction motor using its inverse-Γ parameters</span>
 <span class="n">motor</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">InductionMotorInvGamma</span><span class="p">(</span><span class="n">R_s</span><span class="o">=</span><span class="mf">3.7</span><span class="p">,</span> <span class="n">R_R</span><span class="o">=</span><span class="mf">2.1</span><span class="p">,</span> <span class="n">L_sgm</span><span class="o">=.</span><span class="mi">021</span><span class="p">,</span> <span class="n">L_M</span><span class="o">=.</span><span class="mi">224</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="c1"># Alternatively configure the induction motor using its Γ parameters</span>
 <span class="c1"># motor = mt.InductionMotor(R_s=3.7, R_r=2.5, L_ell=.023, L_s=.245, p=2)</span>
 <span class="n">mech</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">Mechanics</span><span class="p">(</span><span class="n">J</span><span class="o">=.</span><span class="mi">015</span><span class="p">)</span>         <span class="c1"># Mechanics model</span>
 <span class="n">conv</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">Inverter</span><span class="p">(</span><span class="n">u_dc0</span><span class="o">=</span><span class="mi">540</span><span class="p">)</span>       <span class="c1"># Inverter model</span>
-<span class="c1"># conv = mt.PWMInverter(u_dc0=540)  # Inverter with PWM modeled</span>
 <span class="n">mdl</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">InductionMotorDrive</span><span class="p">(</span><span class="n">motor</span><span class="p">,</span> <span class="n">mech</span><span class="p">,</span> <span class="n">conv</span><span class="p">)</span>  <span class="c1"># System model</span>
 </pre></div>
 </div>
@@ -134,7 +134,6 @@ parameter errors. This may happen in real drives as well.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">InductionMotorVectorCtrl</span><span class="p">(</span><span class="n">mt</span><span class="o">.</span><span class="n">InductionMotorVectorCtrlPars</span><span class="p">(</span>
     <span class="n">sensorless</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>                <span class="c1"># Enable sensorless mode</span>
     <span class="n">T_s</span><span class="o">=</span><span class="mf">250e-6</span><span class="p">,</span>                     <span class="c1"># Sampling period</span>
-    <span class="n">delay</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>                        <span class="c1"># Amount of computational delay</span>
     <span class="n">alpha_c</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">200</span><span class="p">,</span>            <span class="c1"># Current-control bandwidth</span>
     <span class="n">alpha_o</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">40</span><span class="p">,</span>             <span class="c1"># Observer bandwidth</span>
     <span class="n">alpha_s</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span>              <span class="c1"># Speed-control bandwidth</span>
@@ -159,8 +158,12 @@ created as functions.</p>
 <span class="c1"># ctrl.w_m_ref = lambda t: (t &gt; .2)*(2*base.w)</span>
 </pre></div>
 </div>
-<p>Create the simulation object and simulate it.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">Simulation</span><span class="p">(</span><span class="n">mdl</span><span class="p">,</span> <span class="n">ctrl</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="n">base</span><span class="p">,</span> <span class="n">t_stop</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<p>Create the simulation object and simulate it. You can also enable the PWM
+model (which makes simulation slower).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">Simulation</span><span class="p">(</span><span class="n">mdl</span><span class="p">,</span> <span class="n">ctrl</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="n">base</span><span class="p">,</span>
+                    <span class="n">enable_pwm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>   <span class="c1"># Enable PWM model</span>
+                    <span class="n">delay</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>            <span class="c1"># Computational delay</span>
+                    <span class="n">t_stop</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>         <span class="c1"># Stop time</span>
 <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>  <span class="c1"># Start the timer</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">simulate</span><span class="p">()</span>
 <span class="c1"># Print the execution time</span>
@@ -168,7 +171,7 @@ created as functions.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Execution time: 4.37 s
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Execution time: 3.61 s
 </pre></div>
 </div>
 <p>Plot results in per-unit values. By uncommenting the second line you can
@@ -177,7 +180,7 @@ plot the results in SI units.</p>
 <span class="c1"># mt.plot(sim)</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_plot_vector_ctrl_im_2kW_001.png" srcset="../../_images/sphx_glr_plot_vector_ctrl_im_2kW_001.png" alt="plot vector ctrl im 2kW" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  5.198 seconds)</p>
+<img src="../../_images/sphx_glr_plot_vector_ctrl_im_2kW_001.png" srcset="../../_images/sphx_glr_plot_vector_ctrl_im_2kW_001.png" alt="plot vector ctrl im 2kW" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  4.325 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-im-plot-vector-ctrl-im-2kw-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/8226abf765574092c6643b3724944116/plot_vector_ctrl_im_2kW.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_vector_ctrl_im_2kW.py</span></code></a></p>
@@ -193,8 +196,8 @@ plot the results in SI units.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="plot_vhz_ctrl_im_2kW.html" class="btn btn-neutral float-left" title="V/Hz-controlled 2.2-kW induction motor drive" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../sm/plot_vector_ctrl_pmsm_2kW.html" class="btn btn-neutral float-right" title="Vector-controlled 2.2-kW PMSM drive" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="plot_vhz_ctrl_im_2kW.html" class="btn btn-neutral float-left" title="V/Hz-Controlled 2.2-kW Induction Motor Drive" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../sm/plot_vector_ctrl_pmsm_2kW.html" class="btn btn-neutral float-right" title="Vector-Controlled 2.2-kW PMSM Drive" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -30,7 +30,7 @@ Induction Motor Drives
 .. only:: html
 
  .. figure:: /auto_examples/im/images/thumb/sphx_glr_plot_vhz_ctrl_im_2kW_thumb.png
-     :alt: V/Hz-controlled 2.2-kW induction motor drive
+     :alt: V/Hz-Controlled 2.2-kW Induction Motor Drive
 
      :ref:`sphx_glr_auto_examples_im_plot_vhz_ctrl_im_2kW.py`
 
@@ -51,7 +51,7 @@ Induction Motor Drives
 .. only:: html
 
  .. figure:: /auto_examples/im/images/thumb/sphx_glr_plot_vector_ctrl_im_2kW_thumb.png
-     :alt: Vector-controlled 2.2-kW induction motor drive
+     :alt: Vector-Controlled 2.2-kW Induction Motor Drive
 
      :ref:`sphx_glr_auto_examples_im_plot_vector_ctrl_im_2kW.py`
 
@@ -84,7 +84,7 @@ Synchronous Motor Drives
 .. only:: html
 
  .. figure:: /auto_examples/sm/images/thumb/sphx_glr_plot_vector_ctrl_pmsm_2kW_thumb.png
-     :alt: Vector-controlled 2.2-kW PMSM drive
+     :alt: Vector-Controlled 2.2-kW PMSM Drive
 
      :ref:`sphx_glr_auto_examples_sm_plot_vector_ctrl_pmsm_2kW.py`
 
@@ -105,7 +105,7 @@ Synchronous Motor Drives
 .. only:: html
 
  .. figure:: /auto_examples/sm/images/thumb/sphx_glr_plot_vector_ctrl_syrm_7kW_thumb.png
-     :alt: Vector-controlled 6.7-kW SyRM drive
+     :alt: Vector-Controlled 6.7-kW SyRM Drive
 
      :ref:`sphx_glr_auto_examples_sm_plot_vector_ctrl_syrm_7kW.py`
 

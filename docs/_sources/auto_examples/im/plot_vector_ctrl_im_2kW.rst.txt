@@ -18,7 +18,7 @@
 .. _sphx_glr_auto_examples_im_plot_vector_ctrl_im_2kW.py:
 
 
-Vector-controlled 2.2-kW induction motor drive
+Vector-Controlled 2.2-kW Induction Motor Drive
 ==============================================
 
 This example simulates sensorless vector control of a 2.2-kW induction motor
@@ -69,9 +69,9 @@ Compute base values based on the nominal values (just for figures).
 
 .. GENERATED FROM PYTHON SOURCE LINES 28-29
 
-Configure the system model. Enable PWM by uncommenting the line below.
+Configure the system model.
 
-.. GENERATED FROM PYTHON SOURCE LINES 29-39
+.. GENERATED FROM PYTHON SOURCE LINES 29-38
 
 .. code-block:: default
 
@@ -82,7 +82,6 @@ Configure the system model. Enable PWM by uncommenting the line below.
     # motor = mt.InductionMotor(R_s=3.7, R_r=2.5, L_ell=.023, L_s=.245, p=2)
     mech = mt.Mechanics(J=.015)         # Mechanics model
     conv = mt.Inverter(u_dc0=540)       # Inverter model
-    # conv = mt.PWMInverter(u_dc0=540)  # Inverter with PWM modeled
     mdl = mt.InductionMotorDrive(motor, mech, conv)  # System model
 
 
@@ -92,13 +91,13 @@ Configure the system model. Enable PWM by uncommenting the line below.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 40-43
+.. GENERATED FROM PYTHON SOURCE LINES 39-42
 
 Configure the control system. You may also try to change the parameters.
 Notice that the drive may become unstable if you for example have too large
 parameter errors. This may happen in real drives as well.
 
-.. GENERATED FROM PYTHON SOURCE LINES 43-59
+.. GENERATED FROM PYTHON SOURCE LINES 42-57
 
 .. code-block:: default
 
@@ -106,7 +105,6 @@ parameter errors. This may happen in real drives as well.
     ctrl = mt.InductionMotorVectorCtrl(mt.InductionMotorVectorCtrlPars(
         sensorless=True,                # Enable sensorless mode
         T_s=250e-6,                     # Sampling period
-        delay=1,                        # Amount of computational delay
         alpha_c=2*np.pi*200,            # Current-control bandwidth
         alpha_o=2*np.pi*40,             # Observer bandwidth
         alpha_s=2*np.pi*4,              # Speed-control bandwidth
@@ -125,13 +123,13 @@ parameter errors. This may happen in real drives as well.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 60-63
+.. GENERATED FROM PYTHON SOURCE LINES 58-61
 
 Set the speed reference and the external load torque. You may also try to
 uncomment the field-weakening sequence. More complicated sequences could be
 created as functions.
 
-.. GENERATED FROM PYTHON SOURCE LINES 63-72
+.. GENERATED FROM PYTHON SOURCE LINES 61-70
 
 .. code-block:: default
 
@@ -151,16 +149,20 @@ created as functions.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 73-74
+.. GENERATED FROM PYTHON SOURCE LINES 71-73
 
-Create the simulation object and simulate it.
+Create the simulation object and simulate it. You can also enable the PWM
+model (which makes simulation slower).
 
-.. GENERATED FROM PYTHON SOURCE LINES 74-81
+.. GENERATED FROM PYTHON SOURCE LINES 73-83
 
 .. code-block:: default
 
 
-    sim = mt.Simulation(mdl, ctrl, base=base, t_stop=1.5)
+    sim = mt.Simulation(mdl, ctrl, base=base,
+                        enable_pwm=False,   # Enable PWM model
+                        delay=1,            # Computational delay
+                        t_stop=1.5)         # Stop time
     start_time = time()  # Start the timer
     sim.simulate()
     # Print the execution time
@@ -177,17 +179,17 @@ Create the simulation object and simulate it.
  .. code-block:: none
 
 
-    Execution time: 4.37 s
+    Execution time: 3.61 s
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 82-84
+.. GENERATED FROM PYTHON SOURCE LINES 84-86
 
 Plot results in per-unit values. By uncommenting the second line you can
 plot the results in SI units.
 
-.. GENERATED FROM PYTHON SOURCE LINES 84-87
+.. GENERATED FROM PYTHON SOURCE LINES 86-89
 
 .. code-block:: default
 
@@ -209,7 +211,7 @@ plot the results in SI units.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  5.198 seconds)
+   **Total running time of the script:** ( 0 minutes  4.325 seconds)
 
 
 .. _sphx_glr_download_auto_examples_im_plot_vector_ctrl_im_2kW.py:

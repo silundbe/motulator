@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>motulator.model.converter &mdash; motulator 0 documentation</title>
+  <title>motulator.model.converter &mdash; motulator 0.0.7 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
@@ -52,6 +52,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">System Models</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../system.html">Motor Drive System</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../induction_motor.html">Induction Motor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../synchronous_motor.html">Synchronous Motor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../mechanics.html">Mechanics</a></li>
@@ -85,7 +86,7 @@
   <h1>Source code for motulator.model.converter</h1><div class="highlight"><pre>
 <span></span><span class="c1"># pylint: disable=C0103</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">This module contains power converter models.</span>
+<span class="sd">Power converter models.</span>
 
 <span class="sd">An inverter with constant DC-bus voltage and a frequency converter with a diode</span>
 <span class="sd">front-end rectifier are modeled. Complex space vectors are used also for duty</span>
@@ -97,7 +98,6 @@
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">motulator.helpers</span> <span class="kn">import</span> <span class="n">abc2complex</span>
 
 
 <span class="c1"># %%</span>
@@ -113,9 +113,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="Inverter.u_dc0"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.Inverter.u_dc0">[docs]</a>    <span class="n">u_dc0</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">540</span></div>
-    <span class="c1"># Here `q` is the duty ratio vector. In the subclasses where the PWM is</span>
-    <span class="c1"># modeled, the variable `q` refers to the switching state vector.</span>
-<div class="viewcode-block" id="Inverter.q"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.Inverter.q">[docs]</a>    <span class="n">q</span><span class="p">:</span> <span class="nb">complex</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="n">j</span><span class="p">)</span></div>
+<div class="viewcode-block" id="Inverter.q"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.Inverter.q">[docs]</a>    <span class="n">q</span><span class="p">:</span> <span class="nb">complex</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="n">j</span><span class="p">)</span>  <span class="c1"># Switching state vector</span></div>
 
     <span class="nd">@staticmethod</span>
 <div class="viewcode-block" id="Inverter.ac_voltage"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.Inverter.ac_voltage">[docs]</a>    <span class="k">def</span> <span class="nf">ac_voltage</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">u_dc</span><span class="p">):</span>
@@ -125,7 +123,7 @@
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        q : complex</span>
-<span class="sd">            Duty ratio vector (switching state vector in the subclasses).</span>
+<span class="sd">            Switching state vector.</span>
 <span class="sd">        u_dc : float</span>
 <span class="sd">            DC-bus voltage.</span>
 
@@ -146,7 +144,7 @@
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        q : complex</span>
-<span class="sd">            Duty ratio vector (switching state vector in subclasses).</span>
+<span class="sd">            Switching state vector.</span>
 <span class="sd">        i_ac : complex</span>
 <span class="sd">            AC-side current.</span>
 
@@ -158,32 +156,6 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">i_dc</span> <span class="o">=</span> <span class="mf">1.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">q</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">i_ac</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">i_dc</span></div>
-
-    <span class="nd">@staticmethod</span>
-<div class="viewcode-block" id="Inverter.pwm"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.Inverter.pwm">[docs]</a>    <span class="k">def</span> <span class="nf">pwm</span><span class="p">(</span><span class="n">T_s</span><span class="p">,</span> <span class="n">d_abc</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Zero-order hold of the duty ratio over the sampling period.</span>
-
-<span class="sd">        The output arrays are compatible with the solver.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        T_s : float</span>
-<span class="sd">            Sampling period.</span>
-<span class="sd">        d_abc : array_like of floats, shape (3,)</span>
-<span class="sd">            Duty ratios in the range [0, 1].</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        t_step : ndarray, shape (1,)</span>
-<span class="sd">            Sampling period as an array compatible with the solver.</span>
-<span class="sd">        q : complex ndarray, shape (1,)</span>
-<span class="sd">            Duty ratio vector as an array compatible with the solver.</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">t_step</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">T_s</span><span class="p">])</span>
-        <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">abc2complex</span><span class="p">(</span><span class="n">d_abc</span><span class="p">)])</span>
-        <span class="k">return</span> <span class="n">t_step</span><span class="p">,</span> <span class="n">q</span></div>
 
 <div class="viewcode-block" id="Inverter.meas_dc_voltage"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.Inverter.meas_dc_voltage">[docs]</a>    <span class="k">def</span> <span class="nf">meas_dc_voltage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -200,82 +172,11 @@
 
 <span class="c1"># %%</span>
 <span class="nd">@dataclass</span>
-<div class="viewcode-block" id="PWMInverter"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.PWMInverter">[docs]</a><span class="k">class</span> <span class="nc">PWMInverter</span><span class="p">(</span><span class="n">Inverter</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    PWM inverter with constant DC-bus voltage.</span>
-
-<span class="sd">    This extends the Inverter class with pulse-width modulation.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    N : int, optional</span>
-<span class="sd">        Amount of PWM quantization levels. The default is 2**12.</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="PWMInverter.N"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.PWMInverter.N">[docs]</a>    <span class="n">N</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="mi">12</span></div>
-    <span class="c1"># Stores the carrier direction</span>
-<div class="viewcode-block" id="PWMInverter.rising_edge"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.PWMInverter.rising_edge">[docs]</a>    <span class="n">rising_edge</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="PWMInverter.pwm"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.PWMInverter.pwm">[docs]</a>    <span class="k">def</span> <span class="nf">pwm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">T_s</span><span class="p">,</span> <span class="n">d_abc</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Compute the the switching states and their durations.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        T_s : float</span>
-<span class="sd">            Sampling period (either half or full carrier period).</span>
-<span class="sd">        d_abc : array_like of floats, shape (3,)</span>
-<span class="sd">            Duty ratios in the range [0, 1].</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        t_steps : ndarray, shape (4,)</span>
-<span class="sd">            Switching state durations, `[t0, t1, t2, t3]`.</span>
-<span class="sd">        q : complex ndarray, shape (4,)</span>
-<span class="sd">            Switching state vectors, `[0, q1, q2, 0]`, where `q1` and `q2` are</span>
-<span class="sd">            active vectors.</span>
-
-<span class="sd">        Notes</span>
-<span class="sd">        -----</span>
-<span class="sd">        Switching instants split the sampling period `T_s` into</span>
-<span class="sd">        four subperiods. No switching (e.g. `d_a == 0` or `d_a == 1`) or</span>
-<span class="sd">        simultaneous switching instants (e.g `d_a == d_b`) lead to zero length</span>
-<span class="sd">        of the corresponding subperiods.</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># Quantize the duty ratios to N levels</span>
-        <span class="n">d_abc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">d_abc</span><span class="p">))</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span>
-
-        <span class="c1"># Normalized switching instants and switching states</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rising_edge</span><span class="p">:</span>
-            <span class="c1"># t_n = [0, t_n1, t_n2, t_n3]</span>
-            <span class="n">t_n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">d_abc</span><span class="p">))</span>
-            <span class="c1"># q_abc = [[0, 0, 0], [q_abc1], [q_abc2], [1, 1, 1]]</span>
-            <span class="n">q_abc</span> <span class="o">=</span> <span class="p">(</span><span class="n">t_n</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">d_abc</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">t_n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">d_abc</span><span class="p">))</span>
-            <span class="n">q_abc</span> <span class="o">=</span> <span class="p">(</span><span class="n">t_n</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">d_abc</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-
-        <span class="c1"># Durations of switching states: t_steps = [t0, t1, t2, t3]</span>
-        <span class="n">t_steps</span> <span class="o">=</span> <span class="n">T_s</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">t_n</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-
-        <span class="c1"># Array of the switching state space vectors, q = [0, q1, q2, 0]</span>
-        <span class="n">q</span> <span class="o">=</span> <span class="n">abc2complex</span><span class="p">(</span><span class="n">q_abc</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-
-        <span class="c1"># Change the carrier direction for the next call</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">rising_edge</span> <span class="o">=</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">rising_edge</span>
-
-        <span class="c1"># If needed, alternatively q_abc could be returned</span>
-        <span class="k">return</span> <span class="n">t_steps</span><span class="p">,</span> <span class="n">q</span></div></div>
-
-
-<span class="c1"># %%</span>
-<span class="nd">@dataclass</span>
-<div class="viewcode-block" id="FrequencyConverter"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.FrequencyConverter">[docs]</a><span class="k">class</span> <span class="nc">FrequencyConverter</span><span class="p">(</span><span class="n">PWMInverter</span><span class="p">):</span>
+<div class="viewcode-block" id="FrequencyConverter"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.FrequencyConverter">[docs]</a><span class="k">class</span> <span class="nc">FrequencyConverter</span><span class="p">(</span><span class="n">Inverter</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Frequency converter.</span>
 
-<span class="sd">    This extends the PWMInverter class with models for a strong grid, a</span>
+<span class="sd">    This extends the Inverter class with models for a strong grid, a</span>
 <span class="sd">    three-phase diode-bridge rectifier, an LC filter, and a three-phase</span>
 <span class="sd">    inverter.</span>
 

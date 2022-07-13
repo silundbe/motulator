@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vector-controlled 2.2-kW PMSM drive &mdash; motulator 0 documentation</title>
+  <title>Vector-Controlled 2.2-kW PMSM Drive &mdash; motulator 0.0.7 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
@@ -26,8 +26,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Vector-controlled 6.7-kW SyRM drive" href="plot_vector_ctrl_syrm_7kW.html" />
-    <link rel="prev" title="Vector-controlled 2.2-kW induction motor drive" href="../im/plot_vector_ctrl_im_2kW.html" /> 
+    <link rel="next" title="Vector-Controlled 6.7-kW SyRM Drive" href="plot_vector_ctrl_syrm_7kW.html" />
+    <link rel="prev" title="Vector-Controlled 2.2-kW Induction Motor Drive" href="../im/plot_vector_ctrl_im_2kW.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -52,8 +52,8 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Examples</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../index.html#induction-motor-drives">Induction Motor Drives</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#synchronous-motor-drives">Synchronous Motor Drives</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Vector-controlled 2.2-kW PMSM drive</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_vector_ctrl_syrm_7kW.html">Vector-controlled 6.7-kW SyRM drive</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Vector-Controlled 2.2-kW PMSM Drive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_vector_ctrl_syrm_7kW.html">Vector-Controlled 6.7-kW SyRM Drive</a></li>
 </ul>
 </li>
 </ul>
@@ -62,6 +62,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">System Models</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../system.html">Motor Drive System</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../induction_motor.html">Induction Motor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../synchronous_motor.html">Synchronous Motor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../mechanics.html">Mechanics</a></li>
@@ -83,7 +84,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../index.html">Examples</a> &raquo;</li>
-      <li>Vector-controlled 2.2-kW PMSM drive</li>
+      <li>Vector-Controlled 2.2-kW PMSM Drive</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/auto_examples/sm/plot_vector_ctrl_pmsm_2kW.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -99,7 +100,7 @@
 to download the full example code</p>
 </div>
 <div class="sphx-glr-example-title section" id="vector-controlled-2-2-kw-pmsm-drive">
-<span id="sphx-glr-auto-examples-sm-plot-vector-ctrl-pmsm-2kw-py"></span><h1>Vector-controlled 2.2-kW PMSM drive<a class="headerlink" href="#vector-controlled-2-2-kw-pmsm-drive" title="Permalink to this heading"></a></h1>
+<span id="sphx-glr-auto-examples-sm-plot-vector-ctrl-pmsm-2kw-py"></span><h1>Vector-Controlled 2.2-kW PMSM Drive<a class="headerlink" href="#vector-controlled-2-2-kw-pmsm-drive" title="Permalink to this heading"></a></h1>
 <p>This example simulates sensorless vector control of a 2.2-kW PMSM drive.</p>
 <p>Import the packages.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
@@ -112,17 +113,16 @@ to download the full example code</p>
     <span class="n">U_nom</span><span class="o">=</span><span class="mi">370</span><span class="p">,</span> <span class="n">I_nom</span><span class="o">=</span><span class="mf">4.3</span><span class="p">,</span> <span class="n">f_nom</span><span class="o">=</span><span class="mi">75</span><span class="p">,</span> <span class="n">tau_nom</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">P_nom</span><span class="o">=</span><span class="mf">2.2e3</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Configure the system model. Enable PWM by uncommenting the line below.</p>
+<p>Configure the system model.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">motor</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">SynchronousMotor</span><span class="p">()</span>
 <span class="n">mech</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">Mechanics</span><span class="p">()</span>
 <span class="n">conv</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">Inverter</span><span class="p">()</span>
-<span class="c1"># conv = mt.PWMInverter()</span>
 <span class="n">mdl</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">SynchronousMotorDrive</span><span class="p">(</span><span class="n">motor</span><span class="p">,</span> <span class="n">mech</span><span class="p">,</span> <span class="n">conv</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Configure the control system.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pars</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">SynchronousMotorVectorCtrlPars</span><span class="p">(</span><span class="n">sensorless</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="c1"># pars.plot(base)  # Uncommenting this plot control look-up tables</span>
+<span class="c1"># pars.plot(base)  # Uncommenting this line plots control look-up tables</span>
 <span class="n">ctrl</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">SynchronousMotorVectorCtrl</span><span class="p">(</span><span class="n">pars</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -142,11 +142,11 @@ to download the full example code</p>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>SynchronousMotorDrive(motor=SynchronousMotor(p=3, R_s=3.6, L_d=0.036, L_q=0.051, psi_f=0.545), mech=Mechanics(J=0.015, B=0), conv=Inverter(u_dc0=540))
 
-SynchronousMotorVectorCtrlPars(sensorless=True, T_s=0.00025, delay=1, alpha_c=1256.6370614359173, alpha_fw=125.66370614359172, alpha_s=25.132741228718345, tau_M_max=29.2, i_s_max=10.606601717798213, i_sd_min=None, k_u=0.95, w_nom=471.23889803846896, R_s=3.6, L_d=0.036, L_q=0.051, psi_f=0.545, p=3, J=0.015, w_o=251.32741228718345)
+SynchronousMotorVectorCtrlPars(sensorless=True, T_s=0.00025, alpha_c=1256.6370614359173, alpha_fw=125.66370614359172, alpha_s=25.132741228718345, tau_M_max=29.2, i_s_max=10.606601717798213, i_sd_min=None, k_u=0.95, w_nom=471.23889803846896, R_s=3.6, L_d=0.036, L_q=0.051, psi_f=0.545, p=3, J=0.015, w_o=251.32741228718345)
 </pre></div>
 </div>
 <p>Create the simulation object and simulate it.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">Simulation</span><span class="p">(</span><span class="n">mdl</span><span class="p">,</span> <span class="n">ctrl</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="n">base</span><span class="p">,</span> <span class="n">t_stop</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">Simulation</span><span class="p">(</span><span class="n">mdl</span><span class="p">,</span> <span class="n">ctrl</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="n">base</span><span class="p">,</span> <span class="n">enable_pwm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">t_stop</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>  <span class="c1"># Start the timer</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">simulate</span><span class="p">()</span>
 <span class="c1"># Print the execution time</span>
@@ -154,7 +154,7 @@ SynchronousMotorVectorCtrlPars(sensorless=True, T_s=0.00025, delay=1, alpha_c=12
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Execution time: 21.23 s
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Execution time: 17.04 s
 </pre></div>
 </div>
 <p>Plot results in per-unit values. By uncommenting the second line you can
@@ -163,7 +163,7 @@ plot the results in SI units.</p>
 <span class="c1"># mt.plot(sim)</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_plot_vector_ctrl_pmsm_2kW_001.png" srcset="../../_images/sphx_glr_plot_vector_ctrl_pmsm_2kW_001.png" alt="plot vector ctrl pmsm 2kW" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  22.496 seconds)</p>
+<img src="../../_images/sphx_glr_plot_vector_ctrl_pmsm_2kW_001.png" srcset="../../_images/sphx_glr_plot_vector_ctrl_pmsm_2kW_001.png" alt="plot vector ctrl pmsm 2kW" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  18.133 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-sm-plot-vector-ctrl-pmsm-2kw-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/075d71768687244a259dd88575d77588/plot_vector_ctrl_pmsm_2kW.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_vector_ctrl_pmsm_2kW.py</span></code></a></p>
@@ -179,8 +179,8 @@ plot the results in SI units.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../im/plot_vector_ctrl_im_2kW.html" class="btn btn-neutral float-left" title="Vector-controlled 2.2-kW induction motor drive" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="plot_vector_ctrl_syrm_7kW.html" class="btn btn-neutral float-right" title="Vector-controlled 6.7-kW SyRM drive" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../im/plot_vector_ctrl_im_2kW.html" class="btn btn-neutral float-left" title="Vector-Controlled 2.2-kW Induction Motor Drive" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plot_vector_ctrl_syrm_7kW.html" class="btn btn-neutral float-right" title="Vector-Controlled 6.7-kW SyRM Drive" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

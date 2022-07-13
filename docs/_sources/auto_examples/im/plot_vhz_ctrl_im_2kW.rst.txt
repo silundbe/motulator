@@ -18,7 +18,7 @@
 .. _sphx_glr_auto_examples_im_plot_vhz_ctrl_im_2kW.py:
 
 
-V/Hz-controlled 2.2-kW induction motor drive
+V/Hz-Controlled 2.2-kW Induction Motor Drive
 ============================================
 
 A diode bridge, stiff three-phase grid, and a DC link is modeled. The default
@@ -138,7 +138,7 @@ Create the simulation object and simulate it.
 .. code-block:: default
 
 
-    sim = mt.Simulation(mdl, ctrl, base=base, t_stop=1.5)
+    sim = mt.Simulation(mdl, ctrl, base=base, enable_pwm=True, t_stop=1.5)
     start_time = time()  # Start the timer
     sim.simulate()
     # Print the execution time
@@ -155,7 +155,7 @@ Create the simulation object and simulate it.
  .. code-block:: none
 
 
-    Execution time: 25.42 s
+    Execution time: 20.52 s
 
 
 
@@ -213,7 +213,7 @@ Plot results in per-unit values.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  27.948 seconds)
+   **Total running time of the script:** ( 0 minutes  22.715 seconds)
 
 
 .. _sphx_glr_download_auto_examples_im_plot_vhz_ctrl_im_2kW.py:

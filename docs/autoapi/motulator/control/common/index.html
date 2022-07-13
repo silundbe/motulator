@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>motulator.control.common &mdash; motulator 0 documentation</title>
+  <title>motulator.control.common &mdash; motulator 0.0.7 documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/copybutton.css" type="text/css" />
@@ -66,6 +66,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">System Models</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../system.html">Motor Drive System</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../induction_motor.html">Induction Motor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../synchronous_motor.html">Synchronous Motor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../mechanics.html">Mechanics</a></li>
@@ -101,7 +102,7 @@
              
   <div class="section" id="module-motulator.control.common">
 <span id="motulator-control-common"></span><h1><a class="reference internal" href="#module-motulator.control.common" title="motulator.control.common"><code class="xref py py-mod docutils literal notranslate"><span class="pre">motulator.control.common</span></code></a><a class="headerlink" href="#module-motulator.control.common" title="Permalink to this heading"></a></h1>
-<p>This module contains common control functions and classes.</p>
+<p>Common control functions and classes.</p>
 <div class="section" id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
 <div class="section" id="classes">
@@ -120,12 +121,6 @@
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#motulator.control.common.RateLimiter" title="motulator.control.common.RateLimiter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RateLimiter</span></code></a></p></td>
 <td><p>Rate limiter.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#motulator.control.common.Delay" title="motulator.control.common.Delay"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Delay</span></code></a></p></td>
-<td><p>Computational delay.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#motulator.control.common.Datalogger" title="motulator.control.common.Datalogger"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Datalogger</span></code></a></p></td>
-<td><p>Datalogger for the control system.</p></td>
 </tr>
 </tbody>
 </table>
@@ -279,57 +274,6 @@ The controller is mathematically identical to the 2DOF PI speed controller.</p>
 <p>In this implementation, the falling rate limit equals the (negative)
 rising rate limit. If needed, these limits can be separated with minor
 modifications in the class.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="motulator.control.common.Delay">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">motulator.control.common.</span></span><span class="sig-name descname"><span class="pre">Delay</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elem</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/common.html#Delay"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.common.Delay" title="Permalink to this definition"></a></dt>
-<dd><p>Computational delay.</p>
-<p>This models the compuational delay as a ring buffer.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>length</strong> (<em>int</em><em>, </em><em>optional</em>) – Length of the buffer in samples. The default is 1.</p>
-</dd>
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="motulator.control.common.Delay.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/common.html#Delay.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.common.Delay.__call__" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>u</strong> (<em>array_like</em><em>, </em><em>shape</em><em> (</em><em>elem</em><em>,</em><em>)</em>) – Input array.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Output array.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>array_like, shape (elem,)</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="motulator.control.common.Datalogger">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">motulator.control.common.</span></span><span class="sig-name descname"><span class="pre">Datalogger</span></span><a class="reference internal" href="../../../../_modules/motulator/control/common.html#Datalogger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.common.Datalogger" title="Permalink to this definition"></a></dt>
-<dd><p>Datalogger for the control system.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="motulator.control.common.Datalogger.save">
-<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/common.html#Datalogger.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.common.Datalogger.save" title="Permalink to this definition"></a></dt>
-<dd><p>Save the solution.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>data</strong> (<em>Bunch object</em>) – Data to be saved.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="motulator.control.common.Datalogger.post_process">
-<span class="sig-name descname"><span class="pre">post_process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/common.html#Datalogger.post_process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.common.Datalogger.post_process" title="Permalink to this definition"></a></dt>
-<dd><p>Transform the lists to the ndarray format.</p>
 </dd></dl>
 
 </dd></dl>

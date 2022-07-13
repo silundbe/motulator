@@ -5,7 +5,7 @@
 
 .. autoapi-nested-parse::
 
-   This module contains the simulation class.
+   Simulation environment.
 
    ..
        !! processed by numpydoc !!
@@ -19,24 +19,188 @@ Classes
 
 .. autoapisummary::
 
+   motulator.simulation.Delay
+   motulator.simulation.CarrierCmp
    motulator.simulation.Simulation
 
 
 
+Functions
+~~~~~~~~~
 
-.. py:class:: Simulation(mdl=None, ctrl=None, base=None, t_stop=1)
+.. autoapisummary::
 
-   Simulation class.
+   motulator.simulation.zoh
+
+
+
+.. py:class:: Delay(length=1, elem=3)
+
+   Computational delay.
+
+   This models the computational delay as a ring buffer.
+
+
+
+   :param length: Length of the buffer in samples. The default is 1.
+   :type length: int, optional
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:method:: __call__(self, u)
+
+      
+      :param u: Input array.
+      :type u: array_like, shape (elem,)
+
+      :returns: Output array.
+      :rtype: array_like, shape (elem,)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+.. py:class:: CarrierCmp(N=2**12)
+
+   Carrier comparison.
+
+   This computes the the switching states and their durations based on the
+   duty ratios. Instead of searching for zero crossings, the switching
+   instants are explicilty computed in the begininning of each sampling
+   period, allowing faster simulations.
+
+
+
+   :param N: Amount of the counter quantization levels. The default is 2**12.
+   :type N: int, optional
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. py:method:: __call__(self, T_s, d_abc)
+
+      
+      Carrier comparison.
+
+      :param T_s: Sampling period (either half or full carrier period).
+      :type T_s: float
+      :param d_abc: Duty ratios in the range [0, 1].
+      :type d_abc: array_like of floats, shape (3,)
+
+      :returns: * **t_steps** (*ndarray, shape (4,)*) -- Switching state durations, `[t0, t1, t2, t3]`.
+                * **q** (*complex ndarray, shape (4,)*) -- Switching state vectors, `[0, q1, q2, 0]`, where `q1` and `q2` are
+                  active vectors.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+.. py:function:: zoh(T_s, d_abc)
+
+   
+   Zero-order hold of the duty ratios over the sampling period.
+
+   :param T_s: Sampling period.
+   :type T_s: float
+   :param d_abc: Duty ratios in the range [0, 1].
+   :type d_abc: array_like of floats, shape (3,)
+
+   :returns: * **t_steps** (*ndarray, shape (1,)*) -- Sampling period as an array compatible with the solver.
+             * **q** (*complex ndarray, shape (1,)*) -- Duty ratio vector as an array compatible with the solver.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:class:: Simulation(mdl=None, ctrl=None, delay=1, enable_pwm=False, base=None, t_stop=1)
+
+   Simulation environment.
 
    Each simulation object has a system model object and a controller object.
 
 
 
    :param mdl: Continuous-time system model.
-   :type mdl: (InductionMotorDrive | SynchronousMotorDrive)
-   :param ctrl:     InductionMotorVHzCtrl)
-                Discrete-time controller.
-   :type ctrl: (SynchronousMotorVectorCtrl | InductionMotorVectorCtrl |
+   :type mdl: InductionMotorDrive | SynchronousMotorDrive
+   :param ctrl:
+   :type ctrl: SynchronousMotorVectorCtrl | InductionMotorVectorCtrl |
+   :param InductionMotorVHzCtrl: Discrete-time controller.
+   :param delay: Amount of computational delays. The default is 1.
+   :type delay: int, optional
+   :param enable_pwm: Enable carrier comparison. The default is False.
+   :type enable_pwm: bool, optional
    :param base: Base values for plotting figures.
    :type base: BaseValues, optional
    :param t_stop: Simulation stop time. The default is 1.

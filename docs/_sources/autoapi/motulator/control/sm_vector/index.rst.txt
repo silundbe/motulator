@@ -5,7 +5,7 @@
 
 .. autoapi-nested-parse::
 
-   This module contains vector control for synchronous motor drives.
+   Vector control for synchronous motor drives.
 
    ..
        !! processed by numpydoc !!
@@ -98,29 +98,6 @@ Classes
 
    .. py:attribute:: T_s
       :annotation: :float = 0.00025
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-   .. py:attribute:: delay
-      :annotation: :int = 1
 
       
 
@@ -538,8 +515,6 @@ Classes
 
 .. py:class:: SynchronousMotorVectorCtrl(pars=SynchronousMotorVectorCtrlPars())
 
-   Bases: :py:obj:`motulator.control.common.Datalogger`
-
    Vector control for a synchronous motor drive.
 
    This class interconnects the subsystems of the control system and
@@ -579,6 +554,29 @@ Classes
 
       :returns: * **T_s** (*float*) -- Sampling period.
                 * **d_abc_ref** (*ndarray, shape (3,)*) -- Duty ratio references.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: post_process(self)
+
+      
+      Transform the lists to the ndarray format.
+
 
 
 

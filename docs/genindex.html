@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; motulator 0 documentation</title>
+  <title>Index &mdash; motulator 0.0.7 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
@@ -52,6 +52,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">System Models</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="system.html">Motor Drive System</a></li>
 <li class="toctree-l1"><a class="reference internal" href="induction_motor.html">Induction Motor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="synchronous_motor.html">Synchronous Motor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mechanics.html">Mechanics</a></li>
@@ -97,7 +98,6 @@
  | <a href="#K"><strong>K</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
- | <a href="#N"><strong>N</strong></a>
  | <a href="#O"><strong>O</strong></a>
  | <a href="#P"><strong>P</strong></a>
  | <a href="#Q"><strong>Q</strong></a>
@@ -107,16 +107,15 @@
  | <a href="#U"><strong>U</strong></a>
  | <a href="#V"><strong>V</strong></a>
  | <a href="#W"><strong>W</strong></a>
+ | <a href="#Z"><strong>Z</strong></a>
  
 </div>
 <h2 id="_">_</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="autoapi/motulator/control/common/index.html#motulator.control.common.Delay.__call__">__call__() (motulator.control.common.Delay method)</a>
+      <li><a href="autoapi/motulator/control/common/index.html#motulator.control.common.PWM.__call__">__call__() (motulator.control.common.PWM method)</a>
 
       <ul>
-        <li><a href="autoapi/motulator/control/common/index.html#motulator.control.common.PWM.__call__">(motulator.control.common.PWM method)</a>
-</li>
         <li><a href="autoapi/motulator/control/common/index.html#motulator.control.common.RateLimiter.__call__">(motulator.control.common.RateLimiter method)</a>
 </li>
         <li><a href="autoapi/motulator/control/im_vector/index.html#motulator.control.im_vector.InductionMotorVectorCtrl.__call__">(motulator.control.im_vector.InductionMotorVectorCtrl method)</a>
@@ -138,6 +137,10 @@
         <li><a href="autoapi/motulator/index.html#motulator.SaturableStatorInductance.__call__">(motulator.SaturableStatorInductance method)</a>
 </li>
         <li><a href="autoapi/motulator/index.html#motulator.Sequence.__call__">(motulator.Sequence method)</a>
+</li>
+        <li><a href="autoapi/motulator/simulation/index.html#motulator.simulation.CarrierCmp.__call__">(motulator.simulation.CarrierCmp method)</a>
+</li>
+        <li><a href="autoapi/motulator/simulation/index.html#motulator.simulation.Delay.__call__">(motulator.simulation.Delay method)</a>
 </li>
         <li><a href="autoapi/motulator/index.html#motulator.Step.__call__">(motulator.Step method)</a>
 </li>
@@ -304,6 +307,8 @@
         <li><a href="autoapi/motulator/model/converter/index.html#motulator.model.converter.FrequencyConverter.C">(motulator.model.converter.FrequencyConverter attribute)</a>
 </li>
       </ul></li>
+      <li><a href="autoapi/motulator/simulation/index.html#motulator.simulation.CarrierCmp">CarrierCmp (class in motulator.simulation)</a>
+</li>
       <li><a href="autoapi/motulator/index.html#motulator.complex2abc">complex2abc() (in module motulator)</a>
 
       <ul>
@@ -324,6 +329,8 @@
         <li><a href="autoapi/motulator/index.html#motulator.SynchronousMotorDrive.conv">(motulator.SynchronousMotorDrive attribute)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/motulator/control/sm_torque/index.html#motulator.control.sm_torque.TorqueCharacteristics.current">current() (motulator.control.sm_torque.TorqueCharacteristics method)</a>
 
       <ul>
@@ -332,8 +339,6 @@
         <li><a href="autoapi/motulator/index.html#motulator.SynchronousMotor.current">(motulator.SynchronousMotor method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/motulator/control/sm_torque/index.html#motulator.control.sm_torque.TorqueCharacteristics.current_limit">current_limit() (motulator.control.sm_torque.TorqueCharacteristics method)</a>
 </li>
       <li><a href="autoapi/motulator/control/im_vector/index.html#motulator.control.im_vector.CurrentCtrl">CurrentCtrl (class in motulator.control.im_vector)</a>
@@ -374,32 +379,16 @@
         <li><a href="autoapi/motulator/index.html#motulator.SynchronousMotorDrive.data">(motulator.SynchronousMotorDrive attribute)</a>
 </li>
       </ul></li>
-      <li><a href="autoapi/motulator/control/common/index.html#motulator.control.common.Datalogger">Datalogger (class in motulator.control.common)</a>
-</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/motulator/index.html#motulator.Inverter.dc_current">dc_current() (motulator.Inverter static method)</a>
 
       <ul>
         <li><a href="autoapi/motulator/model/converter/index.html#motulator.model.converter.Inverter.dc_current">(motulator.model.converter.Inverter static method)</a>
 </li>
       </ul></li>
-      <li><a href="autoapi/motulator/control/common/index.html#motulator.control.common.Delay">Delay (class in motulator.control.common)</a>
+      <li><a href="autoapi/motulator/simulation/index.html#motulator.simulation.Delay">Delay (class in motulator.simulation)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="autoapi/motulator/control/im_vector/index.html#motulator.control.im_vector.InductionMotorVectorCtrlPars.delay">delay (motulator.control.im_vector.InductionMotorVectorCtrlPars attribute)</a>
-
-      <ul>
-        <li><a href="autoapi/motulator/control/im_vhz/index.html#motulator.control.im_vhz.InductionMotorVHzCtrlPars.delay">(motulator.control.im_vhz.InductionMotorVHzCtrlPars attribute)</a>
-</li>
-        <li><a href="autoapi/motulator/control/sm_vector/index.html#motulator.control.sm_vector.SynchronousMotorVectorCtrlPars.delay">(motulator.control.sm_vector.SynchronousMotorVectorCtrlPars attribute)</a>
-</li>
-        <li><a href="autoapi/motulator/index.html#motulator.InductionMotorVectorCtrlPars.delay">(motulator.InductionMotorVectorCtrlPars attribute)</a>
-</li>
-        <li><a href="autoapi/motulator/index.html#motulator.InductionMotorVHzCtrlPars.delay">(motulator.InductionMotorVHzCtrlPars attribute)</a>
-</li>
-        <li><a href="autoapi/motulator/index.html#motulator.SynchronousMotorVectorCtrlPars.delay">(motulator.SynchronousMotorVectorCtrlPars attribute)</a>
-</li>
-      </ul></li>
       <li><a href="autoapi/motulator/control/sm_torque/index.html#motulator.control.sm_torque.TorqueCharacteristics.delta_at_zero_torque">delta_at_zero_torque() (motulator.control.sm_torque.TorqueCharacteristics method)</a>
 </li>
       <li><a href="autoapi/motulator/control/common/index.html#motulator.control.common.PWM.duty_ratios">duty_ratios() (motulator.control.common.PWM static method)</a>
@@ -957,18 +946,6 @@
   </ul></td>
 </tr></table>
 
-<h2 id="N">N</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="autoapi/motulator/model/converter/index.html#motulator.model.converter.PWMInverter.N">N (motulator.model.converter.PWMInverter attribute)</a>
-
-      <ul>
-        <li><a href="autoapi/motulator/index.html#motulator.PWMInverter.N">(motulator.PWMInverter attribute)</a>
-</li>
-      </ul></li>
-  </ul></td>
-</tr></table>
-
 <h2 id="O">O</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -1058,12 +1035,20 @@
 </li>
       <li><a href="autoapi/motulator/control/sm_torque/index.html#motulator.control.sm_torque.TorqueCharacteristics.plot_torque_flux">plot_torque_flux() (motulator.control.sm_torque.TorqueCharacteristics method)</a>
 </li>
-      <li><a href="autoapi/motulator/control/common/index.html#motulator.control.common.Datalogger.post_process">post_process() (motulator.control.common.Datalogger method)</a>
+      <li><a href="autoapi/motulator/control/im_vector/index.html#motulator.control.im_vector.InductionMotorVectorCtrl.post_process">post_process() (motulator.control.im_vector.InductionMotorVectorCtrl method)</a>
 
       <ul>
+        <li><a href="autoapi/motulator/control/im_vhz/index.html#motulator.control.im_vhz.InductionMotorVHzCtrl.post_process">(motulator.control.im_vhz.InductionMotorVHzCtrl method)</a>
+</li>
+        <li><a href="autoapi/motulator/control/sm_vector/index.html#motulator.control.sm_vector.SynchronousMotorVectorCtrl.post_process">(motulator.control.sm_vector.SynchronousMotorVectorCtrl method)</a>
+</li>
         <li><a href="autoapi/motulator/index.html#motulator.InductionMotorDrive.post_process">(motulator.InductionMotorDrive method)</a>
 </li>
         <li><a href="autoapi/motulator/index.html#motulator.InductionMotorDriveDiode.post_process">(motulator.InductionMotorDriveDiode method)</a>
+</li>
+        <li><a href="autoapi/motulator/index.html#motulator.InductionMotorVectorCtrl.post_process">(motulator.InductionMotorVectorCtrl method)</a>
+</li>
+        <li><a href="autoapi/motulator/index.html#motulator.InductionMotorVHzCtrl.post_process">(motulator.InductionMotorVHzCtrl method)</a>
 </li>
         <li><a href="autoapi/motulator/model/im_drive/index.html#motulator.model.im_drive.InductionMotorDrive.post_process">(motulator.model.im_drive.InductionMotorDrive method)</a>
 </li>
@@ -1072,6 +1057,8 @@
         <li><a href="autoapi/motulator/model/sm_drive/index.html#motulator.model.sm_drive.SynchronousMotorDrive.post_process">(motulator.model.sm_drive.SynchronousMotorDrive method)</a>
 </li>
         <li><a href="autoapi/motulator/index.html#motulator.SynchronousMotorDrive.post_process">(motulator.SynchronousMotorDrive method)</a>
+</li>
+        <li><a href="autoapi/motulator/index.html#motulator.SynchronousMotorVectorCtrl.post_process">(motulator.SynchronousMotorVectorCtrl method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -1118,22 +1105,6 @@
       </ul></li>
       <li><a href="autoapi/motulator/control/common/index.html#motulator.control.common.PWM">PWM (class in motulator.control.common)</a>
 </li>
-      <li><a href="autoapi/motulator/index.html#motulator.Inverter.pwm">pwm() (motulator.Inverter static method)</a>
-
-      <ul>
-        <li><a href="autoapi/motulator/model/converter/index.html#motulator.model.converter.Inverter.pwm">(motulator.model.converter.Inverter static method)</a>
-</li>
-        <li><a href="autoapi/motulator/model/converter/index.html#motulator.model.converter.PWMInverter.pwm">(motulator.model.converter.PWMInverter method)</a>
-</li>
-        <li><a href="autoapi/motulator/index.html#motulator.PWMInverter.pwm">(motulator.PWMInverter method)</a>
-</li>
-      </ul></li>
-      <li><a href="autoapi/motulator/index.html#motulator.PWMInverter">PWMInverter (class in motulator)</a>
-
-      <ul>
-        <li><a href="autoapi/motulator/model/converter/index.html#motulator.model.converter.PWMInverter">(class in motulator.model.converter)</a>
-</li>
-      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -1208,12 +1179,6 @@
       </ul></li>
       <li><a href="autoapi/motulator/control/common/index.html#motulator.control.common.RateLimiter">RateLimiter (class in motulator.control.common)</a>
 </li>
-      <li><a href="autoapi/motulator/model/converter/index.html#motulator.model.converter.PWMInverter.rising_edge">rising_edge (motulator.model.converter.PWMInverter attribute)</a>
-
-      <ul>
-        <li><a href="autoapi/motulator/index.html#motulator.PWMInverter.rising_edge">(motulator.PWMInverter attribute)</a>
-</li>
-      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -1232,11 +1197,9 @@
         <li><a href="autoapi/motulator/model/im/index.html#motulator.model.im.SaturableStatorInductance">(class in motulator.model.im)</a>
 </li>
       </ul></li>
-      <li><a href="autoapi/motulator/control/common/index.html#motulator.control.common.Datalogger.save">save() (motulator.control.common.Datalogger method)</a>
+      <li><a href="autoapi/motulator/index.html#motulator.InductionMotorDrive.save">save() (motulator.InductionMotorDrive method)</a>
 
       <ul>
-        <li><a href="autoapi/motulator/index.html#motulator.InductionMotorDrive.save">(motulator.InductionMotorDrive method)</a>
-</li>
         <li><a href="autoapi/motulator/index.html#motulator.InductionMotorDriveDiode.save">(motulator.InductionMotorDriveDiode method)</a>
 </li>
         <li><a href="autoapi/motulator/model/im_drive/index.html#motulator.model.im_drive.InductionMotorDrive.save">(motulator.model.im_drive.InductionMotorDrive method)</a>
@@ -1538,6 +1501,14 @@
         <li><a href="autoapi/motulator/index.html#motulator.SynchronousMotorVectorCtrlPars.w_o">(motulator.SynchronousMotorVectorCtrlPars attribute)</a>
 </li>
       </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Z">Z</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/motulator/simulation/index.html#motulator.simulation.zoh">zoh() (in module motulator.simulation)</a>
+</li>
   </ul></td>
 </tr></table>
 

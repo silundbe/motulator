@@ -5,7 +5,7 @@
 
 .. autoapi-nested-parse::
 
-   This module contains continuous-time models for induction motor drives.
+   Continuous-time models for induction motor drives.
 
    Peak-valued complex space vectors are used. The space vector models are
    implemented in stator coordinates. The default values correspond to a 2.2-kW
@@ -43,7 +43,7 @@ Classes
    :param mech: Mechanics model.
    :type mech: Mechanics
    :param conv: Inverter model.
-   :type conv: Inverter | PWMInverter
+   :type conv: Inverter
 
 
 
@@ -108,7 +108,7 @@ Classes
           !! processed by numpydoc !!
 
    .. py:attribute:: conv
-      :annotation: :Inverter | PWMInverter
+      :annotation: :motulator.model.converter.Inverter
 
       
 

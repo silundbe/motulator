@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>motulator.simulation &mdash; motulator 0 documentation</title>
+  <title>motulator.simulation &mdash; motulator 0.0.7 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
@@ -52,6 +52,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">System Models</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../system.html">Motor Drive System</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../induction_motor.html">Induction Motor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../synchronous_motor.html">Synchronous Motor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../mechanics.html">Mechanics</a></li>
@@ -85,34 +86,175 @@
   <h1>Source code for motulator.simulation</h1><div class="highlight"><pre>
 <span></span><span class="c1"># pylint: disable=C0103</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">This module contains the simulation class.</span>
+<span class="sd">Simulation environment.</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
-
-<span class="c1"># %% Imports</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
 <span class="kn">from</span> <span class="nn">scipy.io</span> <span class="kn">import</span> <span class="n">savemat</span>
+
+<span class="kn">from</span> <span class="nn">motulator.helpers</span> <span class="kn">import</span> <span class="n">abc2complex</span>
+
+
+<span class="c1"># %%</span>
+<div class="viewcode-block" id="Delay"><a class="viewcode-back" href="../../autoapi/motulator/simulation/index.html#motulator.Delay">[docs]</a><span class="k">class</span> <span class="nc">Delay</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computational delay.</span>
+
+<span class="sd">    This models the computational delay as a ring buffer.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># pylint: disable=R0903</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">elem</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        length : int, optional</span>
+<span class="sd">            Length of the buffer in samples. The default is 1.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">length</span><span class="o">*</span><span class="p">[</span><span class="n">elem</span><span class="o">*</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>  <span class="c1"># Creates a zero list</span>
+
+<div class="viewcode-block" id="Delay.__call__"><a class="viewcode-back" href="../../autoapi/motulator/simulation/index.html#motulator.Delay.__call__">[docs]</a>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">u</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        u : array_like, shape (elem,)</span>
+<span class="sd">            Input array.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        array_like, shape (elem,)</span>
+<span class="sd">            Output array.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Add the latest value to the end of the list</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+        <span class="c1"># Pop the first element and return it</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></div></div>
+
+
+<span class="c1"># %%</span>
+<div class="viewcode-block" id="CarrierCmp"><a class="viewcode-back" href="../../autoapi/motulator/simulation/index.html#motulator.CarrierCmp">[docs]</a><span class="k">class</span> <span class="nc">CarrierCmp</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Carrier comparison.</span>
+
+<span class="sd">    This computes the the switching states and their durations based on the</span>
+<span class="sd">    duty ratios. Instead of searching for zero crossings, the switching</span>
+<span class="sd">    instants are explicilty computed in the begininning of each sampling</span>
+<span class="sd">    period, allowing faster simulations.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">2</span><span class="o">**</span><span class="mi">12</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        N : int, optional</span>
+<span class="sd">            Amount of the counter quantization levels. The default is 2**12.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="n">N</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rising_edge</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># Stores the carrier direction</span>
+
+<div class="viewcode-block" id="CarrierCmp.__call__"><a class="viewcode-back" href="../../autoapi/motulator/simulation/index.html#motulator.CarrierCmp.__call__">[docs]</a>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">T_s</span><span class="p">,</span> <span class="n">d_abc</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Carrier comparison.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        T_s : float</span>
+<span class="sd">            Sampling period (either half or full carrier period).</span>
+<span class="sd">        d_abc : array_like of floats, shape (3,)</span>
+<span class="sd">            Duty ratios in the range [0, 1].</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        t_steps : ndarray, shape (4,)</span>
+<span class="sd">            Switching state durations, `[t0, t1, t2, t3]`.</span>
+<span class="sd">        q : complex ndarray, shape (4,)</span>
+<span class="sd">            Switching state vectors, `[0, q1, q2, 0]`, where `q1` and `q2` are</span>
+<span class="sd">            active vectors.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Quantize the duty ratios to N levels</span>
+        <span class="n">d_abc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">d_abc</span><span class="p">))</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span>
+
+        <span class="c1"># Normalized switching instants and switching states</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rising_edge</span><span class="p">:</span>
+            <span class="c1"># Normalized switching instants: t_n = [0, t_n1, t_n2, t_n3]</span>
+            <span class="n">t_n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">d_abc</span><span class="p">))</span>
+            <span class="c1"># States: q_abc = [[0, 0, 0], [q_abc1], [q_abc2], [1, 1, 1]]</span>
+            <span class="n">q_abc</span> <span class="o">=</span> <span class="p">(</span><span class="n">t_n</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">d_abc</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">t_n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">d_abc</span><span class="p">))</span>
+            <span class="n">q_abc</span> <span class="o">=</span> <span class="p">(</span><span class="n">t_n</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">d_abc</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+        <span class="c1"># Durations of switching states: t_steps = [t0, t1, t2, t3]</span>
+        <span class="n">t_steps</span> <span class="o">=</span> <span class="n">T_s</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">t_n</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># Note: No switching (e.g. d_a == 0 or d_a == 1) or simultaneous</span>
+        <span class="c1"># switchings (e.g d_a == d_b) lead to some zero steps.</span>
+
+        <span class="c1"># Array of the switching state space vectors: q = [0, q1, q2, 0]</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">abc2complex</span><span class="p">(</span><span class="n">q_abc</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+        <span class="c1"># Change the carrier direction for the next call</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rising_edge</span> <span class="o">=</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">rising_edge</span>
+
+        <span class="c1"># If needed, alternatively q_abc could be returned</span>
+        <span class="k">return</span> <span class="n">t_steps</span><span class="p">,</span> <span class="n">q</span></div></div>
+
+
+<span class="c1"># %%</span>
+<div class="viewcode-block" id="zoh"><a class="viewcode-back" href="../../autoapi/motulator/simulation/index.html#motulator.zoh">[docs]</a><span class="k">def</span> <span class="nf">zoh</span><span class="p">(</span><span class="n">T_s</span><span class="p">,</span> <span class="n">d_abc</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Zero-order hold of the duty ratios over the sampling period.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    T_s : float</span>
+<span class="sd">        Sampling period.</span>
+<span class="sd">    d_abc : array_like of floats, shape (3,)</span>
+<span class="sd">        Duty ratios in the range [0, 1].</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    t_steps : ndarray, shape (1,)</span>
+<span class="sd">        Sampling period as an array compatible with the solver.</span>
+<span class="sd">    q : complex ndarray, shape (1,)</span>
+<span class="sd">        Duty ratio vector as an array compatible with the solver.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Shape the output arrays to be compatible with the solver</span>
+    <span class="n">t_steps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">T_s</span><span class="p">])</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">abc2complex</span><span class="p">(</span><span class="n">d_abc</span><span class="p">)])</span>
+    <span class="k">return</span> <span class="n">t_steps</span><span class="p">,</span> <span class="n">q</span></div>
 
 
 <span class="c1"># %%</span>
 <div class="viewcode-block" id="Simulation"><a class="viewcode-back" href="../../autoapi/motulator/simulation/index.html#motulator.Simulation">[docs]</a><span class="k">class</span> <span class="nc">Simulation</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Simulation class.</span>
+<span class="sd">    Simulation environment.</span>
 
 <span class="sd">    Each simulation object has a system model object and a controller object.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mdl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ctrl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">t_stop</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mdl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ctrl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">enable_pwm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">base</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">t_stop</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        mdl : (InductionMotorDrive | SynchronousMotorDrive)</span>
+<span class="sd">        mdl : InductionMotorDrive | SynchronousMotorDrive</span>
 <span class="sd">            Continuous-time system model.</span>
-<span class="sd">        ctrl : (SynchronousMotorVectorCtrl | InductionMotorVectorCtrl |</span>
-<span class="sd">                InductionMotorVHzCtrl)</span>
+<span class="sd">        ctrl : SynchronousMotorVectorCtrl | InductionMotorVectorCtrl |</span>
+<span class="sd">        InductionMotorVHzCtrl</span>
 <span class="sd">            Discrete-time controller.</span>
+<span class="sd">        delay : int, optional</span>
+<span class="sd">            Amount of computational delays. The default is 1.</span>
+<span class="sd">        enable_pwm : bool, optional</span>
+<span class="sd">            Enable carrier comparison. The default is False.</span>
 <span class="sd">        base : BaseValues, optional</span>
 <span class="sd">            Base values for plotting figures.</span>
 <span class="sd">        t_stop : float, optional</span>
@@ -121,8 +263,13 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mdl</span> <span class="o">=</span> <span class="n">mdl</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ctrl</span> <span class="o">=</span> <span class="n">ctrl</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay</span> <span class="o">=</span> <span class="n">Delay</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">base</span> <span class="o">=</span> <span class="n">base</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">t_stop</span> <span class="o">=</span> <span class="n">t_stop</span>
+        <span class="k">if</span> <span class="n">enable_pwm</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pwm</span> <span class="o">=</span> <span class="n">CarrierCmp</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pwm</span> <span class="o">=</span> <span class="n">zoh</span>
 
 <div class="viewcode-block" id="Simulation.simulate"><a class="viewcode-back" href="../../autoapi/motulator/simulation/index.html#motulator.Simulation.simulate">[docs]</a>    <span class="k">def</span> <span class="nf">simulate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_step</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -145,11 +292,11 @@
             <span class="c1"># Run the digital controller</span>
             <span class="n">T_s</span><span class="p">,</span> <span class="n">d_abc_ref</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ctrl</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="p">)</span>
 
-            <span class="c1"># Model the computational delay</span>
-            <span class="n">d_abc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ctrl</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="n">d_abc_ref</span><span class="p">)</span>
+            <span class="c1"># Computational delay model</span>
+            <span class="n">d_abc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="n">d_abc_ref</span><span class="p">)</span>
 
-            <span class="c1"># Arrays of switching states and their durations</span>
-            <span class="n">t_steps</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">conv</span><span class="o">.</span><span class="n">pwm</span><span class="p">(</span><span class="n">T_s</span><span class="p">,</span> <span class="n">d_abc</span><span class="p">)</span>
+            <span class="c1"># Carrier comparison</span>
+            <span class="n">t_steps</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pwm</span><span class="p">(</span><span class="n">T_s</span><span class="p">,</span> <span class="n">d_abc</span><span class="p">)</span>
 
             <span class="c1"># Loop over the sampling period T_s</span>
             <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">t_step</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">t_steps</span><span class="p">):</span>

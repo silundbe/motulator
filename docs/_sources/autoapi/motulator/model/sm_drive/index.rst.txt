@@ -5,7 +5,7 @@
 
 .. autoapi-nested-parse::
 
-   This module contains continuous-time models for synchronous motor drives.
+   Continuous-time models for synchronous motor drives.
 
    Peak-valued complex space vectors are used. The default values correspond to a
    2.2-kW permanent-magnet synchronous motor.
@@ -41,7 +41,7 @@ Classes
    :param mech: Mechanics model.
    :type mech: Mechanics
    :param conv: Inverter model.
-   :type conv: Inverter | PWMInverter
+   :type conv: Inverter
 
 
 
@@ -106,7 +106,7 @@ Classes
           !! processed by numpydoc !!
 
    .. py:attribute:: conv
-      :annotation: :Inverter | PWMInverter
+      :annotation: :motulator.model.converter.Inverter
 
       
 

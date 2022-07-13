@@ -5,7 +5,7 @@
 
 .. autoapi-nested-parse::
 
-   This module contains common control functions and classes.
+   Common control functions and classes.
 
    ..
        !! processed by numpydoc !!
@@ -22,8 +22,6 @@ Classes
    motulator.control.common.PWM
    motulator.control.common.SpeedCtrl
    motulator.control.common.RateLimiter
-   motulator.control.common.Delay
-   motulator.control.common.Datalogger
 
 
 
@@ -305,136 +303,6 @@ Classes
       In this implementation, the falling rate limit equals the (negative)
       rising rate limit. If needed, these limits can be separated with minor
       modifications in the class.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-
-.. py:class:: Delay(length=1, elem=3)
-
-   Computational delay.
-
-   This models the compuational delay as a ring buffer.
-
-
-
-   :param length: Length of the buffer in samples. The default is 1.
-   :type length: int, optional
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   ..
-       !! processed by numpydoc !!
-
-   .. py:method:: __call__(self, u)
-
-      
-      :param u: Input array.
-      :type u: array_like, shape (elem,)
-
-      :returns: Output array.
-      :rtype: array_like, shape (elem,)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-
-.. py:class:: Datalogger
-
-   Datalogger for the control system.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   ..
-       !! processed by numpydoc !!
-
-   .. py:method:: save(self, data)
-
-      
-      Save the solution.
-
-      :param data: Data to be saved.
-      :type data: Bunch object
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-   .. py:method:: post_process(self)
-
-      
-      Transform the lists to the ndarray format.
-
 
 
 

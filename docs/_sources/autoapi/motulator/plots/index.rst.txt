@@ -5,7 +5,7 @@
 
 .. autoapi-nested-parse::
 
-   This module contains example plotting scripts.
+   Example plotting scripts.
 
    ..
        !! processed by numpydoc !!

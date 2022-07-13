@@ -5,7 +5,7 @@
 
 .. autoapi-nested-parse::
 
-   This module contains V/Hz control for induction motor drives.
+   V/Hz control for induction motor drives.
 
    The method is similar to [R1c4f0ace2b68-1]_. Open-loop V/Hz control can be obtained as a
    special case by choosing::
@@ -113,29 +113,6 @@ Classes
 
    .. py:attribute:: T_s
       :annotation: :float = 0.00025
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-   .. py:attribute:: delay
-      :annotation: :int = 1
 
       
 
@@ -344,8 +321,6 @@ Classes
 
 .. py:class:: InductionMotorVHzCtrl(pars)
 
-   Bases: :py:obj:`motulator.control.common.Datalogger`
-
    V/Hz control with the stator current feedback.
 
    :param pars: Control parameters.
@@ -412,6 +387,29 @@ Classes
 
       
       Compute the stator voltage reference.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: post_process(self)
+
+      
+      Transform the lists to the ndarray format.
 
 
 

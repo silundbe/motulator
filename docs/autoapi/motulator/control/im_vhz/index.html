@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>motulator.control.im_vhz &mdash; motulator 0 documentation</title>
+  <title>motulator.control.im_vhz &mdash; motulator 0.0.7 documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/copybutton.css" type="text/css" />
@@ -66,6 +66,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">System Models</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../system.html">Motor Drive System</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../induction_motor.html">Induction Motor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../synchronous_motor.html">Synchronous Motor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../mechanics.html">Mechanics</a></li>
@@ -101,7 +102,7 @@
              
   <div class="section" id="module-motulator.control.im_vhz">
 <span id="motulator-control-im-vhz"></span><h1><a class="reference internal" href="#module-motulator.control.im_vhz" title="motulator.control.im_vhz"><code class="xref py py-mod docutils literal notranslate"><span class="pre">motulator.control.im_vhz</span></code></a><a class="headerlink" href="#module-motulator.control.im_vhz" title="Permalink to this heading"></a></h1>
-<p>This module contains V/Hz control for induction motor drives.</p>
+<p>V/Hz control for induction motor drives.</p>
 <p>The method is similar to <a class="reference internal" href="#r1c4f0ace2b68-1" id="id1">[1]</a>. Open-loop V/Hz control can be obtained as a
 special case by choosing:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">R_s</span><span class="p">,</span> <span class="n">R_R</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
@@ -158,11 +159,6 @@ Power Electron., 2022, <a class="reference external" href="https://doi.org/10.11
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="motulator.control.im_vhz.InductionMotorVHzCtrlPars.delay">
-<span class="sig-name descname"><span class="pre">delay</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span> <span class="pre">=</span> <span class="pre">1</span></em><a class="reference internal" href="../../../../_modules/motulator/control/im_vhz.html#InductionMotorVHzCtrlPars.delay"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.im_vhz.InductionMotorVHzCtrlPars.delay" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
 <dt class="sig sig-object py" id="motulator.control.im_vhz.InductionMotorVHzCtrlPars.psi_s_nom">
 <span class="sig-name descname"><span class="pre">psi_s_nom</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span> <span class="pre">=</span> <span class="pre">1.04</span></em><a class="reference internal" href="../../../../_modules/motulator/control/im_vhz.html#InductionMotorVHzCtrlPars.psi_s_nom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.im_vhz.InductionMotorVHzCtrlPars.psi_s_nom" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -207,8 +203,7 @@ Power Electron., 2022, <a class="reference external" href="https://doi.org/10.11
 <dl class="py class">
 <dt class="sig sig-object py" id="motulator.control.im_vhz.InductionMotorVHzCtrl">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">motulator.control.im_vhz.</span></span><span class="sig-name descname"><span class="pre">InductionMotorVHzCtrl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/im_vhz.html#InductionMotorVHzCtrl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.im_vhz.InductionMotorVHzCtrl" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="../common/index.html#motulator.control.common.Datalogger" title="motulator.control.common.Datalogger"><code class="xref py py-obj docutils literal notranslate"><span class="pre">motulator.control.common.Datalogger</span></code></a></p>
-<p>V/Hz control with the stator current feedback.</p>
+<dd><p>V/Hz control with the stator current feedback.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>pars</strong> (<a class="reference internal" href="#motulator.control.im_vhz.InductionMotorVHzCtrlPars" title="motulator.control.im_vhz.InductionMotorVHzCtrlPars"><em>InductionMotorVHzCtrlPars</em></a>) – Control parameters.</p>
@@ -245,6 +240,12 @@ coordinate transformations.</p>
 <dt class="sig sig-object py" id="motulator.control.im_vhz.InductionMotorVHzCtrl.voltage_reference">
 <span class="sig-name descname"><span class="pre">voltage_reference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_s</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/im_vhz.html#InductionMotorVHzCtrl.voltage_reference"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.im_vhz.InductionMotorVHzCtrl.voltage_reference" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the stator voltage reference.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="motulator.control.im_vhz.InductionMotorVHzCtrl.post_process">
+<span class="sig-name descname"><span class="pre">post_process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/im_vhz.html#InductionMotorVHzCtrl.post_process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.im_vhz.InductionMotorVHzCtrl.post_process" title="Permalink to this definition"></a></dt>
+<dd><p>Transform the lists to the ndarray format.</p>
 </dd></dl>
 
 <dl class="py method">

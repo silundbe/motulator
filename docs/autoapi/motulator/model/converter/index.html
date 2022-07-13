@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>motulator.model.converter &mdash; motulator 0 documentation</title>
+  <title>motulator.model.converter &mdash; motulator 0.0.7 documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/copybutton.css" type="text/css" />
@@ -66,6 +66,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">System Models</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../system.html">Motor Drive System</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../induction_motor.html">Induction Motor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../synchronous_motor.html">Synchronous Motor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../mechanics.html">Mechanics</a></li>
@@ -101,7 +102,7 @@
              
   <div class="section" id="module-motulator.model.converter">
 <span id="motulator-model-converter"></span><h1><a class="reference internal" href="#module-motulator.model.converter" title="motulator.model.converter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">motulator.model.converter</span></code></a><a class="headerlink" href="#module-motulator.model.converter" title="Permalink to this heading"></a></h1>
-<p>This module contains power converter models.</p>
+<p>Power converter models.</p>
 <p>An inverter with constant DC-bus voltage and a frequency converter with a diode
 front-end rectifier are modeled. Complex space vectors are used also for duty
 ratios and switching states, wherever applicable. In this module, all space
@@ -120,10 +121,7 @@ vectors are in stationary coordinates. The default values correspond to a
 <tr class="row-odd"><td><p><a class="reference internal" href="#motulator.model.converter.Inverter" title="motulator.model.converter.Inverter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Inverter</span></code></a></p></td>
 <td><p>Inverter with constant DC-bus voltage and switching-cycle averaging.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#motulator.model.converter.PWMInverter" title="motulator.model.converter.PWMInverter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PWMInverter</span></code></a></p></td>
-<td><p>PWM inverter with constant DC-bus voltage.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#motulator.model.converter.FrequencyConverter" title="motulator.model.converter.FrequencyConverter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FrequencyConverter</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#motulator.model.converter.FrequencyConverter" title="motulator.model.converter.FrequencyConverter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FrequencyConverter</span></code></a></p></td>
 <td><p>Frequency converter.</p></td>
 </tr>
 </tbody>
@@ -154,7 +152,7 @@ vectors are in stationary coordinates. The default values correspond to a
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>q</strong> (<em>complex</em>) – Duty ratio vector (switching state vector in the subclasses).</p></li>
+<li><p><strong>q</strong> (<em>complex</em>) – Switching state vector.</p></li>
 <li><p><strong>u_dc</strong> (<em>float</em>) – DC-bus voltage.</p></li>
 </ul>
 </dd>
@@ -174,7 +172,7 @@ vectors are in stationary coordinates. The default values correspond to a
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>q</strong> (<em>complex</em>) – Duty ratio vector (switching state vector in subclasses).</p></li>
+<li><p><strong>q</strong> (<em>complex</em>) – Switching state vector.</p></li>
 <li><p><strong>i_ac</strong> (<em>complex</em>) – AC-side current.</p></li>
 </ul>
 </dd>
@@ -183,28 +181,6 @@ vectors are in stationary coordinates. The default values correspond to a
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="motulator.model.converter.Inverter.pwm">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pwm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_abc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/model/converter.html#Inverter.pwm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.converter.Inverter.pwm" title="Permalink to this definition"></a></dt>
-<dd><p>Zero-order hold of the duty ratio over the sampling period.</p>
-<p>The output arrays are compatible with the solver.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>T_s</strong> (<em>float</em>) – Sampling period.</p></li>
-<li><p><strong>d_abc</strong> (<em>array_like of floats</em><em>, </em><em>shape</em><em> (</em><em>3</em><em>,</em><em>)</em>) – Duty ratios in the range [0, 1].</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>t_step</strong> (<em>ndarray, shape (1,)</em>) – Sampling period as an array compatible with the solver.</p></li>
-<li><p><strong>q</strong> (<em>complex ndarray, shape (1,)</em>) – Duty ratio vector as an array compatible with the solver.</p></li>
-</ul>
-</p>
 </dd>
 </dl>
 </dd></dl>
@@ -226,61 +202,11 @@ vectors are in stationary coordinates. The default values correspond to a
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="motulator.model.converter.PWMInverter">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">motulator.model.converter.</span></span><span class="sig-name descname"><span class="pre">PWMInverter</span></span><a class="reference internal" href="../../../../_modules/motulator/model/converter.html#PWMInverter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.converter.PWMInverter" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#motulator.model.converter.Inverter" title="motulator.model.converter.Inverter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Inverter</span></code></a></p>
-<p>PWM inverter with constant DC-bus voltage.</p>
-<p>This extends the Inverter class with pulse-width modulation.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>N</strong> (<em>int</em><em>, </em><em>optional</em>) – Amount of PWM quantization levels. The default is 2**12.</p>
-</dd>
-</dl>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="motulator.model.converter.PWMInverter.N">
-<span class="sig-name descname"><span class="pre">N</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="reference internal" href="../../../../_modules/motulator/model/converter.html#PWMInverter.N"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.converter.PWMInverter.N" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="motulator.model.converter.PWMInverter.rising_edge">
-<span class="sig-name descname"><span class="pre">rising_edge</span></span><em class="property"><span class="w"> </span><span class="pre">:bool</span></em><a class="reference internal" href="../../../../_modules/motulator/model/converter.html#PWMInverter.rising_edge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.converter.PWMInverter.rising_edge" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="motulator.model.converter.PWMInverter.pwm">
-<span class="sig-name descname"><span class="pre">pwm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_abc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/model/converter.html#PWMInverter.pwm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.converter.PWMInverter.pwm" title="Permalink to this definition"></a></dt>
-<dd><p>Compute the the switching states and their durations.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>T_s</strong> (<em>float</em>) – Sampling period (either half or full carrier period).</p></li>
-<li><p><strong>d_abc</strong> (<em>array_like of floats</em><em>, </em><em>shape</em><em> (</em><em>3</em><em>,</em><em>)</em>) – Duty ratios in the range [0, 1].</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>t_steps</strong> (<em>ndarray, shape (4,)</em>) – Switching state durations, <cite>[t0, t1, t2, t3]</cite>.</p></li>
-<li><p><strong>q</strong> (<em>complex ndarray, shape (4,)</em>) – Switching state vectors, <cite>[0, q1, q2, 0]</cite>, where <cite>q1</cite> and <cite>q2</cite> are
-active vectors.</p></li>
-</ul>
-</p>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<p>Switching instants split the sampling period <cite>T_s</cite> into
-four subperiods. No switching (e.g. <cite>d_a == 0</cite> or <cite>d_a == 1</cite>) or
-simultaneous switching instants (e.g <cite>d_a == d_b</cite>) lead to zero length
-of the corresponding subperiods.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
 <dt class="sig sig-object py" id="motulator.model.converter.FrequencyConverter">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">motulator.model.converter.</span></span><span class="sig-name descname"><span class="pre">FrequencyConverter</span></span><a class="reference internal" href="../../../../_modules/motulator/model/converter.html#FrequencyConverter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.converter.FrequencyConverter" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#motulator.model.converter.PWMInverter" title="motulator.model.converter.PWMInverter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PWMInverter</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#motulator.model.converter.Inverter" title="motulator.model.converter.Inverter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Inverter</span></code></a></p>
 <p>Frequency converter.</p>
-<p>This extends the PWMInverter class with models for a strong grid, a
+<p>This extends the Inverter class with models for a strong grid, a
 three-phase diode-bridge rectifier, an LC filter, and a three-phase
 inverter.</p>
 <dl class="field-list simple">
