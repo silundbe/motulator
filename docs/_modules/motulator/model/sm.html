@@ -239,15 +239,23 @@
 <span class="sd">    a_q0 : float</span>
 <span class="sd">        Nonnegative parameter of the saturation model. In the magnetically</span>
 <span class="sd">        linear case, `a_q0 = 1/L_q`.</span>
-<span class="sd">    a_dd, S : floats</span>
-<span class="sd">        Nonnegative constants defining the d-axis self-saturation. In the</span>
-<span class="sd">        magnetically linear case, `a_dd = 0`.</span>
-<span class="sd">    a_qq, T: floats</span>
-<span class="sd">        Nonnegative constants defining the q-axis self-saturation. In the</span>
-<span class="sd">        magnetically linear case, `a_qq = 0`.</span>
-<span class="sd">    a_dq, U, V : floats</span>
-<span class="sd">        Nonnegative constants defining the cross-saturation. In the</span>
-<span class="sd">        magnetically linear case, `a_dq = 0`.</span>
+<span class="sd">    a_dd : float</span>
+<span class="sd">        Nonnegative constant defining the d-axis self-saturation together with</span>
+<span class="sd">        `S`. In the magnetically linear case, `a_dd = 0`.</span>
+<span class="sd">    a_qq : float</span>
+<span class="sd">        Nonnegative constant defining the q-axis self-saturation together with</span>
+<span class="sd">        `T`. In the magnetically linear case, `a_qq = 0`.</span>
+<span class="sd">    a_dq : float</span>
+<span class="sd">        Nonnegative constants defining the cross-saturation together with `U`</span>
+<span class="sd">        and `V`. In the magnetically linear case, `a_dq = 0`.</span>
+<span class="sd">    S : float</span>
+<span class="sd">        Nonnegative constant defining the d-axis self-saturation.</span>
+<span class="sd">    T : float</span>
+<span class="sd">        Nonnegative constant defining the q-axis self-saturation.</span>
+<span class="sd">    U : float</span>
+<span class="sd">        Nonnegative constant defining the cross-saturation.</span>
+<span class="sd">    V : float</span>
+<span class="sd">        Nonnegative constant defining the cross-saturation.</span>
 <span class="sd">    mech : Mechanics</span>
 <span class="sd">        Model of the mechanical subsystem, needed only for the coordinate</span>
 <span class="sd">        transformation in the measure_currents method.</span>

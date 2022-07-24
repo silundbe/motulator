@@ -876,27 +876,23 @@ Functions
    :param a_q0: Nonnegative parameter of the saturation model. In the magnetically
                 linear case, `a_q0 = 1/L_q`.
    :type a_q0: float
-   :param a_dd: Nonnegative constants defining the d-axis self-saturation. In the
-                magnetically linear case, `a_dd = 0`.
-   :type a_dd: floats
-   :param S: Nonnegative constants defining the d-axis self-saturation. In the
-             magnetically linear case, `a_dd = 0`.
-   :type S: floats
-   :param a_qq: Nonnegative constants defining the q-axis self-saturation. In the
-                magnetically linear case, `a_qq = 0`.
-   :type a_qq: floats
-   :param T: Nonnegative constants defining the q-axis self-saturation. In the
-             magnetically linear case, `a_qq = 0`.
-   :type T: floats
-   :param a_dq: Nonnegative constants defining the cross-saturation. In the
-                magnetically linear case, `a_dq = 0`.
-   :type a_dq: floats
-   :param U: Nonnegative constants defining the cross-saturation. In the
-             magnetically linear case, `a_dq = 0`.
-   :type U: floats
-   :param V: Nonnegative constants defining the cross-saturation. In the
-             magnetically linear case, `a_dq = 0`.
-   :type V: floats
+   :param a_dd: Nonnegative constant defining the d-axis self-saturation together with
+                `S`. In the magnetically linear case, `a_dd = 0`.
+   :type a_dd: float
+   :param a_qq: Nonnegative constant defining the q-axis self-saturation together with
+                `T`. In the magnetically linear case, `a_qq = 0`.
+   :type a_qq: float
+   :param a_dq: Nonnegative constants defining the cross-saturation together with `U`
+                and `V`. In the magnetically linear case, `a_dq = 0`.
+   :type a_dq: float
+   :param S: Nonnegative constant defining the d-axis self-saturation.
+   :type S: float
+   :param T: Nonnegative constant defining the q-axis self-saturation.
+   :type T: float
+   :param U: Nonnegative constant defining the cross-saturation.
+   :type U: float
+   :param V: Nonnegative constant defining the cross-saturation.
+   :type V: float
    :param mech: Model of the mechanical subsystem, needed only for the coordinate
                 transformation in the measure_currents method.
    :type mech: Mechanics

@@ -153,7 +153,7 @@ Create the simulation object and simulate it.
  .. code-block:: none
 
 
-    Execution time: 19.11 s
+    Execution time: 10.57 s
 
 
 
@@ -185,7 +185,7 @@ plot the results in SI units.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  20.242 seconds)
+   **Total running time of the script:** ( 0 minutes  11.439 seconds)
 
 
 .. _sphx_glr_download_auto_examples_sm_plot_vector_ctrl_pmsm_2kw.py:

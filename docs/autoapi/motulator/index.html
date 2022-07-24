@@ -762,20 +762,16 @@ In the magnetically linear case, <cite>i_f = psi_f/L_d</cite>.</p></li>
 linear case, <cite>a_d0 = 1/L_d</cite>.</p></li>
 <li><p><strong>a_q0</strong> (<em>float</em>) – Nonnegative parameter of the saturation model. In the magnetically
 linear case, <cite>a_q0 = 1/L_q</cite>.</p></li>
-<li><p><strong>a_dd</strong> (<em>floats</em>) – Nonnegative constants defining the d-axis self-saturation. In the
-magnetically linear case, <cite>a_dd = 0</cite>.</p></li>
-<li><p><strong>S</strong> (<em>floats</em>) – Nonnegative constants defining the d-axis self-saturation. In the
-magnetically linear case, <cite>a_dd = 0</cite>.</p></li>
-<li><p><strong>a_qq</strong> (<em>floats</em>) – Nonnegative constants defining the q-axis self-saturation. In the
-magnetically linear case, <cite>a_qq = 0</cite>.</p></li>
-<li><p><strong>T</strong> (<em>floats</em>) – Nonnegative constants defining the q-axis self-saturation. In the
-magnetically linear case, <cite>a_qq = 0</cite>.</p></li>
-<li><p><strong>a_dq</strong> (<em>floats</em>) – Nonnegative constants defining the cross-saturation. In the
-magnetically linear case, <cite>a_dq = 0</cite>.</p></li>
-<li><p><strong>U</strong> (<em>floats</em>) – Nonnegative constants defining the cross-saturation. In the
-magnetically linear case, <cite>a_dq = 0</cite>.</p></li>
-<li><p><strong>V</strong> (<em>floats</em>) – Nonnegative constants defining the cross-saturation. In the
-magnetically linear case, <cite>a_dq = 0</cite>.</p></li>
+<li><p><strong>a_dd</strong> (<em>float</em>) – Nonnegative constant defining the d-axis self-saturation together with
+<cite>S</cite>. In the magnetically linear case, <cite>a_dd = 0</cite>.</p></li>
+<li><p><strong>a_qq</strong> (<em>float</em>) – Nonnegative constant defining the q-axis self-saturation together with
+<cite>T</cite>. In the magnetically linear case, <cite>a_qq = 0</cite>.</p></li>
+<li><p><strong>a_dq</strong> (<em>float</em>) – Nonnegative constants defining the cross-saturation together with <cite>U</cite>
+and <cite>V</cite>. In the magnetically linear case, <cite>a_dq = 0</cite>.</p></li>
+<li><p><strong>S</strong> (<em>float</em>) – Nonnegative constant defining the d-axis self-saturation.</p></li>
+<li><p><strong>T</strong> (<em>float</em>) – Nonnegative constant defining the q-axis self-saturation.</p></li>
+<li><p><strong>U</strong> (<em>float</em>) – Nonnegative constant defining the cross-saturation.</p></li>
+<li><p><strong>V</strong> (<em>float</em>) – Nonnegative constant defining the cross-saturation.</p></li>
 <li><p><strong>mech</strong> (<a class="reference internal" href="#motulator.Mechanics" title="motulator.Mechanics"><em>Mechanics</em></a>) – Model of the mechanical subsystem, needed only for the coordinate
 transformation in the measure_currents method.</p></li>
 </ul>
