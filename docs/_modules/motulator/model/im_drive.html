@@ -84,7 +84,7 @@
            <div itemprop="articleBody">
              
   <h1>Source code for motulator.model.im_drive</h1><div class="highlight"><pre>
-<span></span><span class="c1"># pylint: disable=C0103</span>
+<span></span><span class="c1"># pylint: disable=invalid-name</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Continuous-time models for induction motor drives.</span>
 
@@ -94,17 +94,15 @@
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">from</span> <span class="nn">motulator.helpers</span> <span class="kn">import</span> <span class="n">abc2complex</span><span class="p">,</span> <span class="n">Bunch</span>
-<span class="kn">from</span> <span class="nn">motulator.model.im</span> <span class="kn">import</span> <span class="n">InductionMotor</span><span class="p">,</span> <span class="n">InductionMotorSaturated</span>
+<span class="kn">from</span> <span class="nn">motulator.model.im</span> <span class="kn">import</span> <span class="n">InductionMotor</span>
 <span class="kn">from</span> <span class="nn">motulator.model.mech</span> <span class="kn">import</span> <span class="n">Mechanics</span>
 <span class="kn">from</span> <span class="nn">motulator.model.converter</span> <span class="kn">import</span> <span class="n">Inverter</span><span class="p">,</span> <span class="n">FrequencyConverter</span>
 
 
 <span class="c1"># %%</span>
-<span class="nd">@dataclass</span>
 <div class="viewcode-block" id="InductionMotorDrive"><a class="viewcode-back" href="../../../autoapi/motulator/model/im_drive/index.html#motulator.InductionMotorDrive">[docs]</a><span class="k">class</span> <span class="nc">InductionMotorDrive</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Continuous-time model for an induction motor drive.</span>
@@ -123,19 +121,19 @@
 <span class="sd">        Inverter model.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="InductionMotorDrive.motor"><a class="viewcode-back" href="../../../autoapi/motulator/model/im_drive/index.html#motulator.InductionMotorDrive.motor">[docs]</a>    <span class="n">motor</span><span class="p">:</span> <span class="n">InductionMotor</span> <span class="o">|</span> <span class="n">InductionMotorSaturated</span> <span class="o">=</span> <span class="n">InductionMotor</span><span class="p">()</span></div>
-<div class="viewcode-block" id="InductionMotorDrive.mech"><a class="viewcode-back" href="../../../autoapi/motulator/model/im_drive/index.html#motulator.InductionMotorDrive.mech">[docs]</a>    <span class="n">mech</span><span class="p">:</span> <span class="n">Mechanics</span> <span class="o">=</span> <span class="n">Mechanics</span><span class="p">()</span></div>
-<div class="viewcode-block" id="InductionMotorDrive.conv"><a class="viewcode-back" href="../../../autoapi/motulator/model/im_drive/index.html#motulator.InductionMotorDrive.conv">[docs]</a>    <span class="n">conv</span><span class="p">:</span> <span class="n">Inverter</span> <span class="o">=</span> <span class="n">Inverter</span><span class="p">()</span></div>
-    <span class="c1"># Stores the solution data</span>
-<div class="viewcode-block" id="InductionMotorDrive.data"><a class="viewcode-back" href="../../../autoapi/motulator/model/im_drive/index.html#motulator.InductionMotorDrive.data">[docs]</a>    <span class="n">data</span><span class="p">:</span> <span class="n">Bunch</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default_factory</span><span class="o">=</span><span class="n">Bunch</span><span class="p">)</span></div>
-    <span class="c1"># Initial time</span>
-<div class="viewcode-block" id="InductionMotorDrive.t0"><a class="viewcode-back" href="../../../autoapi/motulator/model/im_drive/index.html#motulator.InductionMotorDrive.t0">[docs]</a>    <span class="n">t0</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="InductionMotorDrive.__post_init__"><a class="viewcode-back" href="../../../autoapi/motulator/model/im_drive/index.html#motulator.InductionMotorDrive.__post_init__">[docs]</a>    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">motor</span><span class="o">=</span><span class="n">InductionMotor</span><span class="p">(),</span> <span class="n">mech</span><span class="o">=</span><span class="n">Mechanics</span><span class="p">(),</span> <span class="n">conv</span><span class="o">=</span><span class="n">Inverter</span><span class="p">()):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">motor</span> <span class="o">=</span> <span class="n">motor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mech</span> <span class="o">=</span> <span class="n">mech</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv</span> <span class="o">=</span> <span class="n">conv</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t0</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Initial time</span>
         <span class="c1"># Store the solution in these lists</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">Bunch</span><span class="p">()</span>  <span class="c1"># Stores the solution data</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">q</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">psi_ss</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">psi_rs</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">theta_M</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">w_M</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">theta_M</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">w_M</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
 
 <div class="viewcode-block" id="InductionMotorDrive.get_initial_values"><a class="viewcode-back" href="../../../autoapi/motulator/model/im_drive/index.html#motulator.InductionMotorDrive.get_initial_values">[docs]</a>    <span class="k">def</span> <span class="nf">get_initial_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -224,6 +222,7 @@
         <span class="c1"># From lists to the ndarray</span>
         <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+
         <span class="c1"># Some useful variables</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">i_ss</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">motor</span><span class="o">.</span><span class="n">currents</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">psi_ss</span><span class="p">,</span>
                                                 <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">psi_rs</span><span class="p">)</span>
@@ -235,6 +234,7 @@
                            <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">mech</span><span class="o">.</span><span class="n">B</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">w_M</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">u_ss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="o">.</span><span class="n">ac_voltage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">q</span><span class="p">,</span>
                                               <span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="o">.</span><span class="n">u_dc0</span><span class="p">)</span>
+
         <span class="c1"># Compute the inverse-Γ rotor flux</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="c1"># Saturable stator inductance</span>
@@ -247,7 +247,6 @@
 
 
 <span class="c1"># %%</span>
-<span class="nd">@dataclass</span>
 <div class="viewcode-block" id="InductionMotorDriveDiode"><a class="viewcode-back" href="../../../autoapi/motulator/model/im_drive/index.html#motulator.InductionMotorDriveDiode">[docs]</a><span class="k">class</span> <span class="nc">InductionMotorDriveDiode</span><span class="p">(</span><span class="n">InductionMotorDrive</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Induction motor drive equipped with a diode bridge.</span>
@@ -258,52 +257,60 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-
+<span class="sd">    motor : InductionMotor | InductionMotorSaturated</span>
+<span class="sd">        Induction motor model.</span>
+<span class="sd">    mech : Mechanics</span>
+<span class="sd">        Mechanics model.</span>
 <span class="sd">    conv : FrequencyConverter</span>
 <span class="sd">        Frequency converter model.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="InductionMotorDriveDiode.conv"><a class="viewcode-back" href="../../../autoapi/motulator/model/im_drive/index.html#motulator.InductionMotorDriveDiode.conv">[docs]</a>    <span class="n">conv</span><span class="p">:</span> <span class="n">FrequencyConverter</span> <span class="o">=</span> <span class="kc">None</span></div>
 
-<div class="viewcode-block" id="InductionMotorDriveDiode.__post_init__"><a class="viewcode-back" href="../../../autoapi/motulator/model/im_drive/index.html#motulator.InductionMotorDriveDiode.__post_init__">[docs]</a>    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># Extends the base class, store the solution in these lists</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">q</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">psi_ss</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">psi_rs</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">theta_M</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">w_M</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">u_dc</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">i_L</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span></div>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">motor</span><span class="o">=</span><span class="n">InductionMotor</span><span class="p">(),</span> <span class="n">mech</span><span class="o">=</span><span class="n">Mechanics</span><span class="p">(),</span>
+                 <span class="n">conv</span><span class="o">=</span><span class="n">FrequencyConverter</span><span class="p">()):</span>
+
+        <span class="c1"># Extend the base class</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">motor</span><span class="o">=</span><span class="n">motor</span><span class="p">,</span> <span class="n">mech</span><span class="o">=</span><span class="n">mech</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv</span> <span class="o">=</span> <span class="n">conv</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">u_dc</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">i_L</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
 
 <div class="viewcode-block" id="InductionMotorDriveDiode.get_initial_values"><a class="viewcode-back" href="../../../autoapi/motulator/model/im_drive/index.html#motulator.InductionMotorDriveDiode.get_initial_values">[docs]</a>    <span class="k">def</span> <span class="nf">get_initial_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># Extends the base class</span>
+
+        <span class="c1"># Extend the base class</span>
         <span class="n">x0</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_initial_values</span><span class="p">()</span> <span class="o">+</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="o">.</span><span class="n">u_dc0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="o">.</span><span class="n">i_L0</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">x0</span></div>
 
 <div class="viewcode-block" id="InductionMotorDriveDiode.set_initial_values"><a class="viewcode-back" href="../../../autoapi/motulator/model/im_drive/index.html#motulator.InductionMotorDriveDiode.set_initial_values">[docs]</a>    <span class="k">def</span> <span class="nf">set_initial_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">x0</span><span class="p">):</span>
-        <span class="c1"># Extends the base class</span>
+
+        <span class="c1"># Extend the base class</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_initial_values</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">x0</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="o">.</span><span class="n">u_dc0</span> <span class="o">=</span> <span class="n">x0</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">real</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="o">.</span><span class="n">i_L0</span> <span class="o">=</span> <span class="n">x0</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">real</span></div>
 
 <div class="viewcode-block" id="InductionMotorDriveDiode.f"><a class="viewcode-back" href="../../../autoapi/motulator/model/im_drive/index.html#motulator.InductionMotorDriveDiode.f">[docs]</a>    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="c1"># Overrides the base class, unpack the states for better readability</span>
+
+        <span class="c1"># Override the base class, unpack the states for better readability</span>
         <span class="n">psi_ss</span><span class="p">,</span> <span class="n">psi_rs</span><span class="p">,</span> <span class="n">w_M</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">u_dc</span><span class="p">,</span> <span class="n">i_L</span> <span class="o">=</span> <span class="n">x</span>
         <span class="c1"># Interconnections: outputs for computing the state derivatives</span>
         <span class="n">i_ss</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">motor</span><span class="o">.</span><span class="n">currents</span><span class="p">(</span><span class="n">psi_ss</span><span class="p">,</span> <span class="n">psi_rs</span><span class="p">)</span>
         <span class="n">u_ss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="o">.</span><span class="n">ac_voltage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="o">.</span><span class="n">q</span><span class="p">,</span> <span class="n">u_dc</span><span class="p">)</span>
         <span class="n">i_dc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="o">.</span><span class="n">dc_current</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="o">.</span><span class="n">q</span><span class="p">,</span> <span class="n">i_ss</span><span class="p">)</span>
         <span class="n">tau_M</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">motor</span><span class="o">.</span><span class="n">torque</span><span class="p">(</span><span class="n">psi_ss</span><span class="p">,</span> <span class="n">i_ss</span><span class="p">)</span>
-        <span class="c1"># Returns the list of state derivatives</span>
+        <span class="c1"># Return the list of state derivatives</span>
         <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">motor</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="n">psi_ss</span><span class="p">,</span> <span class="n">psi_rs</span><span class="p">,</span> <span class="n">u_ss</span><span class="p">,</span> <span class="n">w_M</span><span class="p">)</span> <span class="o">+</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">mech</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">w_M</span><span class="p">,</span> <span class="n">tau_M</span><span class="p">)</span> <span class="o">+</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">u_dc</span><span class="p">,</span> <span class="n">i_L</span><span class="p">,</span> <span class="n">i_dc</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="InductionMotorDriveDiode.save"><a class="viewcode-back" href="../../../autoapi/motulator/model/im_drive/index.html#motulator.InductionMotorDriveDiode.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sol</span><span class="p">):</span>
-        <span class="c1"># Extends the base class</span>
+
+        <span class="c1"># Extend the base class</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">sol</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">u_dc</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">i_L</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="InductionMotorDriveDiode.post_process"><a class="viewcode-back" href="../../../autoapi/motulator/model/im_drive/index.html#motulator.InductionMotorDriveDiode.post_process">[docs]</a>    <span class="k">def</span> <span class="nf">post_process</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># Extends the base class</span>
+
+        <span class="c1"># Extend the base class</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">post_process</span><span class="p">()</span>
         <span class="c1"># From lists to the ndarray</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">u_dc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">u_dc</span><span class="p">)</span>

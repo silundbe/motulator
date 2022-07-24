@@ -84,31 +84,30 @@
            <div itemprop="articleBody">
              
   <h1>Source code for motulator.model.sm</h1><div class="highlight"><pre>
-<span></span><span class="c1"># pylint: disable=C0103</span>
+<span></span><span class="c1"># pylint: disable=invalid-name</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Continuous-time models for synchronous motors.</span>
 
 <span class="sd">The motor model can be parametrized to represent permanent-magnet synchronous</span>
 <span class="sd">motors and synchronous reluctance motors. Peak-valued complex space vectors are</span>
-<span class="sd">used. The default values correspond to a 2.2-kW permanent-magnet synchronous</span>
-<span class="sd">motor.</span>
+<span class="sd">used.</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">optimize</span>
 
 <span class="kn">from</span> <span class="nn">motulator.helpers</span> <span class="kn">import</span> <span class="n">complex2abc</span>
 <span class="kn">from</span> <span class="nn">motulator.model.mech</span> <span class="kn">import</span> <span class="n">Mechanics</span>
 
 
 <span class="c1"># %%</span>
-<span class="nd">@dataclass</span>
 <div class="viewcode-block" id="SynchronousMotor"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.SynchronousMotor">[docs]</a><span class="k">class</span> <span class="nc">SynchronousMotor</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Synchronous motor model.</span>
 
-<span class="sd">    This models a synchronous motor in rotor coordinates.</span>
+<span class="sd">    This models a synchronous motor in rotor coordinates. The default values</span>
+<span class="sd">    correspond to a 2.2-kW permanent-magnet synchronous motor.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -121,22 +120,23 @@
 <span class="sd">    L_q : float</span>
 <span class="sd">        q-axis inductance.</span>
 <span class="sd">    psi_f : float</span>
-<span class="sd">        PM flux linkage.</span>
+<span class="sd">        PM-flux linkage.</span>
+<span class="sd">    mech : Mechanics</span>
+<span class="sd">        Model of the mechanical subsystem, needed only for the coordinate</span>
+<span class="sd">        transformation in the measure_currents method.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="SynchronousMotor.p"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.SynchronousMotor.p">[docs]</a>    <span class="n">p</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span></div>
-<div class="viewcode-block" id="SynchronousMotor.R_s"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.SynchronousMotor.R_s">[docs]</a>    <span class="n">R_s</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.6</span></div>
-<div class="viewcode-block" id="SynchronousMotor.L_d"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.SynchronousMotor.L_d">[docs]</a>    <span class="n">L_d</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">.</span><span class="mi">036</span></div>
-<div class="viewcode-block" id="SynchronousMotor.L_q"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.SynchronousMotor.L_q">[docs]</a>    <span class="n">L_q</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">.</span><span class="mi">051</span></div>
-<div class="viewcode-block" id="SynchronousMotor.psi_f"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.SynchronousMotor.psi_f">[docs]</a>    <span class="n">psi_f</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">.</span><span class="mi">545</span></div>
-    <span class="c1"># The rotor position from the mechanics subsystem is needed only for the</span>
-    <span class="c1"># coordinate transformation in the measure_currents method</span>
-    <span class="n">_mech</span><span class="p">:</span> <span class="n">Mechanics</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-    <span class="c1"># Initial value</span>
-<div class="viewcode-block" id="SynchronousMotor.psi_s0"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.SynchronousMotor.psi_s0">[docs]</a>    <span class="n">psi_s0</span><span class="p">:</span> <span class="nb">complex</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="SynchronousMotor.__post_init__"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.SynchronousMotor.__post_init__">[docs]</a>    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">psi_s0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">psi_f</span> <span class="o">+</span> <span class="mi">0</span><span class="n">j</span></div>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">R_s</span><span class="o">=</span><span class="mf">3.6</span><span class="p">,</span> <span class="n">L_d</span><span class="o">=.</span><span class="mi">036</span><span class="p">,</span> <span class="n">L_q</span><span class="o">=.</span><span class="mi">051</span><span class="p">,</span> <span class="n">psi_f</span><span class="o">=.</span><span class="mi">545</span><span class="p">,</span>
+                 <span class="n">mech</span><span class="o">=</span><span class="n">Mechanics</span><span class="p">()):</span>
+
+        <span class="c1"># pylint: disable=too-many-arguments</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">R_s</span> <span class="o">=</span> <span class="n">p</span><span class="p">,</span> <span class="n">R_s</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">L_d</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">L_q</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">psi_f</span> <span class="o">=</span> <span class="n">L_d</span><span class="p">,</span> <span class="n">L_q</span><span class="p">,</span> <span class="n">psi_f</span>
+        <span class="c1"># Initial value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">psi_s0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">psi_f</span> <span class="o">+</span> <span class="mi">0</span><span class="n">j</span>
+        <span class="c1"># For the coordinate transformation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mech</span> <span class="o">=</span> <span class="n">mech</span>
 
 <div class="viewcode-block" id="SynchronousMotor.current"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.SynchronousMotor.current">[docs]</a>    <span class="k">def</span> <span class="nf">current</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psi_s</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -212,6 +212,118 @@
         <span class="n">theta_m0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_mech</span><span class="o">.</span><span class="n">theta_M0</span>
         <span class="n">i_s_abc</span> <span class="o">=</span> <span class="n">complex2abc</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">theta_m0</span><span class="p">)</span><span class="o">*</span><span class="n">i_s0</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">i_s_abc</span></div></div>
+
+
+<span class="c1"># %%</span>
+<div class="viewcode-block" id="SynchronousMotorSaturated"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.SynchronousMotorSaturated">[docs]</a><span class="k">class</span> <span class="nc">SynchronousMotorSaturated</span><span class="p">(</span><span class="n">SynchronousMotor</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Model of a saturated synchronous motor.</span>
+
+<span class="sd">    This extends the SynchronousMotor class with an analytical saturation</span>
+<span class="sd">    model [1]_, [2]_. The permanent magnets (PMs) are assumed to be along the</span>
+<span class="sd">    d-axis. The default values correspond to a 6.7-kW synchronous reluctance</span>
+<span class="sd">    motor.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    p : int</span>
+<span class="sd">        Number of pole pairs.</span>
+<span class="sd">    R_s : float</span>
+<span class="sd">        Stator resistance.</span>
+<span class="sd">    i_f : float</span>
+<span class="sd">        Constant current corresponding to the magnetomotive force (MMF) of PMs.</span>
+<span class="sd">        In the magnetically linear case, `i_f = psi_f/L_d`.</span>
+<span class="sd">    a_d0 : float</span>
+<span class="sd">        Nonnegative parameter of the saturation model. In the magnetically</span>
+<span class="sd">        linear case, `a_d0 = 1/L_d`.</span>
+<span class="sd">    a_q0 : float</span>
+<span class="sd">        Nonnegative parameter of the saturation model. In the magnetically</span>
+<span class="sd">        linear case, `a_q0 = 1/L_q`.</span>
+<span class="sd">    a_dd, S : floats</span>
+<span class="sd">        Nonnegative constants defining the d-axis self-saturation. In the</span>
+<span class="sd">        magnetically linear case, `a_dd = 0`.</span>
+<span class="sd">    a_qq, T: floats</span>
+<span class="sd">        Nonnegative constants defining the q-axis self-saturation. In the</span>
+<span class="sd">        magnetically linear case, `a_qq = 0`.</span>
+<span class="sd">    a_dq, U, V : floats</span>
+<span class="sd">        Nonnegative constants defining the cross-saturation. In the</span>
+<span class="sd">        magnetically linear case, `a_dq = 0`.</span>
+<span class="sd">    mech : Mechanics</span>
+<span class="sd">        Model of the mechanical subsystem, needed only for the coordinate</span>
+<span class="sd">        transformation in the measure_currents method.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The magnetomotive force (MMF) of the PMs is modeled using constant current</span>
+<span class="sd">    source `i_f` on the d-axis [3]_. Correspondingly, this approach assumes</span>
+<span class="sd">    that the MMFs of the d-axis current and of the PMs are in series. This</span>
+<span class="sd">    model cannot capture the desaturation phenomenon of thin iron ribs [4]_.</span>
+<span class="sd">    For such motors, look-up tables can be used (see scipy.interpolate).</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] Hinkkanen, Pescetto, Mölsä, Saarakkala, Pellegrino, Bojoi,</span>
+<span class="sd">       “Sensorless self-commissioning of synchronous reluctance motors at</span>
+<span class="sd">       standstill without rotor locking, ”IEEE Trans. Ind. Appl., 2017,</span>
+<span class="sd">       https://doi.org/10.1109/TIA.2016.2644624</span>
+
+<span class="sd">    .. [2] Awan, Song, Saarakkala, Hinkkanen, &quot;Optimal torque control of</span>
+<span class="sd">       saturated synchronous motors: plug-and-play method,&quot; IEEE Trans. Ind.</span>
+<span class="sd">       Appl., 2018, https://doi.org/10.1109/TIA.2018.2862410</span>
+
+<span class="sd">    .. [3] Jahns, Kliman, Neumann, “Interior permanent-magnet synchronous</span>
+<span class="sd">       motors for adjustable-speed drives,” IEEE Trans. Ind. Appl., 1986,</span>
+<span class="sd">       https://doi.org/10.1109/TIA.1986.4504786</span>
+
+<span class="sd">    .. [4] Armando, Guglielmi, Pellegrino, Pastorelli, Vagati, &quot;Accurate</span>
+<span class="sd">       modeling and performance analysis of IPM-PMASR motors,&quot; IEEE Trans. Ind.</span>
+<span class="sd">       Appl., 2009, https://doi.org/10.1109/TIA.2008.2009493</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># pylint: disable=too-many-instance-attributes</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">R_s</span><span class="o">=.</span><span class="mi">54</span><span class="p">,</span> <span class="n">i_f</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">a_d0</span><span class="o">=</span><span class="mf">17.4</span><span class="p">,</span> <span class="n">a_q0</span><span class="o">=</span><span class="mf">52.1</span><span class="p">,</span>
+                 <span class="n">a_dd</span><span class="o">=</span><span class="mf">373.</span><span class="p">,</span> <span class="n">a_qq</span><span class="o">=</span><span class="mf">658.</span><span class="p">,</span> <span class="n">a_dq</span><span class="o">=</span><span class="mf">1120.</span><span class="p">,</span> <span class="n">S</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">U</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">V</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                 <span class="n">mech</span><span class="o">=</span><span class="n">Mechanics</span><span class="p">()):</span>
+
+        <span class="c1"># pylint: disable=too-many-arguments, disable=super-init-not-called</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">R_s</span> <span class="o">=</span> <span class="n">p</span><span class="p">,</span> <span class="n">R_s</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">i_f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a_d0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a_q0</span> <span class="o">=</span> <span class="n">i_f</span><span class="p">,</span> <span class="n">a_d0</span><span class="p">,</span> <span class="n">a_q0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a_dd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a_qq</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a_dq</span> <span class="o">=</span> <span class="n">a_dd</span><span class="p">,</span> <span class="n">a_qq</span><span class="p">,</span> <span class="n">a_dq</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">S</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">U</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">V</span> <span class="o">=</span> <span class="n">S</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">V</span>
+
+        <span class="c1"># Initial value of the stator flux</span>
+        <span class="k">if</span> <span class="n">i_f</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># No magnets</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">psi_s0</span> <span class="o">=</span> <span class="mi">0</span><span class="n">j</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Solve the stator flux caused by the magnets @ i_s = 0</span>
+            <span class="n">psi_d0</span> <span class="o">=</span> <span class="n">optimize</span><span class="o">.</span><span class="n">fmin</span><span class="p">(</span>
+                <span class="k">lambda</span> <span class="n">psi_d</span><span class="p">:</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">a_d0</span> <span class="o">+</span> <span class="n">a_dd</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">psi_d</span><span class="p">)</span><span class="o">**</span><span class="n">S</span><span class="p">)</span><span class="o">*</span><span class="n">psi_d</span> <span class="o">-</span> <span class="n">i_f</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">psi_s0</span> <span class="o">=</span> <span class="nb">complex</span><span class="p">(</span><span class="n">psi_d0</span><span class="p">)</span>
+
+        <span class="c1"># For the coordinate transformation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mech</span> <span class="o">=</span> <span class="n">mech</span>
+
+<div class="viewcode-block" id="SynchronousMotorSaturated.current"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.SynchronousMotorSaturated.current">[docs]</a>    <span class="k">def</span> <span class="nf">current</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psi_s</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method overrides the base class method.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">abs_psi_d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">psi_s</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+        <span class="n">abs_psi_q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">psi_s</span><span class="o">.</span><span class="n">imag</span><span class="p">)</span>
+
+        <span class="n">i_d</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">a_d0</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">a_dd</span><span class="o">*</span><span class="n">abs_psi_d</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">S</span>
+               <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">a_dq</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">V</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">abs_psi_d</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">U</span>
+                  <span class="o">*</span> <span class="n">abs_psi_q</span><span class="o">**</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">V</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)))</span><span class="o">*</span><span class="n">psi_s</span><span class="o">.</span><span class="n">real</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">i_f</span>
+        <span class="n">i_q</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">a_q0</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">a_qq</span><span class="o">*</span><span class="n">abs_psi_q</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">T</span>
+               <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">a_dq</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">U</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">abs_psi_d</span><span class="o">**</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">U</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+                  <span class="o">*</span> <span class="n">abs_psi_q</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">V</span><span class="p">))</span><span class="o">*</span><span class="n">psi_s</span><span class="o">.</span><span class="n">imag</span>
+
+        <span class="n">i_s</span> <span class="o">=</span> <span class="n">i_d</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">i_q</span>
+
+        <span class="k">return</span> <span class="n">i_s</span></div></div>
 </pre></div>
 
            </div>

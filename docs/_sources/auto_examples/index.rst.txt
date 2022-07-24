@@ -29,10 +29,10 @@ Induction Motor Drives
 
 .. only:: html
 
- .. figure:: /auto_examples/im/images/thumb/sphx_glr_plot_vhz_ctrl_im_2kW_thumb.png
+ .. figure:: /auto_examples/im/images/thumb/sphx_glr_plot_vhz_ctrl_im_2kw_thumb.png
      :alt: V/Hz-Controlled 2.2-kW Induction Motor Drive
 
-     :ref:`sphx_glr_auto_examples_im_plot_vhz_ctrl_im_2kW.py`
+     :ref:`sphx_glr_auto_examples_im_plot_vhz_ctrl_im_2kw.py`
 
 .. raw:: html
 
@@ -42,7 +42,7 @@ Induction Motor Drives
 .. toctree::
    :hidden:
 
-   /auto_examples/im/plot_vhz_ctrl_im_2kW
+   /auto_examples/im/plot_vhz_ctrl_im_2kw
 
 .. raw:: html
 
@@ -50,10 +50,10 @@ Induction Motor Drives
 
 .. only:: html
 
- .. figure:: /auto_examples/im/images/thumb/sphx_glr_plot_vector_ctrl_im_2kW_thumb.png
+ .. figure:: /auto_examples/im/images/thumb/sphx_glr_plot_vector_ctrl_im_2kw_thumb.png
      :alt: Vector-Controlled 2.2-kW Induction Motor Drive
 
-     :ref:`sphx_glr_auto_examples_im_plot_vector_ctrl_im_2kW.py`
+     :ref:`sphx_glr_auto_examples_im_plot_vector_ctrl_im_2kw.py`
 
 .. raw:: html
 
@@ -63,7 +63,7 @@ Induction Motor Drives
 .. toctree::
    :hidden:
 
-   /auto_examples/im/plot_vector_ctrl_im_2kW
+   /auto_examples/im/plot_vector_ctrl_im_2kw
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>
@@ -83,10 +83,10 @@ Synchronous Motor Drives
 
 .. only:: html
 
- .. figure:: /auto_examples/sm/images/thumb/sphx_glr_plot_vector_ctrl_pmsm_2kW_thumb.png
+ .. figure:: /auto_examples/sm/images/thumb/sphx_glr_plot_vector_ctrl_pmsm_2kw_thumb.png
      :alt: Vector-Controlled 2.2-kW PMSM Drive
 
-     :ref:`sphx_glr_auto_examples_sm_plot_vector_ctrl_pmsm_2kW.py`
+     :ref:`sphx_glr_auto_examples_sm_plot_vector_ctrl_pmsm_2kw.py`
 
 .. raw:: html
 
@@ -96,7 +96,7 @@ Synchronous Motor Drives
 .. toctree::
    :hidden:
 
-   /auto_examples/sm/plot_vector_ctrl_pmsm_2kW
+   /auto_examples/sm/plot_vector_ctrl_pmsm_2kw
 
 .. raw:: html
 
@@ -104,10 +104,10 @@ Synchronous Motor Drives
 
 .. only:: html
 
- .. figure:: /auto_examples/sm/images/thumb/sphx_glr_plot_vector_ctrl_syrm_7kW_thumb.png
+ .. figure:: /auto_examples/sm/images/thumb/sphx_glr_plot_vector_ctrl_syrm_7kw_thumb.png
      :alt: Vector-Controlled 6.7-kW SyRM Drive
 
-     :ref:`sphx_glr_auto_examples_sm_plot_vector_ctrl_syrm_7kW.py`
+     :ref:`sphx_glr_auto_examples_sm_plot_vector_ctrl_syrm_7kw.py`
 
 .. raw:: html
 
@@ -117,7 +117,7 @@ Synchronous Motor Drives
 .. toctree::
    :hidden:
 
-   /auto_examples/sm/plot_vector_ctrl_syrm_7kW
+   /auto_examples/sm/plot_vector_ctrl_syrm_7kw
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>

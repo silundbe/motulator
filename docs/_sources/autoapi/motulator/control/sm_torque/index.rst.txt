@@ -247,7 +247,7 @@ Classes
       :returns: * *Bunch object with the following fields defined*
                 * **psi_s** (*complex*) -- Stator flux.
                 * **i_s** (*complex*) -- Stator current.
-                * **tau_m** (*float*) -- Electromagnetic torque.
+                * **tau_M** (*float*) -- Electromagnetic torque.
                 * **abs_psi_s_vs_tau_M** (*interp1d object*) -- Stator flux magnitude as a function of the torque.
                 * **i_sd_vs_tau_M** (*interp1d object*) -- d-axis current as a function of the torque.
 
@@ -285,7 +285,7 @@ Classes
       :returns: * *Bunch object with the following fields defined*
                 * **psi_s** (*complex*) -- Stator flux.
                 * **i_s** (*complex*) -- Stator current.
-                * **tau_m** (*float*) -- Electromagnetic torque.
+                * **tau_M** (*float*) -- Electromagnetic torque.
                 * **tau_M_vs_abs_psi_s** (*interp1d object*) -- Torque as a function of the flux magnitude.
 
 
@@ -314,15 +314,15 @@ Classes
       :type i_s_max: float, optional
       :param gamma1: Starting angle in radians. The default is 0.
       :type gamma1: float, optional
-      :param gamm21: End angle in radians. The defauls in np.pi.
-      :type gamm21: float, optional
+      :param gamma2: End angle in radians. The defauls in np.pi.
+      :type gamma2: float, optional
       :param N: Amount of points. The default is 20.
       :type N: int, optional
 
       :returns: * *Bunch object with the following fields defined*
                 * **psi_s** (*complex*) -- Stator flux.
                 * **i_s** (*complex*) -- Stator current.
-                * **tau_m** (*float*) -- Electromagnetic torque.
+                * **tau_M** (*float*) -- Electromagnetic torque.
                 * **tau_M_vs_abs_psi_s** (*interp1d object*) -- Torque as a function of the flux magnitude.
 
 

@@ -27,9 +27,8 @@ Classes
 
 
 
-.. py:class:: SynchronousMotorDrive
+.. py:class:: SynchronousMotorDrive(motor=SynchronousMotor(), mech=Mechanics(), conv=Inverter())
 
-   
    Continuous-time model for a synchronous motor drive.
 
    This interconnects the subsystems of a synchronous motor drive and provides
@@ -43,158 +42,8 @@ Classes
    :param conv: Inverter model.
    :type conv: Inverter
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
    ..
        !! processed by numpydoc !!
-   .. py:attribute:: motor
-      :annotation: :motulator.model.sm.SynchronousMotor
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-   .. py:attribute:: mech
-      :annotation: :motulator.model.mech.Mechanics
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-   .. py:attribute:: conv
-      :annotation: :motulator.model.converter.Inverter
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-   .. py:attribute:: data
-      :annotation: :motulator.helpers.Bunch
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-   .. py:attribute:: t0
-      :annotation: :float
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-   .. py:method:: __post_init__(self)
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
 
    .. py:method:: get_initial_values(self)
 

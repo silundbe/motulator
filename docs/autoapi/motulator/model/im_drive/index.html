@@ -126,7 +126,7 @@ induction motor.</p>
 </table>
 <dl class="py class">
 <dt class="sig sig-object py" id="motulator.model.im_drive.InductionMotorDrive">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">motulator.model.im_drive.</span></span><span class="sig-name descname"><span class="pre">InductionMotorDrive</span></span><a class="reference internal" href="../../../../_modules/motulator/model/im_drive.html#InductionMotorDrive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.im_drive.InductionMotorDrive" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">motulator.model.im_drive.</span></span><span class="sig-name descname"><span class="pre">InductionMotorDrive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">motor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">InductionMotor()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mech</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Mechanics()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Inverter()</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/model/im_drive.html#InductionMotorDrive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.im_drive.InductionMotorDrive" title="Permalink to this definition"></a></dt>
 <dd><p>Continuous-time model for an induction motor drive.</p>
 <p>This interconnects the subsystems of an induction motor drive and provides
 an interface to the solver. More complicated systems could be modeled using
@@ -140,36 +140,6 @@ a similar template.</p>
 </ul>
 </dd>
 </dl>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="motulator.model.im_drive.InductionMotorDrive.motor">
-<span class="sig-name descname"><span class="pre">motor</span></span><em class="property"><span class="w"> </span><span class="pre">:InductionMotor</span> <span class="pre">|</span> <span class="pre">InductionMotorSaturated</span></em><a class="reference internal" href="../../../../_modules/motulator/model/im_drive.html#InductionMotorDrive.motor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.im_drive.InductionMotorDrive.motor" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="motulator.model.im_drive.InductionMotorDrive.mech">
-<span class="sig-name descname"><span class="pre">mech</span></span><em class="property"><span class="w"> </span><span class="pre">:motulator.model.mech.Mechanics</span></em><a class="reference internal" href="../../../../_modules/motulator/model/im_drive.html#InductionMotorDrive.mech"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.im_drive.InductionMotorDrive.mech" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="motulator.model.im_drive.InductionMotorDrive.conv">
-<span class="sig-name descname"><span class="pre">conv</span></span><em class="property"><span class="w"> </span><span class="pre">:motulator.model.converter.Inverter</span></em><a class="reference internal" href="../../../../_modules/motulator/model/im_drive.html#InductionMotorDrive.conv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.im_drive.InductionMotorDrive.conv" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="motulator.model.im_drive.InductionMotorDrive.data">
-<span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="w"> </span><span class="pre">:motulator.helpers.Bunch</span></em><a class="reference internal" href="../../../../_modules/motulator/model/im_drive.html#InductionMotorDrive.data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.im_drive.InductionMotorDrive.data" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="motulator.model.im_drive.InductionMotorDrive.t0">
-<span class="sig-name descname"><span class="pre">t0</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="reference internal" href="../../../../_modules/motulator/model/im_drive.html#InductionMotorDrive.t0"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.im_drive.InductionMotorDrive.t0" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="motulator.model.im_drive.InductionMotorDrive.__post_init__">
-<span class="sig-name descname"><span class="pre">__post_init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/model/im_drive.html#InductionMotorDrive.__post_init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.im_drive.InductionMotorDrive.__post_init__" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.model.im_drive.InductionMotorDrive.get_initial_values">
 <span class="sig-name descname"><span class="pre">get_initial_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/model/im_drive.html#InductionMotorDrive.get_initial_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.im_drive.InductionMotorDrive.get_initial_values" title="Permalink to this definition"></a></dt>
@@ -236,7 +206,7 @@ a similar template.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="motulator.model.im_drive.InductionMotorDriveDiode">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">motulator.model.im_drive.</span></span><span class="sig-name descname"><span class="pre">InductionMotorDriveDiode</span></span><a class="reference internal" href="../../../../_modules/motulator/model/im_drive.html#InductionMotorDriveDiode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.im_drive.InductionMotorDriveDiode" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">motulator.model.im_drive.</span></span><span class="sig-name descname"><span class="pre">InductionMotorDriveDiode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">motor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">InductionMotor()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mech</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Mechanics()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">FrequencyConverter()</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/model/im_drive.html#InductionMotorDriveDiode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.im_drive.InductionMotorDriveDiode" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#motulator.model.im_drive.InductionMotorDrive" title="motulator.model.im_drive.InductionMotorDrive"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InductionMotorDrive</span></code></a></p>
 <p>Induction motor drive equipped with a diode bridge.</p>
 <p>This models extends the InductionMotorDrive class with a model for a
@@ -244,19 +214,13 @@ three-phase diode bridge fed from stiff supply voltages. The DC bus is
 modeled as an inductor and a capacitor.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>conv</strong> (<a class="reference internal" href="../../index.html#motulator.FrequencyConverter" title="motulator.FrequencyConverter"><em>FrequencyConverter</em></a>) – Frequency converter model.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>motor</strong> (<a class="reference internal" href="../../index.html#motulator.InductionMotor" title="motulator.InductionMotor"><em>InductionMotor</em></a><em> | </em><a class="reference internal" href="../../index.html#motulator.InductionMotorSaturated" title="motulator.InductionMotorSaturated"><em>InductionMotorSaturated</em></a>) – Induction motor model.</p></li>
+<li><p><strong>mech</strong> (<a class="reference internal" href="../../index.html#motulator.Mechanics" title="motulator.Mechanics"><em>Mechanics</em></a>) – Mechanics model.</p></li>
+<li><p><strong>conv</strong> (<a class="reference internal" href="../../index.html#motulator.FrequencyConverter" title="motulator.FrequencyConverter"><em>FrequencyConverter</em></a>) – Frequency converter model.</p></li>
+</ul>
 </dd>
 </dl>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="motulator.model.im_drive.InductionMotorDriveDiode.conv">
-<span class="sig-name descname"><span class="pre">conv</span></span><em class="property"><span class="w"> </span><span class="pre">:motulator.model.converter.FrequencyConverter</span></em><a class="reference internal" href="../../../../_modules/motulator/model/im_drive.html#InductionMotorDriveDiode.conv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.im_drive.InductionMotorDriveDiode.conv" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="motulator.model.im_drive.InductionMotorDriveDiode.__post_init__">
-<span class="sig-name descname"><span class="pre">__post_init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/model/im_drive.html#InductionMotorDriveDiode.__post_init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.im_drive.InductionMotorDriveDiode.__post_init__" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.model.im_drive.InductionMotorDriveDiode.get_initial_values">
 <span class="sig-name descname"><span class="pre">get_initial_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/model/im_drive.html#InductionMotorDriveDiode.get_initial_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.im_drive.InductionMotorDriveDiode.get_initial_values" title="Permalink to this definition"></a></dt>

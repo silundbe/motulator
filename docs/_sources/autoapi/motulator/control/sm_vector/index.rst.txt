@@ -5,7 +5,7 @@
 
 .. autoapi-nested-parse::
 
-   Vector control for synchronous motor drives.
+   Current vector control for synchronous motor drives.
 
    ..
        !! processed by numpydoc !!
@@ -31,7 +31,7 @@ Classes
 .. py:class:: SynchronousMotorVectorCtrlPars
 
    
-   Control system parameters for synchronous motors.
+   Vector control parameters for synchronous motors.
 
 
 
@@ -234,8 +234,8 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:attribute:: i_sd_min
-      :annotation: :float
+   .. py:attribute:: psi_s_min
+      :annotation: :float = 0
 
       
 
@@ -464,10 +464,10 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: __post_init__(self)
+   .. py:attribute:: zeta_inf
+      :annotation: :float = 0.2
 
       
-      Generate control look-up tables.
 
 
 
@@ -487,7 +487,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: plot(self, base)
+   .. py:method:: plot_luts(self, base)
 
       
       Plot control look-up tables.
@@ -520,25 +520,8 @@ Classes
    This class interconnects the subsystems of the control system and
    provides the interface to the solver.
 
-
-
    :param pars: Control parameters.
-   :type pars: SynchronousMotorVectorCtrlData
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+   :type pars: SynchronousMotorVectorCtrlPars
 
    ..
        !! processed by numpydoc !!
@@ -595,29 +578,6 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: __repr__(self)
-
-      
-      Return repr(self).
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
 
 .. py:class:: CurrentCtrl(pars)
 
@@ -626,6 +586,9 @@ Classes
    This controller corresponds to [1]_. The continuous-time complex-vector
    design corresponding to (13) is used here. This design could be
    equivalently presented as a 2DOF PI controller.
+
+   :param pars: Control parameters.
+   :type pars: SynchronousMotorVectorCtrlPars (or its subset)
 
    .. rubric:: Notes
 
@@ -638,24 +601,6 @@ Classes
    .. [1] Awan, Saarakkala, Hinkkanen, "Flux-linkage-based current control of
       saturated synchronous motors," IEEE Trans. Ind. Appl. 2019,
       https://doi.org/10.1109/TIA.2019.2919258
-
-   :param pars: Control parameters.
-   :type pars: SynchronousMotorVectorCtrlPars (or its subset)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
    ..
        !! processed by numpydoc !!
@@ -670,8 +615,8 @@ Classes
       :param i_s: Measured current.
       :type i_s: complex
 
-      :returns: * **u_s_ref** (*complex*) -- Unlimited voltage reference.
-                * **e** (*complex*) -- Error signal (scaled, corresponds to the stator flux linkage).
+      :returns: **u_s_ref** -- Unlimited voltage reference.
+      :rtype: complex
 
 
 
@@ -690,15 +635,11 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: update(self, e, u_s_ref, u_s_ref_lim, w_m)
+   .. py:method:: update(self, u_s_ref_lim, w_m)
 
       
       Update the integral state.
 
-      :param e: Error signal (scaled, corresponds to the stator flux linkage).
-      :type e: complex
-      :param u_s_ref: Unlimited voltage reference.
-      :type u_s_ref: complex
       :param u_s_ref_lim: Limited voltage reference.
       :type u_s_ref_lim: complex
       :param w_m: Angular rotor speed.
@@ -730,6 +671,9 @@ Classes
    the unlimited voltage reference feedback. The MTPV and current limits are
    taken into account. This resembles the method presented [2]_.
 
+   :param pars: Control parameters.
+   :type pars: SynchronousMotorVectorCtrlPars (or its subset)
+
    .. rubric:: Notes
 
    Instead of the PI controller used in [2]_, we use a simpler integral
@@ -744,24 +688,6 @@ Classes
       adaptive flux-weakening voltage regulation loop in IPMSM drives with
       accurate torque regulation," IEEE Trans. Ind. Appl., 2020,
       https://doi.org/10.1109/TIA.2019.2942807
-
-   :param pars: Control parameters.
-   :type pars: SynchronousMotorVectorCtrlPars (or its subset)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
    ..
        !! processed by numpydoc !!
@@ -779,7 +705,7 @@ Classes
       :type u_dc: float
 
       :returns: * **i_s_ref** (*complex*) -- Stator current reference.
-                * **tau_M** (*float*) -- Limited torque reference.
+                * **tau_M_ref_lim** (*float*) -- Limited torque reference.
 
 
 
@@ -798,13 +724,13 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: update(self, tau_M, u_s_ref, u_dc)
+   .. py:method:: update(self, tau_M_ref_lim, u_s_ref, u_dc)
 
       
       Field-weakening based on the unlimited reference voltage.
 
-      :param tau_M: Limited torque reference.
-      :type tau_M: float
+      :param tau_M_ref_lim: Limited torque reference.
+      :type tau_M_ref_lim: float
       :param u_s_ref: Unlimited stator voltage reference.
       :type u_s_ref: complex
       :param u_dc: float.
@@ -837,34 +763,19 @@ Classes
    corresponding linearized estimation error dynamics. This implementation
    operates in estimated rotor coordinates.
 
+   :param pars: Control parameters.
+   :type pars: SynchronousMotorVectorCtrlPars (or its subset)
+
    .. rubric:: References
 
    .. [3] Hinkkanen, Saarakkala, Awan, Mölsä, Tuovinen, "Observers for
       sensorless synchronous motor drives: Framework for design and analysis,"
       IEEE Trans. Ind. Appl., 2018, https://doi.org/10.1109/TIA.2018.2858753
 
-   :param pars: Control parameters.
-   :type pars: SynchronousMotorVectorCtrlPars (or its subset)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
    ..
        !! processed by numpydoc !!
 
-   .. py:method:: update(self, u_s, i_s)
+   .. py:method:: update(self, u_s, i_s, *_)
 
       
       Update the states for the next sampling period.

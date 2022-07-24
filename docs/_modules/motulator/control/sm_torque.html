@@ -129,13 +129,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">L_q</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">L_q</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">psi_f</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">psi_f</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">i_sd_min</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">i_sd_min</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">psi_s_min</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">psi_s_min</span>
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">i_sd_min</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">psi_s_min</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">i_sd_max</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">i_sd_max</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">psi_s_max</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">psi_s_max</span>
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">i_sd_max</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">psi_s_max</span> <span class="o">=</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="TorqueCharacteristics.torque"><a class="viewcode-back" href="../../../autoapi/motulator/control/sm_torque/index.html#motulator.control.sm_torque.TorqueCharacteristics.torque">[docs]</a>    <span class="k">def</span> <span class="nf">torque</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psi_s</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -334,7 +334,7 @@
 <span class="sd">            Stator flux.</span>
 <span class="sd">        i_s : complex</span>
 <span class="sd">            Stator current.</span>
-<span class="sd">        tau_m : float</span>
+<span class="sd">        tau_M : float</span>
 <span class="sd">            Electromagnetic torque.</span>
 <span class="sd">        abs_psi_s_vs_tau_M : interp1d object</span>
 <span class="sd">            Stator flux magnitude as a function of the torque.</span>
@@ -349,14 +349,11 @@
         <span class="n">beta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mtpa</span><span class="p">(</span><span class="n">abs_i_s</span><span class="p">)</span>
         <span class="n">i_s</span> <span class="o">=</span> <span class="n">abs_i_s</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">beta</span><span class="p">)</span>
 
-        <span class="c1"># Minimum d-axis current for sensorless SyRM drives</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">i_sd_min</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">i_s</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="p">((</span><span class="n">i_s</span><span class="o">.</span><span class="n">real</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">i_sd_min</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">i_sd_min</span>
-                        <span class="o">+</span> <span class="p">(</span><span class="n">i_s</span><span class="o">.</span><span class="n">real</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">i_sd_min</span><span class="p">)</span><span class="o">*</span><span class="n">i_s</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
-        <span class="c1"># Maximum d-axis current for sensorless PM-SyRM drives</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">i_sd_max</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">i_s</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="p">((</span><span class="n">i_s</span><span class="o">.</span><span class="n">real</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">i_sd_max</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">i_sd_max</span>
-                        <span class="o">+</span> <span class="p">(</span><span class="n">i_s</span><span class="o">.</span><span class="n">real</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">i_sd_max</span><span class="p">)</span><span class="o">*</span><span class="n">i_s</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">psi_s_min</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">psi_f</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="c1"># Minimum d-axis current for sensorless SyRM drives</span>
+            <span class="n">i_sd_min</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">psi_s_min</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">L_d</span>
+            <span class="n">i_s</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="p">((</span><span class="n">i_s</span><span class="o">.</span><span class="n">real</span> <span class="o">&lt;</span> <span class="n">i_sd_min</span><span class="p">)</span><span class="o">*</span><span class="n">i_sd_min</span>
+                        <span class="o">+</span> <span class="p">(</span><span class="n">i_s</span><span class="o">.</span><span class="n">real</span> <span class="o">&gt;=</span> <span class="n">i_sd_min</span><span class="p">)</span><span class="o">*</span><span class="n">i_s</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
 
         <span class="n">psi_s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">flux</span><span class="p">(</span><span class="n">i_s</span><span class="p">)</span>
         <span class="n">tau_M</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">torque</span><span class="p">(</span><span class="n">psi_s</span><span class="p">)</span>
@@ -365,8 +362,7 @@
         <span class="c1"># more interpolants can be easily added.</span>
         <span class="n">abs_psi_s_vs_tau_M</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">tau_M</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">psi_s</span><span class="p">),</span>
                                       <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;extrapolate&quot;</span><span class="p">)</span>
-        <span class="n">i_sd_vs_tau_M</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">tau_M</span><span class="p">,</span> <span class="n">i_s</span><span class="o">.</span><span class="n">real</span><span class="p">,</span>
-                                 <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;extrapolate&quot;</span><span class="p">)</span>
+        <span class="n">i_sd_vs_tau_M</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">tau_M</span><span class="p">,</span> <span class="n">i_s</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;extrapolate&quot;</span><span class="p">)</span>
 
         <span class="c1"># Return the result as a bunch object</span>
         <span class="k">return</span> <span class="n">Bunch</span><span class="p">(</span><span class="n">psi_s</span><span class="o">=</span><span class="n">psi_s</span><span class="p">,</span> <span class="n">i_s</span><span class="o">=</span><span class="n">i_s</span><span class="p">,</span> <span class="n">tau_M</span><span class="o">=</span><span class="n">tau_M</span><span class="p">,</span>
@@ -395,7 +391,7 @@
 <span class="sd">            Stator flux.</span>
 <span class="sd">        i_s : complex</span>
 <span class="sd">            Stator current.</span>
-<span class="sd">        tau_m : float</span>
+<span class="sd">        tau_M : float</span>
 <span class="sd">            Electromagnetic torque.</span>
 <span class="sd">        tau_M_vs_abs_psi_s : interp1d object</span>
 <span class="sd">            Torque as a function of the flux magnitude.</span>
@@ -433,7 +429,7 @@
 <span class="sd">            Current limit. The default is 1.</span>
 <span class="sd">        gamma1 : float, optional</span>
 <span class="sd">            Starting angle in radians. The default is 0.</span>
-<span class="sd">        gamm21 : float, optional</span>
+<span class="sd">        gamma2 : float, optional</span>
 <span class="sd">            End angle in radians. The defauls in np.pi.</span>
 <span class="sd">        N : int, optional</span>
 <span class="sd">            Amount of points. The default is 20.</span>
@@ -445,7 +441,7 @@
 <span class="sd">            Stator flux.</span>
 <span class="sd">        i_s : complex</span>
 <span class="sd">            Stator current.</span>
-<span class="sd">        tau_m : float</span>
+<span class="sd">        tau_M : float</span>
 <span class="sd">            Electromagnetic torque.</span>
 <span class="sd">        tau_M_vs_abs_psi_s : interp1d object</span>
 <span class="sd">            Torque as a function of the flux magnitude.</span>
@@ -513,8 +509,7 @@
         <span class="n">tau_M_vs_abs_psi_s</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">psi_s</span><span class="p">),</span> <span class="n">tau_M</span><span class="p">,</span>
                                       <span class="n">bounds_error</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                                       <span class="n">fill_value</span><span class="o">=</span><span class="p">(</span><span class="n">tau_M</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tau_M</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
-        <span class="n">i_sd_vs_tau_M</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">tau_M</span><span class="p">,</span> <span class="n">i_sd</span><span class="p">,</span>
-                                 <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;extrapolate&quot;</span><span class="p">)</span>
+        <span class="n">i_sd_vs_tau_M</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">tau_M</span><span class="p">,</span> <span class="n">i_sd</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;extrapolate&quot;</span><span class="p">)</span>
 
         <span class="c1"># Return the result as a bunch object</span>
         <span class="k">return</span> <span class="n">Bunch</span><span class="p">(</span><span class="n">tau_M_vs_abs_psi_s</span><span class="o">=</span><span class="n">tau_M_vs_abs_psi_s</span><span class="p">,</span>

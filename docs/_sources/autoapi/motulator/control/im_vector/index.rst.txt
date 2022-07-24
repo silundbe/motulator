@@ -487,29 +487,6 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: __repr__(self)
-
-      
-      Return repr(self).
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
 
 .. py:class:: CurrentRef(pars)
 
@@ -518,6 +495,9 @@ Classes
    This method includes field-weakenting operation based on the unlimited
    voltage reference feedback. The breakdown torque and current limits are
    taken into account.
+
+   :param pars: Control parameters.
+   :type pars: InductionMotorVectorCtrlPars (or its subset)
 
    .. rubric:: Notes
 
@@ -528,24 +508,6 @@ Classes
    .. [1] Hinkkanen, Luomi, "Braking scheme for vector-controlled induction
       motor drives equipped with diode rectifier without braking resistor,"
       IEEE Trans. Ind. Appl., 2006, https://doi.org/10.1109/TIA.2006.880852
-
-   :param pars: Control parameters.
-   :type pars: InductionMotorVectorCtrlPars (or its subset)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
    ..
        !! processed by numpydoc !!
@@ -617,6 +579,9 @@ Classes
    considered as a quasi-constant disturbance. This design could be
    equivalently presented as a 2DOF PI controller.
 
+   :param pars: Control parameters.
+   :type pars: InductionMotorVectorCtrlPars (or its subset)
+
    .. rubric:: Notes
 
    This implementation does not take the magnetic saturation into account.
@@ -626,24 +591,6 @@ Classes
    .. [2] Awan, Saarakkala, Hinkkanen, "Flux-linkage-based current control of
       saturated synchronous motors," IEEE Trans. Ind. Appl. 2019,
       https://doi.org/10.1109/TIA.2019.2919258
-
-   :param pars: Control parameters.
-   :type pars: InductionMotorVectorCtrlPars (or its subset)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
    ..
        !! processed by numpydoc !!
@@ -658,8 +605,8 @@ Classes
       :param i_s: Measured stator current.
       :type i_s: complex
 
-      :returns: * **u_s_ref** (*complex*) -- Unlimited voltage reference.
-                * **e** (*complex*) -- Error (scaled, corresponds to the leakage flux linkage).
+      :returns: **u_s_ref** -- Unlimited voltage reference.
+      :rtype: complex
 
 
 
@@ -678,15 +625,11 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: update(self, e, u_s_ref, u_s_ref_lim, w_s)
+   .. py:method:: update(self, u_s_ref_lim, w_s)
 
       
       Update the integral state.
 
-      :param e: Error (scaled, corresponds to the leakage flux linkage).
-      :type e: complex
-      :param u_s_ref: Unlimited voltage reference.
-      :type u_s_ref: complex
       :param u_s_ref_lim: Limited voltage reference.
       :type u_s_ref_lim: complex
       :param w_s: Angular stator frequency.
@@ -719,6 +662,9 @@ Classes
    corresponding linearized estimation error dynamics. This implementation
    operates in estimated rotor flux coordinates.
 
+   :param pars: Control parameters.
+   :type pars: InductionMotorVectorCtrlPars (or its subset)
+
    .. rubric:: Notes
 
    This implementation corresponds to (26)-(30) in [3]_ with the choice
@@ -732,28 +678,10 @@ Classes
       drives," IEEE Trans. Power Electron., 2010,
       https://doi.org/10.1109/TPEL.2009.2039650
 
-   :param pars: Control parameters.
-   :type pars: InductionMotorVectorCtrlPars (or its subset)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
    ..
        !! processed by numpydoc !!
 
-   .. py:method:: output(self, u_s, i_s, _)
+   .. py:method:: output(self, u_s, i_s, *_)
 
       
       Compute the output.
@@ -762,8 +690,8 @@ Classes
       :type u_s: complex
       :param i_s: Stator current in estimated rotor flux coordinates.
       :type i_s: complex
-      :param _: Provides a compatible interface with the sensored observer.
-      :type _: not used
+      :param \*_: Provides a compatible interface with the sensored observer.
+      :type \*_: not used
 
       :returns: **w_s** -- Angular frequency of the rotor flux.
       :rtype: float
@@ -817,6 +745,9 @@ Classes
    selected default gain allows smooth transition from the current model at
    zero speed to the (damped) voltage model at higher speeds.
 
+   :param pars: Control parameters.
+   :type pars: InductionMotorVectorCtrlPars (or its subset)
+
    .. rubric:: Notes
 
    This implementation places the pole in synchronous coordinates at::
@@ -832,24 +763,6 @@ Classes
    .. [4] Verghese, Sanders, “Observers for flux estimation in induction
       machines,” IEEE Trans. Ind. Electron., 1988,
       https://doi.org/10.1109/41.3067
-
-   :param pars: Control parameters.
-   :type pars: InductionMotorVectorCtrlPars (or its subset)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
    ..
        !! processed by numpydoc !!

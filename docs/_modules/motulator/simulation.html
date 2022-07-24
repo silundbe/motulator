@@ -84,7 +84,7 @@
            <div itemprop="articleBody">
              
   <h1>Source code for motulator.simulation</h1><div class="highlight"><pre>
-<span></span><span class="c1"># pylint: disable=C0103</span>
+<span></span><span class="c1"># pylint: disable=invalid-name</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Simulation environment.</span>
 
@@ -146,6 +146,7 @@
 <span class="sd">    period, allowing faster simulations.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># pylint: disable=too-few-public-methods</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">2</span><span class="o">**</span><span class="mi">12</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -249,7 +250,7 @@
 <span class="sd">        mdl : InductionMotorDrive | SynchronousMotorDrive</span>
 <span class="sd">            Continuous-time system model.</span>
 <span class="sd">        ctrl : SynchronousMotorVectorCtrl | InductionMotorVectorCtrl |</span>
-<span class="sd">        InductionMotorVHzCtrl</span>
+<span class="sd">            InductionMotorVHzCtrl</span>
 <span class="sd">            Discrete-time controller.</span>
 <span class="sd">        delay : int, optional</span>
 <span class="sd">            Amount of computational delays. The default is 1.</span>
@@ -261,6 +262,7 @@
 <span class="sd">            Simulation stop time. The default is 1.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># pylint: disable=too-many-arguments</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mdl</span> <span class="o">=</span> <span class="n">mdl</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ctrl</span> <span class="o">=</span> <span class="n">ctrl</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">delay</span> <span class="o">=</span> <span class="n">Delay</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>

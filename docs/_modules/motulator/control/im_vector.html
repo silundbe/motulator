@@ -152,6 +152,7 @@
 
     <span class="c1"># pylint: disable=too-many-instance-attributes</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="o">=</span><span class="n">InductionMotorVectorCtrlPars</span><span class="p">()):</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">T_s</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">T_s</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">w_m_ref</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">w_m_ref</span>
@@ -166,7 +167,6 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">observer</span> <span class="o">=</span> <span class="n">Observer</span><span class="p">(</span><span class="n">pars</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pwm</span> <span class="o">=</span> <span class="n">PWM</span><span class="p">(</span><span class="n">pars</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">Bunch</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">desc</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span>
 
 <div class="viewcode-block" id="InductionMotorVectorCtrl.__call__"><a class="viewcode-back" href="../../../autoapi/motulator/control/im_vector/index.html#motulator.control.im_vector.InductionMotorVectorCtrl.__call__">[docs]</a>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mdl</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -207,23 +207,23 @@
         <span class="n">i_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">theta_s</span><span class="p">)</span><span class="o">*</span><span class="n">abc2complex</span><span class="p">(</span><span class="n">i_s_abc</span><span class="p">)</span>
 
         <span class="c1"># Outputs</span>
-        <span class="n">tau_M_ref</span><span class="p">,</span> <span class="n">tau_L</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">speed_ctrl</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">w_m_ref</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">,</span> <span class="n">w_m</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">)</span>
-        <span class="n">i_s_ref</span><span class="p">,</span> <span class="n">tau_M</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_ref</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">tau_M_ref</span><span class="p">,</span> <span class="n">psi_R</span><span class="p">)</span>
+        <span class="n">tau_M_ref</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">speed_ctrl</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">w_m_ref</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">,</span> <span class="n">w_m</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">)</span>
+        <span class="n">i_s_ref</span><span class="p">,</span> <span class="n">tau_M_ref_lim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_ref</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">tau_M_ref</span><span class="p">,</span> <span class="n">psi_R</span><span class="p">)</span>
         <span class="n">w_s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observer</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">u_s</span><span class="p">,</span> <span class="n">i_s</span><span class="p">,</span> <span class="n">w_m</span><span class="p">)</span>  <span class="c1"># w_m not used if sensorless</span>
-        <span class="n">u_s_ref</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_ctrl</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">i_s_ref</span><span class="p">,</span> <span class="n">i_s</span><span class="p">)</span>
+        <span class="n">u_s_ref</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_ctrl</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">i_s_ref</span><span class="p">,</span> <span class="n">i_s</span><span class="p">)</span>
         <span class="n">d_abc_ref</span><span class="p">,</span> <span class="n">u_s_ref_lim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pwm</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">u_s_ref</span><span class="p">,</span> <span class="n">u_dc</span><span class="p">,</span> <span class="n">theta_s</span><span class="p">,</span> <span class="n">w_s</span><span class="p">)</span>
 
         <span class="c1"># Data logging</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">Bunch</span><span class="p">(</span><span class="n">i_s_ref</span><span class="o">=</span><span class="n">i_s_ref</span><span class="p">,</span> <span class="n">i_s</span><span class="o">=</span><span class="n">i_s</span><span class="p">,</span> <span class="n">u_s</span><span class="o">=</span><span class="n">u_s</span><span class="p">,</span> <span class="n">w_m_ref</span><span class="o">=</span><span class="n">w_m_ref</span><span class="p">,</span>
                      <span class="n">w_m</span><span class="o">=</span><span class="n">w_m</span><span class="p">,</span> <span class="n">w_s</span><span class="o">=</span><span class="n">w_s</span><span class="p">,</span> <span class="n">psi_R</span><span class="o">=</span><span class="n">psi_R</span><span class="p">,</span> <span class="n">theta_s</span><span class="o">=</span><span class="n">theta_s</span><span class="p">,</span>
-                     <span class="n">u_dc</span><span class="o">=</span><span class="n">u_dc</span><span class="p">,</span> <span class="n">tau_M</span><span class="o">=</span><span class="n">tau_M</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="p">)</span>
+                     <span class="n">u_dc</span><span class="o">=</span><span class="n">u_dc</span><span class="p">,</span> <span class="n">tau_M_ref_lim</span><span class="o">=</span><span class="n">tau_M_ref_lim</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_save</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
         <span class="c1"># Update the states</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pwm</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">u_s_ref_lim</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">speed_ctrl</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">tau_M</span><span class="p">,</span> <span class="n">tau_L</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">speed_ctrl</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">tau_M_ref_lim</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">current_ref</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">u_s_ref</span><span class="p">,</span> <span class="n">u_dc</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">current_ctrl</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">u_s_ref</span><span class="p">,</span> <span class="n">u_s_ref_lim</span><span class="p">,</span> <span class="n">w_s</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_ctrl</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">u_s_ref_lim</span><span class="p">,</span> <span class="n">w_s</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">observer</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">i_s</span><span class="p">,</span> <span class="n">w_s</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">T_s</span>
 
@@ -239,10 +239,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">])</span></div>
-
-<div class="viewcode-block" id="InductionMotorVectorCtrl.__repr__"><a class="viewcode-back" href="../../../autoapi/motulator/control/im_vector/index.html#motulator.control.im_vector.InductionMotorVectorCtrl.__repr__">[docs]</a>    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">desc</span></div></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">])</span></div></div>
 
 
 <span class="c1"># %%</span>
@@ -253,6 +250,11 @@
 <span class="sd">    This method includes field-weakenting operation based on the unlimited</span>
 <span class="sd">    voltage reference feedback. The breakdown torque and current limits are</span>
 <span class="sd">    taken into account.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pars : InductionMotorVectorCtrlPars (or its subset)</span>
+<span class="sd">        Control parameters.</span>
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
@@ -267,13 +269,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        pars : InductionMotorVectorCtrlPars (or its subset)</span>
-<span class="sd">            Control parameters.</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">T_s</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">T_s</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">i_s_max</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">i_s_max</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">L_sgm</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">L_sgm</span>
@@ -330,9 +326,9 @@
         <span class="c1"># Current reference</span>
         <span class="n">i_s_ref</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">i_sd_ref</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">i_sq_ref</span>
         <span class="c1"># Limited torque (for the speed controller)</span>
-        <span class="n">tau_M</span> <span class="o">=</span> <span class="mf">1.5</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">*</span><span class="n">psi_R</span><span class="o">*</span><span class="n">i_sq_ref</span>
+        <span class="n">tau_M_ref_lim</span> <span class="o">=</span> <span class="mf">1.5</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">*</span><span class="n">psi_R</span><span class="o">*</span><span class="n">i_sq_ref</span>
 
-        <span class="k">return</span> <span class="n">i_s_ref</span><span class="p">,</span> <span class="n">tau_M</span></div>
+        <span class="k">return</span> <span class="n">i_s_ref</span><span class="p">,</span> <span class="n">tau_M_ref_lim</span></div>
 
 <div class="viewcode-block" id="CurrentRef.update"><a class="viewcode-back" href="../../../autoapi/motulator/control/im_vector/index.html#motulator.control.im_vector.CurrentRef.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">u_s_ref</span><span class="p">,</span> <span class="n">u_dc</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -365,6 +361,11 @@
 <span class="sd">    considered as a quasi-constant disturbance. This design could be</span>
 <span class="sd">    equivalently presented as a 2DOF PI controller.</span>
 
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pars : InductionMotorVectorCtrlPars (or its subset)</span>
+<span class="sd">        Control parameters.</span>
+
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
 <span class="sd">    This implementation does not take the magnetic saturation into account.</span>
@@ -378,17 +379,15 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        pars : InductionMotorVectorCtrlPars (or its subset)</span>
-<span class="sd">            Control parameters.</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">T_s</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">T_s</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">L_sgm</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">L_sgm</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">alpha_c</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">alpha_c</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">u_i</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Integral state</span>
+        <span class="c1"># Integral state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">u_i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="c1"># Memory for the update method</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">e</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">u_s_ref</span> <span class="o">=</span> <span class="mi">0</span>
 
 <div class="viewcode-block" id="CurrentCtrl.output"><a class="viewcode-back" href="../../../autoapi/motulator/control/im_vector/index.html#motulator.control.im_vector.CurrentCtrl.output">[docs]</a>    <span class="k">def</span> <span class="nf">output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i_s_ref</span><span class="p">,</span> <span class="n">i_s</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -405,29 +404,24 @@
 <span class="sd">        -------</span>
 <span class="sd">        u_s_ref : complex</span>
 <span class="sd">            Unlimited voltage reference.</span>
-<span class="sd">        e : complex</span>
-<span class="sd">            Error (scaled, corresponds to the leakage flux linkage).</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">psi_sgm_ref</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">L_sgm</span><span class="o">*</span><span class="n">i_s_ref</span>
         <span class="n">psi_sgm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">L_sgm</span><span class="o">*</span><span class="n">i_s</span>
         <span class="n">k_t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha_c</span>
         <span class="n">k</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha_c</span>
-        <span class="n">u_s_ref</span> <span class="o">=</span> <span class="n">k_t</span><span class="o">*</span><span class="n">psi_sgm_ref</span> <span class="o">-</span> <span class="n">k</span><span class="o">*</span><span class="n">psi_sgm</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">u_i</span>
-        <span class="n">e</span> <span class="o">=</span> <span class="n">psi_sgm_ref</span> <span class="o">-</span> <span class="n">psi_sgm</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">u_s_ref</span> <span class="o">=</span> <span class="n">k_t</span><span class="o">*</span><span class="n">psi_sgm_ref</span> <span class="o">-</span> <span class="n">k</span><span class="o">*</span><span class="n">psi_sgm</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">u_i</span>
+        <span class="c1"># Error (scaled, corresponds to the leakage flux linkage)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">e</span> <span class="o">=</span> <span class="n">psi_sgm_ref</span> <span class="o">-</span> <span class="n">psi_sgm</span>
 
-        <span class="k">return</span> <span class="n">u_s_ref</span><span class="p">,</span> <span class="n">e</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">u_s_ref</span></div>
 
-<div class="viewcode-block" id="CurrentCtrl.update"><a class="viewcode-back" href="../../../autoapi/motulator/control/im_vector/index.html#motulator.control.im_vector.CurrentCtrl.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">u_s_ref</span><span class="p">,</span> <span class="n">u_s_ref_lim</span><span class="p">,</span> <span class="n">w_s</span><span class="p">):</span>
+<div class="viewcode-block" id="CurrentCtrl.update"><a class="viewcode-back" href="../../../autoapi/motulator/control/im_vector/index.html#motulator.control.im_vector.CurrentCtrl.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">u_s_ref_lim</span><span class="p">,</span> <span class="n">w_s</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Update the integral state.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        e : complex</span>
-<span class="sd">            Error (scaled, corresponds to the leakage flux linkage).</span>
-<span class="sd">        u_s_ref : complex</span>
-<span class="sd">            Unlimited voltage reference.</span>
 <span class="sd">        u_s_ref_lim : complex</span>
 <span class="sd">            Limited voltage reference.</span>
 <span class="sd">        w_s : float</span>
@@ -436,7 +430,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">k_i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha_c</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha_c</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">w_s</span><span class="p">)</span>
         <span class="n">k_t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha_c</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">u_i</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">T_s</span><span class="o">*</span><span class="n">k_i</span><span class="o">*</span><span class="p">(</span><span class="n">e</span> <span class="o">+</span> <span class="p">(</span><span class="n">u_s_ref_lim</span> <span class="o">-</span> <span class="n">u_s_ref</span><span class="p">)</span><span class="o">/</span><span class="n">k_t</span><span class="p">)</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">u_i</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">T_s</span><span class="o">*</span><span class="n">k_i</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span> <span class="o">+</span> <span class="p">(</span><span class="n">u_s_ref_lim</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">u_s_ref</span><span class="p">)</span><span class="o">/</span><span class="n">k_t</span><span class="p">)</span></div></div>
 
 
 <span class="c1"># %%</span>
@@ -448,6 +442,11 @@
 <span class="sd">    electrical and mechanical dynamics and allows placing the poles of the</span>
 <span class="sd">    corresponding linearized estimation error dynamics. This implementation</span>
 <span class="sd">    operates in estimated rotor flux coordinates.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pars : InductionMotorVectorCtrlPars (or its subset)</span>
+<span class="sd">        Control parameters.</span>
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
@@ -466,13 +465,7 @@
 
     <span class="c1"># pylint: disable=too-many-instance-attributes</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        pars : InductionMotorVectorCtrlPars (or its subset)</span>
-<span class="sd">            Control parameters.</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">T_s</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">T_s</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">R_s</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">R_s</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">R_R</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">R_R</span>
@@ -485,7 +478,7 @@
         <span class="c1"># Store for the update method to avoid recalculation</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dpsi_R</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_r</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
 
-<div class="viewcode-block" id="SensorlessObserver.output"><a class="viewcode-back" href="../../../autoapi/motulator/control/im_vector/index.html#motulator.control.im_vector.SensorlessObserver.output">[docs]</a>    <span class="k">def</span> <span class="nf">output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">u_s</span><span class="p">,</span> <span class="n">i_s</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
+<div class="viewcode-block" id="SensorlessObserver.output"><a class="viewcode-back" href="../../../autoapi/motulator/control/im_vector/index.html#motulator.control.im_vector.SensorlessObserver.output">[docs]</a>    <span class="k">def</span> <span class="nf">output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">u_s</span><span class="p">,</span> <span class="n">i_s</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute the output.</span>
 
@@ -495,7 +488,7 @@
 <span class="sd">            Stator voltage in estimated rotor flux coordinates.</span>
 <span class="sd">        i_s : complex</span>
 <span class="sd">            Stator current in estimated rotor flux coordinates.</span>
-<span class="sd">        _ : not used</span>
+<span class="sd">        *_ : not used</span>
 <span class="sd">            Provides a compatible interface with the sensored observer.</span>
 
 <span class="sd">        Returns</span>
@@ -556,6 +549,11 @@
 <span class="sd">    selected default gain allows smooth transition from the current model at</span>
 <span class="sd">    zero speed to the (damped) voltage model at higher speeds.</span>
 
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pars : InductionMotorVectorCtrlPars (or its subset)</span>
+<span class="sd">        Control parameters.</span>
+
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
 <span class="sd">    This implementation places the pole in synchronous coordinates at::</span>
@@ -576,13 +574,7 @@
 
     <span class="c1"># pylint: disable=too-many-instance-attributes</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        pars : InductionMotorVectorCtrlPars (or its subset)</span>
-<span class="sd">            Control parameters.</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">T_s</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">T_s</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">R_s</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">R_s</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">R_R</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">R_R</span>

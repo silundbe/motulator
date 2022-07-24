@@ -29,9 +29,8 @@ Classes
 
 
 
-.. py:class:: InductionMotorDrive
+.. py:class:: InductionMotorDrive(motor=InductionMotor(), mech=Mechanics(), conv=Inverter())
 
-   
    Continuous-time model for an induction motor drive.
 
    This interconnects the subsystems of an induction motor drive and provides
@@ -45,158 +44,8 @@ Classes
    :param conv: Inverter model.
    :type conv: Inverter
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
    ..
        !! processed by numpydoc !!
-   .. py:attribute:: motor
-      :annotation: :InductionMotor | InductionMotorSaturated
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-   .. py:attribute:: mech
-      :annotation: :motulator.model.mech.Mechanics
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-   .. py:attribute:: conv
-      :annotation: :motulator.model.converter.Inverter
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-   .. py:attribute:: data
-      :annotation: :motulator.helpers.Bunch
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-   .. py:attribute:: t0
-      :annotation: :float
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-   .. py:method:: __post_init__(self)
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
 
    .. py:method:: get_initial_values(self)
 
@@ -327,80 +176,25 @@ Classes
           !! processed by numpydoc !!
 
 
-.. py:class:: InductionMotorDriveDiode
+.. py:class:: InductionMotorDriveDiode(motor=InductionMotor(), mech=Mechanics(), conv=FrequencyConverter())
 
    Bases: :py:obj:`InductionMotorDrive`
 
-   
    Induction motor drive equipped with a diode bridge.
 
    This models extends the InductionMotorDrive class with a model for a
    three-phase diode bridge fed from stiff supply voltages. The DC bus is
    modeled as an inductor and a capacitor.
 
+   :param motor: Induction motor model.
+   :type motor: InductionMotor | InductionMotorSaturated
+   :param mech: Mechanics model.
+   :type mech: Mechanics
    :param conv: Frequency converter model.
    :type conv: FrequencyConverter
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
    ..
        !! processed by numpydoc !!
-   .. py:attribute:: conv
-      :annotation: :motulator.model.converter.FrequencyConverter
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-   .. py:method:: __post_init__(self)
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
 
    .. py:method:: get_initial_values(self)
 

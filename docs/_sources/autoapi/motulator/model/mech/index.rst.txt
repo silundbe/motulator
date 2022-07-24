@@ -24,9 +24,8 @@ Classes
 
 
 
-.. py:class:: Mechanics
+.. py:class:: Mechanics(J=0.015, B=0, tau_L_ext=lambda t: 0)
 
-   
    Mechanics subsystem.
 
    This models an equation of motion for stiff mechanics.
@@ -38,136 +37,8 @@ Classes
    :param tau_L_ext: External load torque as a function of time, `tau_L_ext(t)`.
    :type tau_L_ext: function
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
    ..
        !! processed by numpydoc !!
-   .. py:attribute:: J
-      :annotation: :float = 0.015
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-   .. py:attribute:: B
-      :annotation: :float = 0
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-   .. py:attribute:: tau_L_ext
-      :annotation: :collections.abc.Callable[[float], float]
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-   .. py:attribute:: w_M0
-      :annotation: :float
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-   .. py:attribute:: theta_M0
-      :annotation: :float
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
 
    .. py:method:: f(self, t, w_M, tau_M)
 

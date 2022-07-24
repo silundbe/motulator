@@ -214,8 +214,8 @@ Classes
       :param w_M: Rotor speed (in mechanical rad/s).
       :type w_M: float
 
-      :returns: * **tau_M_ref** (*float*) -- Torque reference.
-                * **tau_L** (*float*) -- Load torque estimate.
+      :returns: **tau_M_ref** -- Torque reference.
+      :rtype: float
 
 
 
@@ -234,15 +234,13 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: update(self, tau_M, tau_L)
+   .. py:method:: update(self, tau_M_ref_lim)
 
       
       Update the integral state.
 
-      :param tau_M: Realized (limited) torque reference.
-      :type tau_M: float
-      :param tau_L: Load torque estimate.
-      :type tau_L: float
+      :param tau_M_ref_lim: Realized (limited) torque reference.
+      :type tau_M_ref_lim: float
 
 
 

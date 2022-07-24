@@ -194,9 +194,9 @@ Functions
 
    :param mdl: Continuous-time system model.
    :type mdl: InductionMotorDrive | SynchronousMotorDrive
-   :param ctrl:
+   :param ctrl: InductionMotorVHzCtrl
+                Discrete-time controller.
    :type ctrl: SynchronousMotorVectorCtrl | InductionMotorVectorCtrl |
-   :param InductionMotorVHzCtrl: Discrete-time controller.
    :param delay: Amount of computational delays. The default is 1.
    :type delay: int, optional
    :param enable_pwm: Enable carrier comparison. The default is False.

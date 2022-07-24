@@ -222,25 +222,21 @@ The controller is mathematically identical to the 2DOF PI speed controller.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>tau_M_ref</strong> (<em>float</em>) – Torque reference.</p></li>
-<li><p><strong>tau_L</strong> (<em>float</em>) – Load torque estimate.</p></li>
-</ul>
-</p>
+<dd class="field-even"><p><strong>tau_M_ref</strong> – Torque reference.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.control.common.SpeedCtrl.update">
-<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau_M</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau_L</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/common.html#SpeedCtrl.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.common.SpeedCtrl.update" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau_M_ref_lim</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/common.html#SpeedCtrl.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.common.SpeedCtrl.update" title="Permalink to this definition"></a></dt>
 <dd><p>Update the integral state.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>tau_M</strong> (<em>float</em>) – Realized (limited) torque reference.</p></li>
-<li><p><strong>tau_L</strong> (<em>float</em>) – Load torque estimate.</p></li>
-</ul>
+<dd class="field-odd"><p><strong>tau_M_ref_lim</strong> (<em>float</em>) – Realized (limited) torque reference.</p>
 </dd>
 </dl>
 </dd></dl>

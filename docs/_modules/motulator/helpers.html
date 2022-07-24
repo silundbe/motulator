@@ -84,8 +84,7 @@
            <div itemprop="articleBody">
              
   <h1>Source code for motulator.helpers</h1><div class="highlight"><pre>
-<span></span><span class="c1"># pylint: disable=C0103</span>
-<span class="c1"># pylint: disable=R0903</span>
+<span></span><span class="c1"># pylint: disable=invalid-name</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Helper functions and classes.</span>
 
@@ -304,7 +303,6 @@
 <span class="c1"># ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE</span>
 <span class="c1"># POSSIBILITY OF SUCH DAMAGE.</span>
 <span class="c1"># ----------------------------------------------------------------------------</span>
-<span class="c1"># pylint: disable=raise-missing-from</span>
 <div class="viewcode-block" id="Bunch"><a class="viewcode-back" href="../../autoapi/motulator/helpers/index.html#motulator.helpers.Bunch">[docs]</a><span class="k">class</span> <span class="nc">Bunch</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Container object exposing keys as attributes.</span>
@@ -342,6 +340,7 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="c1"># pylint: disable=raise-missing-from</span>
             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Bunch.__setstate__"><a class="viewcode-back" href="../../autoapi/motulator/helpers/index.html#motulator.helpers.Bunch.__setstate__">[docs]</a>    <span class="k">def</span> <span class="nf">__setstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
