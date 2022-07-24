@@ -100,6 +100,48 @@ Synchronous Motor Drives
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This example simulates sensorless stator-flux-vector control of a 2.2-kW PMSM drive.">
+
+.. only:: html
+
+ .. figure:: /auto_examples/sm/images/thumb/sphx_glr_plot_flux_vector_pmsm_2kw_thumb.png
+     :alt: Flux-Vector Controlled 2.2-kW PMSM Drive
+
+     :ref:`sphx_glr_auto_examples_sm_plot_flux_vector_pmsm_2kw.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/sm/plot_flux_vector_pmsm_2kw
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example simulates sensorless stator-flux-vector control of a saturated 6.7-kW synchronous ...">
+
+.. only:: html
+
+ .. figure:: /auto_examples/sm/images/thumb/sphx_glr_plot_flux_vector_syrm_7kw_thumb.png
+     :alt: Flux-Vector-Controlled 6.7-kW SyRM Drive
+
+     :ref:`sphx_glr_auto_examples_sm_plot_flux_vector_syrm_7kw.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/sm/plot_flux_vector_syrm_7kw
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="This example simulates sensorless vector control of a 6.7-kW SyRM drive.">
 
 .. only:: html

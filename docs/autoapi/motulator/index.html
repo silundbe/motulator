@@ -118,6 +118,7 @@
 <li class="toctree-l2"><a class="reference internal" href="control/common/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">motulator.control.common</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="control/im_vector/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">motulator.control.im_vector</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="control/im_vhz/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">motulator.control.im_vhz</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="control/sm_flux_vector/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">motulator.control.sm_flux_vector</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="control/sm_torque/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">motulator.control.sm_torque</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="control/sm_vector/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">motulator.control.sm_vector</span></code></a></li>
 </ul>
@@ -207,6 +208,12 @@
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#motulator.SynchronousMotorVectorCtrlPars" title="motulator.SynchronousMotorVectorCtrlPars"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SynchronousMotorVectorCtrlPars</span></code></a></p></td>
 <td><p>Vector control parameters for synchronous motors.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#motulator.SynchronousMotorFluxVectorCtrl" title="motulator.SynchronousMotorFluxVectorCtrl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SynchronousMotorFluxVectorCtrl</span></code></a></p></td>
+<td><p>Flux vector control for synchronous motor drives.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#motulator.SynchronousMotorFluxVectorCtrlPars" title="motulator.SynchronousMotorFluxVectorCtrlPars"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SynchronousMotorFluxVectorCtrlPars</span></code></a></p></td>
+<td><p>Control parameters: flux vector control for synchronous motor drives.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#motulator.BaseValues" title="motulator.BaseValues"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BaseValues</span></code></a></p></td>
 <td><p>Base values.</p></td>
@@ -1433,6 +1440,155 @@ feedback signals.</p>
 </dd>
 </dl>
 </dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="motulator.SynchronousMotorFluxVectorCtrl">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">motulator.</span></span><span class="sig-name descname"><span class="pre">SynchronousMotorFluxVectorCtrl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SynchronousMotorFluxVectorCtrlPars()</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/motulator/control/sm_flux_vector.html#SynchronousMotorFluxVectorCtrl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrl" title="Permalink to this definition"></a></dt>
+<dd><p>Flux vector control for synchronous motor drives.</p>
+<p>This class interconnects the subsystems of the control system and
+provides the interface to the solver.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pars</strong> (<em>SynchronousMotoroFluxVectorCtrlPars</em>) – Control parameters.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="motulator.SynchronousMotorFluxVectorCtrl.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mdl</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrl.__call__" title="Permalink to this definition"></a></dt>
+<dd><p>Main control loop.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mdl</strong> (<a class="reference internal" href="#motulator.SynchronousMotorDrive" title="motulator.SynchronousMotorDrive"><em>SynchronousMotorDrive</em></a>) – Continuous-time model of a synchronous motor drive for getting the
+feedback signals.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>T_s</strong> (<em>float</em>) – Sampling period.</p></li>
+<li><p><strong>d_abc_ref</strong> (<em>ndarray, shape (3,)</em>) – Duty ratio references.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="motulator.SynchronousMotorFluxVectorCtrl.post_process">
+<span class="sig-name descname"><span class="pre">post_process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrl.post_process" title="Permalink to this definition"></a></dt>
+<dd><p>Transform the lists to the ndarray format.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="motulator.SynchronousMotorFluxVectorCtrlPars">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">motulator.</span></span><span class="sig-name descname"><span class="pre">SynchronousMotorFluxVectorCtrlPars</span></span><a class="reference internal" href="../../_modules/motulator/control/sm_flux_vector.html#SynchronousMotorFluxVectorCtrlPars"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrlPars" title="Permalink to this definition"></a></dt>
+<dd><p>Control parameters: flux vector control for synchronous motor drives.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="motulator.SynchronousMotorFluxVectorCtrlPars.w_m_ref">
+<span class="sig-name descname"><span class="pre">w_m_ref</span></span><em class="property"><span class="w"> </span><span class="pre">:collections.abc.Callable[[float],</span> <span class="pre">float]</span></em><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrlPars.w_m_ref" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="motulator.SynchronousMotorFluxVectorCtrlPars.sensorless">
+<span class="sig-name descname"><span class="pre">sensorless</span></span><em class="property"><span class="w"> </span><span class="pre">:bool</span> <span class="pre">=</span> <span class="pre">True</span></em><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrlPars.sensorless" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="motulator.SynchronousMotorFluxVectorCtrlPars.T_s">
+<span class="sig-name descname"><span class="pre">T_s</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span> <span class="pre">=</span> <span class="pre">0.00025</span></em><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrlPars.T_s" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="motulator.SynchronousMotorFluxVectorCtrlPars.psi_s_nom">
+<span class="sig-name descname"><span class="pre">psi_s_nom</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrlPars.psi_s_nom" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="motulator.SynchronousMotorFluxVectorCtrlPars.psi_s_max">
+<span class="sig-name descname"><span class="pre">psi_s_max</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrlPars.psi_s_max" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="motulator.SynchronousMotorFluxVectorCtrlPars.psi_s_min">
+<span class="sig-name descname"><span class="pre">psi_s_min</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrlPars.psi_s_min" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="motulator.SynchronousMotorFluxVectorCtrlPars.k_u">
+<span class="sig-name descname"><span class="pre">k_u</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span> <span class="pre">=</span> <span class="pre">0.95</span></em><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrlPars.k_u" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="motulator.SynchronousMotorFluxVectorCtrlPars.alpha_psi">
+<span class="sig-name descname"><span class="pre">alpha_psi</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrlPars.alpha_psi" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="motulator.SynchronousMotorFluxVectorCtrlPars.alpha_tau_max">
+<span class="sig-name descname"><span class="pre">alpha_tau_max</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrlPars.alpha_tau_max" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="motulator.SynchronousMotorFluxVectorCtrlPars.alpha_s">
+<span class="sig-name descname"><span class="pre">alpha_s</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrlPars.alpha_s" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="motulator.SynchronousMotorFluxVectorCtrlPars.tau_M_max">
+<span class="sig-name descname"><span class="pre">tau_M_max</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrlPars.tau_M_max" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="motulator.SynchronousMotorFluxVectorCtrlPars.i_s_max">
+<span class="sig-name descname"><span class="pre">i_s_max</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrlPars.i_s_max" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="motulator.SynchronousMotorFluxVectorCtrlPars.R_s">
+<span class="sig-name descname"><span class="pre">R_s</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span> <span class="pre">=</span> <span class="pre">3.6</span></em><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrlPars.R_s" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="motulator.SynchronousMotorFluxVectorCtrlPars.L_d">
+<span class="sig-name descname"><span class="pre">L_d</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span> <span class="pre">=</span> <span class="pre">0.036</span></em><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrlPars.L_d" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="motulator.SynchronousMotorFluxVectorCtrlPars.L_q">
+<span class="sig-name descname"><span class="pre">L_q</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span> <span class="pre">=</span> <span class="pre">0.051</span></em><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrlPars.L_q" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="motulator.SynchronousMotorFluxVectorCtrlPars.psi_f">
+<span class="sig-name descname"><span class="pre">psi_f</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span> <span class="pre">=</span> <span class="pre">0.545</span></em><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrlPars.psi_f" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="motulator.SynchronousMotorFluxVectorCtrlPars.p">
+<span class="sig-name descname"><span class="pre">p</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span> <span class="pre">=</span> <span class="pre">3</span></em><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrlPars.p" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="motulator.SynchronousMotorFluxVectorCtrlPars.J">
+<span class="sig-name descname"><span class="pre">J</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span> <span class="pre">=</span> <span class="pre">0.015</span></em><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrlPars.J" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="motulator.SynchronousMotorFluxVectorCtrlPars.w_o">
+<span class="sig-name descname"><span class="pre">w_o</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrlPars.w_o" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="motulator.SynchronousMotorFluxVectorCtrlPars.zeta_inf">
+<span class="sig-name descname"><span class="pre">zeta_inf</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span> <span class="pre">=</span> <span class="pre">0.2</span></em><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrlPars.zeta_inf" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="motulator.SynchronousMotorFluxVectorCtrlPars.g">
+<span class="sig-name descname"><span class="pre">g</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrlPars.g" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
