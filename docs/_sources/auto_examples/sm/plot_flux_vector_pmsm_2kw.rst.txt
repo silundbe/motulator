@@ -28,13 +28,12 @@ drive.
 
 Import the packages.
 
-.. GENERATED FROM PYTHON SOURCE LINES 12-17
+.. GENERATED FROM PYTHON SOURCE LINES 12-16
 
 .. code-block:: default
 
 
     from time import time
-    import numpy as np
     import motulator as mt
 
 
@@ -44,11 +43,11 @@ Import the packages.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 18-19
+.. GENERATED FROM PYTHON SOURCE LINES 17-18
 
 Compute base values based on the nominal values (just for figures).
 
-.. GENERATED FROM PYTHON SOURCE LINES 19-23
+.. GENERATED FROM PYTHON SOURCE LINES 18-22
 
 .. code-block:: default
 
@@ -63,11 +62,11 @@ Compute base values based on the nominal values (just for figures).
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 24-25
+.. GENERATED FROM PYTHON SOURCE LINES 23-24
 
 Configure the system model.
 
-.. GENERATED FROM PYTHON SOURCE LINES 25-31
+.. GENERATED FROM PYTHON SOURCE LINES 24-30
 
 .. code-block:: default
 
@@ -84,17 +83,17 @@ Configure the system model.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 32-33
+.. GENERATED FROM PYTHON SOURCE LINES 31-32
 
 Configure the control system.
 
-.. GENERATED FROM PYTHON SOURCE LINES 33-37
+.. GENERATED FROM PYTHON SOURCE LINES 32-36
 
 .. code-block:: default
 
 
-    pars = mt.control.sm_flux_vector.SynchronousMotorFluxVectorCtrlPars()
-    ctrl = mt.control.sm_flux_vector.SynchronousMotorFluxVectorCtrl(pars)
+    pars = mt.SynchronousMotorFluxVectorCtrlPars()
+    ctrl = mt.SynchronousMotorFluxVectorCtrl(pars)
 
 
 
@@ -103,27 +102,18 @@ Configure the control system.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 38-39
+.. GENERATED FROM PYTHON SOURCE LINES 37-38
 
 Set the speed reference and the external load torque.
 
-.. GENERATED FROM PYTHON SOURCE LINES 39-53
+.. GENERATED FROM PYTHON SOURCE LINES 38-43
 
 .. code-block:: default
 
 
-    # Speed reference
-    times = np.array([0, .125, .25, .375, .5, .625, .75, .875, 1])*4
-    values = np.array([0, 0, 1, 1, 0, -1, -1, 0, 0])*base.w
-    ctrl.w_m_ref = mt.Sequence(times, values)
-    # External load torque
-    times = np.array([0, .125, .125, .875, .875, 1])*4
-    values = np.array([0, 0, 1, 1, 0, 0])*base.tau_nom
-    mdl.mech.tau_L_ext = mt.Sequence(times, values)
-
     # Simple acceleration and load torque step
-    # ctrl.w_m_ref = lambda t: (t > .2)*(1.5*base.w)
-    # mdl.mech.tau_L_ext = lambda t: (t > .75)*base.tau_nom*0
+    ctrl.w_m_ref = lambda t: (t > .2)*(2*base.w)
+    mdl.mech.tau_L_ext = lambda t: (t > .8)*base.tau_nom*.7
 
 
 
@@ -132,16 +122,16 @@ Set the speed reference and the external load torque.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 54-55
+.. GENERATED FROM PYTHON SOURCE LINES 44-45
 
 Create the simulation object and simulate it.
 
-.. GENERATED FROM PYTHON SOURCE LINES 55-62
+.. GENERATED FROM PYTHON SOURCE LINES 45-52
 
 .. code-block:: default
 
 
-    sim = mt.Simulation(mdl, ctrl, base=base, enable_pwm=False, t_stop=4)
+    sim = mt.Simulation(mdl, ctrl, base=base, enable_pwm=False, t_stop=1.6)
     start_time = time()  # Start the timer
     sim.simulate()
     # Print the execution time
@@ -158,17 +148,17 @@ Create the simulation object and simulate it.
  .. code-block:: none
 
 
-    Execution time: 10.43 s
+    Execution time: 5.92 s
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 63-65
+.. GENERATED FROM PYTHON SOURCE LINES 53-55
 
 Plot results in per-unit values. By uncommenting the second line you can
 plot the results in SI units.
 
-.. GENERATED FROM PYTHON SOURCE LINES 65-68
+.. GENERATED FROM PYTHON SOURCE LINES 55-58
 
 .. code-block:: default
 
@@ -190,7 +180,7 @@ plot the results in SI units.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  11.160 seconds)
+   **Total running time of the script:** ( 0 minutes  6.562 seconds)
 
 
 .. _sphx_glr_download_auto_examples_sm_plot_flux_vector_pmsm_2kw.py:

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>motulator.model.converter &mdash; motulator 0.0.7 documentation</title>
+  <title>motulator.model.converter &mdash; motulator 0.0.9 documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/copybutton.css" type="text/css" />
@@ -100,7 +101,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="module-motulator.model.converter">
+  <section id="module-motulator.model.converter">
 <span id="motulator-model-converter"></span><h1><a class="reference internal" href="#module-motulator.model.converter" title="motulator.model.converter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">motulator.model.converter</span></code></a><a class="headerlink" href="#module-motulator.model.converter" title="Permalink to this heading"></a></h1>
 <p>Power converter models.</p>
 <p>An inverter with constant DC-bus voltage and a frequency converter with a diode
@@ -108,15 +109,11 @@ front-end rectifier are modeled. Complex space vectors are used also for duty
 ratios and switching states, wherever applicable. In this module, all space
 vectors are in stationary coordinates. The default values correspond to a
 2.2-kW 400-V motor drive.</p>
-<div class="section" id="module-contents">
+<section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
-<div class="section" id="classes">
+<section id="classes">
 <h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#motulator.model.converter.Inverter" title="motulator.model.converter.Inverter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Inverter</span></code></a></p></td>
 <td><p>Inverter with constant DC-bus voltage and switching-cycle averaging.</p></td>
@@ -131,7 +128,7 @@ vectors are in stationary coordinates. The default values correspond to a
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">motulator.model.converter.</span></span><span class="sig-name descname"><span class="pre">Inverter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u_dc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">540</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/model/converter.html#Inverter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.converter.Inverter" title="Permalink to this definition"></a></dt>
 <dd><p>Inverter with constant DC-bus voltage and switching-cycle averaging.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>u_dc</strong> (<em>float</em>) – DC-bus voltage.</p>
 </dd>
 </dl>
@@ -140,16 +137,16 @@ vectors are in stationary coordinates. The default values correspond to a
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ac_voltage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_dc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/model/converter.html#Inverter.ac_voltage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.converter.Inverter.ac_voltage" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the AC-side voltage of a lossless inverter.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>q</strong> (<em>complex</em>) – Switching state vector.</p></li>
 <li><p><strong>u_dc</strong> (<em>float</em>) – DC-bus voltage.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>u_ac</strong> – AC-side voltage.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>complex</p>
 </dd>
 </dl>
@@ -160,16 +157,16 @@ vectors are in stationary coordinates. The default values correspond to a
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dc_current</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_ac</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/model/converter.html#Inverter.dc_current"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.converter.Inverter.dc_current" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the DC-side current of a lossless inverter.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>q</strong> (<em>complex</em>) – Switching state vector.</p></li>
 <li><p><strong>i_ac</strong> (<em>complex</em>) – AC-side current.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>i_dc</strong> – DC-side current.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -180,10 +177,10 @@ vectors are in stationary coordinates. The default values correspond to a
 <span class="sig-name descname"><span class="pre">meas_dc_voltage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/model/converter.html#Inverter.meas_dc_voltage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.converter.Inverter.meas_dc_voltage" title="Permalink to this definition"></a></dt>
 <dd><p>Measure the DC-bus voltage.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>DC-bus voltage.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>float</p>
 </dd>
 </dl>
@@ -200,7 +197,7 @@ vectors are in stationary coordinates. The default values correspond to a
 three-phase diode-bridge rectifier, an LC filter, and a three-phase
 inverter.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>L</strong> (<em>float</em>) – DC-bus inductance.</p></li>
 <li><p><strong>C</strong> (<em>float</em>) – DC-bus capacitance.</p></li>
@@ -214,13 +211,13 @@ inverter.</p>
 <span class="sig-name descname"><span class="pre">grid_voltages</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/model/converter.html#FrequencyConverter.grid_voltages"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.converter.FrequencyConverter.grid_voltages" title="Permalink to this definition"></a></dt>
 <dd><p>Compute three-phase grid voltages.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>t</strong> (<em>float</em>) – Time.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>u_g_abc</strong> – The phase voltages.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>ndarray of floats, shape (3,)</p>
 </dd>
 </dl>
@@ -231,7 +228,7 @@ inverter.</p>
 <span class="sig-name descname"><span class="pre">f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_dc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_L</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_dc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/model/converter.html#FrequencyConverter.f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.converter.FrequencyConverter.f" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the state derivatives.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>t</strong> (<em>float</em>) – Time.</p></li>
 <li><p><strong>u_dc</strong> (<em>float</em>) – DC-bus voltage over the capacitor.</p></li>
@@ -239,10 +236,10 @@ inverter.</p>
 <li><p><strong>i_dc</strong> (<em>float</em>) – Current to the inverter.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Time derivative of the state vector, [du_dc, d_iL]</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list, length 2</p>
 </dd>
 </dl>
@@ -250,9 +247,9 @@ inverter.</p>
 
 </dd></dl>
 
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

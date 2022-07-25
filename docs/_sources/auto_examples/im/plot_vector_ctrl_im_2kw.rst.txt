@@ -179,7 +179,7 @@ model (which makes simulation slower).
  .. code-block:: none
 
 
-    Execution time: 2.53 s
+    Execution time: 3.79 s
 
 
 
@@ -211,7 +211,7 @@ plot the results in SI units.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.088 seconds)
+   **Total running time of the script:** ( 0 minutes  4.612 seconds)
 
 
 .. _sphx_glr_download_auto_examples_im_plot_vector_ctrl_im_2kw.py:

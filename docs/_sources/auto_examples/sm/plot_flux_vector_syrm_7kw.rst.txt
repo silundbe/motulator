@@ -75,7 +75,7 @@ Configure the system model.
 
     # Saturated SyRM model
     motor = mt.SynchronousMotorSaturated()
-    # Magnetically linear model
+    # Magnetically linear SyRM model
     # motor = mt.SynchronousMotor(p=2, R_s=.54, L_d=41.5e-3, L_q=6.2e-3, psi_f=0)
     mech = mt.Mechanics()
     conv = mt.Inverter()
@@ -97,7 +97,7 @@ Configure the control system.
 .. code-block:: default
 
 
-    pars = mt.control.sm_flux_vector.SynchronousMotorFluxVectorCtrlPars(
+    pars = mt.SynchronousMotorFluxVectorCtrlPars(
         sensorless=True,
         T_s=250e-6,
         # Disable MTPA since the control system does not consider the saturation
@@ -109,7 +109,7 @@ Configure the control system.
         tau_M_max=2*base.tau_nom, i_s_max=2*base.i,
         R_s=.54, L_d=41.5e-3*.9, L_q=6.2e-3, psi_f=0, p=2, J=.015,
         w_o=2*np.pi*40, zeta_inf=.2)
-    ctrl = mt.control.sm_flux_vector.SynchronousMotorFluxVectorCtrl(pars)
+    ctrl = mt.SynchronousMotorFluxVectorCtrl(pars)
 
 
 
@@ -169,7 +169,7 @@ Create the simulation object and simulate it.
  .. code-block:: none
 
 
-    Execution time: 10.42 s
+    Execution time: 15.36 s
 
 
 
@@ -201,7 +201,7 @@ plot the results in SI units.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  11.166 seconds)
+   **Total running time of the script:** ( 0 minutes  16.303 seconds)
 
 
 .. _sphx_glr_download_auto_examples_sm_plot_flux_vector_syrm_7kw.py:

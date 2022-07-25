@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>motulator.control.sm_torque &mdash; motulator 0.0.7 documentation</title>
+  <title>motulator.control.sm_torque &mdash; motulator 0.0.9 documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/copybutton.css" type="text/css" />
@@ -100,22 +101,18 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="module-motulator.control.sm_torque">
+  <section id="module-motulator.control.sm_torque">
 <span id="motulator-control-sm-torque"></span><h1><a class="reference internal" href="#module-motulator.control.sm_torque" title="motulator.control.sm_torque"><code class="xref py py-mod docutils literal notranslate"><span class="pre">motulator.control.sm_torque</span></code></a><a class="headerlink" href="#module-motulator.control.sm_torque" title="Permalink to this heading"></a></h1>
 <p>Torque characteristics for synchronous machines.</p>
 <p>This contains computation and plotting of torque characteristics for
 synchronous machines, including the MTPA and MTPV loci. The methods can be used
 to define look-up tables for control as well as to analyze the characteristics.
 In this version, the magnetic saturation is omitted.</p>
-<div class="section" id="module-contents">
+<section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
-<div class="section" id="classes">
+<section id="classes">
 <h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#motulator.control.sm_torque.TorqueCharacteristics" title="motulator.control.sm_torque.TorqueCharacteristics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TorqueCharacteristics</span></code></a></p></td>
 <td><p>Compute MTPA and MTPV loci based on the motor parameters.</p></td>
@@ -128,7 +125,7 @@ In this version, the magnetic saturation is omitted.</p>
 <dd><p>Compute MTPA and MTPV loci based on the motor parameters.</p>
 <p>The magnetic saturation is omitted.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>pars</strong> (<em>data object</em>) – Motor parameters.</p>
 </dd>
 </dl>
@@ -137,13 +134,13 @@ In this version, the magnetic saturation is omitted.</p>
 <span class="sig-name descname"><span class="pre">torque</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_s</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/sm_torque.html#TorqueCharacteristics.torque"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.sm_torque.TorqueCharacteristics.torque" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the torque as a function of the stator flux linkage.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>psi_s</strong> (<em>complex</em>) – Stator flux.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>tau_M</strong> – Electromagnetic torque.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -154,13 +151,13 @@ In this version, the magnetic saturation is omitted.</p>
 <span class="sig-name descname"><span class="pre">current</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_s</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/sm_torque.html#TorqueCharacteristics.current"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.sm_torque.TorqueCharacteristics.current" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the stator current as a function of the stator flux linkage.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>psi_s</strong> (<em>complex</em>) – Stator flux linkage.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>i_s</strong> – Stator current.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>complex</p>
 </dd>
 </dl>
@@ -171,13 +168,13 @@ In this version, the magnetic saturation is omitted.</p>
 <span class="sig-name descname"><span class="pre">flux</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_s</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/sm_torque.html#TorqueCharacteristics.flux"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.sm_torque.TorqueCharacteristics.flux" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the stator flux linkage as a function of the current.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>i_s</strong> (<em>complex</em>) – Stator current.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>psi_s</strong> – Stator flux linkage.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>complex</p>
 </dd>
 </dl>
@@ -188,13 +185,13 @@ In this version, the magnetic saturation is omitted.</p>
 <span class="sig-name descname"><span class="pre">mtpa</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">abs_i_s</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/sm_torque.html#TorqueCharacteristics.mtpa"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.sm_torque.TorqueCharacteristics.mtpa" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the MTPA stator current angle.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>abs_i_s</strong> (<em>float</em>) – Stator current magnitude.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>beta</strong> – MTPA angle of the stator current vector.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -205,13 +202,13 @@ In this version, the magnetic saturation is omitted.</p>
 <span class="sig-name descname"><span class="pre">mtpv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">abs_psi_s</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/sm_torque.html#TorqueCharacteristics.mtpv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.sm_torque.TorqueCharacteristics.mtpv" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the MTPV stator flux angle.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>abs_psi_s</strong> (<em>float</em>) – Stator flux magnitude.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>delta</strong> – MTPV angle of the stator flux vector.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -228,13 +225,13 @@ It is used here to “cut” the MTPV characteristics at the desired
 current. Alternatively just a large enough maximum flux magnitude could
 be used.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>abs_i_s</strong> (<em>float</em>) – Stator current magnitude.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>i_s</strong> – MTPV stator current.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>complex</p>
 </dd>
 </dl>
@@ -245,14 +242,14 @@ be used.</p>
 <span class="sig-name descname"><span class="pre">mtpa_locus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_s_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/sm_torque.html#TorqueCharacteristics.mtpa_locus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.sm_torque.TorqueCharacteristics.mtpa_locus" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the MTPA locus.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>i_s_max</strong> (<em>float</em><em>, </em><em>optional</em>) – Maximum stator current magnitude at which the locus is computed.
 The default is 1.</p></li>
 <li><p><strong>N</strong> (<em>int</em><em>, </em><em>optional</em>) – Amount of points. The default is 20.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p><em>Bunch object with the following fields defined</em></p></li>
 <li><p><strong>psi_s</strong> (<em>complex</em>) – Stator flux.</p></li>
@@ -271,7 +268,7 @@ The default is 1.</p></li>
 <span class="sig-name descname"><span class="pre">mtpv_locus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_s_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_s_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/sm_torque.html#TorqueCharacteristics.mtpv_locus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.sm_torque.TorqueCharacteristics.mtpv_locus" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the MTPV locus.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>psi_s_max</strong> (<em>float</em><em>, </em><em>optional</em>) – Maximum stator flux magnitude at which the locus is computed. The
 default is 1.</p></li>
@@ -280,7 +277,7 @@ The default is None.</p></li>
 <li><p><strong>N</strong> (<em>int</em><em>, </em><em>optional</em>) – Amount of points. The default is 20.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p><em>Bunch object with the following fields defined</em></p></li>
 <li><p><strong>psi_s</strong> (<em>complex</em>) – Stator flux.</p></li>
@@ -298,7 +295,7 @@ The default is None.</p></li>
 <span class="sig-name descname"><span class="pre">current_limit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_s_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">np.pi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/sm_torque.html#TorqueCharacteristics.current_limit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.sm_torque.TorqueCharacteristics.current_limit" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the current limit.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>i_s_max</strong> (<em>float</em><em>, </em><em>optional</em>) – Current limit. The default is 1.</p></li>
 <li><p><strong>gamma1</strong> (<em>float</em><em>, </em><em>optional</em>) – Starting angle in radians. The default is 0.</p></li>
@@ -306,7 +303,7 @@ The default is None.</p></li>
 <li><p><strong>N</strong> (<em>int</em><em>, </em><em>optional</em>) – Amount of points. The default is 20.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p><em>Bunch object with the following fields defined</em></p></li>
 <li><p><strong>psi_s</strong> (<em>complex</em>) – Stator flux.</p></li>
@@ -324,13 +321,13 @@ The default is None.</p></li>
 <span class="sig-name descname"><span class="pre">mtpv_and_current_limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_s_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/sm_torque.html#TorqueCharacteristics.mtpv_and_current_limits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.sm_torque.TorqueCharacteristics.mtpv_and_current_limits" title="Permalink to this definition"></a></dt>
 <dd><p>Merge the MTPV and current limits into a single interpolant.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>i_s_max</strong> (<em>float</em><em>, </em><em>optional</em>) – Current limit. The default is 1.</p></li>
 <li><p><strong>N</strong> (<em>int</em><em>, </em><em>optional</em>) – Amount of points. The default is 20.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p><em>Bunch object with the following fields defined</em></p></li>
 <li><p><strong>tau_M_vs_abs_psi_s</strong> (<em>interp1d object</em>) – Torque as a function of the flux magnitude.</p></li>
@@ -348,13 +345,13 @@ The default is None.</p></li>
 <p>This computes the “nontrivial” load angle value corresponding to the
 zero electromagnetic torque.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>abs_psi_s</strong> (<em>float</em>) – Stator flux magnitude.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>delta</strong> – Load angle at the zero torque.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -366,7 +363,7 @@ zero electromagnetic torque.</p>
 <dd><p>Plot the stator flux linkage loci.</p>
 <p>Per-unit quantities are used.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>i_s_max</strong> (<em>float</em>) – Maximum current at which the loci are evaluated.</p></li>
 <li><p><strong>base</strong> (<em>object</em>) – Base values.</p></li>
@@ -382,7 +379,7 @@ zero electromagnetic torque.</p>
 <dd><p>Plot the current loci.</p>
 <p>Per-unit quantities are used.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>i_s_max</strong> (<em>float</em>) – Maximum current at which the loci are evaluated.</p></li>
 <li><p><strong>base</strong> (<em>object</em>) – Base values.</p></li>
@@ -398,7 +395,7 @@ zero electromagnetic torque.</p>
 <dd><p>Plot torque vs. current characteristics.</p>
 <p>Per-unit quantities are used.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>i_s_max</strong> (<em>float</em>) – Maximum current at which the loci are evaluated.</p></li>
 <li><p><strong>base</strong> (<em>object</em>) – Base values.</p></li>
@@ -414,7 +411,7 @@ zero electromagnetic torque.</p>
 <dd><p>Plot torque vs. flux magnitude characteristics.</p>
 <p>Per-unit quantities are used.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>i_s_max</strong> (<em>float</em>) – Maximum current at which the loci are evaluated.</p></li>
 <li><p><strong>base</strong> (<em>object</em>) – Base values.</p></li>
@@ -430,7 +427,7 @@ zero electromagnetic torque.</p>
 <dd><p>Plot the electromagnetic torque as a function of the load angle.</p>
 <p>Per-unit quantities are used.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>abs_psi_s</strong> (<em>float</em>) – Stator flux magnitude.</p></li>
 <li><p><strong>base</strong> (<em>object</em>) – Base values.</p></li>
@@ -442,9 +439,9 @@ zero electromagnetic torque.</p>
 
 </dd></dl>
 
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

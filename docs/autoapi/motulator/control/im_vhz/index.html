@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>motulator.control.im_vhz &mdash; motulator 0.0.7 documentation</title>
+  <title>motulator.control.im_vhz &mdash; motulator 0.0.9 documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/copybutton.css" type="text/css" />
@@ -100,7 +101,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="module-motulator.control.im_vhz">
+  <section id="module-motulator.control.im_vhz">
 <span id="motulator-control-im-vhz"></span><h1><a class="reference internal" href="#module-motulator.control.im_vhz" title="motulator.control.im_vhz"><code class="xref py py-mod docutils literal notranslate"><span class="pre">motulator.control.im_vhz</span></code></a><a class="headerlink" href="#module-motulator.control.im_vhz" title="Permalink to this heading"></a></h1>
 <p>V/Hz control for induction motor drives.</p>
 <p>The method is similar to <a class="reference internal" href="#r1c4f0ace2b68-1" id="id1">[1]</a>. Open-loop V/Hz control can be obtained as a
@@ -114,22 +115,20 @@ special case by choosing:</p>
 name. These slowly varying quasi-steady-state quantities can be seen to
 represent the operating point (marked with the subscript 0 in <a class="reference internal" href="#r1c4f0ace2b68-1" id="id2">[1]</a>).</p>
 <p class="rubric">References</p>
-<dl class="citation">
-<dt class="label" id="r1c4f0ace2b68-1"><span class="brackets">1</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>)</span></dt>
-<dd><p>Hinkkanen, Tiitinen, Mölsä, Harnefors, “On the stability of
+<div role="list" class="citation-list">
+<div class="citation" id="r1c4f0ace2b68-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id2">2</a>)</span>
+<p>Hinkkanen, Tiitinen, Mölsä, Harnefors, “On the stability of
 volts-per-hertz control for induction motors,” IEEE J. Emerg. Sel. Topics
 Power Electron., 2022, <a class="reference external" href="https://doi.org/10.1109/JESTPE.2021.3060583">https://doi.org/10.1109/JESTPE.2021.3060583</a></p>
-</dd>
-</dl>
-<div class="section" id="module-contents">
+</div>
+</div>
+<section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
-<div class="section" id="classes">
+<section id="classes">
 <h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#motulator.control.im_vhz.InductionMotorVHzCtrlPars" title="motulator.control.im_vhz.InductionMotorVHzCtrlPars"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InductionMotorVHzCtrlPars</span></code></a></p></td>
 <td><p>V/Hz control parameters.</p></td>
@@ -200,7 +199,7 @@ Power Electron., 2022, <a class="reference external" href="https://doi.org/10.11
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">motulator.control.im_vhz.</span></span><span class="sig-name descname"><span class="pre">InductionMotorVHzCtrl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/im_vhz.html#InductionMotorVHzCtrl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.im_vhz.InductionMotorVHzCtrl" title="Permalink to this definition"></a></dt>
 <dd><p>V/Hz control with the stator current feedback.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>pars</strong> (<a class="reference internal" href="#motulator.control.im_vhz.InductionMotorVHzCtrlPars" title="motulator.control.im_vhz.InductionMotorVHzCtrlPars"><em>InductionMotorVHzCtrlPars</em></a>) – Control parameters.</p>
 </dd>
 </dl>
@@ -209,11 +208,11 @@ Power Electron., 2022, <a class="reference external" href="https://doi.org/10.11
 <span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mdl</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/im_vhz.html#InductionMotorVHzCtrl.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.im_vhz.InductionMotorVHzCtrl.__call__" title="Permalink to this definition"></a></dt>
 <dd><p>Main control loop.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>mdl</strong> (<a class="reference internal" href="../../index.html#motulator.InductionMotorDrive" title="motulator.InductionMotorDrive"><em>InductionMotorDrive</em></a>) – Continuous-time model of an induction motor drive for getting the
 feedback signals.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p><strong>T_s</strong> (<em>float</em>) – Sampling period.</p></li>
 <li><p><strong>d_abc_ref</strong> (<em>ndarray, shape (3,)</em>) – Duty ratio references.</p></li>
@@ -245,9 +244,9 @@ coordinate transformations.</p>
 
 </dd></dl>
 
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>motulator &mdash; motulator 0.0.7 documentation</title>
+  <title>motulator &mdash; motulator 0.0.9 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
@@ -107,10 +108,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="module-motulator">
+  <section id="module-motulator">
 <span id="motulator"></span><h1><a class="reference internal" href="#module-motulator" title="motulator"><code class="xref py py-mod docutils literal notranslate"><span class="pre">motulator</span></code></a><a class="headerlink" href="#module-motulator" title="Permalink to this heading"></a></h1>
 <p>motulator: Motor Drive Simulator in Python</p>
-<div class="section" id="subpackages">
+<section id="subpackages">
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
@@ -134,8 +135,8 @@
 </li>
 </ul>
 </div>
-</div>
-<div class="section" id="submodules">
+</section>
+<section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
@@ -144,16 +145,12 @@
 <li class="toctree-l1"><a class="reference internal" href="simulation/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">motulator.simulation</span></code></a></li>
 </ul>
 </div>
-</div>
-<div class="section" id="package-contents">
+</section>
+<section id="package-contents">
 <h2>Package Contents<a class="headerlink" href="#package-contents" title="Permalink to this heading"></a></h2>
-<div class="section" id="classes">
+<section id="classes">
 <h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#motulator.Simulation" title="motulator.Simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Simulation</span></code></a></p></td>
 <td><p>Simulation environment.</p></td>
@@ -210,10 +207,10 @@
 <td><p>Vector control parameters for synchronous motors.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#motulator.SynchronousMotorFluxVectorCtrl" title="motulator.SynchronousMotorFluxVectorCtrl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SynchronousMotorFluxVectorCtrl</span></code></a></p></td>
-<td><p>Flux vector control for synchronous motor drives.</p></td>
+<td><p>Flux-vector control for synchronous motor drives.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#motulator.SynchronousMotorFluxVectorCtrlPars" title="motulator.SynchronousMotorFluxVectorCtrlPars"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SynchronousMotorFluxVectorCtrlPars</span></code></a></p></td>
-<td><p>Control parameters: flux vector control for synchronous motor drives.</p></td>
+<td><p>Control parameters: flux-vector control for synchronous motor drives.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#motulator.BaseValues" title="motulator.BaseValues"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BaseValues</span></code></a></p></td>
 <td><p>Base values.</p></td>
@@ -226,14 +223,10 @@
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="functions">
+</section>
+<section id="functions">
 <h3>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#motulator.abc2complex" title="motulator.abc2complex"><code class="xref py py-obj docutils literal notranslate"><span class="pre">abc2complex</span></code></a>(u)</p></td>
 <td><p>Transform three-phase quantities to a complex space vector.</p></td>
@@ -258,7 +251,7 @@
 <dd><p>Simulation environment.</p>
 <p>Each simulation object has a system model object and a controller object.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>mdl</strong> (<a class="reference internal" href="#motulator.InductionMotorDrive" title="motulator.InductionMotorDrive"><em>InductionMotorDrive</em></a><em> | </em><a class="reference internal" href="#motulator.SynchronousMotorDrive" title="motulator.SynchronousMotorDrive"><em>SynchronousMotorDrive</em></a>) – Continuous-time system model.</p></li>
 <li><p><strong>ctrl</strong> (<a class="reference internal" href="#motulator.SynchronousMotorVectorCtrl" title="motulator.SynchronousMotorVectorCtrl"><em>SynchronousMotorVectorCtrl</em></a><em> | </em><a class="reference internal" href="#motulator.InductionMotorVectorCtrl" title="motulator.InductionMotorVectorCtrl"><em>InductionMotorVectorCtrl</em></a><em> |</em>) – InductionMotorVHzCtrl
@@ -275,7 +268,7 @@ Discrete-time controller.</p></li>
 <span class="sig-name descname"><span class="pre">simulate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">np.inf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.Simulation.simulate" title="Permalink to this definition"></a></dt>
 <dd><p>Solve the continuous-time model and call the discrete-time controller.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>max_step</strong> (<em>float</em><em>, </em><em>optional</em>) – Max step size of the solver. The default is inf.</p>
 </dd>
 </dl>
@@ -289,7 +282,7 @@ simplicity, only max_step is included as an option of this method.</p>
 <span class="sig-name descname"><span class="pre">save_mat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sim'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.Simulation.save_mat" title="Permalink to this definition"></a></dt>
 <dd><p>Save the simulation data into MATLAB .mat files.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>name</strong> (<em>str</em><em>, </em><em>optional</em>) – Name for the simulation instance. The default is ‘sim’.</p>
 </dd>
 </dl>
@@ -303,7 +296,7 @@ simplicity, only max_step is included as an option of this method.</p>
 <dd><p>Mechanics subsystem.</p>
 <p>This models an equation of motion for stiff mechanics.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>J</strong> (<em>float</em>) – Total moment of inertia.</p></li>
 <li><p><strong>B</strong> (<em>float</em>) – Viscous damping coefficient.</p></li>
@@ -316,17 +309,17 @@ simplicity, only max_step is included as an option of this method.</p>
 <span class="sig-name descname"><span class="pre">f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_M</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau_M</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.Mechanics.f" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the state derivative.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>t</strong> (<em>float</em>) – Time.</p></li>
 <li><p><strong>w_M</strong> (<em>float</em>) – Rotor angular speed (in mechanical rad/s).</p></li>
 <li><p><strong>tau_M</strong> (<em>float</em>) – Electromagnetic torque.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Time derivative of the state vector.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list, length 2</p>
 </dd>
 </dl>
@@ -338,10 +331,10 @@ simplicity, only max_step is included as an option of this method.</p>
 <dd><p>Measure the rotor speed.</p>
 <p>This returns the rotor speed at the end of the sampling period.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>w_M0</strong> – Rotor angular speed (in mechanical rad/s).</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>float</p>
 </dd>
 </dl>
@@ -353,10 +346,10 @@ simplicity, only max_step is included as an option of this method.</p>
 <dd><p>Measure the rotor angle.</p>
 <p>This returns the rotor angle at the end of the sampling period.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>theta_M0</strong> – Rotor angle (in mechanical rad).</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>float</p>
 </dd>
 </dl>
@@ -369,7 +362,7 @@ simplicity, only max_step is included as an option of this method.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">motulator.</span></span><span class="sig-name descname"><span class="pre">Inverter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u_dc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">540</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/motulator/model/converter.html#Inverter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.Inverter" title="Permalink to this definition"></a></dt>
 <dd><p>Inverter with constant DC-bus voltage and switching-cycle averaging.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>u_dc</strong> (<em>float</em>) – DC-bus voltage.</p>
 </dd>
 </dl>
@@ -378,16 +371,16 @@ simplicity, only max_step is included as an option of this method.</p>
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ac_voltage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_dc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.Inverter.ac_voltage" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the AC-side voltage of a lossless inverter.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>q</strong> (<em>complex</em>) – Switching state vector.</p></li>
 <li><p><strong>u_dc</strong> (<em>float</em>) – DC-bus voltage.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>u_ac</strong> – AC-side voltage.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>complex</p>
 </dd>
 </dl>
@@ -398,16 +391,16 @@ simplicity, only max_step is included as an option of this method.</p>
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dc_current</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_ac</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.Inverter.dc_current" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the DC-side current of a lossless inverter.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>q</strong> (<em>complex</em>) – Switching state vector.</p></li>
 <li><p><strong>i_ac</strong> (<em>complex</em>) – AC-side current.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>i_dc</strong> – DC-side current.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -418,10 +411,10 @@ simplicity, only max_step is included as an option of this method.</p>
 <span class="sig-name descname"><span class="pre">meas_dc_voltage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.Inverter.meas_dc_voltage" title="Permalink to this definition"></a></dt>
 <dd><p>Measure the DC-bus voltage.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>DC-bus voltage.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>float</p>
 </dd>
 </dl>
@@ -438,7 +431,7 @@ simplicity, only max_step is included as an option of this method.</p>
 three-phase diode-bridge rectifier, an LC filter, and a three-phase
 inverter.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>L</strong> (<em>float</em>) – DC-bus inductance.</p></li>
 <li><p><strong>C</strong> (<em>float</em>) – DC-bus capacitance.</p></li>
@@ -452,13 +445,13 @@ inverter.</p>
 <span class="sig-name descname"><span class="pre">grid_voltages</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.FrequencyConverter.grid_voltages" title="Permalink to this definition"></a></dt>
 <dd><p>Compute three-phase grid voltages.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>t</strong> (<em>float</em>) – Time.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>u_g_abc</strong> – The phase voltages.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>ndarray of floats, shape (3,)</p>
 </dd>
 </dl>
@@ -469,7 +462,7 @@ inverter.</p>
 <span class="sig-name descname"><span class="pre">f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_dc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_L</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_dc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.FrequencyConverter.f" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the state derivatives.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>t</strong> (<em>float</em>) – Time.</p></li>
 <li><p><strong>u_dc</strong> (<em>float</em>) – DC-bus voltage over the capacitor.</p></li>
@@ -477,10 +470,10 @@ inverter.</p>
 <li><p><strong>i_dc</strong> (<em>float</em>) – Current to the inverter.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Time derivative of the state vector, [du_dc, d_iL]</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list, length 2</p>
 </dd>
 </dl>
@@ -495,7 +488,7 @@ inverter.</p>
 <p>An induction motor is modeled using the Γ-equivalent model <a href="#id14"><span class="problematic" id="id1">[1]_</span></a>. The model
 is implemented in stator coordinates.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>p</strong> (<em>int</em>) – Number of pole pairs.</p></li>
 <li><p><strong>R_s</strong> (<em>float</em>) – Stator resistance.</p></li>
@@ -511,24 +504,23 @@ saturation model in a staightforward manner. If the magnetic saturation is
 omitted, the Γ model is mathematically identical to the inverse-Γ and T
 models <a href="#id15"><span class="problematic" id="id2">[1]_</span></a>.</p>
 <p class="rubric">References</p>
-<dl class="footnote brackets">
-<dt class="label" id="id3"><span class="brackets">1</span></dt>
-<dd><p>Slemon, “Modelling of induction machines for electric drives,” IEEE
+<aside class="footnote brackets" id="id3" role="note">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<p>Slemon, “Modelling of induction machines for electric drives,” IEEE
 Trans. Ind. Appl., 1989, <a class="reference external" href="https://doi.org/10.1109/28.44251">https://doi.org/10.1109/28.44251</a>.</p>
-</dd>
-</dl>
+</aside>
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.InductionMotor.currents">
 <span class="sig-name descname"><span class="pre">currents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_ss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_rs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotor.currents" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the stator and rotor currents.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>psi_ss</strong> (<em>complex</em>) – Stator flux linkage.</p></li>
 <li><p><strong>psi_rs</strong> (<em>complex</em>) – Rotor flux linkage.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p><strong>i_ss</strong> (<em>complex</em>) – Stator current.</p></li>
 <li><p><strong>i_rs</strong> (<em>complex</em>) – Rotor current.</p></li>
@@ -543,16 +535,16 @@ Trans. Ind. Appl., 1989, <a class="reference external" href="https://doi.org/10.
 <span class="sig-name descname"><span class="pre">torque</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_ss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_ss</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotor.torque" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the electromagnetic torque.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>psi_ss</strong> (<em>complex</em>) – Stator flux linkage.</p></li>
 <li><p><strong>i_ss</strong> (<em>complex</em>) – Stator current.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>tau_M</strong> – Electromagnetic torque.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -563,7 +555,7 @@ Trans. Ind. Appl., 1989, <a class="reference external" href="https://doi.org/10.
 <span class="sig-name descname"><span class="pre">f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_ss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_rs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_ss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_M</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotor.f" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the state derivatives.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>psi_ss</strong> (<em>complex</em>) – Stator flux linkage.</p></li>
 <li><p><strong>psi_rs</strong> (<em>complex</em>) – Rotor flux linkage.</p></li>
@@ -571,10 +563,10 @@ Trans. Ind. Appl., 1989, <a class="reference external" href="https://doi.org/10.
 <li><p><strong>w_M</strong> (<em>float</em>) – Rotor angular speed (in mechanical rad/s).</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Time derivative of the state vector, [dpsi_ss, dpsi_rs]</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>complex list, length 2</p>
 </dd>
 </dl>
@@ -585,10 +577,10 @@ Trans. Ind. Appl., 1989, <a class="reference external" href="https://doi.org/10.
 <span class="sig-name descname"><span class="pre">meas_currents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotor.meas_currents" title="Permalink to this definition"></a></dt>
 <dd><p>Measure the phase currents at the end of the sampling period.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>i_s_abc</strong> – Phase currents.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>3-tuple of floats</p>
 </dd>
 </dl>
@@ -607,7 +599,7 @@ model <a href="#id16"><span class="problematic" id="id4">[2]_</span></a>:</p>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>p</strong> (<em>int</em>) – Number of pole pairs.</p></li>
 <li><p><strong>R_s</strong> (<em>float</em>) – Stator resistance.</p></li>
@@ -620,13 +612,12 @@ model <a href="#id16"><span class="problematic" id="id4">[2]_</span></a>:</p>
 </dd>
 </dl>
 <p class="rubric">References</p>
-<dl class="footnote brackets">
-<dt class="label" id="id5"><span class="brackets">2</span></dt>
-<dd><p>Qu, Ranta, Hinkkanen, Luomi, “Loss-minimizing flux level control of
+<aside class="footnote brackets" id="id5" role="note">
+<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
+<p>Qu, Ranta, Hinkkanen, Luomi, “Loss-minimizing flux level control of
 induction motor drives,” IEEE Trans. Ind. Appl., 2012,
 <a class="reference external" href="https://doi.org/10.1109/TIA.2012.2190818">https://doi.org/10.1109/TIA.2012.2190818</a></p>
-</dd>
-</dl>
+</aside>
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.InductionMotorSaturated.currents">
 <span class="sig-name descname"><span class="pre">currents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_ss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_rs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorSaturated.currents" title="Permalink to this definition"></a></dt>
@@ -644,7 +635,7 @@ induction motor drives,” IEEE Trans. Ind. Appl., 2012,
 the interface for the inverse-Γ model parameters. Linear magnetics are
 assumed. If magnetic saturation is to be modeled, the Γ model is preferred.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>p</strong> (<em>int</em>) – Number of pole pairs.</p></li>
 <li><p><strong>R_s</strong> (<em>float</em>) – Stator resistance.</p></li>
@@ -663,7 +654,7 @@ assumed. If magnetic saturation is to be modeled, the Γ model is preferred.</p>
 <p>This models a synchronous motor in rotor coordinates. The default values
 correspond to a 2.2-kW permanent-magnet synchronous motor.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>p</strong> (<em>int</em>) – Number of pole pairs.</p></li>
 <li><p><strong>R_s</strong> (<em>float</em>) – Stator resistance.</p></li>
@@ -680,13 +671,13 @@ transformation in the measure_currents method.</p></li>
 <span class="sig-name descname"><span class="pre">current</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotor.current" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the stator current.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>psi_s</strong> (<em>complex</em>) – Stator flux linkage.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>i_s</strong> – Stator current.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>complex</p>
 </dd>
 </dl>
@@ -697,16 +688,16 @@ transformation in the measure_currents method.</p></li>
 <span class="sig-name descname"><span class="pre">torque</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotor.torque" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the electromagnetic torque.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>psi_s</strong> (<em>complex</em>) – Stator flux linkage.</p></li>
 <li><p><strong>i_s</strong> (<em>complex</em>) – Stator current.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>tau_M</strong> – Electromagnetic torque.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -717,17 +708,17 @@ transformation in the measure_currents method.</p></li>
 <span class="sig-name descname"><span class="pre">f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_M</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotor.f" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the state derivative.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>psi_s</strong> (<em>complex</em>) – Stator flux linkage.</p></li>
 <li><p><strong>u_s</strong> (<em>complex</em>) – Stator voltage.</p></li>
 <li><p><strong>w_M</strong> (<em>float</em>) – Rotor angular speed (in mechanical rad/s).</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>dpsi_s</strong> – Time derivative of the stator flux linkage.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>complex</p>
 </dd>
 </dl>
@@ -738,10 +729,10 @@ transformation in the measure_currents method.</p></li>
 <span class="sig-name descname"><span class="pre">meas_currents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotor.meas_currents" title="Permalink to this definition"></a></dt>
 <dd><p>Measure the phase currents at the end of the sampling period.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>i_s_abc</strong> – Phase currents.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>3-tuple of floats</p>
 </dd>
 </dl>
@@ -759,7 +750,7 @@ model <a href="#id17"><span class="problematic" id="id6">[1]_</span></a>, <a hre
 d-axis. The default values correspond to a 6.7-kW synchronous reluctance
 motor.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>p</strong> (<em>int</em>) – Number of pole pairs.</p></li>
 <li><p><strong>R_s</strong> (<em>float</em>) – Stator resistance.</p></li>
@@ -773,7 +764,7 @@ linear case, <cite>a_q0 = 1/L_q</cite>.</p></li>
 <cite>S</cite>. In the magnetically linear case, <cite>a_dd = 0</cite>.</p></li>
 <li><p><strong>a_qq</strong> (<em>float</em>) – Nonnegative constant defining the q-axis self-saturation together with
 <cite>T</cite>. In the magnetically linear case, <cite>a_qq = 0</cite>.</p></li>
-<li><p><strong>a_dq</strong> (<em>float</em>) – Nonnegative constants defining the cross-saturation together with <cite>U</cite>
+<li><p><strong>a_dq</strong> (<em>float</em>) – Nonnegative constant defining the cross-saturation together with <cite>U</cite>
 and <cite>V</cite>. In the magnetically linear case, <cite>a_dq = 0</cite>.</p></li>
 <li><p><strong>S</strong> (<em>float</em>) – Nonnegative constant defining the d-axis self-saturation.</p></li>
 <li><p><strong>T</strong> (<em>float</em>) – Nonnegative constant defining the q-axis self-saturation.</p></li>
@@ -786,34 +777,36 @@ transformation in the measure_currents method.</p></li>
 </dl>
 <p class="rubric">Notes</p>
 <p>The magnetomotive force (MMF) of the PMs is modeled using constant current
-source <cite>i_f</cite> on the d-axis <a class="footnote-reference brackets" href="#id12" id="id8">3</a>. Correspondingly, this approach assumes
+source <cite>i_f</cite> on the d-axis <a class="footnote-reference brackets" href="#id12" id="id8" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>. Correspondingly, this approach assumes
 that the MMFs of the d-axis current and of the PMs are in series. This
-model cannot capture the desaturation phenomenon of thin iron ribs <a class="footnote-reference brackets" href="#id13" id="id9">4</a>.
+model cannot capture the desaturation phenomenon of thin iron ribs <a class="footnote-reference brackets" href="#id13" id="id9" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a>.
 For such motors, look-up tables can be used (see scipy.interpolate).</p>
 <p class="rubric">References</p>
-<dl class="footnote brackets">
-<dt class="label" id="id10"><span class="brackets">1</span></dt>
-<dd><p>Hinkkanen, Pescetto, Mölsä, Saarakkala, Pellegrino, Bojoi,
+<aside class="footnote brackets" id="id10" role="note">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<p>Hinkkanen, Pescetto, Mölsä, Saarakkala, Pellegrino, Bojoi,
 “Sensorless self-commissioning of synchronous reluctance motors at
 standstill without rotor locking, ”IEEE Trans. Ind. Appl., 2017,
 <a class="reference external" href="https://doi.org/10.1109/TIA.2016.2644624">https://doi.org/10.1109/TIA.2016.2644624</a></p>
-</dd>
-<dt class="label" id="id11"><span class="brackets">2</span></dt>
-<dd><p>Awan, Song, Saarakkala, Hinkkanen, “Optimal torque control of
+</aside>
+<aside class="footnote brackets" id="id11" role="note">
+<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
+<p>Awan, Song, Saarakkala, Hinkkanen, “Optimal torque control of
 saturated synchronous motors: plug-and-play method,” IEEE Trans. Ind.
 Appl., 2018, <a class="reference external" href="https://doi.org/10.1109/TIA.2018.2862410">https://doi.org/10.1109/TIA.2018.2862410</a></p>
-</dd>
-<dt class="label" id="id12"><span class="brackets"><a class="fn-backref" href="#id8">3</a></span></dt>
-<dd><p>Jahns, Kliman, Neumann, “Interior permanent-magnet synchronous
+</aside>
+<aside class="footnote brackets" id="id12" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">3</a><span class="fn-bracket">]</span></span>
+<p>Jahns, Kliman, Neumann, “Interior permanent-magnet synchronous
 motors for adjustable-speed drives,” IEEE Trans. Ind. Appl., 1986,
 <a class="reference external" href="https://doi.org/10.1109/TIA.1986.4504786">https://doi.org/10.1109/TIA.1986.4504786</a></p>
-</dd>
-<dt class="label" id="id13"><span class="brackets"><a class="fn-backref" href="#id9">4</a></span></dt>
-<dd><p>Armando, Guglielmi, Pellegrino, Pastorelli, Vagati, “Accurate
+</aside>
+<aside class="footnote brackets" id="id13" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id9">4</a><span class="fn-bracket">]</span></span>
+<p>Armando, Guglielmi, Pellegrino, Pastorelli, Vagati, “Accurate
 modeling and performance analysis of IPM-PMASR motors,” IEEE Trans. Ind.
 Appl., 2009, <a class="reference external" href="https://doi.org/10.1109/TIA.2008.2009493">https://doi.org/10.1109/TIA.2008.2009493</a></p>
-</dd>
-</dl>
+</aside>
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.SynchronousMotorSaturated.current">
 <span class="sig-name descname"><span class="pre">current</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotorSaturated.current" title="Permalink to this definition"></a></dt>
@@ -830,7 +823,7 @@ Appl., 2009, <a class="reference external" href="https://doi.org/10.1109/TIA.200
 an interface to the solver. More complicated systems could be modeled using
 a similar template.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>motor</strong> (<a class="reference internal" href="#motulator.InductionMotor" title="motulator.InductionMotor"><em>InductionMotor</em></a><em> | </em><a class="reference internal" href="#motulator.InductionMotorSaturated" title="motulator.InductionMotorSaturated"><em>InductionMotorSaturated</em></a>) – Induction motor model.</p></li>
 <li><p><strong>mech</strong> (<a class="reference internal" href="#motulator.Mechanics" title="motulator.Mechanics"><em>Mechanics</em></a>) – Mechanics model.</p></li>
@@ -843,10 +836,10 @@ a similar template.</p>
 <span class="sig-name descname"><span class="pre">get_initial_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorDrive.get_initial_values" title="Permalink to this definition"></a></dt>
 <dd><p>Get the initial values.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>x0</strong> – Initial values of the state variables.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>complex list, length 4</p>
 </dd>
 </dl>
@@ -857,7 +850,7 @@ a similar template.</p>
 <span class="sig-name descname"><span class="pre">set_initial_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorDrive.set_initial_values" title="Permalink to this definition"></a></dt>
 <dd><p>Set the initial values.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>x0</strong> (<em>complex ndarray</em>) – Initial values of the state variables.</p>
 </dd>
 </dl>
@@ -868,16 +861,16 @@ a similar template.</p>
 <span class="sig-name descname"><span class="pre">f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorDrive.f" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the complete state derivative list for the solver.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>t</strong> (<em>float</em>) – Time.</p></li>
 <li><p><strong>x</strong> (<em>complex ndarray</em>) – State vector.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>State derivatives.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>complex list</p>
 </dd>
 </dl>
@@ -888,7 +881,7 @@ a similar template.</p>
 <span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorDrive.save" title="Permalink to this definition"></a></dt>
 <dd><p>Save the solution.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>sol</strong> (<em>Bunch object</em>) – Solution from the solver.</p>
 </dd>
 </dl>
@@ -911,7 +904,7 @@ a similar template.</p>
 three-phase diode bridge fed from stiff supply voltages. The DC bus is
 modeled as an inductor and a capacitor.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>motor</strong> (<a class="reference internal" href="#motulator.InductionMotor" title="motulator.InductionMotor"><em>InductionMotor</em></a><em> | </em><a class="reference internal" href="#motulator.InductionMotorSaturated" title="motulator.InductionMotorSaturated"><em>InductionMotorSaturated</em></a>) – Induction motor model.</p></li>
 <li><p><strong>mech</strong> (<a class="reference internal" href="#motulator.Mechanics" title="motulator.Mechanics"><em>Mechanics</em></a>) – Mechanics model.</p></li>
@@ -924,10 +917,10 @@ modeled as an inductor and a capacitor.</p>
 <span class="sig-name descname"><span class="pre">get_initial_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorDriveDiode.get_initial_values" title="Permalink to this definition"></a></dt>
 <dd><p>Get the initial values.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>x0</strong> – Initial values of the state variables.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>complex list, length 4</p>
 </dd>
 </dl>
@@ -938,7 +931,7 @@ modeled as an inductor and a capacitor.</p>
 <span class="sig-name descname"><span class="pre">set_initial_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorDriveDiode.set_initial_values" title="Permalink to this definition"></a></dt>
 <dd><p>Set the initial values.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>x0</strong> (<em>complex ndarray</em>) – Initial values of the state variables.</p>
 </dd>
 </dl>
@@ -949,16 +942,16 @@ modeled as an inductor and a capacitor.</p>
 <span class="sig-name descname"><span class="pre">f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorDriveDiode.f" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the complete state derivative list for the solver.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>t</strong> (<em>float</em>) – Time.</p></li>
 <li><p><strong>x</strong> (<em>complex ndarray</em>) – State vector.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>State derivatives.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>complex list</p>
 </dd>
 </dl>
@@ -969,7 +962,7 @@ modeled as an inductor and a capacitor.</p>
 <span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorDriveDiode.save" title="Permalink to this definition"></a></dt>
 <dd><p>Save the solution.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>sol</strong> (<em>Bunch object</em>) – Solution from the solver.</p>
 </dd>
 </dl>
@@ -991,7 +984,7 @@ modeled as an inductor and a capacitor.</p>
 an interface to the solver. More complicated systems could be modeled using
 a similar template.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>motor</strong> (<a class="reference internal" href="#motulator.SynchronousMotor" title="motulator.SynchronousMotor"><em>SynchronousMotor</em></a>) – Synchronous motor model.</p></li>
 <li><p><strong>mech</strong> (<a class="reference internal" href="#motulator.Mechanics" title="motulator.Mechanics"><em>Mechanics</em></a>) – Mechanics model.</p></li>
@@ -1004,10 +997,10 @@ a similar template.</p>
 <span class="sig-name descname"><span class="pre">get_initial_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotorDrive.get_initial_values" title="Permalink to this definition"></a></dt>
 <dd><p>Get the initial values.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>x0</strong> – Initial values of the state variables.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>complex list, length 2</p>
 </dd>
 </dl>
@@ -1018,7 +1011,7 @@ a similar template.</p>
 <span class="sig-name descname"><span class="pre">set_initial_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotorDrive.set_initial_values" title="Permalink to this definition"></a></dt>
 <dd><p>Set the initial values.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>x0</strong> (<em>complex ndarray</em>) – Initial values of the state variables.</p>
 </dd>
 </dl>
@@ -1029,16 +1022,16 @@ a similar template.</p>
 <span class="sig-name descname"><span class="pre">f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotorDrive.f" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the complete state derivative list for the solver.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>t</strong> (<em>float</em>) – Time.</p></li>
 <li><p><strong>x</strong> (<em>complex ndarray</em>) – State vector.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>State derivatives.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>complex list</p>
 </dd>
 </dl>
@@ -1049,7 +1042,7 @@ a similar template.</p>
 <span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotorDrive.save" title="Permalink to this definition"></a></dt>
 <dd><p>Save the solution.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>sol</strong> (<em>Bunch object</em>) – Solution from the solver.</p>
 </dd>
 </dl>
@@ -1068,7 +1061,7 @@ a similar template.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">motulator.</span></span><span class="sig-name descname"><span class="pre">InductionMotorVHzCtrl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/motulator/control/im_vhz.html#InductionMotorVHzCtrl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.InductionMotorVHzCtrl" title="Permalink to this definition"></a></dt>
 <dd><p>V/Hz control with the stator current feedback.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>pars</strong> (<a class="reference internal" href="#motulator.InductionMotorVHzCtrlPars" title="motulator.InductionMotorVHzCtrlPars"><em>InductionMotorVHzCtrlPars</em></a>) – Control parameters.</p>
 </dd>
 </dl>
@@ -1077,11 +1070,11 @@ a similar template.</p>
 <span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mdl</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorVHzCtrl.__call__" title="Permalink to this definition"></a></dt>
 <dd><p>Main control loop.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>mdl</strong> (<a class="reference internal" href="#motulator.InductionMotorDrive" title="motulator.InductionMotorDrive"><em>InductionMotorDrive</em></a>) – Continuous-time model of an induction motor drive for getting the
 feedback signals.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p><strong>T_s</strong> (<em>float</em>) – Sampling period.</p></li>
 <li><p><strong>d_abc_ref</strong> (<em>ndarray, shape (3,)</em>) – Duty ratio references.</p></li>
@@ -1176,7 +1169,7 @@ coordinate transformations.</p>
 <p>This class interconnects the subsystems of the control system and
 provides the interface to the solver.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>pars</strong> (<em>InductionMotorVectorControlPars</em>) – Control parameters.</p>
 </dd>
 </dl>
@@ -1185,11 +1178,11 @@ provides the interface to the solver.</p>
 <span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mdl</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorVectorCtrl.__call__" title="Permalink to this definition"></a></dt>
 <dd><p>Main control loop.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>mdl</strong> (<a class="reference internal" href="#motulator.InductionMotorDrive" title="motulator.InductionMotorDrive"><em>InductionMotorDrive</em></a>) – Continuous-time model of an induction motor drive for getting the
 feedback signals.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p><strong>T_s</strong> (<em>float</em>) – Sampling period.</p></li>
 <li><p><strong>d_abc_ref</strong> (<em>ndarray, shape (3,)</em>) – Duty ratio references.</p></li>
@@ -1300,7 +1293,7 @@ feedback signals.</p>
 <p>This class interconnects the subsystems of the control system and
 provides the interface to the solver.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>pars</strong> (<a class="reference internal" href="#motulator.SynchronousMotorVectorCtrlPars" title="motulator.SynchronousMotorVectorCtrlPars"><em>SynchronousMotorVectorCtrlPars</em></a>) – Control parameters.</p>
 </dd>
 </dl>
@@ -1309,11 +1302,11 @@ provides the interface to the solver.</p>
 <span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mdl</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotorVectorCtrl.__call__" title="Permalink to this definition"></a></dt>
 <dd><p>Main control loop.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>mdl</strong> (<a class="reference internal" href="#motulator.SynchronousMotorDrive" title="motulator.SynchronousMotorDrive"><em>SynchronousMotorDrive</em></a>) – Continuous-time model of a synchronous motor drive for getting the
 feedback signals.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p><strong>T_s</strong> (<em>float</em>) – Sampling period.</p></li>
 <li><p><strong>d_abc_ref</strong> (<em>ndarray, shape (3,)</em>) – Duty ratio references.</p></li>
@@ -1435,7 +1428,7 @@ feedback signals.</p>
 <span class="sig-name descname"><span class="pre">plot_luts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotorVectorCtrlPars.plot_luts" title="Permalink to this definition"></a></dt>
 <dd><p>Plot control look-up tables.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>base</strong> (<a class="reference internal" href="#motulator.BaseValues" title="motulator.BaseValues"><em>BaseValues</em></a>) – Base values for scaling the plots.</p>
 </dd>
 </dl>
@@ -1446,11 +1439,11 @@ feedback signals.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="motulator.SynchronousMotorFluxVectorCtrl">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">motulator.</span></span><span class="sig-name descname"><span class="pre">SynchronousMotorFluxVectorCtrl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SynchronousMotorFluxVectorCtrlPars()</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/motulator/control/sm_flux_vector.html#SynchronousMotorFluxVectorCtrl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrl" title="Permalink to this definition"></a></dt>
-<dd><p>Flux vector control for synchronous motor drives.</p>
+<dd><p>Flux-vector control for synchronous motor drives.</p>
 <p>This class interconnects the subsystems of the control system and
 provides the interface to the solver.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>pars</strong> (<em>SynchronousMotoroFluxVectorCtrlPars</em>) – Control parameters.</p>
 </dd>
 </dl>
@@ -1459,11 +1452,11 @@ provides the interface to the solver.</p>
 <span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mdl</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrl.__call__" title="Permalink to this definition"></a></dt>
 <dd><p>Main control loop.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>mdl</strong> (<a class="reference internal" href="#motulator.SynchronousMotorDrive" title="motulator.SynchronousMotorDrive"><em>SynchronousMotorDrive</em></a>) – Continuous-time model of a synchronous motor drive for getting the
 feedback signals.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p><strong>T_s</strong> (<em>float</em>) – Sampling period.</p></li>
 <li><p><strong>d_abc_ref</strong> (<em>ndarray, shape (3,)</em>) – Duty ratio references.</p></li>
@@ -1484,7 +1477,7 @@ feedback signals.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="motulator.SynchronousMotorFluxVectorCtrlPars">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">motulator.</span></span><span class="sig-name descname"><span class="pre">SynchronousMotorFluxVectorCtrlPars</span></span><a class="reference internal" href="../../_modules/motulator/control/sm_flux_vector.html#SynchronousMotorFluxVectorCtrlPars"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrlPars" title="Permalink to this definition"></a></dt>
-<dd><p>Control parameters: flux vector control for synchronous motor drives.</p>
+<dd><p>Control parameters: flux-vector control for synchronous motor drives.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="motulator.SynchronousMotorFluxVectorCtrlPars.w_m_ref">
 <span class="sig-name descname"><span class="pre">w_m_ref</span></span><em class="property"><span class="w"> </span><span class="pre">:collections.abc.Callable[[float],</span> <span class="pre">float]</span></em><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrlPars.w_m_ref" title="Permalink to this definition"></a></dt>
@@ -1517,7 +1510,7 @@ feedback signals.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="motulator.SynchronousMotorFluxVectorCtrlPars.k_u">
-<span class="sig-name descname"><span class="pre">k_u</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span> <span class="pre">=</span> <span class="pre">0.95</span></em><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrlPars.k_u" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">k_u</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span> <span class="pre">=</span> <span class="pre">0.9</span></em><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrlPars.k_u" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -1640,13 +1633,13 @@ pairs. They can be used, e.g., for scaling the plotted waveforms.</p>
 <span class="sig-prename descclassname"><span class="pre">motulator.</span></span><span class="sig-name descname"><span class="pre">abc2complex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/motulator/helpers.html#abc2complex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.abc2complex" title="Permalink to this definition"></a></dt>
 <dd><p>Transform three-phase quantities to a complex space vector.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>u</strong> (<em>array_like</em><em>, </em><em>shape</em><em> (</em><em>3</em><em>,</em><em>)</em>) – Phase quantities.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Complex space vector (peak-value scaling).</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>complex</p>
 </dd>
 </dl>
@@ -1663,13 +1656,13 @@ pairs. They can be used, e.g., for scaling the plotted waveforms.</p>
 <span class="sig-prename descclassname"><span class="pre">motulator.</span></span><span class="sig-name descname"><span class="pre">complex2abc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/motulator/helpers.html#complex2abc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.complex2abc" title="Permalink to this definition"></a></dt>
 <dd><p>Transform a complex space vector to three-phase quantities.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>u</strong> (<em>complex</em>) – Complex space vector (peak-value scaling).</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Phase quantities.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>ndarray, shape (3,)</p>
 </dd>
 </dl>
@@ -1688,7 +1681,7 @@ pairs. They can be used, e.g., for scaling the plotted waveforms.</p>
 <p>This represents a sequence generator. The time array must be increasing.
 The output values are interpolated between the data points.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>times</strong> (<em>ndarray</em>) – Time values.</p></li>
 <li><p><strong>values</strong> (<em>ndarray</em>) – Output values.</p></li>
@@ -1701,13 +1694,13 @@ The output values are interpolated between the data points.</p>
 <span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.Sequence.__call__" title="Permalink to this definition"></a></dt>
 <dd><p>Interpolate the output.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>t</strong> (<em>float</em>) – Time.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Interpolated output.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float or complex</p>
 </dd>
 </dl>
@@ -1730,13 +1723,13 @@ The output values are interpolated between the data points.</p>
 <span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.Step.__call__" title="Permalink to this definition"></a></dt>
 <dd><p>Step function.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>t</strong> (<em>float</em>) – Time.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Step output.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -1755,7 +1748,7 @@ The output values are interpolated between the data points.</p>
 <span class="sig-prename descclassname"><span class="pre">motulator.</span></span><span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/motulator/plots.html#plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.plot" title="Permalink to this definition"></a></dt>
 <dd><p>Plot example figures in SI units.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>sim</strong> (<em>Simulation object</em>) – Should contain the simulated data.</p>
 </dd>
 </dl>
@@ -1766,7 +1759,7 @@ The output values are interpolated between the data points.</p>
 <span class="sig-prename descclassname"><span class="pre">motulator.</span></span><span class="sig-name descname"><span class="pre">plot_pu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/motulator/plots.html#plot_pu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.plot_pu" title="Permalink to this definition"></a></dt>
 <dd><p>Plot example figures in per units.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>sim</strong> (<em>Simulation object</em>) – Should contain the simulated data.</p>
 </dd>
 </dl>
@@ -1777,7 +1770,7 @@ The output values are interpolated between the data points.</p>
 <span class="sig-prename descclassname"><span class="pre">motulator.</span></span><span class="sig-name descname"><span class="pre">plot_extra_pu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_zoom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1.1,</span> <span class="pre">1.125)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/motulator/plots.html#plot_extra_pu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.plot_extra_pu" title="Permalink to this definition"></a></dt>
 <dd><p>Plot extra waveforms for a motor drive with a diode bridge.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>sim</strong> (<em>Simulation object</em>) – Should contain the simulated data.</p></li>
 <li><p><strong>t_zoom</strong> (<em>2-tuple</em><em>, </em><em>optional</em>) – Time span. The default is (1.1, 1.125).</p></li>
@@ -1786,9 +1779,9 @@ The output values are interpolated between the data points.</p>
 </dl>
 </dd></dl>
 
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

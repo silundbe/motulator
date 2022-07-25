@@ -5,9 +5,9 @@
 
 .. autoapi-nested-parse::
 
-   Flux vector control for synchronous motor drives.
+   Flux-vector control for synchronous motor drives.
 
-   This implements a simplified version of stator-flux vector control [Ra0108916492f-1]_. The
+   This implements a simplified version of stator-flux-vector control [Ra0108916492f-1]_. The
    rotor coordinates are used in this implementation [Ra0108916492f-2]_. One control variable is
    the stator-flux magnitude and another is the electromagnetic torque. The latter
    choice differs from [Ra0108916492f-1]_ and [Ra0108916492f-2]_, where the torque-producing current component
@@ -48,7 +48,7 @@ Classes
 .. py:class:: SynchronousMotorFluxVectorCtrlPars
 
    
-   Control parameters: flux vector control for synchronous motor drives.
+   Control parameters: flux-vector control for synchronous motor drives.
 
 
 
@@ -206,7 +206,7 @@ Classes
           !! processed by numpydoc !!
 
    .. py:attribute:: k_u
-      :annotation: :float = 0.95
+      :annotation: :float = 0.9
 
       
 
@@ -553,7 +553,7 @@ Classes
 
 .. py:class:: SynchronousMotorFluxVectorCtrl(pars=SynchronousMotorFluxVectorCtrlPars())
 
-   Flux vector control for synchronous motor drives.
+   Flux-vector control for synchronous motor drives.
 
    This class interconnects the subsystems of the control system and
    provides the interface to the solver.
@@ -653,7 +653,7 @@ Classes
       :type psi_s_ref: float
       :param tau_M_ref: Torque reference.
       :type tau_M_ref: float
-      :param psi_s: Estimate of the stator flux magnitude.
+      :param psi_s: Stator flux estimate.
       :type psi_s: complex
       :param i_s: Stator current.
       :type i_s: complex
@@ -685,7 +685,7 @@ Classes
 
 .. py:class:: FluxTorqueRef(pars)
 
-   Calculate the flux reference and limit the torque reference.
+   Flux and torque references.
 
    :param pars: Control parameters.
    :type pars: SynchronousMotoroFluxVectorCtrlPars
@@ -696,7 +696,7 @@ Classes
    .. py:method:: __call__(self, tau_M_ref, w_m, u_dc)
 
       
-      Calculate the flux reference and limit the torque reference.
+      Calculate the stator flux reference and limit the torque reference.
 
       :param tau_M_ref: Unlimited torque reference.
       :type tau_M_ref: float

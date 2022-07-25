@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>motulator.helpers &mdash; motulator 0.0.7 documentation</title>
+  <title>motulator.helpers &mdash; motulator 0.0.9 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
@@ -100,18 +101,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="module-motulator.helpers">
+  <section id="module-motulator.helpers">
 <span id="motulator-helpers"></span><h1><a class="reference internal" href="#module-motulator.helpers" title="motulator.helpers"><code class="xref py py-mod docutils literal notranslate"><span class="pre">motulator.helpers</span></code></a><a class="headerlink" href="#module-motulator.helpers" title="Permalink to this heading"></a></h1>
 <p>Helper functions and classes.</p>
-<div class="section" id="module-contents">
+<section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
-<div class="section" id="classes">
+<section id="classes">
 <h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#motulator.helpers.BaseValues" title="motulator.helpers.BaseValues"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BaseValues</span></code></a></p></td>
 <td><p>Base values.</p></td>
@@ -127,14 +124,10 @@
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="functions">
+</section>
+<section id="functions">
 <h3>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#motulator.helpers.abc2complex" title="motulator.helpers.abc2complex"><code class="xref py py-obj docutils literal notranslate"><span class="pre">abc2complex</span></code></a>(u)</p></td>
 <td><p>Transform three-phase quantities to a complex space vector.</p></td>
@@ -149,13 +142,13 @@
 <span class="sig-prename descclassname"><span class="pre">motulator.helpers.</span></span><span class="sig-name descname"><span class="pre">abc2complex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/motulator/helpers.html#abc2complex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.helpers.abc2complex" title="Permalink to this definition"></a></dt>
 <dd><p>Transform three-phase quantities to a complex space vector.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>u</strong> (<em>array_like</em><em>, </em><em>shape</em><em> (</em><em>3</em><em>,</em><em>)</em>) – Phase quantities.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Complex space vector (peak-value scaling).</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>complex</p>
 </dd>
 </dl>
@@ -172,13 +165,13 @@
 <span class="sig-prename descclassname"><span class="pre">motulator.helpers.</span></span><span class="sig-name descname"><span class="pre">complex2abc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/motulator/helpers.html#complex2abc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.helpers.complex2abc" title="Permalink to this definition"></a></dt>
 <dd><p>Transform a complex space vector to three-phase quantities.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>u</strong> (<em>complex</em>) – Complex space vector (peak-value scaling).</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Phase quantities.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>ndarray, shape (3,)</p>
 </dd>
 </dl>
@@ -240,7 +233,7 @@ pairs. They can be used, e.g., for scaling the plotted waveforms.</p>
 <p>This represents a sequence generator. The time array must be increasing.
 The output values are interpolated between the data points.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>times</strong> (<em>ndarray</em>) – Time values.</p></li>
 <li><p><strong>values</strong> (<em>ndarray</em>) – Output values.</p></li>
@@ -253,13 +246,13 @@ The output values are interpolated between the data points.</p>
 <span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/motulator/helpers.html#Sequence.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.helpers.Sequence.__call__" title="Permalink to this definition"></a></dt>
 <dd><p>Interpolate the output.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>t</strong> (<em>float</em>) – Time.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Interpolated output.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float or complex</p>
 </dd>
 </dl>
@@ -282,13 +275,13 @@ The output values are interpolated between the data points.</p>
 <span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/motulator/helpers.html#Step.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.helpers.Step.__call__" title="Permalink to this definition"></a></dt>
 <dd><p>Step function.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>t</strong> (<em>float</em>) – Time.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Step output.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -350,9 +343,9 @@ They extend dictionaries by enabling values to be accessed by key,
 
 </dd></dl>
 
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

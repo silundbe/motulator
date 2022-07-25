@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>motulator.control.common &mdash; motulator 0.0.7 documentation</title>
+  <title>motulator.control.common &mdash; motulator 0.0.9 documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/copybutton.css" type="text/css" />
@@ -100,18 +101,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="module-motulator.control.common">
+  <section id="module-motulator.control.common">
 <span id="motulator-control-common"></span><h1><a class="reference internal" href="#module-motulator.control.common" title="motulator.control.common"><code class="xref py py-mod docutils literal notranslate"><span class="pre">motulator.control.common</span></code></a><a class="headerlink" href="#module-motulator.control.common" title="Permalink to this heading"></a></h1>
 <p>Common control functions and classes.</p>
-<div class="section" id="module-contents">
+<section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
-<div class="section" id="classes">
+<section id="classes">
 <h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#motulator.control.common.PWM" title="motulator.control.common.PWM"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PWM</span></code></a></p></td>
 <td><p>Duty ratio references and realized voltage for three-phase PWM.</p></td>
@@ -132,7 +129,7 @@
 voltage. The digital delay effects are taken into account in the realized
 voltage.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>pars</strong> (<em>data object</em>) – Control parameters.</p>
 </dd>
 </dl>
@@ -143,16 +140,16 @@ voltage.</p>
 <p>This computes the duty ratios using a symmetrical suboscillation
 method. This method is identical to the standard space-vector PWM.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>u_s_ref</strong> (<em>complex</em>) – Voltage reference in stator coordinates.</p></li>
 <li><p><strong>u_dc</strong> (<em>float</em>) – DC-bus voltage.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>d_abc_ref</strong> – Duty ratio references.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>ndarray, shape (3,)</p>
 </dd>
 </dl>
@@ -163,7 +160,7 @@ method. This method is identical to the standard space-vector PWM.</p>
 <span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_dc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/common.html#PWM.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.common.PWM.__call__" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the duty ratio references and update the state.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>u_ref</strong> (<em>complex</em>) – Voltage reference in synchronous coordinates.</p></li>
 <li><p><strong>u_dc</strong> (<em>float</em>) – DC-bus voltage.</p></li>
@@ -171,10 +168,10 @@ method. This method is identical to the standard space-vector PWM.</p>
 <li><p><strong>w</strong> (<em>float</em>) – Angular frequency of synchronous coordinates.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>d_abc_ref</strong> – Duty ratio references.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>ndarray, shape (3,)</p>
 </dd>
 </dl>
@@ -191,7 +188,7 @@ method. This method is identical to the standard space-vector PWM.</p>
 <span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_ref_lim</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/common.html#PWM.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.common.PWM.update" title="Permalink to this definition"></a></dt>
 <dd><p>Update the voltage estimate for the next sampling instant.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>u_ref_lim</strong> (<em>complex</em>) – Limited voltage reference in synchronous coordinates.</p>
 </dd>
 </dl>
@@ -206,7 +203,7 @@ method. This method is identical to the standard space-vector PWM.</p>
 <p>This controller is implemented using the disturbance-observer structure.
 The controller is mathematically identical to the 2DOF PI speed controller.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>pars</strong> (<em>data object</em>) – Control parameters.</p>
 </dd>
 </dl>
@@ -215,16 +212,16 @@ The controller is mathematically identical to the 2DOF PI speed controller.</p>
 <span class="sig-name descname"><span class="pre">output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_M_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_M</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/common.html#SpeedCtrl.output"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.common.SpeedCtrl.output" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the torque reference and the load torque estimate.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>w_M_ref</strong> (<em>float</em>) – Rotor speed reference (in mechanical rad/s).</p></li>
 <li><p><strong>w_M</strong> (<em>float</em>) – Rotor speed (in mechanical rad/s).</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>tau_M_ref</strong> – Torque reference.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -235,7 +232,7 @@ The controller is mathematically identical to the 2DOF PI speed controller.</p>
 <span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau_M_ref_lim</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/common.html#SpeedCtrl.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.common.SpeedCtrl.update" title="Permalink to this definition"></a></dt>
 <dd><p>Update the integral state.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>tau_M_ref_lim</strong> (<em>float</em>) – Realized (limited) torque reference.</p>
 </dd>
 </dl>
@@ -248,7 +245,7 @@ The controller is mathematically identical to the 2DOF PI speed controller.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">motulator.control.common.</span></span><span class="sig-name descname"><span class="pre">RateLimiter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/common.html#RateLimiter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.common.RateLimiter" title="Permalink to this definition"></a></dt>
 <dd><p>Rate limiter.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>pars</strong> (<em>data object</em>) – Control parameters.</p>
 </dd>
 </dl>
@@ -256,13 +253,13 @@ The controller is mathematically identical to the 2DOF PI speed controller.</p>
 <dt class="sig sig-object py" id="motulator.control.common.RateLimiter.__call__">
 <span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/common.html#RateLimiter.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.common.RateLimiter.__call__" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>u</strong> (<em>float</em>) – Input signal.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>y</strong> – Rate-limited output signal.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -274,9 +271,9 @@ modifications in the class.</p>
 
 </dd></dl>
 
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

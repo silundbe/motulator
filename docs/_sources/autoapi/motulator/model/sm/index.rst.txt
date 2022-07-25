@@ -7,7 +7,7 @@
 
    Continuous-time models for synchronous motors.
 
-   The motor model can be parametrized to represent permanent-magnet synchronous
+   The motor models can be parametrized to represent permanent-magnet synchronous
    motors and synchronous reluctance motors. Peak-valued complex space vectors are
    used.
 
@@ -199,7 +199,7 @@ Classes
    :param a_qq: Nonnegative constant defining the q-axis self-saturation together with
                 `T`. In the magnetically linear case, `a_qq = 0`.
    :type a_qq: float
-   :param a_dq: Nonnegative constants defining the cross-saturation together with `U`
+   :param a_dq: Nonnegative constant defining the cross-saturation together with `U`
                 and `V`. In the magnetically linear case, `a_dq = 0`.
    :type a_dq: float
    :param S: Nonnegative constant defining the d-axis self-saturation.

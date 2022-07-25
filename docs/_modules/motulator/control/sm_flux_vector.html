@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>motulator.control.sm_flux_vector &mdash; motulator 0.0.7 documentation</title>
+  <title>motulator.control.sm_flux_vector &mdash; motulator 0.0.9 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
@@ -86,9 +86,9 @@
   <h1>Source code for motulator.control.sm_flux_vector</h1><div class="highlight"><pre>
 <span></span><span class="c1"># pylint: disable=invalid-name</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Flux vector control for synchronous motor drives.</span>
+<span class="sd">Flux-vector control for synchronous motor drives.</span>
 
-<span class="sd">This implements a simplified version of stator-flux vector control [1]_. The</span>
+<span class="sd">This implements a simplified version of stator-flux-vector control [1]_. The</span>
 <span class="sd">rotor coordinates are used in this implementation [2]_. One control variable is</span>
 <span class="sd">the stator-flux magnitude and another is the electromagnetic torque. The latter</span>
 <span class="sd">choice differs from [1]_ and [2]_, where the torque-producing current component</span>
@@ -121,7 +121,7 @@
 <span class="nd">@dataclass</span>
 <div class="viewcode-block" id="SynchronousMotorFluxVectorCtrlPars"><a class="viewcode-back" href="../../../autoapi/motulator/index.html#motulator.control.sm_flux_vector.SynchronousMotorFluxVectorCtrlPars">[docs]</a><span class="k">class</span> <span class="nc">SynchronousMotorFluxVectorCtrlPars</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Control parameters: flux vector control for synchronous motor drives.</span>
+<span class="sd">    Control parameters: flux-vector control for synchronous motor drives.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># pylint: disable=too-many-instance-attributes</span>
@@ -139,7 +139,7 @@
     <span class="c1"># Minimum flux</span>
 <div class="viewcode-block" id="SynchronousMotorFluxVectorCtrlPars.psi_s_min"><a class="viewcode-back" href="../../../autoapi/motulator/control/sm_flux_vector/index.html#motulator.control.sm_flux_vector.SynchronousMotorFluxVectorCtrlPars.psi_s_min">[docs]</a>    <span class="n">psi_s_min</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">.</span><span class="mi">5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="mi">370</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">75</span><span class="p">)</span></div>
     <span class="c1"># Voltage marginal</span>
-<div class="viewcode-block" id="SynchronousMotorFluxVectorCtrlPars.k_u"><a class="viewcode-back" href="../../../autoapi/motulator/control/sm_flux_vector/index.html#motulator.control.sm_flux_vector.SynchronousMotorFluxVectorCtrlPars.k_u">[docs]</a>    <span class="n">k_u</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">.</span><span class="mi">95</span></div>
+<div class="viewcode-block" id="SynchronousMotorFluxVectorCtrlPars.k_u"><a class="viewcode-back" href="../../../autoapi/motulator/control/sm_flux_vector/index.html#motulator.control.sm_flux_vector.SynchronousMotorFluxVectorCtrlPars.k_u">[docs]</a>    <span class="n">k_u</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">.</span><span class="mi">9</span></div>
     <span class="c1"># Bandwidths</span>
 <div class="viewcode-block" id="SynchronousMotorFluxVectorCtrlPars.alpha_psi"><a class="viewcode-back" href="../../../autoapi/motulator/control/sm_flux_vector/index.html#motulator.control.sm_flux_vector.SynchronousMotorFluxVectorCtrlPars.alpha_psi">[docs]</a>    <span class="n">alpha_psi</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">100</span></div>
 <div class="viewcode-block" id="SynchronousMotorFluxVectorCtrlPars.alpha_tau_max"><a class="viewcode-back" href="../../../autoapi/motulator/control/sm_flux_vector/index.html#motulator.control.sm_flux_vector.SynchronousMotorFluxVectorCtrlPars.alpha_tau_max">[docs]</a>    <span class="n">alpha_tau_max</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">400</span></div>
@@ -164,7 +164,7 @@
 <span class="c1"># %%</span>
 <div class="viewcode-block" id="SynchronousMotorFluxVectorCtrl"><a class="viewcode-back" href="../../../autoapi/motulator/index.html#motulator.control.sm_flux_vector.SynchronousMotorFluxVectorCtrl">[docs]</a><span class="k">class</span> <span class="nc">SynchronousMotorFluxVectorCtrl</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Flux vector control for synchronous motor drives.</span>
+<span class="sd">    Flux-vector control for synchronous motor drives.</span>
 
 <span class="sd">    This class interconnects the subsystems of the control system and</span>
 <span class="sd">    provides the interface to the solver.</span>
@@ -305,7 +305,7 @@
 <span class="sd">        tau_M_ref : float</span>
 <span class="sd">            Torque reference.</span>
 <span class="sd">        psi_s : complex</span>
-<span class="sd">            Estimate of the stator flux magnitude.</span>
+<span class="sd">            Stator flux estimate.</span>
 <span class="sd">        i_s : complex</span>
 <span class="sd">            Stator current.</span>
 <span class="sd">        w_m : float</span>
@@ -337,7 +337,7 @@
 <span class="c1"># %%</span>
 <div class="viewcode-block" id="FluxTorqueRef"><a class="viewcode-back" href="../../../autoapi/motulator/control/sm_flux_vector/index.html#motulator.control.sm_flux_vector.FluxTorqueRef">[docs]</a><span class="k">class</span> <span class="nc">FluxTorqueRef</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Calculate the flux reference and limit the torque reference.</span>
+<span class="sd">    Flux and torque references.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -365,7 +365,7 @@
 
 <div class="viewcode-block" id="FluxTorqueRef.__call__"><a class="viewcode-back" href="../../../autoapi/motulator/control/sm_flux_vector/index.html#motulator.control.sm_flux_vector.FluxTorqueRef.__call__">[docs]</a>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tau_M_ref</span><span class="p">,</span> <span class="n">w_m</span><span class="p">,</span> <span class="n">u_dc</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Calculate the flux reference and limit the torque reference.</span>
+<span class="sd">        Calculate the stator flux reference and limit the torque reference.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>

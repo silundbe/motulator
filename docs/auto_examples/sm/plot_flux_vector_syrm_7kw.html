@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Flux-Vector-Controlled 6.7-kW SyRM Drive &mdash; motulator 0.0.7 documentation</title>
+  <title>Flux-Vector-Controlled 6.7-kW SyRM Drive &mdash; motulator 0.0.9 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
@@ -27,7 +28,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Vector-Controlled 6.7-kW SyRM Drive" href="plot_vector_ctrl_syrm_7kw.html" />
-    <link rel="prev" title="Flux-Vector Controlled 2.2-kW PMSM Drive" href="plot_flux_vector_pmsm_2kw.html" /> 
+    <link rel="prev" title="Vector-Controlled 2.2-kW PMSM Drive" href="plot_vector_ctrl_pmsm_2kw.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -52,8 +53,8 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Examples</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../index.html#induction-motor-drives">Induction Motor Drives</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#synchronous-motor-drives">Synchronous Motor Drives</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="plot_vector_ctrl_pmsm_2kw.html">Vector-Controlled 2.2-kW PMSM Drive</a></li>
 <li class="toctree-l3"><a class="reference internal" href="plot_flux_vector_pmsm_2kw.html">Flux-Vector Controlled 2.2-kW PMSM Drive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_vector_ctrl_pmsm_2kw.html">Vector-Controlled 2.2-kW PMSM Drive</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Flux-Vector-Controlled 6.7-kW SyRM Drive</a></li>
 <li class="toctree-l3"><a class="reference internal" href="plot_vector_ctrl_syrm_7kw.html">Vector-Controlled 6.7-kW SyRM Drive</a></li>
 </ul>
@@ -101,7 +102,7 @@
 <p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-sm-plot-flux-vector-syrm-7kw-py"><span class="std std-ref">here</span></a>
 to download the full example code</p>
 </div>
-<div class="sphx-glr-example-title section" id="flux-vector-controlled-6-7-kw-syrm-drive">
+<section class="sphx-glr-example-title" id="flux-vector-controlled-6-7-kw-syrm-drive">
 <span id="sphx-glr-auto-examples-sm-plot-flux-vector-syrm-7kw-py"></span><h1>Flux-Vector-Controlled 6.7-kW SyRM Drive<a class="headerlink" href="#flux-vector-controlled-6-7-kw-syrm-drive" title="Permalink to this heading"></a></h1>
 <p>This example simulates sensorless stator-flux-vector control of a saturated
 6.7-kW synchronous reluctance motor drive. The saturation is not taken into
@@ -120,7 +121,7 @@ account in the control method (only in the system model).</p>
 <p>Configure the system model.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Saturated SyRM model</span>
 <span class="n">motor</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">SynchronousMotorSaturated</span><span class="p">()</span>
-<span class="c1"># Magnetically linear model</span>
+<span class="c1"># Magnetically linear SyRM model</span>
 <span class="c1"># motor = mt.SynchronousMotor(p=2, R_s=.54, L_d=41.5e-3, L_q=6.2e-3, psi_f=0)</span>
 <span class="n">mech</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">Mechanics</span><span class="p">()</span>
 <span class="n">conv</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">Inverter</span><span class="p">()</span>
@@ -128,7 +129,7 @@ account in the control method (only in the system model).</p>
 </pre></div>
 </div>
 <p>Configure the control system.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pars</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">sm_flux_vector</span><span class="o">.</span><span class="n">SynchronousMotorFluxVectorCtrlPars</span><span class="p">(</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pars</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">SynchronousMotorFluxVectorCtrlPars</span><span class="p">(</span>
     <span class="n">sensorless</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">T_s</span><span class="o">=</span><span class="mf">250e-6</span><span class="p">,</span>
     <span class="c1"># Disable MTPA since the control system does not consider the saturation</span>
@@ -140,7 +141,7 @@ account in the control method (only in the system model).</p>
     <span class="n">tau_M_max</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">base</span><span class="o">.</span><span class="n">tau_nom</span><span class="p">,</span> <span class="n">i_s_max</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">base</span><span class="o">.</span><span class="n">i</span><span class="p">,</span>
     <span class="n">R_s</span><span class="o">=.</span><span class="mi">54</span><span class="p">,</span> <span class="n">L_d</span><span class="o">=</span><span class="mf">41.5e-3</span><span class="o">*.</span><span class="mi">9</span><span class="p">,</span> <span class="n">L_q</span><span class="o">=</span><span class="mf">6.2e-3</span><span class="p">,</span> <span class="n">psi_f</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">J</span><span class="o">=.</span><span class="mi">015</span><span class="p">,</span>
     <span class="n">w_o</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">40</span><span class="p">,</span> <span class="n">zeta_inf</span><span class="o">=.</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">ctrl</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">sm_flux_vector</span><span class="o">.</span><span class="n">SynchronousMotorFluxVectorCtrl</span><span class="p">(</span><span class="n">pars</span><span class="p">)</span>
+<span class="n">ctrl</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">SynchronousMotorFluxVectorCtrl</span><span class="p">(</span><span class="n">pars</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Set the speed reference and the external load torque.</p>
@@ -163,7 +164,7 @@ account in the control method (only in the system model).</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Execution time: 10.42 s
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Execution time: 15.36 s
 </pre></div>
 </div>
 <p>Plot results in per-unit values. By uncommenting the second line you can
@@ -172,7 +173,7 @@ plot the results in SI units.</p>
 <span class="c1"># mt.plot(sim)</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_plot_flux_vector_syrm_7kw_001.png" srcset="../../_images/sphx_glr_plot_flux_vector_syrm_7kw_001.png" alt="plot flux vector syrm 7kw" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  11.166 seconds)</p>
+<img src="../../_images/sphx_glr_plot_flux_vector_syrm_7kw_001.png" srcset="../../_images/sphx_glr_plot_flux_vector_syrm_7kw_001.png" alt="plot flux vector syrm 7kw" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  16.303 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-sm-plot-flux-vector-syrm-7kw-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/5edc462ee495e32dedfd8cea2ed2b40b/plot_flux_vector_syrm_7kw.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_flux_vector_syrm_7kw.py</span></code></a></p>
@@ -182,13 +183,13 @@ plot the results in SI units.</p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
-</div>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="plot_flux_vector_pmsm_2kw.html" class="btn btn-neutral float-left" title="Flux-Vector Controlled 2.2-kW PMSM Drive" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plot_vector_ctrl_pmsm_2kw.html" class="btn btn-neutral float-left" title="Vector-Controlled 2.2-kW PMSM Drive" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="plot_vector_ctrl_syrm_7kw.html" class="btn btn-neutral float-right" title="Vector-Controlled 6.7-kW SyRM Drive" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

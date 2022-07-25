@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Induction Motor &mdash; motulator 0.0.7 documentation</title>
+  <title>Induction Motor &mdash; motulator 0.0.9 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
@@ -86,17 +87,21 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="induction-motor">
+  <section id="induction-motor">
 <h1>Induction Motor<a class="headerlink" href="#induction-motor" title="Permalink to this heading"></a></h1>
-<p>Continuous-time induction motor models are given in the module <a class="reference internal" href="autoapi/motulator/model/im/index.html#module-motulator.model.im" title="motulator.model.im"><code class="xref py py-mod docutils literal notranslate"><span class="pre">motulator.model.im</span></code></a>. Peak-valued complex space vectors are used. The models are implemented in stator coordinates. A Γ-equivalent model is used since it can be extended with the magnetic saturation model in a staightforward manner <a class="footnote-reference brackets" href="#id3" id="id1">1</a>.</p>
-<div class="figure align-center" id="id5">
+<p>Continuous-time induction motor models are given in the module <a class="reference internal" href="autoapi/motulator/model/im/index.html#module-motulator.model.im" title="motulator.model.im"><code class="xref py py-mod docutils literal notranslate"><span class="pre">motulator.model.im</span></code></a>. Peak-valued complex space vectors are used. The models are implemented in stator coordinates. A Γ-equivalent model is used since it can be extended with the magnetic saturation model in a staightforward manner <a class="footnote-reference brackets" href="#id3" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
+<figure class="align-center" id="id5">
 <a class="reference external image-reference" href="."><img alt="Gamma-model of an induction motor" src="_images/im_gamma.svg" width="100%" /></a>
-<p class="caption"><span class="caption-text">Γ model.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
-</div>
-<div class="figure align-center" id="id6">
+<figcaption>
+<p><span class="caption-text">Γ model.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id6">
 <a class="reference external image-reference" href="."><img alt="Block diagram of an induction motor model" src="_images/im_block.svg" width="100%" /></a>
-<p class="caption"><span class="caption-text">Block diagram of the motor model. The magnetic model includes the flux equations (or, optionally, saturation characteristics) and the torque equation.</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Block diagram of the motor model. The magnetic model includes the flux equations (or, optionally, saturation characteristics) and the torque equation.</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
 <p>The voltage equations are</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\frac{\mathrm{d}\boldsymbol{\psi}_\mathrm{s}^\mathrm{s}}{\mathrm{d} t} &amp;= \boldsymbol{u}_\mathrm{s}^\mathrm{s} - R_\mathrm{s}\boldsymbol{i}_\mathrm{s}^\mathrm{s} \\
@@ -108,7 +113,7 @@
 <p>where <span class="math notranslate nohighlight">\(L_\mathrm{s}\)</span> is the stator inductance and <span class="math notranslate nohighlight">\(L_\ell\)</span> is the leakage inductance. This linear magnetic model is applied in the class <a class="reference internal" href="autoapi/motulator/model/im/index.html#motulator.model.im.InductionMotor" title="motulator.model.im.InductionMotor"><code class="xref py py-class docutils literal notranslate"><span class="pre">motulator.model.im.InductionMotor</span></code></a>. The electromagnetic torque is</p>
 <div class="math notranslate nohighlight">
 \[\tau_\mathrm{M} = \frac{3p}{2}\mathrm{Im} \left\{\boldsymbol{i}_\mathrm{s}^\mathrm{s} (\boldsymbol{\psi}_\mathrm{s}^\mathrm{s})^* \right\}\]</div>
-<p>The class <a class="reference internal" href="autoapi/motulator/model/im/index.html#motulator.model.im.InductionMotorSaturated" title="motulator.model.im.InductionMotorSaturated"><code class="xref py py-class docutils literal notranslate"><span class="pre">motulator.model.im.InductionMotorSaturated</span></code></a> extends the model with the main flux saturation, <span class="math notranslate nohighlight">\(L_\mathrm{s} = L_\mathrm{s}(\psi_\mathrm{s})\)</span> <a class="footnote-reference brackets" href="#id4" id="id2">2</a>.</p>
+<p>The class <a class="reference internal" href="autoapi/motulator/model/im/index.html#motulator.model.im.InductionMotorSaturated" title="motulator.model.im.InductionMotorSaturated"><code class="xref py py-class docutils literal notranslate"><span class="pre">motulator.model.im.InductionMotorSaturated</span></code></a> extends the model with the main flux saturation, <span class="math notranslate nohighlight">\(L_\mathrm{s} = L_\mathrm{s}(\psi_\mathrm{s})\)</span> <a class="footnote-reference brackets" href="#id4" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If the magnetic saturation is omitted, the Γ model is mathematically identical to the inverse-Γ and
@@ -118,27 +123,29 @@ model parameters as follows:</p>
 \[\begin{split}L_\sigma &amp;= \left(\frac{L_\mathrm{s}}{L_\mathrm{s} + L_\ell}\right)L_\ell \\
 R_\mathrm{R} &amp;= \left(\frac{L_\mathrm{s}}{L_\mathrm{s} + L_\ell}\right)^2 R_\mathrm{r} \\
 L_\mathrm{M} &amp;=  L_\mathrm{s} - L_\sigma\end{split}\]</div>
-<div class="figure align-center" id="id7">
+<figure class="align-center" id="id7">
 <a class="reference external image-reference" href="."><img alt="Inverse-Gamma model of an induction motor" src="_images/im_inv_gamma.svg" width="100%" /></a>
-<p class="caption"><span class="caption-text">Inverse-Γ model.</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Inverse-Γ model.</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
 <p>Example control methods in the module <a class="reference internal" href="autoapi/motulator/control/im_vector/index.html#module-motulator.control.im_vector" title="motulator.control.im_vector"><code class="xref py py-mod docutils literal notranslate"><span class="pre">motulator.control.im_vector</span></code></a> are based on the
 inverse-Γ model.</p>
 </div>
-<div class="section" id="references">
+<section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading"></a></h2>
-<dl class="footnote brackets">
-<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Slemon, “Modelling of induction machines for electric drives,” IEEE Trans. Ind. Appl., 1989, <a class="reference external" href="https://doi.org/10.1109/28.44251">https://doi.org/10.1109/28.44251</a>.</p>
-</dd>
-<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
-<dd><p>Qu, Ranta, Hinkkanen, Luomi, “Loss-minimizing flux level control of
+<aside class="footnote brackets" id="id3" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Slemon, “Modelling of induction machines for electric drives,” IEEE Trans. Ind. Appl., 1989, <a class="reference external" href="https://doi.org/10.1109/28.44251">https://doi.org/10.1109/28.44251</a>.</p>
+</aside>
+<aside class="footnote brackets" id="id4" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>Qu, Ranta, Hinkkanen, Luomi, “Loss-minimizing flux level control of
 induction motor drives,” IEEE Trans. Ind. Appl., 2021,
 <a class="reference external" href="https://doi.org/10.1109/TIA.2012.2190818">https://doi.org/10.1109/TIA.2012.2190818</a></p>
-</dd>
-</dl>
-</div>
-</div>
+</aside>
+</section>
+</section>
 
 
            </div>

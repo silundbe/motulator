@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>motulator.model.im &mdash; motulator 0.0.7 documentation</title>
+  <title>motulator.model.im &mdash; motulator 0.0.9 documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/copybutton.css" type="text/css" />
@@ -100,21 +101,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="module-motulator.model.im">
+  <section id="module-motulator.model.im">
 <span id="motulator-model-im"></span><h1><a class="reference internal" href="#module-motulator.model.im" title="motulator.model.im"><code class="xref py py-mod docutils literal notranslate"><span class="pre">motulator.model.im</span></code></a><a class="headerlink" href="#module-motulator.model.im" title="Permalink to this heading"></a></h1>
 <p>Continuous-time models for induction motors.</p>
 <p>Peak-valued complex space vectors are used. The space vector models are
 implemented in stator coordinates. The default values correspond to a 2.2-kW
 induction motor.</p>
-<div class="section" id="module-contents">
+<section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
-<div class="section" id="classes">
+<section id="classes">
 <h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#motulator.model.im.InductionMotor" title="motulator.model.im.InductionMotor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InductionMotor</span></code></a></p></td>
 <td><p>Γ-equivalent model of an induction motor.</p></td>
@@ -131,10 +128,10 @@ induction motor.</p>
 <dt class="sig sig-object py" id="motulator.model.im.InductionMotor">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">motulator.model.im.</span></span><span class="sig-name descname"><span class="pre">InductionMotor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R_r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L_ell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.023</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.245</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/model/im.html#InductionMotor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.im.InductionMotor" title="Permalink to this definition"></a></dt>
 <dd><p>Γ-equivalent model of an induction motor.</p>
-<p>An induction motor is modeled using the Γ-equivalent model <a class="footnote-reference brackets" href="#id3" id="id1">1</a>. The model
+<p>An induction motor is modeled using the Γ-equivalent model <a class="footnote-reference brackets" href="#id3" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>. The model
 is implemented in stator coordinates.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>p</strong> (<em>int</em>) – Number of pole pairs.</p></li>
 <li><p><strong>R_s</strong> (<em>float</em>) – Stator resistance.</p></li>
@@ -148,26 +145,26 @@ is implemented in stator coordinates.</p>
 <p>The Γ model is chosen here since it can be extended with the magnetic
 saturation model in a staightforward manner. If the magnetic saturation is
 omitted, the Γ model is mathematically identical to the inverse-Γ and T
-models <a class="footnote-reference brackets" href="#id3" id="id2">1</a>.</p>
+models <a class="footnote-reference brackets" href="#id3" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
 <p class="rubric">References</p>
-<dl class="footnote brackets">
-<dt class="label" id="id3"><span class="brackets">1</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>)</span></dt>
-<dd><p>Slemon, “Modelling of induction machines for electric drives,” IEEE
+<aside class="footnote brackets" id="id3" role="note">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id2">2</a>)</span>
+<p>Slemon, “Modelling of induction machines for electric drives,” IEEE
 Trans. Ind. Appl., 1989, <a class="reference external" href="https://doi.org/10.1109/28.44251">https://doi.org/10.1109/28.44251</a>.</p>
-</dd>
-</dl>
+</aside>
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.model.im.InductionMotor.currents">
 <span class="sig-name descname"><span class="pre">currents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_ss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_rs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/model/im.html#InductionMotor.currents"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.im.InductionMotor.currents" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the stator and rotor currents.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>psi_ss</strong> (<em>complex</em>) – Stator flux linkage.</p></li>
 <li><p><strong>psi_rs</strong> (<em>complex</em>) – Rotor flux linkage.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p><strong>i_ss</strong> (<em>complex</em>) – Stator current.</p></li>
 <li><p><strong>i_rs</strong> (<em>complex</em>) – Rotor current.</p></li>
@@ -182,16 +179,16 @@ Trans. Ind. Appl., 1989, <a class="reference external" href="https://doi.org/10.
 <span class="sig-name descname"><span class="pre">torque</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_ss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_ss</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/model/im.html#InductionMotor.torque"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.im.InductionMotor.torque" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the electromagnetic torque.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>psi_ss</strong> (<em>complex</em>) – Stator flux linkage.</p></li>
 <li><p><strong>i_ss</strong> (<em>complex</em>) – Stator current.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>tau_M</strong> – Electromagnetic torque.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -202,7 +199,7 @@ Trans. Ind. Appl., 1989, <a class="reference external" href="https://doi.org/10.
 <span class="sig-name descname"><span class="pre">f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_ss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_rs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_ss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_M</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/model/im.html#InductionMotor.f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.im.InductionMotor.f" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the state derivatives.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>psi_ss</strong> (<em>complex</em>) – Stator flux linkage.</p></li>
 <li><p><strong>psi_rs</strong> (<em>complex</em>) – Rotor flux linkage.</p></li>
@@ -210,10 +207,10 @@ Trans. Ind. Appl., 1989, <a class="reference external" href="https://doi.org/10.
 <li><p><strong>w_M</strong> (<em>float</em>) – Rotor angular speed (in mechanical rad/s).</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Time derivative of the state vector, [dpsi_ss, dpsi_rs]</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>complex list, length 2</p>
 </dd>
 </dl>
@@ -224,10 +221,10 @@ Trans. Ind. Appl., 1989, <a class="reference external" href="https://doi.org/10.
 <span class="sig-name descname"><span class="pre">meas_currents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/model/im.html#InductionMotor.meas_currents"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.im.InductionMotor.meas_currents" title="Permalink to this definition"></a></dt>
 <dd><p>Measure the phase currents at the end of the sampling period.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>i_s_abc</strong> – Phase currents.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>3-tuple of floats</p>
 </dd>
 </dl>
@@ -241,12 +238,12 @@ Trans. Ind. Appl., 1989, <a class="reference external" href="https://doi.org/10.
 <dd><p>Bases: <a class="reference internal" href="#motulator.model.im.InductionMotor" title="motulator.model.im.InductionMotor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InductionMotor</span></code></a></p>
 <p>Γ-equivalent model of an induction motor model with main-flux saturation.</p>
 <p>This extends the InductionMotor class with a main-flux magnetic saturation
-model <a class="footnote-reference brackets" href="#id5" id="id4">2</a>:</p>
+model <a class="footnote-reference brackets" href="#id5" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">L_s</span><span class="p">(</span><span class="n">psi_ss</span><span class="p">)</span> <span class="o">=</span> <span class="n">L_su</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">beta</span><span class="o">*</span><span class="nb">abs</span><span class="p">(</span><span class="n">psi_ss</span><span class="p">)</span><span class="o">**</span><span class="n">S</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>p</strong> (<em>int</em>) – Number of pole pairs.</p></li>
 <li><p><strong>R_s</strong> (<em>float</em>) – Stator resistance.</p></li>
@@ -259,13 +256,12 @@ model <a class="footnote-reference brackets" href="#id5" id="id4">2</a>:</p>
 </dd>
 </dl>
 <p class="rubric">References</p>
-<dl class="footnote brackets">
-<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id4">2</a></span></dt>
-<dd><p>Qu, Ranta, Hinkkanen, Luomi, “Loss-minimizing flux level control of
+<aside class="footnote brackets" id="id5" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">2</a><span class="fn-bracket">]</span></span>
+<p>Qu, Ranta, Hinkkanen, Luomi, “Loss-minimizing flux level control of
 induction motor drives,” IEEE Trans. Ind. Appl., 2012,
 <a class="reference external" href="https://doi.org/10.1109/TIA.2012.2190818">https://doi.org/10.1109/TIA.2012.2190818</a></p>
-</dd>
-</dl>
+</aside>
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.model.im.InductionMotorSaturated.currents">
 <span class="sig-name descname"><span class="pre">currents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_ss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_rs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/model/im.html#InductionMotorSaturated.currents"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.model.im.InductionMotorSaturated.currents" title="Permalink to this definition"></a></dt>
@@ -283,7 +279,7 @@ induction motor drives,” IEEE Trans. Ind. Appl., 2012,
 the interface for the inverse-Γ model parameters. Linear magnetics are
 assumed. If magnetic saturation is to be modeled, the Γ model is preferred.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>p</strong> (<em>int</em>) – Number of pole pairs.</p></li>
 <li><p><strong>R_s</strong> (<em>float</em>) – Stator resistance.</p></li>
@@ -295,9 +291,9 @@ assumed. If magnetic saturation is to be modeled, the Γ model is preferred.</p>
 </dl>
 </dd></dl>
 
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>
