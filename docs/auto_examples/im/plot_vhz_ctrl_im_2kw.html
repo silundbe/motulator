@@ -28,7 +28,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Vector-Controlled 2.2-kW Induction Motor Drive" href="plot_vector_ctrl_im_2kw.html" />
-    <link rel="prev" title="Examples" href="../index.html" /> 
+    <link rel="prev" title="Induction Motor Drives" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,12 +51,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage.html">Usage</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Examples</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html#induction-motor-drives">Induction Motor Drives</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">V/Hz-Controlled 2.2-kW Induction Motor Drive</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_vector_ctrl_im_2kw.html">Vector-Controlled 2.2-kW Induction Motor Drive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#induction-motor-drives">Induction Motor Drives</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#synchronous-motor-drives">Synchronous Motor Drives</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Induction Motor Drives</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">V/Hz-Controlled 2.2-kW Induction Motor Drive</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_vector_ctrl_im_2kw.html">Vector-Controlled 2.2-kW Induction Motor Drive</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#synchronous-motor-drives">Synchronous Motor Drives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sm/index.html">Synchronous Motor Drives</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../autoapi/index.html">API Reference</a></li>
@@ -85,6 +89,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../index.html">Examples</a> &raquo;</li>
+          <li><a href="index.html">Induction Motor Drives</a> &raquo;</li>
       <li>V/Hz-Controlled 2.2-kW Induction Motor Drive</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/auto_examples/im/plot_vhz_ctrl_im_2kw.rst.txt" rel="nofollow"> View page source</a>
@@ -127,8 +132,8 @@ parameters correspond to open-loop V/Hz control.</p>
 </pre></div>
 </div>
 <p>Control system (parametrized as open-loop V/Hz control).</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">InductionMotorVHzCtrl</span><span class="p">(</span><span class="n">mt</span><span class="o">.</span><span class="n">InductionMotorVHzCtrlPars</span><span class="p">(</span>
-    <span class="n">R_s</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">R_R</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">k_u</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">k_w</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">InductionMotorVHzCtrl</span><span class="p">(</span>
+    <span class="n">mt</span><span class="o">.</span><span class="n">InductionMotorVHzCtrlPars</span><span class="p">(</span><span class="n">R_s</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">R_R</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">k_u</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">k_w</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Set the speed reference and the external load torque. More complicated
@@ -145,8 +150,7 @@ signals could be defined as functions.</p>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Execution time: </span><span class="si">{:.2f}</span><span class="s1"> s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">((</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)))</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Execution time: 21.16 s
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Execution time: 13.64 s
 </pre></div>
 </div>
 <p>Plot results in per-unit values.</p>
@@ -168,8 +172,8 @@ a longer period (e.g. set t_stop=2). For more information, see e.g.
 <li><img src="../../_images/sphx_glr_plot_vhz_ctrl_im_2kw_002.png" srcset="../../_images/sphx_glr_plot_vhz_ctrl_im_2kw_002.png" alt="plot vhz ctrl im 2kw" class = "sphx-glr-multi-img"/></li>
 <li><img src="../../_images/sphx_glr_plot_vhz_ctrl_im_2kw_003.png" srcset="../../_images/sphx_glr_plot_vhz_ctrl_im_2kw_003.png" alt="plot vhz ctrl im 2kw" class = "sphx-glr-multi-img"/></li>
 </ul>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  23.466 seconds)</p>
-<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-im-plot-vhz-ctrl-im-2kw-py">
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  15.415 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-im-plot-vhz-ctrl-im-2kw-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/c0cbce8eaf2054322a28fe6f9a0446e2/plot_vhz_ctrl_im_2kw.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_vhz_ctrl_im_2kw.py</span></code></a></p>
 </div>
@@ -184,7 +188,7 @@ a longer period (e.g. set t_stop=2). For more information, see e.g.
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../index.html" class="btn btn-neutral float-left" title="Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Induction Motor Drives" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="plot_vector_ctrl_im_2kw.html" class="btn btn-neutral float-right" title="Vector-Controlled 2.2-kW Induction Motor Drive" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

@@ -1,0 +1,59 @@
+
+
+.. _sphx_glr_auto_examples_im:
+
+Induction Motor Drives
+----------------------
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="A diode bridge, stiff three-phase grid, and a DC link is modeled. The default parameters corres...">
+
+.. only:: html
+
+  .. image:: /auto_examples/im/images/thumb/sphx_glr_plot_vhz_ctrl_im_2kw_thumb.png
+    :alt: V/Hz-Controlled 2.2-kW Induction Motor Drive
+
+  :ref:`sphx_glr_auto_examples_im_plot_vhz_ctrl_im_2kw.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">V/Hz-Controlled 2.2-kW Induction Motor Drive</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example simulates sensorless vector control of a 2.2-kW induction motor drive.">
+
+.. only:: html
+
+  .. image:: /auto_examples/im/images/thumb/sphx_glr_plot_vector_ctrl_im_2kw_thumb.png
+    :alt: Vector-Controlled 2.2-kW Induction Motor Drive
+
+  :ref:`sphx_glr_auto_examples_im_plot_vector_ctrl_im_2kw.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Vector-Controlled 2.2-kW Induction Motor Drive</div>
+    </div>
+
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/im/plot_vhz_ctrl_im_2kw
+   /auto_examples/im/plot_vector_ctrl_im_2kw
+

@@ -55,439 +55,97 @@ Classes
 
       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
    .. py:attribute:: sensorless
       :annotation: :bool = True
 
       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
 
    .. py:attribute:: T_s
       :annotation: :float = 0.00025
 
       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
    .. py:attribute:: alpha_c
       :annotation: :float
 
       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
 
    .. py:attribute:: alpha_fw
       :annotation: :float
 
       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
    .. py:attribute:: alpha_s
       :annotation: :float
 
       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
 
    .. py:attribute:: tau_M_max
       :annotation: :float
 
       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
    .. py:attribute:: i_s_max
       :annotation: :float
 
       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
 
    .. py:attribute:: psi_s_min
       :annotation: :float = 0
 
       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
    .. py:attribute:: k_u
       :annotation: :float = 0.95
 
       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
 
    .. py:attribute:: w_nom
       :annotation: :float
 
       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
    .. py:attribute:: R_s
       :annotation: :float = 3.6
 
       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
 
    .. py:attribute:: L_d
       :annotation: :float = 0.036
 
       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
    .. py:attribute:: L_q
       :annotation: :float = 0.051
 
       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
 
    .. py:attribute:: psi_f
       :annotation: :float = 0.545
 
       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
    .. py:attribute:: p
       :annotation: :int = 3
 
       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
 
    .. py:attribute:: J
       :annotation: :float = 0.015
 
       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
    .. py:attribute:: w_o
       :annotation: :float
 
       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
 
    .. py:attribute:: zeta_inf
       :annotation: :float = 0.2
 
       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-   .. py:method:: plot_luts(self, base)
+   .. py:method:: plot_luts(base)
 
       
       Plot control look-up tables.
@@ -515,6 +173,7 @@ Classes
 
 .. py:class:: SynchronousMotorVectorCtrl(pars=SynchronousMotorVectorCtrlPars())
 
+   
    Vector control for a synchronous motor drive.
 
    This class interconnects the subsystems of the control system and
@@ -523,13 +182,26 @@ Classes
    :param pars: Control parameters.
    :type pars: SynchronousMotorVectorCtrlPars
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    ..
        !! processed by numpydoc !!
-
-   .. py:method:: __call__(self, mdl)
+   .. py:method:: __call__(mdl)
 
       
-      Main control loop.
+      Run the main control loop.
 
       :param mdl: Continuous-time model of a synchronous motor drive for getting the
                   feedback signals.
@@ -555,7 +227,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: post_process(self)
+   .. py:method:: post_process()
 
       
       Transform the lists to the ndarray format.
@@ -581,9 +253,10 @@ Classes
 
 .. py:class:: CurrentCtrl(pars)
 
+   
    2DOF PI current controller.
 
-   This controller corresponds to [1]_. The continuous-time complex-vector
+   This controller corresponds to [Ra42ac92f4471-1]_. The continuous-time complex-vector
    design corresponding to (13) is used here. This design could be
    equivalently presented as a 2DOF PI controller.
 
@@ -598,14 +271,27 @@ Classes
 
    .. rubric:: References
 
-   .. [1] Awan, Saarakkala, Hinkkanen, "Flux-linkage-based current control of
+   .. [Ra42ac92f4471-1] Awan, Saarakkala, Hinkkanen, "Flux-linkage-based current control of
       saturated synchronous motors," IEEE Trans. Ind. Appl. 2019,
       https://doi.org/10.1109/TIA.2019.2919258
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    ..
        !! processed by numpydoc !!
-
-   .. py:method:: output(self, i_s_ref, i_s)
+   .. py:method:: output(i_s_ref, i_s)
 
       
       Compute the unlimited voltage reference.
@@ -635,7 +321,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: update(self, u_s_ref_lim, w_m)
+   .. py:method:: update(u_s_ref_lim, w_m)
 
       
       Update the integral state.
@@ -665,34 +351,48 @@ Classes
 
 .. py:class:: CurrentRef(pars)
 
+   
    Current reference calculation.
 
    This method includes the MTPA locus and field-weakenting operation based on
    the unlimited voltage reference feedback. The MTPV and current limits are
-   taken into account. This resembles the method presented [2]_.
+   taken into account. This resembles the method presented [Rb97b66e26a3e-2]_.
 
    :param pars: Control parameters.
    :type pars: SynchronousMotorVectorCtrlPars (or its subset)
 
    .. rubric:: Notes
 
-   Instead of the PI controller used in [2]_, we use a simpler integral
+   Instead of the PI controller used in [Rb97b66e26a3e-2]_, we use a simpler integral
    controller with a constant gain. The resulting operating-point-dependent
-   closed-loop pole could be derived using (12) of the paper. Unlike in [2]_,
+   closed-loop pole could be derived using (12) of the paper. Unlike in [Rb97b66e26a3e-2]_,
    the MTPV limit is also included here by means of limiting the reference
    torque and the d-axis current reference.
 
    .. rubric:: References
 
-   .. [2] Bedetti, Calligaro, Petrella, "Analytical design and autotuning of
+   .. [Rb97b66e26a3e-2] Bedetti, Calligaro, Petrella, "Analytical design and autotuning of
       adaptive flux-weakening voltage regulation loop in IPMSM drives with
       accurate torque regulation," IEEE Trans. Ind. Appl., 2020,
       https://doi.org/10.1109/TIA.2019.2942807
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    ..
        !! processed by numpydoc !!
-
-   .. py:method:: output(self, tau_M_ref, w_m, u_dc)
+   .. py:method:: output(tau_M_ref, w_m, u_dc)
 
       
       Compute the stator current reference.
@@ -724,7 +424,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: update(self, tau_M_ref_lim, u_s_ref, u_dc)
+   .. py:method:: update(tau_M_ref_lim, u_s_ref, u_dc)
 
       
       Field-weakening based on the unlimited reference voltage.
@@ -756,9 +456,10 @@ Classes
 
 .. py:class:: SensorlessObserver(pars)
 
+   
    Sensorless observer.
 
-   This observer corresponds to [3]_. The observer gain decouples the
+   This observer corresponds to [Ra040d21f48f0-3]_. The observer gain decouples the
    electrical and mechanical dynamics and allows placing the poles of the
    corresponding linearized estimation error dynamics. This implementation
    operates in estimated rotor coordinates.
@@ -768,14 +469,27 @@ Classes
 
    .. rubric:: References
 
-   .. [3] Hinkkanen, Saarakkala, Awan, Mölsä, Tuovinen, "Observers for
+   .. [Ra040d21f48f0-3] Hinkkanen, Saarakkala, Awan, Mölsä, Tuovinen, "Observers for
       sensorless synchronous motor drives: Framework for design and analysis,"
       IEEE Trans. Ind. Appl., 2018, https://doi.org/10.1109/TIA.2018.2858753
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    ..
        !! processed by numpydoc !!
-
-   .. py:method:: update(self, u_s, i_s, *_)
+   .. py:method:: update(u_s, i_s, *_)
 
       
       Update the states for the next sampling period.

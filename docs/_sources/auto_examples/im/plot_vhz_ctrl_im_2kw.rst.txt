@@ -97,8 +97,8 @@ Control system (parametrized as open-loop V/Hz control).
 .. code-block:: default
 
 
-    ctrl = mt.InductionMotorVHzCtrl(mt.InductionMotorVHzCtrlPars(
-        R_s=0, R_R=0, k_u=0, k_w=0))
+    ctrl = mt.InductionMotorVHzCtrl(
+        mt.InductionMotorVHzCtrlPars(R_s=0, R_R=0, k_u=0, k_w=0))
 
 
 
@@ -148,12 +148,10 @@ Create the simulation object and simulate it.
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
 
-    Execution time: 21.16 s
+    Execution time: 13.64 s
 
 
 
@@ -211,28 +209,23 @@ Plot results in per-unit values.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  23.466 seconds)
+   **Total running time of the script:** ( 0 minutes  15.415 seconds)
 
 
 .. _sphx_glr_download_auto_examples_im_plot_vhz_ctrl_im_2kw.py:
 
+.. only:: html
 
-.. only :: html
-
- .. container:: sphx-glr-footer
-    :class: sphx-glr-footer-example
+  .. container:: sphx-glr-footer sphx-glr-footer-example
 
 
+    .. container:: sphx-glr-download sphx-glr-download-python
 
-  .. container:: sphx-glr-download sphx-glr-download-python
+      :download:`Download Python source code: plot_vhz_ctrl_im_2kw.py <plot_vhz_ctrl_im_2kw.py>`
 
-     :download:`Download Python source code: plot_vhz_ctrl_im_2kw.py <plot_vhz_ctrl_im_2kw.py>`
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
-
-  .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-     :download:`Download Jupyter notebook: plot_vhz_ctrl_im_2kw.ipynb <plot_vhz_ctrl_im_2kw.ipynb>`
+      :download:`Download Jupyter notebook: plot_vhz_ctrl_im_2kw.ipynb <plot_vhz_ctrl_im_2kw.ipynb>`
 
 
 .. only:: html

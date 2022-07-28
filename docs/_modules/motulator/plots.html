@@ -84,12 +84,9 @@
            <div itemprop="articleBody">
              
   <h1>Source code for motulator.plots</h1><div class="highlight"><pre>
-<span></span><span class="c1"># pylint: disable=C0103</span>
-<span class="c1"># pylint: disable=R0903</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Example plotting scripts.</span>
+<span></span><span class="c1"># pylint: disable=invalid-name</span>
+<span class="sd">&quot;&quot;&quot;Example plotting scripts.&quot;&quot;&quot;</span>
 
-<span class="sd">&quot;&quot;&quot;</span>
 <span class="c1"># %%</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -115,9 +112,9 @@
 <span class="sd">        Should contain the simulated data.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">mdl</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">data</span>      <span class="c1"># Continuous-time data</span>
-    <span class="n">ctrl</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">ctrl</span><span class="o">.</span><span class="n">data</span>    <span class="c1"># Discrete-time data</span>
+    <span class="c1"># pylint: disable=too-many-statements</span>
+    <span class="n">mdl</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">data</span>  <span class="c1"># Continuous-time data</span>
+    <span class="n">ctrl</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">ctrl</span><span class="o">.</span><span class="n">data</span>  <span class="c1"># Discrete-time data</span>
 
     <span class="c1"># Recognize the motor type by checking if the rotor flux data exist</span>
     <span class="k">try</span><span class="p">:</span>
@@ -126,7 +123,7 @@
     <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
         <span class="n">motor_type</span> <span class="o">=</span> <span class="s1">&#39;sm&#39;</span>
 
-    <span class="n">t_range</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>   <span class="c1"># Time span</span>
+    <span class="n">t_range</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># Time span</span>
 
     <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">ax3</span><span class="p">,</span> <span class="n">ax4</span><span class="p">,</span> <span class="n">ax5</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 
@@ -136,9 +133,12 @@
         <span class="n">ax1</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">w_m</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s1">&#39;post&#39;</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
         <span class="k">pass</span>
-    <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">r</span><span class="s1">&#39;$\omega_\mathrm{m,ref}$&#39;</span><span class="p">,</span>
-                <span class="sa">r</span><span class="s1">&#39;$\omega_\mathrm</span><span class="si">{m}</span><span class="s1">$&#39;</span><span class="p">,</span>
-                <span class="sa">r</span><span class="s1">&#39;$\hat \omega_\mathrm</span><span class="si">{m}</span><span class="s1">$&#39;</span><span class="p">])</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="sa">r</span><span class="s1">&#39;$\omega_\mathrm{m,ref}$&#39;</span><span class="p">,</span>
+            <span class="sa">r</span><span class="s1">&#39;$\omega_\mathrm</span><span class="si">{m}</span><span class="s1">$&#39;</span><span class="p">,</span>
+            <span class="sa">r</span><span class="s1">&#39;$\hat \omega_\mathrm</span><span class="si">{m}</span><span class="s1">$&#39;</span><span class="p">,</span>
+        <span class="p">])</span>
     <span class="c1"># ax1.step(ctrl.t, ctrl.w_s, where=&#39;post&#39;)  # Stator frequency</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">t_range</span><span class="p">)</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([])</span>
@@ -148,10 +148,14 @@
     <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mdl</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">mdl</span><span class="o">.</span><span class="n">tau_M</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">ax2</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">tau_M_ref_lim</span><span class="p">)</span>  <span class="c1"># Limited torque reference</span>
-        <span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">r</span><span class="s1">&#39;$\tau_\mathrm</span><span class="si">{L}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\tau_\mathrm</span><span class="si">{M}</span><span class="s1">$&#39;</span><span class="p">,</span>
-                    <span class="sa">r</span><span class="s1">&#39;$\tau_\mathrm{M,ref}$&#39;</span><span class="p">])</span>
     <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-        <span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">r</span><span class="s1">&#39;$\tau_\mathrm</span><span class="si">{L}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\tau_\mathrm</span><span class="si">{M}</span><span class="s1">$&#39;</span><span class="p">])</span>
+        <span class="k">pass</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="sa">r</span><span class="s1">&#39;$\tau_\mathrm</span><span class="si">{L}</span><span class="s1">$&#39;</span><span class="p">,</span>
+            <span class="sa">r</span><span class="s1">&#39;$\tau_\mathrm</span><span class="si">{M}</span><span class="s1">$&#39;</span><span class="p">,</span>
+            <span class="sa">r</span><span class="s1">&#39;$\tau_\mathrm{M,ref}$&#39;</span><span class="p">,</span>
+        <span class="p">])</span>
     <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">t_range</span><span class="p">)</span>
     <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Torque (Nm)&#39;</span><span class="p">)</span>
     <span class="n">ax2</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([])</span>
@@ -161,13 +165,16 @@
     <span class="k">try</span><span class="p">:</span>
         <span class="n">ax3</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">i_s_ref</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s1">&#39;post&#39;</span><span class="p">)</span>
         <span class="n">ax3</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">i_s_ref</span><span class="o">.</span><span class="n">imag</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s1">&#39;post&#39;</span><span class="p">)</span>
-        <span class="n">ax3</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">r</span><span class="s1">&#39;$i_\mathrm</span><span class="si">{sd}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$i_\mathrm</span><span class="si">{sq}</span><span class="s1">$&#39;</span><span class="p">,</span>
-                    <span class="sa">r</span><span class="s1">&#39;$i_\mathrm{sd,ref}$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$i_\mathrm{sq,ref}$&#39;</span><span class="p">])</span>
     <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-        <span class="n">ax3</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">r</span><span class="s1">&#39;$i_\mathrm</span><span class="si">{sd}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$i_\mathrm</span><span class="si">{sq}</span><span class="s1">$&#39;</span><span class="p">])</span>
+        <span class="k">pass</span>
+    <span class="n">ax3</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="sa">r</span><span class="s1">&#39;$i_\mathrm</span><span class="si">{sd}</span><span class="s1">$&#39;</span><span class="p">,</span>
+            <span class="sa">r</span><span class="s1">&#39;$i_\mathrm</span><span class="si">{sq}</span><span class="s1">$&#39;</span><span class="p">,</span>
+            <span class="sa">r</span><span class="s1">&#39;$i_\mathrm{sd,ref}$&#39;</span><span class="p">,</span>
+            <span class="sa">r</span><span class="s1">&#39;$i_\mathrm{sq,ref}$&#39;</span><span class="p">,</span>
+        <span class="p">])</span>
     <span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Current (A)&#39;</span><span class="p">)</span>
-    <span class="n">ax3</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">r</span><span class="s1">&#39;$i_\mathrm{sd,ref}$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$i_\mathrm</span><span class="si">{sd}</span><span class="s1">$&#39;</span><span class="p">,</span>
-                <span class="sa">r</span><span class="s1">&#39;$i_\mathrm{sq,ref}$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$i_\mathrm</span><span class="si">{sq}</span><span class="s1">$&#39;</span><span class="p">])</span>
     <span class="n">ax3</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">t_range</span><span class="p">)</span>
     <span class="n">ax3</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([])</span>
 
@@ -182,18 +189,22 @@
         <span class="n">ax5</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mdl</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">mdl</span><span class="o">.</span><span class="n">psi_s</span><span class="p">))</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">ax5</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">psi_s</span><span class="p">),</span> <span class="n">where</span><span class="o">=</span><span class="s1">&#39;post&#39;</span><span class="p">)</span>
-            <span class="n">ax5</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">r</span><span class="s1">&#39;$\psi_\mathrm</span><span class="si">{s}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\hat\psi_\mathrm</span><span class="si">{s}</span><span class="s1">$&#39;</span><span class="p">])</span>
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-            <span class="n">ax5</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">r</span><span class="s1">&#39;$\psi_\mathrm</span><span class="si">{s}</span><span class="s1">$&#39;</span><span class="p">])</span>
+            <span class="k">pass</span>
+        <span class="n">ax5</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">r</span><span class="s1">&#39;$\psi_\mathrm</span><span class="si">{s}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\hat\psi_\mathrm</span><span class="si">{s}</span><span class="s1">$&#39;</span><span class="p">])</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">ax5</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mdl</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">mdl</span><span class="o">.</span><span class="n">psi_ss</span><span class="p">))</span>
         <span class="n">ax5</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mdl</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">mdl</span><span class="o">.</span><span class="n">psi_Rs</span><span class="p">))</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">ax5</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">psi_R</span><span class="p">))</span>
+            <span class="n">ax5</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">psi_s</span><span class="p">))</span>
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
             <span class="k">pass</span>
-        <span class="n">ax5</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">r</span><span class="s1">&#39;$\psi_\mathrm</span><span class="si">{s}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\psi_\mathrm</span><span class="si">{R}</span><span class="s1">$&#39;</span><span class="p">,</span>
-                    <span class="sa">r</span><span class="s1">&#39;$\hat \psi_\mathrm</span><span class="si">{R}</span><span class="s1">$&#39;</span><span class="p">])</span>
+        <span class="n">ax5</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="sa">r</span><span class="s1">&#39;$\psi_\mathrm</span><span class="si">{s}</span><span class="s1">$&#39;</span><span class="p">,</span>
+                <span class="sa">r</span><span class="s1">&#39;$\psi_\mathrm</span><span class="si">{R}</span><span class="s1">$&#39;</span><span class="p">,</span>
+                <span class="sa">r</span><span class="s1">&#39;$\hat \psi_\mathrm</span><span class="si">{s}</span><span class="s1">$&#39;</span><span class="p">,</span>
+            <span class="p">])</span>
     <span class="n">ax5</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">t_range</span><span class="p">)</span>
     <span class="n">ax5</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Flux linkage (Vs)&#39;</span><span class="p">)</span>
     <span class="n">ax5</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
@@ -214,9 +225,10 @@
 <span class="sd">        Should contain the simulated data.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">mdl</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">data</span>      <span class="c1"># Continuous-time data</span>
-    <span class="n">ctrl</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">ctrl</span><span class="o">.</span><span class="n">data</span>    <span class="c1"># Discrete-time data</span>
-    <span class="n">base</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">base</span>         <span class="c1"># Base values</span>
+    <span class="c1"># pylint: disable=too-many-statements</span>
+    <span class="n">mdl</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">data</span>  <span class="c1"># Continuous-time data</span>
+    <span class="n">ctrl</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">ctrl</span><span class="o">.</span><span class="n">data</span>  <span class="c1"># Discrete-time data</span>
+    <span class="n">base</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">base</span>  <span class="c1"># Base values</span>
 
     <span class="c1"># Recognize the motor type by checking if the rotor flux data exist</span>
     <span class="k">try</span><span class="p">:</span>
@@ -225,7 +237,7 @@
     <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
         <span class="n">motor_type</span> <span class="o">=</span> <span class="s1">&#39;sm&#39;</span>
 
-    <span class="n">t_range</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>   <span class="c1"># Time span</span>
+    <span class="n">t_range</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># Time span</span>
 
     <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">ax3</span><span class="p">,</span> <span class="n">ax4</span><span class="p">,</span> <span class="n">ax5</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 
@@ -235,10 +247,12 @@
         <span class="n">ax1</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">w_m</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s1">&#39;post&#39;</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
         <span class="k">pass</span>
-    <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">r</span><span class="s1">&#39;$\omega_\mathrm{m,ref}$&#39;</span><span class="p">,</span>
-                <span class="sa">r</span><span class="s1">&#39;$\omega_\mathrm</span><span class="si">{m}</span><span class="s1">$&#39;</span><span class="p">,</span>
-                <span class="sa">r</span><span class="s1">&#39;$\hat \omega_\mathrm</span><span class="si">{m}</span><span class="s1">$&#39;</span><span class="p">])</span>
-    <span class="c1"># ax1.step(ctrl.t, ctrl.w_s/base.w, where=&#39;post&#39;)  # Stator frequency</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="sa">r</span><span class="s1">&#39;$\omega_\mathrm{m,ref}$&#39;</span><span class="p">,</span>
+            <span class="sa">r</span><span class="s1">&#39;$\omega_\mathrm</span><span class="si">{m}</span><span class="s1">$&#39;</span><span class="p">,</span>
+            <span class="sa">r</span><span class="s1">&#39;$\hat \omega_\mathrm</span><span class="si">{m}</span><span class="s1">$&#39;</span><span class="p">,</span>
+        <span class="p">])</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">t_range</span><span class="p">)</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([])</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Speed (p.u.)&#39;</span><span class="p">)</span>
@@ -247,10 +261,14 @@
     <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mdl</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">mdl</span><span class="o">.</span><span class="n">tau_M</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">tau</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">ax2</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">tau_M_ref_lim</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">tau</span><span class="p">)</span>  <span class="c1"># Limited torque ref</span>
-        <span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">r</span><span class="s1">&#39;$\tau_\mathrm</span><span class="si">{L}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\tau_\mathrm</span><span class="si">{M}</span><span class="s1">$&#39;</span><span class="p">,</span>
-                    <span class="sa">r</span><span class="s1">&#39;$\tau_\mathrm{M,ref}$&#39;</span><span class="p">])</span>
     <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-        <span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">r</span><span class="s1">&#39;$\tau_\mathrm</span><span class="si">{L}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\tau_\mathrm</span><span class="si">{M}</span><span class="s1">$&#39;</span><span class="p">])</span>
+        <span class="k">pass</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="sa">r</span><span class="s1">&#39;$\tau_\mathrm</span><span class="si">{L}</span><span class="s1">$&#39;</span><span class="p">,</span>
+            <span class="sa">r</span><span class="s1">&#39;$\tau_\mathrm</span><span class="si">{M}</span><span class="s1">$&#39;</span><span class="p">,</span>
+            <span class="sa">r</span><span class="s1">&#39;$\tau_\mathrm{M,ref}$&#39;</span><span class="p">,</span>
+        <span class="p">])</span>
     <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">t_range</span><span class="p">)</span>
     <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Torque (p.u.)&#39;</span><span class="p">)</span>
     <span class="n">ax2</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([])</span>
@@ -260,10 +278,15 @@
     <span class="k">try</span><span class="p">:</span>
         <span class="n">ax3</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">i_s_ref</span><span class="o">.</span><span class="n">real</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">i</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s1">&#39;post&#39;</span><span class="p">)</span>
         <span class="n">ax3</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">i_s_ref</span><span class="o">.</span><span class="n">imag</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">i</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s1">&#39;post&#39;</span><span class="p">)</span>
-        <span class="n">ax3</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">r</span><span class="s1">&#39;$i_\mathrm</span><span class="si">{sd}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$i_\mathrm</span><span class="si">{sq}</span><span class="s1">$&#39;</span><span class="p">,</span>
-                    <span class="sa">r</span><span class="s1">&#39;$i_\mathrm{sd,ref}$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$i_\mathrm{sq,ref}$&#39;</span><span class="p">])</span>
     <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-        <span class="n">ax3</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">r</span><span class="s1">&#39;$i_\mathrm</span><span class="si">{sd}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$i_\mathrm</span><span class="si">{sq}</span><span class="s1">$&#39;</span><span class="p">])</span>
+        <span class="k">pass</span>
+    <span class="n">ax3</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="sa">r</span><span class="s1">&#39;$i_\mathrm</span><span class="si">{sd}</span><span class="s1">$&#39;</span><span class="p">,</span>
+            <span class="sa">r</span><span class="s1">&#39;$i_\mathrm</span><span class="si">{sq}</span><span class="s1">$&#39;</span><span class="p">,</span>
+            <span class="sa">r</span><span class="s1">&#39;$i_\mathrm{sd,ref}$&#39;</span><span class="p">,</span>
+            <span class="sa">r</span><span class="s1">&#39;$i_\mathrm{sq,ref}$&#39;</span><span class="p">,</span>
+        <span class="p">])</span>
     <span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Current (p.u.)&#39;</span><span class="p">)</span>
     <span class="n">ax3</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">t_range</span><span class="p">)</span>
     <span class="n">ax3</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([])</span>
@@ -279,18 +302,22 @@
         <span class="n">ax5</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mdl</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">mdl</span><span class="o">.</span><span class="n">psi_s</span><span class="p">)</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">psi</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">ax5</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">psi_s</span><span class="p">)</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">psi</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s1">&#39;post&#39;</span><span class="p">)</span>
-            <span class="n">ax5</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">r</span><span class="s1">&#39;$\psi_\mathrm</span><span class="si">{s}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\hat\psi_\mathrm</span><span class="si">{s}</span><span class="s1">$&#39;</span><span class="p">])</span>
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-            <span class="n">ax5</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">r</span><span class="s1">&#39;$\psi_\mathrm</span><span class="si">{s}</span><span class="s1">$&#39;</span><span class="p">])</span>
+            <span class="k">pass</span>
+        <span class="n">ax5</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">r</span><span class="s1">&#39;$\psi_\mathrm</span><span class="si">{s}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\hat\psi_\mathrm</span><span class="si">{s}</span><span class="s1">$&#39;</span><span class="p">])</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">ax5</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mdl</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">mdl</span><span class="o">.</span><span class="n">psi_ss</span><span class="p">)</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">psi</span><span class="p">)</span>
         <span class="n">ax5</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mdl</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">mdl</span><span class="o">.</span><span class="n">psi_Rs</span><span class="p">)</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">psi</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">ax5</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">psi_R</span><span class="p">)</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">psi</span><span class="p">)</span>
+            <span class="n">ax5</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">psi_s</span><span class="p">)</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">psi</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
             <span class="k">pass</span>
-        <span class="n">ax5</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">r</span><span class="s1">&#39;$\psi_\mathrm</span><span class="si">{s}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\psi_\mathrm</span><span class="si">{R}</span><span class="s1">$&#39;</span><span class="p">,</span>
-                    <span class="sa">r</span><span class="s1">&#39;$\hat \psi_\mathrm</span><span class="si">{R}</span><span class="s1">$&#39;</span><span class="p">])</span>
+        <span class="n">ax5</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="sa">r</span><span class="s1">&#39;$\psi_\mathrm</span><span class="si">{s}</span><span class="s1">$&#39;</span><span class="p">,</span>
+                <span class="sa">r</span><span class="s1">&#39;$\psi_\mathrm</span><span class="si">{R}</span><span class="s1">$&#39;</span><span class="p">,</span>
+                <span class="sa">r</span><span class="s1">&#39;$\hat \psi_\mathrm</span><span class="si">{s}</span><span class="s1">$&#39;</span><span class="p">,</span>
+            <span class="p">])</span>
     <span class="n">ax5</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">t_range</span><span class="p">)</span>
     <span class="n">ax5</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Flux linkage (p.u.)&#39;</span><span class="p">)</span>
     <span class="n">ax5</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
@@ -313,9 +340,9 @@
 <span class="sd">        Time span. The default is (1.1, 1.125).</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">mdl</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">data</span>      <span class="c1"># Continuous-time data</span>
-    <span class="n">ctrl</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">ctrl</span><span class="o">.</span><span class="n">data</span>    <span class="c1"># Discrete-time data</span>
-    <span class="n">base</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">base</span>         <span class="c1"># Base values</span>
+    <span class="n">mdl</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">data</span>  <span class="c1"># Continuous-time data</span>
+    <span class="n">ctrl</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">ctrl</span><span class="o">.</span><span class="n">data</span>  <span class="c1"># Discrete-time data</span>
+    <span class="n">base</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">base</span>  <span class="c1"># Base values</span>
 
     <span class="c1"># Quantities in stator coordinates</span>
     <span class="n">ctrl</span><span class="o">.</span><span class="n">u_ss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">ctrl</span><span class="o">.</span><span class="n">theta_s</span><span class="p">)</span><span class="o">*</span><span class="n">ctrl</span><span class="o">.</span><span class="n">u_s</span>
@@ -325,15 +352,13 @@
     <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mdl</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">mdl</span><span class="o">.</span><span class="n">u_ss</span><span class="o">.</span><span class="n">real</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">u</span><span class="p">)</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">u_ss</span><span class="o">.</span><span class="n">real</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">u</span><span class="p">)</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">t_zoom</span><span class="p">)</span>
-    <span class="c1"># ax1.set_ylim(-1.5, 1.5)</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">r</span><span class="s1">&#39;$u_\mathrm</span><span class="si">{sa}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\hat u_\mathrm</span><span class="si">{sa}</span><span class="s1">$&#39;</span><span class="p">])</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Voltage (p.u.)&#39;</span><span class="p">)</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([])</span>
     <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mdl</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">complex2abc</span><span class="p">(</span><span class="n">mdl</span><span class="o">.</span><span class="n">i_ss</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">i</span><span class="p">)</span>
     <span class="n">ax2</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">i_ss</span><span class="o">.</span><span class="n">real</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">i</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s1">&#39;post&#39;</span><span class="p">)</span>
     <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">t_zoom</span><span class="p">)</span>
-    <span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">r</span><span class="s1">&#39;$i_\mathrm</span><span class="si">{sa}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$i_\mathrm</span><span class="si">{sb}</span><span class="s1">$&#39;</span><span class="p">,</span>
-                <span class="sa">r</span><span class="s1">&#39;$i_\mathrm</span><span class="si">{sc}</span><span class="s1">$&#39;</span><span class="p">])</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">r</span><span class="s1">&#39;$i_\mathrm</span><span class="si">{sa}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$i_\mathrm</span><span class="si">{sb}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$i_\mathrm</span><span class="si">{sc}</span><span class="s1">$&#39;</span><span class="p">])</span>
     <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Current (p.u.)&#39;</span><span class="p">)</span>
     <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
     <span class="n">fig1</span><span class="o">.</span><span class="n">align_ylabels</span><span class="p">()</span>
@@ -349,19 +374,15 @@
         <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mdl</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">mdl</span><span class="o">.</span><span class="n">u_dc</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">u</span><span class="p">)</span>
         <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mdl</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">complex2abc</span><span class="p">(</span><span class="n">mdl</span><span class="o">.</span><span class="n">u_g</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">u</span><span class="p">)</span>
         <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">t_zoom</span><span class="p">)</span>
-        <span class="c1"># ax1.set_ylim(-1.5, 2)</span>
         <span class="n">ax1</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([])</span>
-        <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">r</span><span class="s1">&#39;$u_\mathrm</span><span class="si">{di}</span><span class="s1">$&#39;</span><span class="p">,</span>
-                    <span class="sa">r</span><span class="s1">&#39;$u_\mathrm</span><span class="si">{dc}</span><span class="s1">$&#39;</span><span class="p">,</span>
-                    <span class="sa">r</span><span class="s1">&#39;$u_\mathrm</span><span class="si">{ga}</span><span class="s1">$&#39;</span><span class="p">])</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
+            <span class="p">[</span><span class="sa">r</span><span class="s1">&#39;$u_\mathrm</span><span class="si">{di}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$u_\mathrm</span><span class="si">{dc}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$u_\mathrm</span><span class="si">{ga}</span><span class="s1">$&#39;</span><span class="p">])</span>
         <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Voltage (p.u.)&#39;</span><span class="p">)</span>
         <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mdl</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">mdl</span><span class="o">.</span><span class="n">i_L</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">i</span><span class="p">)</span>
         <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mdl</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">mdl</span><span class="o">.</span><span class="n">i_dc</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">i</span><span class="p">)</span>
         <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mdl</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">mdl</span><span class="o">.</span><span class="n">i_g</span><span class="o">.</span><span class="n">real</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">i</span><span class="p">)</span>
         <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">t_zoom</span><span class="p">)</span>
-        <span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">r</span><span class="s1">&#39;$i_\mathrm</span><span class="si">{L}</span><span class="s1">$&#39;</span><span class="p">,</span>
-                    <span class="sa">r</span><span class="s1">&#39;$i_\mathrm</span><span class="si">{dc}</span><span class="s1">$&#39;</span><span class="p">,</span>
-                    <span class="sa">r</span><span class="s1">&#39;$i_\mathrm</span><span class="si">{ga}</span><span class="s1">$&#39;</span><span class="p">])</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">r</span><span class="s1">&#39;$i_\mathrm</span><span class="si">{L}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$i_\mathrm</span><span class="si">{dc}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$i_\mathrm</span><span class="si">{ga}</span><span class="s1">$&#39;</span><span class="p">])</span>
         <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Current (p.u.)&#39;</span><span class="p">)</span>
         <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
         <span class="n">fig2</span><span class="o">.</span><span class="n">align_ylabels</span><span class="p">()</span>

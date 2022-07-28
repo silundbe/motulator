@@ -87,7 +87,7 @@ Configure the system model.
 
 Configure the control system. You may also try to change the parameters.
 
-.. GENERATED FROM PYTHON SOURCE LINES 32-47
+.. GENERATED FROM PYTHON SOURCE LINES 32-54
 
 .. code-block:: default
 
@@ -95,13 +95,20 @@ Configure the control system. You may also try to change the parameters.
     pars = mt.SynchronousMotorVectorCtrlPars(
         sensorless=True,
         T_s=250e-6,
-        alpha_c=2*np.pi*200, alpha_fw=2*np.pi*20, alpha_s=2*np.pi*4,
+        alpha_c=2*np.pi*200,
+        alpha_fw=2*np.pi*20,
+        alpha_s=2*np.pi*4,
         w_o=2*np.pi*80,  # Used only in the sensorless mode
         tau_M_max=2*base.tau_nom,
         i_s_max=2*base.i,
         psi_s_min=.5*base.psi,  # Can be 0 in the sensored mode
-        k_u=.95, w_nom=2*np.pi*105.8,
-        p=2, R_s=.54, L_d=41.5e-3, L_q=6.2e-3, psi_f=0,
+        k_u=.95,
+        w_nom=2*np.pi*105.8,
+        p=2,
+        R_s=.54,
+        L_d=41.5e-3,
+        L_q=6.2e-3,
+        psi_f=0,
         J=.015)
     ctrl = mt.SynchronousMotorVectorCtrl(pars)
     # pars.plot_luts(base)  # Plot control look-up tables
@@ -113,18 +120,18 @@ Configure the control system. You may also try to change the parameters.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 48-49
+.. GENERATED FROM PYTHON SOURCE LINES 55-56
 
 Set the speed reference and the external load torque.
 
-.. GENERATED FROM PYTHON SOURCE LINES 49-63
+.. GENERATED FROM PYTHON SOURCE LINES 56-70
 
 .. code-block:: default
 
 
     # Speed reference
     times = np.array([0, .125, .25, .375, .5, .625, .75, .875, 1])*4
-    values = np.array([0,  0, 1, 1, 0, -1, -1, 0, 0])*base.w
+    values = np.array([0, 0, 1, 1, 0, -1, -1, 0, 0])*base.w
     ctrl.w_m_ref = mt.Sequence(times, values)
     # External load torque
     times = np.array([0, .125, .125, .875, .875, 1])*4
@@ -142,11 +149,11 @@ Set the speed reference and the external load torque.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 64-65
+.. GENERATED FROM PYTHON SOURCE LINES 71-72
 
 Create the simulation object and simulate it.
 
-.. GENERATED FROM PYTHON SOURCE LINES 65-72
+.. GENERATED FROM PYTHON SOURCE LINES 72-79
 
 .. code-block:: default
 
@@ -163,21 +170,19 @@ Create the simulation object and simulate it.
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
 
-    Execution time: 16.41 s
+    Execution time: 10.92 s
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 73-74
+.. GENERATED FROM PYTHON SOURCE LINES 80-81
 
 Plot results in per-unit values.
 
-.. GENERATED FROM PYTHON SOURCE LINES 74-77
+.. GENERATED FROM PYTHON SOURCE LINES 81-84
 
 .. code-block:: default
 
@@ -199,28 +204,23 @@ Plot results in per-unit values.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  17.592 seconds)
+   **Total running time of the script:** ( 0 minutes  11.786 seconds)
 
 
 .. _sphx_glr_download_auto_examples_sm_plot_vector_ctrl_syrm_7kw.py:
 
+.. only:: html
 
-.. only :: html
-
- .. container:: sphx-glr-footer
-    :class: sphx-glr-footer-example
+  .. container:: sphx-glr-footer sphx-glr-footer-example
 
 
+    .. container:: sphx-glr-download sphx-glr-download-python
 
-  .. container:: sphx-glr-download sphx-glr-download-python
+      :download:`Download Python source code: plot_vector_ctrl_syrm_7kw.py <plot_vector_ctrl_syrm_7kw.py>`
 
-     :download:`Download Python source code: plot_vector_ctrl_syrm_7kw.py <plot_vector_ctrl_syrm_7kw.py>`
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
-
-  .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-     :download:`Download Jupyter notebook: plot_vector_ctrl_syrm_7kw.ipynb <plot_vector_ctrl_syrm_7kw.ipynb>`
+      :download:`Download Jupyter notebook: plot_vector_ctrl_syrm_7kw.ipynb <plot_vector_ctrl_syrm_7kw.ipynb>`
 
 
 .. only:: html

@@ -70,207 +70,45 @@ Classes
 
       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
    .. py:attribute:: T_s
       :annotation: :float = 0.00025
 
       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
 
    .. py:attribute:: psi_s_nom
       :annotation: :float = 1.04
 
       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
    .. py:attribute:: rate_limit
       :annotation: :float
 
       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
 
    .. py:attribute:: R_s
       :annotation: :float = 3.7
 
       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
    .. py:attribute:: R_R
       :annotation: :float = 2.1
 
       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
 
    .. py:attribute:: L_sgm
       :annotation: :float = 0.021
 
       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
    .. py:attribute:: L_M
       :annotation: :float = 0.224
 
       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
    .. py:attribute:: k_u
       :annotation: :float = 1
 
       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
 
    .. py:attribute:: k_w
       :annotation: :float = 4
@@ -278,38 +116,34 @@ Classes
       
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-
 .. py:class:: InductionMotorVHzCtrl(pars)
 
+   
    V/Hz control with the stator current feedback.
 
    :param pars: Control parameters.
    :type pars: InductionMotorVHzCtrlPars
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    ..
        !! processed by numpydoc !!
-
-   .. py:method:: __call__(self, mdl)
+   .. py:method:: __call__(mdl)
 
       
-      Main control loop.
+      Run the main control loop.
 
       :param mdl: Continuous-time model of an induction motor drive for getting the
                   feedback signals.
@@ -335,7 +169,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: stator_freq(self, w_s_ref, i_s)
+   .. py:method:: stator_freq(w_s_ref, i_s)
 
       
       Compute the dynamic stator frequency.
@@ -360,7 +194,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: voltage_reference(self, w_s, i_s)
+   .. py:method:: voltage_reference(w_s, i_s)
 
       
       Compute the stator voltage reference.
@@ -383,7 +217,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: post_process(self)
+   .. py:method:: post_process()
 
       
       Transform the lists to the ndarray format.

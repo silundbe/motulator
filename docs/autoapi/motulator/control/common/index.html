@@ -157,8 +157,8 @@ method. This method is identical to the standard space-vector PWM.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.control.common.PWM.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_dc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/common.html#PWM.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.common.PWM.__call__" title="Permalink to this definition"></a></dt>
-<dd><p>Compute the duty ratio references and update the state.</p>
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_dc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/common.html#PWM.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.common.PWM.__call__" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the duty ratios and update the state.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -179,13 +179,13 @@ method. This method is identical to the standard space-vector PWM.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.control.common.PWM.output">
-<span class="sig-name descname"><span class="pre">output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_dc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/common.html#PWM.output"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.common.PWM.output" title="Permalink to this definition"></a></dt>
-<dd><p>Compute the duty ratio references and the limited voltage reference.</p>
+<span class="sig-name descname"><span class="pre">output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_dc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/common.html#PWM.output"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.common.PWM.output" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the duty ratio limited voltage reference.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.control.common.PWM.update">
-<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_ref_lim</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/common.html#PWM.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.common.PWM.update" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u_ref_lim</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/common.html#PWM.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.common.PWM.update" title="Permalink to this definition"></a></dt>
 <dd><p>Update the voltage estimate for the next sampling instant.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -209,7 +209,7 @@ The controller is mathematically identical to the 2DOF PI speed controller.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.control.common.SpeedCtrl.output">
-<span class="sig-name descname"><span class="pre">output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_M_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_M</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/common.html#SpeedCtrl.output"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.common.SpeedCtrl.output" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w_M_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_M</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/common.html#SpeedCtrl.output"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.common.SpeedCtrl.output" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the torque reference and the load torque estimate.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -229,7 +229,7 @@ The controller is mathematically identical to the 2DOF PI speed controller.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.control.common.SpeedCtrl.update">
-<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau_M_ref_lim</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/common.html#SpeedCtrl.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.common.SpeedCtrl.update" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau_M_ref_lim</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/common.html#SpeedCtrl.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.common.SpeedCtrl.update" title="Permalink to this definition"></a></dt>
 <dd><p>Update the integral state.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -251,8 +251,9 @@ The controller is mathematically identical to the 2DOF PI speed controller.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.control.common.RateLimiter.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/common.html#RateLimiter.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.common.RateLimiter.__call__" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list simple">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/common.html#RateLimiter.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.common.RateLimiter.__call__" title="Permalink to this definition"></a></dt>
+<dd><p>Limit the input signal.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>u</strong> (<em>float</em>) – Input signal.</p>
 </dd>

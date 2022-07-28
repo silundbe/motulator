@@ -274,8 +274,8 @@ provides the interface to the solver.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.control.sm_flux_vector.SynchronousMotorFluxVectorCtrl.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mdl</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/sm_flux_vector.html#SynchronousMotorFluxVectorCtrl.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.sm_flux_vector.SynchronousMotorFluxVectorCtrl.__call__" title="Permalink to this definition"></a></dt>
-<dd><p>Main control loop.</p>
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mdl</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/sm_flux_vector.html#SynchronousMotorFluxVectorCtrl.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.sm_flux_vector.SynchronousMotorFluxVectorCtrl.__call__" title="Permalink to this definition"></a></dt>
+<dd><p>Run the main control loop.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>mdl</strong> (<a class="reference internal" href="../../index.html#motulator.SynchronousMotorDrive" title="motulator.SynchronousMotorDrive"><em>SynchronousMotorDrive</em></a>) – Continuous-time model of a synchronous motor drive for getting the
@@ -293,7 +293,7 @@ feedback signals.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.control.sm_flux_vector.SynchronousMotorFluxVectorCtrl.post_process">
-<span class="sig-name descname"><span class="pre">post_process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/sm_flux_vector.html#SynchronousMotorFluxVectorCtrl.post_process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.sm_flux_vector.SynchronousMotorFluxVectorCtrl.post_process" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">post_process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/sm_flux_vector.html#SynchronousMotorFluxVectorCtrl.post_process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.sm_flux_vector.SynchronousMotorFluxVectorCtrl.post_process" title="Permalink to this definition"></a></dt>
 <dd><p>Transform the lists to the ndarray format.</p>
 </dd></dl>
 
@@ -310,7 +310,7 @@ feedback signals.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.control.sm_flux_vector.FluxTorqueCtrl.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_s_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau_M_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_dc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/sm_flux_vector.html#FluxTorqueCtrl.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.sm_flux_vector.FluxTorqueCtrl.__call__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">psi_s_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau_M_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_dc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/sm_flux_vector.html#FluxTorqueCtrl.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.sm_flux_vector.FluxTorqueCtrl.__call__" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the unlimited voltage reference.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -345,7 +345,7 @@ feedback signals.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.control.sm_flux_vector.FluxTorqueRef.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau_M_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_dc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/sm_flux_vector.html#FluxTorqueRef.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.sm_flux_vector.FluxTorqueRef.__call__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau_M_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_dc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/sm_flux_vector.html#FluxTorqueRef.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.sm_flux_vector.FluxTorqueRef.__call__" title="Permalink to this definition"></a></dt>
 <dd><p>Calculate the stator flux reference and limit the torque reference.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -378,7 +378,7 @@ feedback signals.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.control.sm_flux_vector.Observer.update">
-<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_m</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/sm_flux_vector.html#Observer.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.sm_flux_vector.Observer.update" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_m</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/sm_flux_vector.html#Observer.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.sm_flux_vector.Observer.update" title="Permalink to this definition"></a></dt>
 <dd><p>Update the states for the next sampling period.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>

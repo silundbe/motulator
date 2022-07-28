@@ -26,6 +26,7 @@ Classes
 
 .. py:class:: Mechanics(J=0.015, B=0, tau_L_ext=lambda t: 0)
 
+   
    Mechanics subsystem.
 
    This models an equation of motion for stiff mechanics.
@@ -37,10 +38,23 @@ Classes
    :param tau_L_ext: External load torque as a function of time, `tau_L_ext(t)`.
    :type tau_L_ext: function
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    ..
        !! processed by numpydoc !!
-
-   .. py:method:: f(self, t, w_M, tau_M)
+   .. py:method:: f(t, w_M, tau_M)
 
       
       Compute the state derivative.
@@ -72,7 +86,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: meas_speed(self)
+   .. py:method:: meas_speed()
 
       
       Measure the rotor speed.
@@ -99,7 +113,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: meas_position(self)
+   .. py:method:: meas_position()
 
       
       Measure the rotor angle.

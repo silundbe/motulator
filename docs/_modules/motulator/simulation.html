@@ -85,10 +85,8 @@
              
   <h1>Source code for motulator.simulation</h1><div class="highlight"><pre>
 <span></span><span class="c1"># pylint: disable=invalid-name</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Simulation environment.</span>
+<span class="sd">&quot;&quot;&quot;Simulation environment.&quot;&quot;&quot;</span>
 
-<span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
 <span class="kn">from</span> <span class="nn">scipy.io</span> <span class="kn">import</span> <span class="n">savemat</span>
@@ -103,21 +101,21 @@
 
 <span class="sd">    This models the computational delay as a ring buffer.</span>
 
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    length : int, optional</span>
+<span class="sd">        Length of the buffer in samples. The default is 1.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="c1"># pylint: disable=R0903</span>
+    <span class="c1"># pylint: disable=too-few-public-methods</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">elem</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        length : int, optional</span>
-<span class="sd">            Length of the buffer in samples. The default is 1.</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">length</span><span class="o">*</span><span class="p">[</span><span class="n">elem</span><span class="o">*</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>  <span class="c1"># Creates a zero list</span>
 
 <div class="viewcode-block" id="Delay.__call__"><a class="viewcode-back" href="../../autoapi/motulator/simulation/index.html#motulator.Delay.__call__">[docs]</a>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">u</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Delay the input.</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        u : array_like, shape (elem,)</span>
@@ -145,17 +143,15 @@
 <span class="sd">    instants are explicilty computed in the begininning of each sampling</span>
 <span class="sd">    period, allowing faster simulations.</span>
 
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    N : int, optional</span>
+<span class="sd">        Amount of the counter quantization levels. The default is 2**12.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="c1"># pylint: disable=too-few-public-methods</span>
-
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">2</span><span class="o">**</span><span class="mi">12</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        N : int, optional</span>
-<span class="sd">            Amount of the counter quantization levels. The default is 2**12.</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="n">N</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rising_edge</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># Stores the carrier direction</span>
 
@@ -240,28 +236,32 @@
 
 <span class="sd">    Each simulation object has a system model object and a controller object.</span>
 
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    mdl : InductionMotorDrive | SynchronousMotorDrive</span>
+<span class="sd">        Continuous-time system model.</span>
+<span class="sd">    ctrl : SynchronousMotorVectorCtrl | InductionMotorVectorCtrl |</span>
+<span class="sd">        InductionMotorVHzCtrl</span>
+<span class="sd">        Discrete-time controller.</span>
+<span class="sd">    delay : int, optional</span>
+<span class="sd">        Amount of computational delays. The default is 1.</span>
+<span class="sd">    enable_pwm : bool, optional</span>
+<span class="sd">        Enable carrier comparison. The default is False.</span>
+<span class="sd">    base : BaseValues, optional</span>
+<span class="sd">        Base values for plotting figures.</span>
+<span class="sd">    t_stop : float, optional</span>
+<span class="sd">        Simulation stop time. The default is 1.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mdl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ctrl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">enable_pwm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                 <span class="n">base</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">t_stop</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        mdl : InductionMotorDrive | SynchronousMotorDrive</span>
-<span class="sd">            Continuous-time system model.</span>
-<span class="sd">        ctrl : SynchronousMotorVectorCtrl | InductionMotorVectorCtrl |</span>
-<span class="sd">            InductionMotorVHzCtrl</span>
-<span class="sd">            Discrete-time controller.</span>
-<span class="sd">        delay : int, optional</span>
-<span class="sd">            Amount of computational delays. The default is 1.</span>
-<span class="sd">        enable_pwm : bool, optional</span>
-<span class="sd">            Enable carrier comparison. The default is False.</span>
-<span class="sd">        base : BaseValues, optional</span>
-<span class="sd">            Base values for plotting figures.</span>
-<span class="sd">        t_stop : float, optional</span>
-<span class="sd">            Simulation stop time. The default is 1.</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">mdl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">ctrl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">delay</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">enable_pwm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">base</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">t_stop</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="c1"># pylint: disable=too-many-arguments</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mdl</span> <span class="o">=</span> <span class="n">mdl</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ctrl</span> <span class="o">=</span> <span class="n">ctrl</span>
@@ -311,7 +311,7 @@
                     <span class="n">x0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">get_initial_values</span><span class="p">()</span>
 
                     <span class="c1"># Integrate over t_span</span>
-                    <span class="n">t_span</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">t0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">t0</span><span class="o">+</span><span class="n">t_step</span><span class="p">)</span>
+                    <span class="n">t_span</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">t0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">t0</span> <span class="o">+</span> <span class="n">t_step</span><span class="p">)</span>
                     <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="n">t_span</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">max_step</span><span class="o">=</span><span class="n">max_step</span><span class="p">)</span>
 
                     <span class="c1"># Set the new initial values (last points of the solution)</span>
@@ -336,8 +336,8 @@
 <span class="sd">            Name for the simulation instance. The default is &#39;sim&#39;.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">savemat</span><span class="p">(</span><span class="n">name</span><span class="o">+</span><span class="s1">&#39;_mdl_data&#39;</span><span class="o">+</span><span class="s1">&#39;.mat&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
-        <span class="n">savemat</span><span class="p">(</span><span class="n">name</span><span class="o">+</span><span class="s1">&#39;_ctrl_data&#39;</span><span class="o">+</span><span class="s1">&#39;.mat&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ctrl</span><span class="o">.</span><span class="n">data</span><span class="p">)</span></div></div>
+        <span class="n">savemat</span><span class="p">(</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;_mdl_data&#39;</span> <span class="o">+</span> <span class="s1">&#39;.mat&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">savemat</span><span class="p">(</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;_ctrl_data&#39;</span> <span class="o">+</span> <span class="s1">&#39;.mat&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ctrl</span><span class="o">.</span><span class="n">data</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>

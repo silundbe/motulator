@@ -31,6 +31,7 @@ Classes
 
 .. py:class:: InductionMotorDrive(motor=InductionMotor(), mech=Mechanics(), conv=Inverter())
 
+   
    Continuous-time model for an induction motor drive.
 
    This interconnects the subsystems of an induction motor drive and provides
@@ -44,10 +45,23 @@ Classes
    :param conv: Inverter model.
    :type conv: Inverter
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    ..
        !! processed by numpydoc !!
-
-   .. py:method:: get_initial_values(self)
+   .. py:method:: get_initial_values()
 
       
       Get the initial values.
@@ -72,7 +86,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: set_initial_values(self, t0, x0)
+   .. py:method:: set_initial_values(t0, x0)
 
       
       Set the initial values.
@@ -97,7 +111,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: f(self, t, x)
+   .. py:method:: f(t, x)
 
       
       Compute the complete state derivative list for the solver.
@@ -127,7 +141,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: save(self, sol)
+   .. py:method:: save(sol)
 
       
       Save the solution.
@@ -152,7 +166,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: post_process(self)
+   .. py:method:: post_process()
 
       
       Transform the lists to the ndarray format and post-process them.
@@ -180,6 +194,7 @@ Classes
 
    Bases: :py:obj:`InductionMotorDrive`
 
+   
    Induction motor drive equipped with a diode bridge.
 
    This models extends the InductionMotorDrive class with a model for a
@@ -193,16 +208,27 @@ Classes
    :param conv: Frequency converter model.
    :type conv: FrequencyConverter
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    ..
        !! processed by numpydoc !!
-
-   .. py:method:: get_initial_values(self)
+   .. py:method:: get_initial_values()
 
       
-      Get the initial values.
+      Extend the base class.
 
-      :returns: **x0** -- Initial values of the state variables.
-      :rtype: complex list, length 4
 
 
 
@@ -221,13 +247,11 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: set_initial_values(self, t0, x0)
+   .. py:method:: set_initial_values(t0, x0)
 
       
-      Set the initial values.
+      Extend the base class.
 
-      :param x0: Initial values of the state variables.
-      :type x0: complex ndarray
 
 
 
@@ -246,18 +270,11 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: f(self, t, x)
+   .. py:method:: f(t, x)
 
       
-      Compute the complete state derivative list for the solver.
+      Override the base class.
 
-      :param t: Time.
-      :type t: float
-      :param x: State vector.
-      :type x: complex ndarray
-
-      :returns: State derivatives.
-      :rtype: complex list
 
 
 
@@ -276,13 +293,11 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: save(self, sol)
+   .. py:method:: save(sol)
 
       
-      Save the solution.
+      Extend the base class.
 
-      :param sol: Solution from the solver.
-      :type sol: Bunch object
 
 
 
@@ -301,10 +316,10 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: post_process(self)
+   .. py:method:: post_process()
 
       
-      Transform the lists to the ndarray format and post-process them.
+      Extend the base class.
 
 
 

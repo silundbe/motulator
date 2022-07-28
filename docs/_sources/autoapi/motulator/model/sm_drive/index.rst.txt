@@ -29,6 +29,7 @@ Classes
 
 .. py:class:: SynchronousMotorDrive(motor=SynchronousMotor(), mech=Mechanics(), conv=Inverter())
 
+   
    Continuous-time model for a synchronous motor drive.
 
    This interconnects the subsystems of a synchronous motor drive and provides
@@ -42,10 +43,23 @@ Classes
    :param conv: Inverter model.
    :type conv: Inverter
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    ..
        !! processed by numpydoc !!
-
-   .. py:method:: get_initial_values(self)
+   .. py:method:: get_initial_values()
 
       
       Get the initial values.
@@ -70,7 +84,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: set_initial_values(self, t0, x0)
+   .. py:method:: set_initial_values(t0, x0)
 
       
       Set the initial values.
@@ -95,7 +109,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: f(self, t, x)
+   .. py:method:: f(t, x)
 
       
       Compute the complete state derivative list for the solver.
@@ -125,7 +139,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: save(self, sol)
+   .. py:method:: save(sol)
 
       
       Save the solution.
@@ -150,7 +164,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: post_process(self)
+   .. py:method:: post_process()
 
       
       Transform the lists to the ndarray format and post-process them.

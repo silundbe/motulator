@@ -85,10 +85,8 @@
              
   <h1>Source code for motulator.control.sm_vector</h1><div class="highlight"><pre>
 <span></span><span class="c1"># pylint: disable=invalid-name</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Current vector control for synchronous motor drives.</span>
+<span class="sd">&quot;&quot;&quot;Current vector control for synchronous motor drives.&quot;&quot;&quot;</span>
 
-<span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>
 <span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
@@ -102,10 +100,8 @@
 <span class="c1"># %%</span>
 <span class="nd">@dataclass</span>
 <div class="viewcode-block" id="SynchronousMotorVectorCtrlPars"><a class="viewcode-back" href="../../../autoapi/motulator/index.html#motulator.control.sm_vector.SynchronousMotorVectorCtrlPars">[docs]</a><span class="k">class</span> <span class="nc">SynchronousMotorVectorCtrlPars</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Vector control parameters for synchronous motors.</span>
+    <span class="sd">&quot;&quot;&quot;Vector control parameters for synchronous motors.&quot;&quot;&quot;</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># pylint: disable=too-many-instance-attributes</span>
     <span class="c1"># Speed reference (in electrical rad/s)</span>
 <div class="viewcode-block" id="SynchronousMotorVectorCtrlPars.w_m_ref"><a class="viewcode-back" href="../../../autoapi/motulator/control/sm_vector/index.html#motulator.control.sm_vector.SynchronousMotorVectorCtrlPars.w_m_ref">[docs]</a>    <span class="n">w_m_ref</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
@@ -189,7 +185,7 @@
 
 <div class="viewcode-block" id="SynchronousMotorVectorCtrl.__call__"><a class="viewcode-back" href="../../../autoapi/motulator/control/sm_vector/index.html#motulator.control.sm_vector.SynchronousMotorVectorCtrl.__call__">[docs]</a>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mdl</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Main control loop.</span>
+<span class="sd">        Run the main control loop.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -233,9 +229,16 @@
         <span class="n">d_abc_ref</span><span class="p">,</span> <span class="n">u_s_ref_lim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pwm</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">u_s_ref</span><span class="p">,</span> <span class="n">u_dc</span><span class="p">,</span> <span class="n">theta_m</span><span class="p">,</span> <span class="n">w_m</span><span class="p">)</span>
 
         <span class="c1"># Data logging</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">Bunch</span><span class="p">(</span><span class="n">i_s_ref</span><span class="o">=</span><span class="n">i_s_ref</span><span class="p">,</span> <span class="n">i_s</span><span class="o">=</span><span class="n">i_s</span><span class="p">,</span> <span class="n">u_s</span><span class="o">=</span><span class="n">u_s</span><span class="p">,</span> <span class="n">w_m_ref</span><span class="o">=</span><span class="n">w_m_ref</span><span class="p">,</span>
-                     <span class="n">w_m</span><span class="o">=</span><span class="n">w_m</span><span class="p">,</span> <span class="n">theta_m</span><span class="o">=</span><span class="n">theta_m</span><span class="p">,</span> <span class="n">u_dc</span><span class="o">=</span><span class="n">u_dc</span><span class="p">,</span>
-                     <span class="n">tau_M_ref_lim</span><span class="o">=</span><span class="n">tau_M_ref_lim</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">Bunch</span><span class="p">(</span>
+            <span class="n">i_s_ref</span><span class="o">=</span><span class="n">i_s_ref</span><span class="p">,</span>
+            <span class="n">i_s</span><span class="o">=</span><span class="n">i_s</span><span class="p">,</span>
+            <span class="n">u_s</span><span class="o">=</span><span class="n">u_s</span><span class="p">,</span>
+            <span class="n">w_m_ref</span><span class="o">=</span><span class="n">w_m_ref</span><span class="p">,</span>
+            <span class="n">w_m</span><span class="o">=</span><span class="n">w_m</span><span class="p">,</span>
+            <span class="n">theta_m</span><span class="o">=</span><span class="n">theta_m</span><span class="p">,</span>
+            <span class="n">u_dc</span><span class="o">=</span><span class="n">u_dc</span><span class="p">,</span>
+            <span class="n">tau_M_ref_lim</span><span class="o">=</span><span class="n">tau_M_ref_lim</span><span class="p">,</span>
+            <span class="n">t</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_save</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
         <span class="c1"># Update states</span>
@@ -254,10 +257,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">value</span><span class="p">])</span>
 
 <div class="viewcode-block" id="SynchronousMotorVectorCtrl.post_process"><a class="viewcode-back" href="../../../autoapi/motulator/control/sm_vector/index.html#motulator.control.sm_vector.SynchronousMotorVectorCtrl.post_process">[docs]</a>    <span class="k">def</span> <span class="nf">post_process</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Transform the lists to the ndarray format.</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Transform the lists to the ndarray format.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">])</span></div></div>
 
@@ -423,6 +423,7 @@
 <span class="sd">            Limited torque reference.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="k">def</span> <span class="nf">limit_torque</span><span class="p">(</span><span class="n">tau_M_ref</span><span class="p">,</span> <span class="n">w_m</span><span class="p">,</span> <span class="n">u_dc</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">w_m</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="n">psi_s_max</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">k_u</span><span class="o">*</span><span class="n">u_dc</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">w_m</span><span class="p">)</span>
@@ -440,15 +441,15 @@
 
         <span class="c1"># q-axis current reference</span>
         <span class="n">psi_t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">psi_f</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">L_d</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">L_q</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">i_sd_ref</span>
-        <span class="k">if</span> <span class="n">psi_t</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">i_sq_ref</span> <span class="o">=</span> <span class="n">tau_M_ref</span><span class="o">/</span><span class="p">(</span><span class="mf">1.5</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">*</span><span class="n">psi_t</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">i_sq_ref</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">i_sq_ref</span> <span class="o">=</span> <span class="n">tau_M_ref</span><span class="o">/</span><span class="p">(</span><span class="mf">1.5</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">*</span><span class="n">psi_t</span><span class="p">)</span> <span class="k">if</span> <span class="n">psi_t</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
 
         <span class="c1"># Limit the q-axis current reference</span>
         <span class="n">i_sd_mtpa</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">i_sd_mtpa</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">tau_M_ref</span><span class="p">))</span>
-        <span class="n">i_sq_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">i_s_max</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">i_sd_ref</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span>
-                           <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">i_s_max</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">i_sd_mtpa</span><span class="o">**</span><span class="mi">2</span><span class="p">)])</span>
+        <span class="n">i_sq_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">i_s_max</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">i_sd_ref</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">i_s_max</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">i_sd_mtpa</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+            <span class="p">])</span>
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">i_sq_ref</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">i_sq_max</span><span class="p">:</span>
             <span class="n">i_sq_ref</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">i_sq_ref</span><span class="p">)</span><span class="o">*</span><span class="n">i_sq_max</span>
 
@@ -547,12 +548,11 @@
         <span class="c1"># Pole locations are chosen according to (36), with c = w_m**2</span>
         <span class="c1"># and w_inf = inf, and the gain corresponding to (30) is used</span>
         <span class="n">k</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">b_p</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">zeta_inf</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w_m</span><span class="p">)</span>
-        <span class="n">psi_a_sqr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">psi_a</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
-        <span class="k">if</span> <span class="n">psi_a_sqr</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">psi_a</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="c1"># Correction voltage</span>
-            <span class="n">v</span> <span class="o">=</span> <span class="n">k</span><span class="o">*</span><span class="n">psi_a</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">psi_a</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">e</span><span class="p">))</span><span class="o">/</span><span class="n">psi_a_sqr</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">k</span><span class="o">*</span><span class="n">psi_a</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">e</span><span class="o">/</span><span class="n">psi_a</span><span class="p">)</span>
             <span class="c1"># Error signal (10)</span>
-            <span class="n">eps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">psi_a</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">e</span><span class="p">))</span><span class="o">/</span><span class="n">psi_a_sqr</span>
+            <span class="n">eps</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">e</span><span class="o">/</span><span class="n">psi_a</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">v</span><span class="p">,</span> <span class="n">eps</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
 

@@ -36,11 +36,10 @@ Functions
 
 .. py:class:: Delay(length=1, elem=3)
 
+   
    Computational delay.
 
    This models the computational delay as a ring buffer.
-
-
 
    :param length: Length of the buffer in samples. The default is 1.
    :type length: int, optional
@@ -59,13 +58,13 @@ Functions
 
 
 
-
    ..
        !! processed by numpydoc !!
-
-   .. py:method:: __call__(self, u)
+   .. py:method:: __call__(u)
 
       
+      Delay the input.
+
       :param u: Input array.
       :type u: array_like, shape (elem,)
 
@@ -92,14 +91,13 @@ Functions
 
 .. py:class:: CarrierCmp(N=2**12)
 
+   
    Carrier comparison.
 
    This computes the the switching states and their durations based on the
    duty ratios. Instead of searching for zero crossings, the switching
    instants are explicilty computed in the begininning of each sampling
    period, allowing faster simulations.
-
-
 
    :param N: Amount of the counter quantization levels. The default is 2**12.
    :type N: int, optional
@@ -118,11 +116,9 @@ Functions
 
 
 
-
    ..
        !! processed by numpydoc !!
-
-   .. py:method:: __call__(self, T_s, d_abc)
+   .. py:method:: __call__(T_s, d_abc)
 
       
       Carrier comparison.
@@ -186,11 +182,10 @@ Functions
 
 .. py:class:: Simulation(mdl=None, ctrl=None, delay=1, enable_pwm=False, base=None, t_stop=1)
 
+   
    Simulation environment.
 
    Each simulation object has a system model object and a controller object.
-
-
 
    :param mdl: Continuous-time system model.
    :type mdl: InductionMotorDrive | SynchronousMotorDrive
@@ -220,11 +215,9 @@ Functions
 
 
 
-
    ..
        !! processed by numpydoc !!
-
-   .. py:method:: simulate(self, max_step=np.inf)
+   .. py:method:: simulate(max_step=np.inf)
 
       
       Solve the continuous-time model and call the discrete-time controller.
@@ -254,7 +247,7 @@ Functions
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: save_mat(self, name='sim')
+   .. py:method:: save_mat(name='sim')
 
       
       Save the simulation data into MATLAB .mat files.

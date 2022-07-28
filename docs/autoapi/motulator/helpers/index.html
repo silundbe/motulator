@@ -221,8 +221,9 @@ pairs. They can be used, e.g., for scaling the plotted waveforms.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.helpers.BaseValues.__post_init__">
-<span class="sig-name descname"><span class="pre">__post_init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/motulator/helpers.html#BaseValues.__post_init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.helpers.BaseValues.__post_init__" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">__post_init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/motulator/helpers.html#BaseValues.__post_init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.helpers.BaseValues.__post_init__" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the base values.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -230,8 +231,8 @@ pairs. They can be used, e.g., for scaling the plotted waveforms.</p>
 <dt class="sig sig-object py" id="motulator.helpers.Sequence">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">motulator.helpers.</span></span><span class="sig-name descname"><span class="pre">Sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">times</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">periodic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/motulator/helpers.html#Sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.helpers.Sequence" title="Permalink to this definition"></a></dt>
 <dd><p>Sequence generator.</p>
-<p>This represents a sequence generator. The time array must be increasing.
-The output values are interpolated between the data points.</p>
+<p>The time array must be increasing. The output values are interpolated
+between the data points.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -243,7 +244,7 @@ The output values are interpolated between the data points.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.helpers.Sequence.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/motulator/helpers.html#Sequence.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.helpers.Sequence.__call__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/motulator/helpers.html#Sequence.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.helpers.Sequence.__call__" title="Permalink to this definition"></a></dt>
 <dd><p>Interpolate the output.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -258,12 +259,6 @@ The output values are interpolated between the data points.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="motulator.helpers.Sequence.__str__">
-<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/motulator/helpers.html#Sequence.__str__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.helpers.Sequence.__str__" title="Permalink to this definition"></a></dt>
-<dd><p>Return str(self).</p>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="py class">
@@ -272,7 +267,7 @@ The output values are interpolated between the data points.</p>
 <dd><p>Step function.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.helpers.Step.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/motulator/helpers.html#Step.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.helpers.Step.__call__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/motulator/helpers.html#Step.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.helpers.Step.__call__" title="Permalink to this definition"></a></dt>
 <dd><p>Step function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -287,20 +282,14 @@ The output values are interpolated between the data points.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="motulator.helpers.Step.__str__">
-<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/motulator/helpers.html#Step.__str__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.helpers.Step.__str__" title="Permalink to this definition"></a></dt>
-<dd><p>Return str(self).</p>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="motulator.helpers.Bunch">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">motulator.helpers.</span></span><span class="sig-name descname"><span class="pre">Bunch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/motulator/helpers.html#Bunch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.helpers.Bunch" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></p>
-<p>Container object exposing keys as attributes.
-Bunch objects are sometimes used as an output for functions and methods.
+<p>Container object exposing keys as attributes.</p>
+<p>Bunch objects are sometimes used as an output for functions and methods.
 They extend dictionaries by enabling values to be accessed by key,
 <cite>bunch[“value_key”]</cite>, or by an attribute, <cite>bunch.value_key</cite>.</p>
 <p class="rubric">Examples</p>
@@ -321,24 +310,24 @@ They extend dictionaries by enabling values to be accessed by key,
 <p>Initialize self.  See help(type(self)) for accurate signature.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.helpers.Bunch.__setattr__">
-<span class="sig-name descname"><span class="pre">__setattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/motulator/helpers.html#Bunch.__setattr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.helpers.Bunch.__setattr__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__setattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/motulator/helpers.html#Bunch.__setattr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.helpers.Bunch.__setattr__" title="Permalink to this definition"></a></dt>
 <dd><p>Implement setattr(self, name, value).</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.helpers.Bunch.__dir__">
-<span class="sig-name descname"><span class="pre">__dir__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/motulator/helpers.html#Bunch.__dir__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.helpers.Bunch.__dir__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__dir__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/motulator/helpers.html#Bunch.__dir__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.helpers.Bunch.__dir__" title="Permalink to this definition"></a></dt>
 <dd><p>Default dir() implementation.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.helpers.Bunch.__getattr__">
-<span class="sig-name descname"><span class="pre">__getattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/motulator/helpers.html#Bunch.__getattr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.helpers.Bunch.__getattr__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__getattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/motulator/helpers.html#Bunch.__getattr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.helpers.Bunch.__getattr__" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.helpers.Bunch.__setstate__">
-<span class="sig-name descname"><span class="pre">__setstate__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/motulator/helpers.html#Bunch.__setstate__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.helpers.Bunch.__setstate__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__setstate__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/motulator/helpers.html#Bunch.__setstate__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.helpers.Bunch.__setstate__" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>

@@ -28,13 +28,12 @@ Classes
 
 .. py:class:: PWM(pars)
 
+   
    Duty ratio references and realized voltage for three-phase PWM.
 
    This contains the computation of the duty ratio references and the realized
    voltage. The digital delay effects are taken into account in the realized
    voltage.
-
-
 
    :param pars: Control parameters.
    :type pars: data object
@@ -53,10 +52,8 @@ Classes
 
 
 
-
    ..
        !! processed by numpydoc !!
-
    .. py:method:: duty_ratios(u_s_ref, u_dc)
       :staticmethod:
 
@@ -91,10 +88,10 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: __call__(self, u_ref, u_dc, theta, w)
+   .. py:method:: __call__(u_ref, u_dc, theta, w)
 
       
-      Compute the duty ratio references and update the state.
+      Compute the duty ratios and update the state.
 
       :param u_ref: Voltage reference in synchronous coordinates.
       :type u_ref: complex
@@ -125,10 +122,10 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: output(self, u_ref, u_dc, theta, w)
+   .. py:method:: output(u_ref, u_dc, theta, w)
 
       
-      Compute the duty ratio references and the limited voltage reference.
+      Compute the duty ratio limited voltage reference.
 
 
 
@@ -148,7 +145,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: update(self, u_ref_lim)
+   .. py:method:: update(u_ref_lim)
 
       
       Update the voltage estimate for the next sampling instant.
@@ -176,12 +173,11 @@ Classes
 
 .. py:class:: SpeedCtrl(pars)
 
+   
    2DOF PI speed controller.
 
    This controller is implemented using the disturbance-observer structure.
    The controller is mathematically identical to the 2DOF PI speed controller.
-
-
 
    :param pars: Control parameters.
    :type pars: data object
@@ -200,11 +196,9 @@ Classes
 
 
 
-
    ..
        !! processed by numpydoc !!
-
-   .. py:method:: output(self, w_M_ref, w_M)
+   .. py:method:: output(w_M_ref, w_M)
 
       
       Compute the torque reference and the load torque estimate.
@@ -234,7 +228,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: update(self, tau_M_ref_lim)
+   .. py:method:: update(tau_M_ref_lim)
 
       
       Update the integral state.
@@ -262,9 +256,8 @@ Classes
 
 .. py:class:: RateLimiter(pars)
 
+   
    Rate limiter.
-
-
 
    :param pars: Control parameters.
    :type pars: data object
@@ -283,13 +276,13 @@ Classes
 
 
 
-
    ..
        !! processed by numpydoc !!
-
-   .. py:method:: __call__(self, u)
+   .. py:method:: __call__(u)
 
       
+      Limit the input signal.
+
       :param u: Input signal.
       :type u: float
 

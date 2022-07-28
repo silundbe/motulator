@@ -148,12 +148,10 @@ Create the simulation object and simulate it.
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
 
-    Execution time: 17.40 s
+    Execution time: 11.67 s
 
 
 
@@ -185,28 +183,23 @@ plot the results in SI units.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  18.496 seconds)
+   **Total running time of the script:** ( 0 minutes  12.532 seconds)
 
 
 .. _sphx_glr_download_auto_examples_sm_plot_vector_ctrl_pmsm_2kw.py:
 
+.. only:: html
 
-.. only :: html
-
- .. container:: sphx-glr-footer
-    :class: sphx-glr-footer-example
+  .. container:: sphx-glr-footer sphx-glr-footer-example
 
 
+    .. container:: sphx-glr-download sphx-glr-download-python
 
-  .. container:: sphx-glr-download sphx-glr-download-python
+      :download:`Download Python source code: plot_vector_ctrl_pmsm_2kw.py <plot_vector_ctrl_pmsm_2kw.py>`
 
-     :download:`Download Python source code: plot_vector_ctrl_pmsm_2kw.py <plot_vector_ctrl_pmsm_2kw.py>`
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
-
-  .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-     :download:`Download Jupyter notebook: plot_vector_ctrl_pmsm_2kw.ipynb <plot_vector_ctrl_pmsm_2kw.ipynb>`
+      :download:`Download Jupyter notebook: plot_vector_ctrl_pmsm_2kw.ipynb <plot_vector_ctrl_pmsm_2kw.ipynb>`
 
 
 .. only:: html

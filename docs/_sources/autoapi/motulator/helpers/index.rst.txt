@@ -133,142 +133,35 @@ Functions
 
       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
    .. py:attribute:: I_nom
       :annotation: :float
 
       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
 
    .. py:attribute:: f_nom
       :annotation: :float
 
       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
    .. py:attribute:: P_nom
       :annotation: :float
 
       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
 
    .. py:attribute:: tau_nom
       :annotation: :float
 
       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
    .. py:attribute:: p
       :annotation: :int
 
       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-   .. py:method:: __post_init__(self)
+   .. py:method:: __post_init__()
 
       
+      Compute the base values.
 
 
 
@@ -291,12 +184,11 @@ Functions
 
 .. py:class:: Sequence(times, values, periodic=False)
 
+   
    Sequence generator.
 
-   This represents a sequence generator. The time array must be increasing.
-   The output values are interpolated between the data points.
-
-
+   The time array must be increasing. The output values are interpolated
+   between the data points.
 
    :param times: Time values.
    :type times: ndarray
@@ -319,11 +211,9 @@ Functions
 
 
 
-
    ..
        !! processed by numpydoc !!
-
-   .. py:method:: __call__(self, t)
+   .. py:method:: __call__(t)
 
       
       Interpolate the output.
@@ -351,36 +241,11 @@ Functions
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: __str__(self)
-
-      
-      Return str(self).
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
 
 .. py:class:: Step(step_time, step_value, initial_value=0)
 
+   
    Step function.
-
-
-
 
 
 
@@ -399,8 +264,7 @@ Functions
 
    ..
        !! processed by numpydoc !!
-
-   .. py:method:: __call__(self, t)
+   .. py:method:: __call__(t)
 
       
       Step function.
@@ -428,35 +292,13 @@ Functions
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: __str__(self)
-
-      
-      Return str(self).
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
 
 .. py:class:: Bunch(**kwargs)
 
    Bases: :py:obj:`dict`
 
    Container object exposing keys as attributes.
+
    Bunch objects are sometimes used as an output for functions and methods.
    They extend dictionaries by enabling values to be accessed by key,
    `bunch["value_key"]`, or by an attribute, `bunch.value_key`.
@@ -496,7 +338,7 @@ Functions
    ..
        !! processed by numpydoc !!
 
-   .. py:method:: __setattr__(self, key, value)
+   .. py:method:: __setattr__(key, value)
 
       
       Implement setattr(self, name, value).
@@ -519,7 +361,7 @@ Functions
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: __dir__(self)
+   .. py:method:: __dir__()
 
       
       Default dir() implementation.
@@ -542,48 +384,10 @@ Functions
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: __getattr__(self, key)
-
-      
+   .. py:method:: __getattr__(key)
 
 
+   .. py:method:: __setstate__(state)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-   .. py:method:: __setstate__(self, state)
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
 
 

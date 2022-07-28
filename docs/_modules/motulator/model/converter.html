@@ -112,7 +112,6 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">u_dc</span><span class="o">=</span><span class="mi">540</span><span class="p">):</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">u_dc0</span> <span class="o">=</span> <span class="n">u_dc</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">q</span> <span class="o">=</span> <span class="mi">0</span><span class="n">j</span>  <span class="c1"># Switching state vector</span>
 
@@ -194,7 +193,6 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="mf">2e-3</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mf">235e-6</span><span class="p">,</span> <span class="n">U_g</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">f_g</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
-
         <span class="c1"># pylint: disable=super-init-not-called</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">C</span> <span class="o">=</span> <span class="n">L</span><span class="p">,</span> <span class="n">C</span>
         <span class="c1"># Initial value of the DC-bus inductor current</span>
@@ -224,9 +222,12 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">theta_g</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_g</span><span class="o">*</span><span class="n">t</span>
-        <span class="n">u_g_abc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">u_g</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta_g</span><span class="p">),</span>
-                                     <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta_g</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">3</span><span class="p">),</span>
-                                     <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta_g</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">3</span><span class="p">)])</span>
+        <span class="n">u_g_abc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">u_g</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta_g</span><span class="p">),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta_g</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">3</span><span class="p">),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta_g</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
+            <span class="p">])</span>
         <span class="k">return</span> <span class="n">u_g_abc</span></div>
 
 <div class="viewcode-block" id="FrequencyConverter.f"><a class="viewcode-back" href="../../../autoapi/motulator/model/converter/index.html#motulator.FrequencyConverter.f">[docs]</a>    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">u_dc</span><span class="p">,</span> <span class="n">i_L</span><span class="p">,</span> <span class="n">i_dc</span><span class="p">):</span>

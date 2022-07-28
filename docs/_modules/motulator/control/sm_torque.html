@@ -114,16 +114,14 @@
 
 <span class="sd">    The magnetic saturation is omitted.</span>
 
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pars : data object</span>
+<span class="sd">        Motor parameters.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        pars : data object</span>
-<span class="sd">            Motor parameters.</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">p</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">L_d</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">L_d</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">L_q</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">L_q</span>
@@ -246,8 +244,8 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Replace zeros with epsilon</span>
-        <span class="n">abs_psi_s</span> <span class="o">=</span> <span class="p">((</span><span class="n">abs_psi_s</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="n">abs_psi_s</span>
-                     <span class="o">+</span> <span class="p">(</span><span class="n">abs_psi_s</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="n">float_info</span><span class="o">.</span><span class="n">epsilon</span><span class="p">)</span>
+        <span class="n">abs_psi_s</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="p">(</span><span class="n">abs_psi_s</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="n">abs_psi_s</span> <span class="o">+</span> <span class="p">(</span><span class="n">abs_psi_s</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="n">float_info</span><span class="o">.</span><span class="n">epsilon</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">psi_f</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="c1"># SyRM (d-axis aligned with the maximum inductance)</span>
@@ -352,22 +350,26 @@
         <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">psi_s_min</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">psi_f</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
             <span class="c1"># Minimum d-axis current for sensorless SyRM drives</span>
             <span class="n">i_sd_min</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">psi_s_min</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">L_d</span>
-            <span class="n">i_s</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="p">((</span><span class="n">i_s</span><span class="o">.</span><span class="n">real</span> <span class="o">&lt;</span> <span class="n">i_sd_min</span><span class="p">)</span><span class="o">*</span><span class="n">i_sd_min</span>
-                        <span class="o">+</span> <span class="p">(</span><span class="n">i_s</span><span class="o">.</span><span class="n">real</span> <span class="o">&gt;=</span> <span class="n">i_sd_min</span><span class="p">)</span><span class="o">*</span><span class="n">i_s</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+            <span class="n">i_s</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="p">(</span><span class="n">i_s</span><span class="o">.</span><span class="n">real</span> <span class="o">&lt;</span> <span class="n">i_sd_min</span><span class="p">)</span><span class="o">*</span><span class="n">i_sd_min</span> <span class="o">+</span>
+                <span class="p">(</span><span class="n">i_s</span><span class="o">.</span><span class="n">real</span> <span class="o">&gt;=</span> <span class="n">i_sd_min</span><span class="p">)</span><span class="o">*</span><span class="n">i_s</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
 
         <span class="n">psi_s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">flux</span><span class="p">(</span><span class="n">i_s</span><span class="p">)</span>
         <span class="n">tau_M</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">torque</span><span class="p">(</span><span class="n">psi_s</span><span class="p">)</span>
 
         <span class="c1"># Create an interpolant that can be used as a look-up table. If needed,</span>
         <span class="c1"># more interpolants can be easily added.</span>
-        <span class="n">abs_psi_s_vs_tau_M</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">tau_M</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">psi_s</span><span class="p">),</span>
-                                      <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;extrapolate&quot;</span><span class="p">)</span>
+        <span class="n">abs_psi_s_vs_tau_M</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span>
+            <span class="n">tau_M</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">psi_s</span><span class="p">),</span> <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;extrapolate&quot;</span><span class="p">)</span>
         <span class="n">i_sd_vs_tau_M</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">tau_M</span><span class="p">,</span> <span class="n">i_s</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;extrapolate&quot;</span><span class="p">)</span>
 
         <span class="c1"># Return the result as a bunch object</span>
-        <span class="k">return</span> <span class="n">Bunch</span><span class="p">(</span><span class="n">psi_s</span><span class="o">=</span><span class="n">psi_s</span><span class="p">,</span> <span class="n">i_s</span><span class="o">=</span><span class="n">i_s</span><span class="p">,</span> <span class="n">tau_M</span><span class="o">=</span><span class="n">tau_M</span><span class="p">,</span>
-                     <span class="n">abs_psi_s_vs_tau_M</span><span class="o">=</span><span class="n">abs_psi_s_vs_tau_M</span><span class="p">,</span>
-                     <span class="n">i_sd_vs_tau_M</span><span class="o">=</span><span class="n">i_sd_vs_tau_M</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">Bunch</span><span class="p">(</span>
+            <span class="n">psi_s</span><span class="o">=</span><span class="n">psi_s</span><span class="p">,</span>
+            <span class="n">i_s</span><span class="o">=</span><span class="n">i_s</span><span class="p">,</span>
+            <span class="n">tau_M</span><span class="o">=</span><span class="n">tau_M</span><span class="p">,</span>
+            <span class="n">abs_psi_s_vs_tau_M</span><span class="o">=</span><span class="n">abs_psi_s_vs_tau_M</span><span class="p">,</span>
+            <span class="n">i_sd_vs_tau_M</span><span class="o">=</span><span class="n">i_sd_vs_tau_M</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="TorqueCharacteristics.mtpv_locus"><a class="viewcode-back" href="../../../autoapi/motulator/control/sm_torque/index.html#motulator.control.sm_torque.TorqueCharacteristics.mtpv_locus">[docs]</a>    <span class="k">def</span> <span class="nf">mtpv_locus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psi_s_max</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">i_s_max</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -416,8 +418,11 @@
         <span class="n">tau_M_vs_abs_psi_s</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">psi_s</span><span class="p">),</span> <span class="n">tau_M</span><span class="p">,</span> <span class="n">bounds_error</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
         <span class="c1"># Return the result as a bunch object</span>
-        <span class="k">return</span> <span class="n">Bunch</span><span class="p">(</span><span class="n">psi_s</span><span class="o">=</span><span class="n">psi_s</span><span class="p">,</span> <span class="n">i_s</span><span class="o">=</span><span class="n">i_s</span><span class="p">,</span> <span class="n">tau_M</span><span class="o">=</span><span class="n">tau_M</span><span class="p">,</span>
-                     <span class="n">tau_M_vs_abs_psi_s</span><span class="o">=</span><span class="n">tau_M_vs_abs_psi_s</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">Bunch</span><span class="p">(</span>
+            <span class="n">psi_s</span><span class="o">=</span><span class="n">psi_s</span><span class="p">,</span>
+            <span class="n">i_s</span><span class="o">=</span><span class="n">i_s</span><span class="p">,</span>
+            <span class="n">tau_M</span><span class="o">=</span><span class="n">tau_M</span><span class="p">,</span>
+            <span class="n">tau_M_vs_abs_psi_s</span><span class="o">=</span><span class="n">tau_M_vs_abs_psi_s</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="TorqueCharacteristics.current_limit"><a class="viewcode-back" href="../../../autoapi/motulator/control/sm_torque/index.html#motulator.control.sm_torque.TorqueCharacteristics.current_limit">[docs]</a>    <span class="k">def</span> <span class="nf">current_limit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i_s_max</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">gamma1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">gamma2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -460,13 +465,18 @@
 
         <span class="c1"># Create an interpolant that can be used as a look-up table. If needed,</span>
         <span class="c1"># more interpolants can be easily added.</span>
-        <span class="n">tau_M_vs_abs_psi_s</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">psi_s</span><span class="p">),</span> <span class="n">tau_M</span><span class="p">,</span>
-                                      <span class="n">bounds_error</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                                      <span class="n">fill_value</span><span class="o">=</span><span class="p">(</span><span class="n">tau_M</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tau_M</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="n">tau_M_vs_abs_psi_s</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">psi_s</span><span class="p">),</span>
+            <span class="n">tau_M</span><span class="p">,</span>
+            <span class="n">bounds_error</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">fill_value</span><span class="o">=</span><span class="p">(</span><span class="n">tau_M</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tau_M</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
 
         <span class="c1"># Return the result as a bunch object</span>
-        <span class="k">return</span> <span class="n">Bunch</span><span class="p">(</span><span class="n">psi_s</span><span class="o">=</span><span class="n">psi_s</span><span class="p">,</span> <span class="n">i_s</span><span class="o">=</span><span class="n">i_s</span><span class="p">,</span> <span class="n">tau_M</span><span class="o">=</span><span class="n">tau_M</span><span class="p">,</span>
-                     <span class="n">tau_M_vs_abs_psi_s</span><span class="o">=</span><span class="n">tau_M_vs_abs_psi_s</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">Bunch</span><span class="p">(</span>
+            <span class="n">psi_s</span><span class="o">=</span><span class="n">psi_s</span><span class="p">,</span>
+            <span class="n">i_s</span><span class="o">=</span><span class="n">i_s</span><span class="p">,</span>
+            <span class="n">tau_M</span><span class="o">=</span><span class="n">tau_M</span><span class="p">,</span>
+            <span class="n">tau_M_vs_abs_psi_s</span><span class="o">=</span><span class="n">tau_M_vs_abs_psi_s</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="TorqueCharacteristics.mtpv_and_current_limits"><a class="viewcode-back" href="../../../autoapi/motulator/control/sm_torque/index.html#motulator.control.sm_torque.TorqueCharacteristics.mtpv_and_current_limits">[docs]</a>    <span class="k">def</span> <span class="nf">mtpv_and_current_limits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i_s_max</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -490,9 +500,11 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">mtpa</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mtpa_locus</span><span class="p">(</span><span class="n">i_s_max</span><span class="o">=</span><span class="n">i_s_max</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
         <span class="n">mtpv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mtpv_locus</span><span class="p">(</span><span class="n">i_s_max</span><span class="o">=</span><span class="n">i_s_max</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
-        <span class="n">clim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_limit</span><span class="p">(</span><span class="n">i_s_max</span><span class="o">=</span><span class="n">i_s_max</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span>
-                                  <span class="n">gamma1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">mtpv</span><span class="o">.</span><span class="n">i_s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
-                                  <span class="n">gamma2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">mtpa</span><span class="o">.</span><span class="n">i_s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="n">clim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_limit</span><span class="p">(</span>
+            <span class="n">i_s_max</span><span class="o">=</span><span class="n">i_s_max</span><span class="p">,</span>
+            <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span>
+            <span class="n">gamma1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">mtpv</span><span class="o">.</span><span class="n">i_s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+            <span class="n">gamma2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">mtpa</span><span class="o">.</span><span class="n">i_s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
 
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">mtpv</span><span class="o">.</span><span class="n">i_s</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
             <span class="c1"># No MTPV, only the current limit</span>
@@ -506,14 +518,16 @@
             <span class="n">i_sd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">mtpv</span><span class="o">.</span><span class="n">i_s</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">clim</span><span class="o">.</span><span class="n">i_s</span><span class="o">.</span><span class="n">real</span><span class="p">))</span>
 
         <span class="c1"># Create an interpolant that can be used as a look-up table</span>
-        <span class="n">tau_M_vs_abs_psi_s</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">psi_s</span><span class="p">),</span> <span class="n">tau_M</span><span class="p">,</span>
-                                      <span class="n">bounds_error</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                                      <span class="n">fill_value</span><span class="o">=</span><span class="p">(</span><span class="n">tau_M</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tau_M</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="n">tau_M_vs_abs_psi_s</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">psi_s</span><span class="p">),</span>
+            <span class="n">tau_M</span><span class="p">,</span>
+            <span class="n">bounds_error</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">fill_value</span><span class="o">=</span><span class="p">(</span><span class="n">tau_M</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tau_M</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
         <span class="n">i_sd_vs_tau_M</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">tau_M</span><span class="p">,</span> <span class="n">i_sd</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;extrapolate&quot;</span><span class="p">)</span>
 
         <span class="c1"># Return the result as a bunch object</span>
-        <span class="k">return</span> <span class="n">Bunch</span><span class="p">(</span><span class="n">tau_M_vs_abs_psi_s</span><span class="o">=</span><span class="n">tau_M_vs_abs_psi_s</span><span class="p">,</span>
-                     <span class="n">i_sd_vs_tau_M</span><span class="o">=</span><span class="n">i_sd_vs_tau_M</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">Bunch</span><span class="p">(</span>
+            <span class="n">tau_M_vs_abs_psi_s</span><span class="o">=</span><span class="n">tau_M_vs_abs_psi_s</span><span class="p">,</span> <span class="n">i_sd_vs_tau_M</span><span class="o">=</span><span class="n">i_sd_vs_tau_M</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="TorqueCharacteristics.delta_at_zero_torque"><a class="viewcode-back" href="../../../autoapi/motulator/control/sm_torque/index.html#motulator.control.sm_torque.TorqueCharacteristics.delta_at_zero_torque">[docs]</a>    <span class="k">def</span> <span class="nf">delta_at_zero_torque</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">abs_psi_s</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -566,21 +580,27 @@
         <span class="c1"># Compute the characteristics</span>
         <span class="n">mtpa</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mtpa_locus</span><span class="p">(</span><span class="n">i_s_max</span><span class="o">=</span><span class="n">i_s_max</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
         <span class="n">mtpv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mtpv_locus</span><span class="p">(</span><span class="n">i_s_max</span><span class="o">=</span><span class="n">i_s_max</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
-        <span class="n">clim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_limit</span><span class="p">(</span><span class="n">i_s_max</span><span class="o">=</span><span class="n">i_s_max</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span>
-                                  <span class="n">gamma1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">mtpv</span><span class="o">.</span><span class="n">i_s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
-                                  <span class="n">gamma2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">mtpa</span><span class="o">.</span><span class="n">i_s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="n">clim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_limit</span><span class="p">(</span>
+            <span class="n">i_s_max</span><span class="o">=</span><span class="n">i_s_max</span><span class="p">,</span>
+            <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span>
+            <span class="n">gamma1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">mtpv</span><span class="o">.</span><span class="n">i_s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+            <span class="n">gamma2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">mtpa</span><span class="o">.</span><span class="n">i_s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
 
         <span class="c1"># Plot the i_sd--i_sq current plane</span>
         <span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mtpa</span><span class="o">.</span><span class="n">psi_s</span><span class="o">.</span><span class="n">real</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">psi</span><span class="p">,</span> <span class="n">mtpa</span><span class="o">.</span><span class="n">psi_s</span><span class="o">.</span><span class="n">imag</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">psi</span><span class="p">,</span>
-                <span class="n">label</span><span class="o">=</span><span class="s1">&#39;MTPA&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+            <span class="n">mtpa</span><span class="o">.</span><span class="n">psi_s</span><span class="o">.</span><span class="n">real</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">psi</span><span class="p">,</span> <span class="n">mtpa</span><span class="o">.</span><span class="n">psi_s</span><span class="o">.</span><span class="n">imag</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">psi</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;MTPA&#39;</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mtpv</span><span class="o">.</span><span class="n">psi_s</span><span class="o">.</span><span class="n">real</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">psi</span><span class="p">,</span> <span class="n">mtpv</span><span class="o">.</span><span class="n">psi_s</span><span class="o">.</span><span class="n">imag</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">psi</span><span class="p">,</span>
-                    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;MTPV&#39;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+                <span class="n">mtpv</span><span class="o">.</span><span class="n">psi_s</span><span class="o">.</span><span class="n">real</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">psi</span><span class="p">,</span>
+                <span class="n">mtpv</span><span class="o">.</span><span class="n">psi_s</span><span class="o">.</span><span class="n">imag</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">psi</span><span class="p">,</span>
+                <span class="n">label</span><span class="o">=</span><span class="s1">&#39;MTPV&#39;</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
             <span class="k">pass</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">clim</span><span class="o">.</span><span class="n">psi_s</span><span class="o">.</span><span class="n">real</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">psi</span><span class="p">,</span> <span class="n">clim</span><span class="o">.</span><span class="n">psi_s</span><span class="o">.</span><span class="n">imag</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">psi</span><span class="p">,</span>
-                <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Const current&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+            <span class="n">clim</span><span class="o">.</span><span class="n">psi_s</span><span class="o">.</span><span class="n">real</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">psi</span><span class="p">,</span>
+            <span class="n">clim</span><span class="o">.</span><span class="n">psi_s</span><span class="o">.</span><span class="n">imag</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">psi</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Const current&#39;</span><span class="p">)</span>
 
         <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\psi_\mathrm</span><span class="si">{sd}</span><span class="s1">$ (p.u.)&#39;</span><span class="p">)</span>
@@ -607,9 +627,11 @@
         <span class="c1"># Compute the characteristics</span>
         <span class="n">mtpa</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mtpa_locus</span><span class="p">(</span><span class="n">i_s_max</span><span class="o">=</span><span class="n">i_s_max</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
         <span class="n">mtpv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mtpv_locus</span><span class="p">(</span><span class="n">i_s_max</span><span class="o">=</span><span class="n">i_s_max</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
-        <span class="n">clim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_limit</span><span class="p">(</span><span class="n">i_s_max</span><span class="o">=</span><span class="n">i_s_max</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span>
-                                  <span class="n">gamma1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">mtpv</span><span class="o">.</span><span class="n">i_s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
-                                  <span class="n">gamma2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">mtpa</span><span class="o">.</span><span class="n">i_s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="n">clim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_limit</span><span class="p">(</span>
+            <span class="n">i_s_max</span><span class="o">=</span><span class="n">i_s_max</span><span class="p">,</span>
+            <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span>
+            <span class="n">gamma1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">mtpv</span><span class="o">.</span><span class="n">i_s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+            <span class="n">gamma2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">mtpa</span><span class="o">.</span><span class="n">i_s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
 
         <span class="c1"># Plot the i_sd--i_sq current plane</span>
         <span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
@@ -618,8 +640,8 @@
             <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mtpv</span><span class="o">.</span><span class="n">i_s</span><span class="o">.</span><span class="n">real</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">i</span><span class="p">,</span> <span class="n">mtpv</span><span class="o">.</span><span class="n">i_s</span><span class="o">.</span><span class="n">imag</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">i</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;MTPV&#39;</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
             <span class="k">pass</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">clim</span><span class="o">.</span><span class="n">i_s</span><span class="o">.</span><span class="n">real</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">i</span><span class="p">,</span> <span class="n">clim</span><span class="o">.</span><span class="n">i_s</span><span class="o">.</span><span class="n">imag</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">i</span><span class="p">,</span>
-                <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Const current&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+            <span class="n">clim</span><span class="o">.</span><span class="n">i_s</span><span class="o">.</span><span class="n">real</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">i</span><span class="p">,</span> <span class="n">clim</span><span class="o">.</span><span class="n">i_s</span><span class="o">.</span><span class="n">imag</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">i</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Const current&#39;</span><span class="p">)</span>
 
         <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$i_\mathrm</span><span class="si">{sd}</span><span class="s1">$ (p.u.)&#39;</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$i_\mathrm</span><span class="si">{sq}</span><span class="s1">$ (p.u.)&#39;</span><span class="p">)</span>
@@ -651,9 +673,11 @@
         <span class="c1"># Compute the characteristics</span>
         <span class="n">mtpa</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mtpa_locus</span><span class="p">(</span><span class="n">i_s_max</span><span class="o">=</span><span class="n">i_s_max</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
         <span class="n">mtpv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mtpv_locus</span><span class="p">(</span><span class="n">i_s_max</span><span class="o">=</span><span class="n">i_s_max</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
-        <span class="n">clim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_limit</span><span class="p">(</span><span class="n">i_s_max</span><span class="o">=</span><span class="n">i_s_max</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span>
-                                  <span class="n">gamma1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">mtpv</span><span class="o">.</span><span class="n">i_s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
-                                  <span class="n">gamma2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">mtpa</span><span class="o">.</span><span class="n">i_s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="n">clim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_limit</span><span class="p">(</span>
+            <span class="n">i_s_max</span><span class="o">=</span><span class="n">i_s_max</span><span class="p">,</span>
+            <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span>
+            <span class="n">gamma1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">mtpv</span><span class="o">.</span><span class="n">i_s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+            <span class="n">gamma2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">mtpa</span><span class="o">.</span><span class="n">i_s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
 
         <span class="c1"># Plot i_sd vs. tau_M</span>
         <span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -705,9 +729,11 @@
         <span class="c1"># Compute the characteristics</span>
         <span class="n">mtpa</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mtpa_locus</span><span class="p">(</span><span class="n">i_s_max</span><span class="o">=</span><span class="n">i_s_max</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
         <span class="n">mtpv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mtpv_locus</span><span class="p">(</span><span class="n">i_s_max</span><span class="o">=</span><span class="n">i_s_max</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
-        <span class="n">clim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_limit</span><span class="p">(</span><span class="n">i_s_max</span><span class="o">=</span><span class="n">i_s_max</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span>
-                                  <span class="n">gamma1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">mtpv</span><span class="o">.</span><span class="n">i_s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
-                                  <span class="n">gamma2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">mtpa</span><span class="o">.</span><span class="n">i_s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="n">clim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_limit</span><span class="p">(</span>
+            <span class="n">i_s_max</span><span class="o">=</span><span class="n">i_s_max</span><span class="p">,</span>
+            <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span>
+            <span class="n">gamma1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">mtpv</span><span class="o">.</span><span class="n">i_s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+            <span class="n">gamma2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">mtpa</span><span class="o">.</span><span class="n">i_s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
 
         <span class="c1"># Plot</span>
         <span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>

@@ -31,11 +31,10 @@ Classes
 
 .. py:class:: TorqueCharacteristics(pars)
 
+   
    Compute MTPA and MTPV loci based on the motor parameters.
 
    The magnetic saturation is omitted.
-
-
 
    :param pars: Motor parameters.
    :type pars: data object
@@ -54,11 +53,9 @@ Classes
 
 
 
-
    ..
        !! processed by numpydoc !!
-
-   .. py:method:: torque(self, psi_s)
+   .. py:method:: torque(psi_s)
 
       
       Compute the torque as a function of the stator flux linkage.
@@ -86,7 +83,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: current(self, psi_s)
+   .. py:method:: current(psi_s)
 
       
       Compute the stator current as a function of the stator flux linkage.
@@ -114,7 +111,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: flux(self, i_s)
+   .. py:method:: flux(i_s)
 
       
       Compute the stator flux linkage as a function of the current.
@@ -142,7 +139,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: mtpa(self, abs_i_s)
+   .. py:method:: mtpa(abs_i_s)
 
       
       Compute the MTPA stator current angle.
@@ -170,7 +167,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: mtpv(self, abs_psi_s)
+   .. py:method:: mtpv(abs_psi_s)
 
       
       Compute the MTPV stator flux angle.
@@ -198,7 +195,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: mtpv_current(self, abs_i_s)
+   .. py:method:: mtpv_current(abs_i_s)
 
       
       Compute the MTPV based on the current magnitude.
@@ -233,7 +230,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: mtpa_locus(self, i_s_max=1, N=20)
+   .. py:method:: mtpa_locus(i_s_max=1, N=20)
 
       
       Compute the MTPA locus.
@@ -268,7 +265,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: mtpv_locus(self, psi_s_max=1, i_s_max=None, N=20)
+   .. py:method:: mtpv_locus(psi_s_max=1, i_s_max=None, N=20)
 
       
       Compute the MTPV locus.
@@ -305,7 +302,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: current_limit(self, i_s_max=1, gamma1=np.pi, gamma2=0, N=20)
+   .. py:method:: current_limit(i_s_max=1, gamma1=np.pi, gamma2=0, N=20)
 
       
       Compute the current limit.
@@ -342,7 +339,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: mtpv_and_current_limits(self, i_s_max=1, N=20)
+   .. py:method:: mtpv_and_current_limits(i_s_max=1, N=20)
 
       
       Merge the MTPV and current limits into a single interpolant.
@@ -373,7 +370,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: delta_at_zero_torque(self, abs_psi_s)
+   .. py:method:: delta_at_zero_torque(abs_psi_s)
 
       
       Compute the load angle value at the zero torque.
@@ -404,7 +401,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: plot_flux_loci(self, i_s_max, base, N=20)
+   .. py:method:: plot_flux_loci(i_s_max, base, N=20)
 
       
       Plot the stator flux linkage loci.
@@ -435,7 +432,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: plot_current_loci(self, i_s_max, base, N=20)
+   .. py:method:: plot_current_loci(i_s_max, base, N=20)
 
       
       Plot the current loci.
@@ -466,7 +463,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: plot_torque_current(self, i_s_max, base, N=20)
+   .. py:method:: plot_torque_current(i_s_max, base, N=20)
 
       
       Plot torque vs. current characteristics.
@@ -497,7 +494,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: plot_torque_flux(self, i_s_max, base, N=20)
+   .. py:method:: plot_torque_flux(i_s_max, base, N=20)
 
       
       Plot torque vs. flux magnitude characteristics.
@@ -528,7 +525,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: plot_angle_torque(self, abs_psi_s, base, N=100)
+   .. py:method:: plot_angle_torque(abs_psi_s, base, N=100)
 
       
       Plot the electromagnetic torque as a function of the load angle.

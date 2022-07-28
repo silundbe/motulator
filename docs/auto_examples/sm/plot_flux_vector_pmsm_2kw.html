@@ -28,7 +28,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Vector-Controlled 2.2-kW PMSM Drive" href="plot_vector_ctrl_pmsm_2kw.html" />
-    <link rel="prev" title="Vector-Controlled 2.2-kW Induction Motor Drive" href="../im/plot_vector_ctrl_im_2kw.html" /> 
+    <link rel="prev" title="Synchronous Motor Drives" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -53,10 +53,14 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Examples</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../index.html#induction-motor-drives">Induction Motor Drives</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#synchronous-motor-drives">Synchronous Motor Drives</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Flux-Vector Controlled 2.2-kW PMSM Drive</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_vector_ctrl_pmsm_2kw.html">Vector-Controlled 2.2-kW PMSM Drive</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_flux_vector_syrm_7kw.html">Flux-Vector-Controlled 6.7-kW SyRM Drive</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_vector_ctrl_syrm_7kw.html">Vector-Controlled 6.7-kW SyRM Drive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../im/index.html">Induction Motor Drives</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Synchronous Motor Drives</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Flux-Vector Controlled 2.2-kW PMSM Drive</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_vector_ctrl_pmsm_2kw.html">Vector-Controlled 2.2-kW PMSM Drive</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_flux_vector_syrm_7kw.html">Flux-Vector-Controlled 6.7-kW SyRM Drive</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_vector_ctrl_syrm_7kw.html">Vector-Controlled 6.7-kW SyRM Drive</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -87,6 +91,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../index.html">Examples</a> &raquo;</li>
+          <li><a href="index.html">Synchronous Motor Drives</a> &raquo;</li>
       <li>Flux-Vector Controlled 2.2-kW PMSM Drive</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/auto_examples/sm/plot_flux_vector_pmsm_2kw.rst.txt" rel="nofollow"> View page source</a>
@@ -142,8 +147,7 @@ drive.</p>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Execution time: </span><span class="si">{:.2f}</span><span class="s1"> s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">((</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)))</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Execution time: 5.92 s
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Execution time: 4.03 s
 </pre></div>
 </div>
 <p>Plot results in per-unit values. By uncommenting the second line you can
@@ -152,8 +156,8 @@ plot the results in SI units.</p>
 <span class="c1"># mt.plot(sim)</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_plot_flux_vector_pmsm_2kw_001.png" srcset="../../_images/sphx_glr_plot_flux_vector_pmsm_2kw_001.png" alt="plot flux vector pmsm 2kw" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  6.562 seconds)</p>
-<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-sm-plot-flux-vector-pmsm-2kw-py">
+<img src="../../_images/sphx_glr_plot_flux_vector_pmsm_2kw_001.png" srcset="../../_images/sphx_glr_plot_flux_vector_pmsm_2kw_001.png" alt="plot flux vector pmsm 2kw" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  4.515 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-sm-plot-flux-vector-pmsm-2kw-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/d3d3eec3283e70162c6b26a995945f30/plot_flux_vector_pmsm_2kw.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_flux_vector_pmsm_2kw.py</span></code></a></p>
 </div>
@@ -168,7 +172,7 @@ plot the results in SI units.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../im/plot_vector_ctrl_im_2kw.html" class="btn btn-neutral float-left" title="Vector-Controlled 2.2-kW Induction Motor Drive" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Synchronous Motor Drives" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="plot_vector_ctrl_pmsm_2kw.html" class="btn btn-neutral float-right" title="Vector-Controlled 2.2-kW PMSM Drive" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

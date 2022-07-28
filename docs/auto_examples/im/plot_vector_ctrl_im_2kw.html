@@ -27,7 +27,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Flux-Vector Controlled 2.2-kW PMSM Drive" href="../sm/plot_flux_vector_pmsm_2kw.html" />
+    <link rel="next" title="Synchronous Motor Drives" href="../sm/index.html" />
     <link rel="prev" title="V/Hz-Controlled 2.2-kW Induction Motor Drive" href="plot_vhz_ctrl_im_2kw.html" /> 
 </head>
 
@@ -51,12 +51,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage.html">Usage</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Examples</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html#induction-motor-drives">Induction Motor Drives</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="plot_vhz_ctrl_im_2kw.html">V/Hz-Controlled 2.2-kW Induction Motor Drive</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Vector-Controlled 2.2-kW Induction Motor Drive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#induction-motor-drives">Induction Motor Drives</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#synchronous-motor-drives">Synchronous Motor Drives</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Induction Motor Drives</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="plot_vhz_ctrl_im_2kw.html">V/Hz-Controlled 2.2-kW Induction Motor Drive</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Vector-Controlled 2.2-kW Induction Motor Drive</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#synchronous-motor-drives">Synchronous Motor Drives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sm/index.html">Synchronous Motor Drives</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../autoapi/index.html">API Reference</a></li>
@@ -85,6 +89,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../index.html">Examples</a> &raquo;</li>
+          <li><a href="index.html">Induction Motor Drives</a> &raquo;</li>
       <li>Vector-Controlled 2.2-kW Induction Motor Drive</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/auto_examples/im/plot_vector_ctrl_im_2kw.rst.txt" rel="nofollow"> View page source</a>
@@ -111,12 +116,13 @@ drive.</p>
 </pre></div>
 </div>
 <p>Compute base values based on the nominal values (just for figures).</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">base</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">BaseValues</span><span class="p">(</span><span class="n">U_nom</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span>        <span class="c1"># Line-line rms voltage</span>
-                     <span class="n">I_nom</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>          <span class="c1"># Rms current</span>
-                     <span class="n">f_nom</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>         <span class="c1"># Frequency</span>
-                     <span class="n">tau_nom</span><span class="o">=</span><span class="mf">14.6</span><span class="p">,</span>     <span class="c1"># Torque</span>
-                     <span class="n">P_nom</span><span class="o">=</span><span class="mf">2.2e3</span><span class="p">,</span>      <span class="c1"># Power</span>
-                     <span class="n">p</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>              <span class="c1"># Number of pole pairs</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">base</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">BaseValues</span><span class="p">(</span>
+    <span class="n">U_nom</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span>  <span class="c1"># Line-line rms voltage</span>
+    <span class="n">I_nom</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>  <span class="c1"># Rms current</span>
+    <span class="n">f_nom</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>  <span class="c1"># Frequency</span>
+    <span class="n">tau_nom</span><span class="o">=</span><span class="mf">14.6</span><span class="p">,</span>  <span class="c1"># Torque</span>
+    <span class="n">P_nom</span><span class="o">=</span><span class="mf">2.2e3</span><span class="p">,</span>  <span class="c1"># Power</span>
+    <span class="n">p</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Number of pole pairs</span>
 </pre></div>
 </div>
 <p>Configure the system model.</p>
@@ -124,27 +130,31 @@ drive.</p>
 <span class="n">motor</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">InductionMotorInvGamma</span><span class="p">(</span><span class="n">R_s</span><span class="o">=</span><span class="mf">3.7</span><span class="p">,</span> <span class="n">R_R</span><span class="o">=</span><span class="mf">2.1</span><span class="p">,</span> <span class="n">L_sgm</span><span class="o">=.</span><span class="mi">021</span><span class="p">,</span> <span class="n">L_M</span><span class="o">=.</span><span class="mi">224</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="c1"># Alternatively configure the induction motor using its Γ parameters</span>
 <span class="c1"># motor = mt.InductionMotor(R_s=3.7, R_r=2.5, L_ell=.023, L_s=.245, p=2)</span>
-<span class="n">mech</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">Mechanics</span><span class="p">(</span><span class="n">J</span><span class="o">=.</span><span class="mi">015</span><span class="p">)</span>         <span class="c1"># Mechanics model</span>
-<span class="n">conv</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">Inverter</span><span class="p">(</span><span class="n">u_dc</span><span class="o">=</span><span class="mi">540</span><span class="p">)</span>        <span class="c1"># Inverter model</span>
+<span class="n">mech</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">Mechanics</span><span class="p">(</span><span class="n">J</span><span class="o">=.</span><span class="mi">015</span><span class="p">)</span>  <span class="c1"># Mechanics model</span>
+<span class="n">conv</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">Inverter</span><span class="p">(</span><span class="n">u_dc</span><span class="o">=</span><span class="mi">540</span><span class="p">)</span>  <span class="c1"># Inverter model</span>
 <span class="n">mdl</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">InductionMotorDrive</span><span class="p">(</span><span class="n">motor</span><span class="p">,</span> <span class="n">mech</span><span class="p">,</span> <span class="n">conv</span><span class="p">)</span>  <span class="c1"># System model</span>
 </pre></div>
 </div>
 <p>Configure the control system. You may also try to change the parameters.
 Notice that the drive may become unstable if you for example have too large
 parameter errors. This may happen in real drives as well.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">InductionMotorVectorCtrl</span><span class="p">(</span><span class="n">mt</span><span class="o">.</span><span class="n">InductionMotorVectorCtrlPars</span><span class="p">(</span>
-    <span class="n">sensorless</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>                <span class="c1"># Enable sensorless mode</span>
-    <span class="n">T_s</span><span class="o">=</span><span class="mf">250e-6</span><span class="p">,</span>                     <span class="c1"># Sampling period</span>
-    <span class="n">alpha_c</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">200</span><span class="p">,</span>            <span class="c1"># Current-control bandwidth</span>
-    <span class="n">alpha_o</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">40</span><span class="p">,</span>             <span class="c1"># Observer bandwidth</span>
-    <span class="n">alpha_s</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span>              <span class="c1"># Speed-control bandwidth</span>
-    <span class="n">psi_R_nom</span><span class="o">=.</span><span class="mi">9</span><span class="p">,</span>                   <span class="c1"># Nominal rotor flux</span>
-    <span class="n">i_s_max</span><span class="o">=</span><span class="mf">1.5</span><span class="o">*</span><span class="n">base</span><span class="o">.</span><span class="n">i</span><span class="p">,</span>             <span class="c1"># Current limit</span>
-    <span class="n">tau_M_max</span><span class="o">=</span><span class="mf">1.5</span><span class="o">*</span><span class="n">base</span><span class="o">.</span><span class="n">tau_nom</span><span class="p">,</span>     <span class="c1"># Torque limit (for the speed ctrl)</span>
-    <span class="n">J</span><span class="o">=.</span><span class="mi">015</span><span class="p">,</span>                         <span class="c1"># Inertia estimate (for the speed ctrl)</span>
-    <span class="n">p</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>                            <span class="c1"># Number of pole pairs</span>
-    <span class="c1"># Inverse-Γ model parameter estimates</span>
-    <span class="n">R_s</span><span class="o">=</span><span class="mf">3.7</span><span class="p">,</span> <span class="n">R_R</span><span class="o">=</span><span class="mf">2.1</span><span class="p">,</span> <span class="n">L_sgm</span><span class="o">=.</span><span class="mi">021</span><span class="p">,</span> <span class="n">L_M</span><span class="o">=.</span><span class="mi">224</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">InductionMotorVectorCtrl</span><span class="p">(</span>
+    <span class="n">mt</span><span class="o">.</span><span class="n">InductionMotorVectorCtrlPars</span><span class="p">(</span>
+        <span class="n">sensorless</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Enable sensorless mode</span>
+        <span class="n">T_s</span><span class="o">=</span><span class="mf">250e-6</span><span class="p">,</span>  <span class="c1"># Sampling period</span>
+        <span class="n">alpha_c</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">200</span><span class="p">,</span>  <span class="c1"># Current-control bandwidth</span>
+        <span class="n">alpha_o</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">40</span><span class="p">,</span>  <span class="c1"># Observer bandwidth</span>
+        <span class="n">alpha_s</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span>  <span class="c1"># Speed-control bandwidth</span>
+        <span class="n">psi_R_nom</span><span class="o">=.</span><span class="mi">9</span><span class="p">,</span>  <span class="c1"># Nominal rotor flux</span>
+        <span class="n">i_s_max</span><span class="o">=</span><span class="mf">1.5</span><span class="o">*</span><span class="n">base</span><span class="o">.</span><span class="n">i</span><span class="p">,</span>  <span class="c1"># Current limit</span>
+        <span class="n">tau_M_max</span><span class="o">=</span><span class="mf">1.5</span><span class="o">*</span><span class="n">base</span><span class="o">.</span><span class="n">tau_nom</span><span class="p">,</span>  <span class="c1"># Torque limit (for the speed ctrl)</span>
+        <span class="n">J</span><span class="o">=.</span><span class="mi">015</span><span class="p">,</span>  <span class="c1"># Inertia estimate (for the speed ctrl)</span>
+        <span class="n">p</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>  <span class="c1"># Number of pole pairs</span>
+        <span class="c1"># Inverse-Γ model parameter estimates</span>
+        <span class="n">R_s</span><span class="o">=</span><span class="mf">3.7</span><span class="p">,</span>
+        <span class="n">R_R</span><span class="o">=</span><span class="mf">2.1</span><span class="p">,</span>
+        <span class="n">L_sgm</span><span class="o">=.</span><span class="mi">021</span><span class="p">,</span>
+        <span class="n">L_M</span><span class="o">=.</span><span class="mi">224</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Set the speed reference and the external load torque. You may also try to
@@ -161,18 +171,20 @@ created as functions.</p>
 </div>
 <p>Create the simulation object and simulate it. You can also enable the PWM
 model (which makes simulation slower).</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">Simulation</span><span class="p">(</span><span class="n">mdl</span><span class="p">,</span> <span class="n">ctrl</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="n">base</span><span class="p">,</span>
-                    <span class="n">enable_pwm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>   <span class="c1"># Enable PWM model</span>
-                    <span class="n">delay</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>            <span class="c1"># Computational delay</span>
-                    <span class="n">t_stop</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>         <span class="c1"># Stop time</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">Simulation</span><span class="p">(</span>
+    <span class="n">mdl</span><span class="p">,</span>
+    <span class="n">ctrl</span><span class="p">,</span>
+    <span class="n">base</span><span class="o">=</span><span class="n">base</span><span class="p">,</span>
+    <span class="n">enable_pwm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># Enable PWM model</span>
+    <span class="n">delay</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># Computational delay</span>
+    <span class="n">t_stop</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>  <span class="c1"># Stop time</span>
 <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>  <span class="c1"># Start the timer</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">simulate</span><span class="p">()</span>
 <span class="c1"># Print the execution time</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Execution time: </span><span class="si">{:.2f}</span><span class="s1"> s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">((</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)))</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Execution time: 3.79 s
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Execution time: 2.43 s
 </pre></div>
 </div>
 <p>Plot results in per-unit values. By uncommenting the second line you can
@@ -181,8 +193,8 @@ plot the results in SI units.</p>
 <span class="c1"># mt.plot(sim)</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_plot_vector_ctrl_im_2kw_001.png" srcset="../../_images/sphx_glr_plot_vector_ctrl_im_2kw_001.png" alt="plot vector ctrl im 2kw" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  4.612 seconds)</p>
-<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-im-plot-vector-ctrl-im-2kw-py">
+<img src="../../_images/sphx_glr_plot_vector_ctrl_im_2kw_001.png" srcset="../../_images/sphx_glr_plot_vector_ctrl_im_2kw_001.png" alt="plot vector ctrl im 2kw" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.975 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-im-plot-vector-ctrl-im-2kw-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/91e0039867879464a24b73c3e7b4c06a/plot_vector_ctrl_im_2kw.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_vector_ctrl_im_2kw.py</span></code></a></p>
 </div>
@@ -198,7 +210,7 @@ plot the results in SI units.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="plot_vhz_ctrl_im_2kw.html" class="btn btn-neutral float-left" title="V/Hz-Controlled 2.2-kW Induction Motor Drive" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../sm/plot_flux_vector_pmsm_2kw.html" class="btn btn-neutral float-right" title="Flux-Vector Controlled 2.2-kW PMSM Drive" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../sm/index.html" class="btn btn-neutral float-right" title="Synchronous Motor Drives" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

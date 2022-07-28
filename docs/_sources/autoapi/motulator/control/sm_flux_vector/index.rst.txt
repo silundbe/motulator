@@ -72,460 +72,100 @@ Classes
 
       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
    .. py:attribute:: sensorless
       :annotation: :bool = True
 
       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
 
    .. py:attribute:: T_s
       :annotation: :float = 0.00025
 
       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
    .. py:attribute:: psi_s_nom
       :annotation: :float
 
       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
 
    .. py:attribute:: psi_s_max
       :annotation: :float
 
       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
    .. py:attribute:: psi_s_min
       :annotation: :float
 
       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
 
    .. py:attribute:: k_u
       :annotation: :float = 0.9
 
       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
    .. py:attribute:: alpha_psi
       :annotation: :float
 
       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
 
    .. py:attribute:: alpha_tau_max
       :annotation: :float
 
       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
    .. py:attribute:: alpha_s
       :annotation: :float
 
       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
 
    .. py:attribute:: tau_M_max
       :annotation: :float
 
       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
    .. py:attribute:: i_s_max
       :annotation: :float
 
       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
 
    .. py:attribute:: R_s
       :annotation: :float = 3.6
 
       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
    .. py:attribute:: L_d
       :annotation: :float = 0.036
 
       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
 
    .. py:attribute:: L_q
       :annotation: :float = 0.051
 
       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
    .. py:attribute:: psi_f
       :annotation: :float = 0.545
 
       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
 
    .. py:attribute:: p
       :annotation: :int = 3
 
       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
    .. py:attribute:: J
       :annotation: :float = 0.015
 
       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
 
    .. py:attribute:: w_o
       :annotation: :float
 
       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
    .. py:attribute:: zeta_inf
       :annotation: :float = 0.2
 
       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
 
    .. py:attribute:: g
       :annotation: :float
@@ -533,32 +173,13 @@ Classes
       
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-
 .. py:class:: SynchronousMotorFluxVectorCtrl(pars=SynchronousMotorFluxVectorCtrlPars())
 
+   
    Flux-vector control for synchronous motor drives.
 
    This class interconnects the subsystems of the control system and
    provides the interface to the solver.
-
-
 
    :param pars: Control parameters.
    :type pars: SynchronousMotoroFluxVectorCtrlPars
@@ -577,14 +198,12 @@ Classes
 
 
 
-
    ..
        !! processed by numpydoc !!
-
-   .. py:method:: __call__(self, mdl)
+   .. py:method:: __call__(mdl)
 
       
-      Main control loop.
+      Run the main control loop.
 
       :param mdl: Continuous-time model of a synchronous motor drive for getting the
                   feedback signals.
@@ -610,7 +229,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: post_process(self)
+   .. py:method:: post_process()
 
       
       Transform the lists to the ndarray format.
@@ -636,15 +255,29 @@ Classes
 
 .. py:class:: FluxTorqueCtrl(pars)
 
+   
    Stator flux and torque controller.
 
    :param pars: Control parameters.
    :type pars: SynchronousMotoroFluxVectorCtrlPars
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    ..
        !! processed by numpydoc !!
-
-   .. py:method:: __call__(self, psi_s_ref, tau_M_ref, psi_s, i_s, w_m, u_dc)
+   .. py:method:: __call__(psi_s_ref, tau_M_ref, psi_s, i_s, w_m, u_dc)
 
       
       Compute the unlimited voltage reference.
@@ -685,15 +318,29 @@ Classes
 
 .. py:class:: FluxTorqueRef(pars)
 
+   
    Flux and torque references.
 
    :param pars: Control parameters.
    :type pars: SynchronousMotoroFluxVectorCtrlPars
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    ..
        !! processed by numpydoc !!
-
-   .. py:method:: __call__(self, tau_M_ref, w_m, u_dc)
+   .. py:method:: __call__(tau_M_ref, w_m, u_dc)
 
       
       Calculate the stator flux reference and limit the torque reference.
@@ -728,9 +375,8 @@ Classes
 
 .. py:class:: Observer(pars)
 
+   
    Sensored observer.
-
-
 
    :param pars: Control parameters.
    :type pars: SynchronousMotoroFluxVectorCtrlPars
@@ -749,11 +395,9 @@ Classes
 
 
 
-
    ..
        !! processed by numpydoc !!
-
-   .. py:method:: update(self, u_s, i_s, w_m)
+   .. py:method:: update(u_s, i_s, w_m)
 
       
       Update the states for the next sampling period.

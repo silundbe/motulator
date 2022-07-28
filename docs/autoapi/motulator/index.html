@@ -110,7 +110,7 @@
              
   <section id="module-motulator">
 <span id="motulator"></span><h1><a class="reference internal" href="#module-motulator" title="motulator"><code class="xref py py-mod docutils literal notranslate"><span class="pre">motulator</span></code></a><a class="headerlink" href="#module-motulator" title="Permalink to this heading"></a></h1>
-<p>motulator: Motor Drive Simulator in Python</p>
+<p>Import simulation environment.</p>
 <section id="subpackages">
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading"></a></h2>
 <div class="toctree-wrapper compound">
@@ -240,7 +240,7 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#motulator.plot_pu" title="motulator.plot_pu"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_pu</span></code></a>(sim)</p></td>
 <td><p>Plot example figures in per units.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#motulator.plot_extra_pu" title="motulator.plot_extra_pu"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_extra_pu</span></code></a>(sim, t_zoom=(1.1, 1.125))</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#motulator.plot_extra_pu" title="motulator.plot_extra_pu"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_extra_pu</span></code></a>(sim[, t_zoom])</p></td>
 <td><p>Plot extra waveforms for a motor drive with a diode bridge.</p></td>
 </tr>
 </tbody>
@@ -265,7 +265,7 @@ Discrete-time controller.</p></li>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.Simulation.simulate">
-<span class="sig-name descname"><span class="pre">simulate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">np.inf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.Simulation.simulate" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">simulate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">np.inf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.Simulation.simulate" title="Permalink to this definition"></a></dt>
 <dd><p>Solve the continuous-time model and call the discrete-time controller.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -279,7 +279,7 @@ simplicity, only max_step is included as an option of this method.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.Simulation.save_mat">
-<span class="sig-name descname"><span class="pre">save_mat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sim'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.Simulation.save_mat" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">save_mat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sim'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.Simulation.save_mat" title="Permalink to this definition"></a></dt>
 <dd><p>Save the simulation data into MATLAB .mat files.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -306,7 +306,7 @@ simplicity, only max_step is included as an option of this method.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.Mechanics.f">
-<span class="sig-name descname"><span class="pre">f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_M</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau_M</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.Mechanics.f" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_M</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau_M</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.Mechanics.f" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the state derivative.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -327,7 +327,7 @@ simplicity, only max_step is included as an option of this method.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.Mechanics.meas_speed">
-<span class="sig-name descname"><span class="pre">meas_speed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.Mechanics.meas_speed" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">meas_speed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#motulator.Mechanics.meas_speed" title="Permalink to this definition"></a></dt>
 <dd><p>Measure the rotor speed.</p>
 <p>This returns the rotor speed at the end of the sampling period.</p>
 <dl class="field-list simple">
@@ -342,7 +342,7 @@ simplicity, only max_step is included as an option of this method.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.Mechanics.meas_position">
-<span class="sig-name descname"><span class="pre">meas_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.Mechanics.meas_position" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">meas_position</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#motulator.Mechanics.meas_position" title="Permalink to this definition"></a></dt>
 <dd><p>Measure the rotor angle.</p>
 <p>This returns the rotor angle at the end of the sampling period.</p>
 <dl class="field-list simple">
@@ -408,7 +408,7 @@ simplicity, only max_step is included as an option of this method.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.Inverter.meas_dc_voltage">
-<span class="sig-name descname"><span class="pre">meas_dc_voltage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.Inverter.meas_dc_voltage" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">meas_dc_voltage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#motulator.Inverter.meas_dc_voltage" title="Permalink to this definition"></a></dt>
 <dd><p>Measure the DC-bus voltage.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -442,7 +442,7 @@ inverter.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.FrequencyConverter.grid_voltages">
-<span class="sig-name descname"><span class="pre">grid_voltages</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.FrequencyConverter.grid_voltages" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">grid_voltages</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.FrequencyConverter.grid_voltages" title="Permalink to this definition"></a></dt>
 <dd><p>Compute three-phase grid voltages.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -459,7 +459,7 @@ inverter.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.FrequencyConverter.f">
-<span class="sig-name descname"><span class="pre">f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_dc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_L</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_dc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.FrequencyConverter.f" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_dc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_L</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_dc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.FrequencyConverter.f" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the state derivatives.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -485,7 +485,7 @@ inverter.</p>
 <dt class="sig sig-object py" id="motulator.InductionMotor">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">motulator.</span></span><span class="sig-name descname"><span class="pre">InductionMotor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R_r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L_ell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.023</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.245</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/motulator/model/im.html#InductionMotor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.InductionMotor" title="Permalink to this definition"></a></dt>
 <dd><p>Γ-equivalent model of an induction motor.</p>
-<p>An induction motor is modeled using the Γ-equivalent model <a href="#id14"><span class="problematic" id="id1">[1]_</span></a>. The model
+<p>An induction motor is modeled using the Γ-equivalent model <a class="reference internal" href="model/im/index.html#r743146ac54e0-1" id="id1">[1]</a>. The model
 is implemented in stator coordinates.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -502,16 +502,19 @@ is implemented in stator coordinates.</p>
 <p>The Γ model is chosen here since it can be extended with the magnetic
 saturation model in a staightforward manner. If the magnetic saturation is
 omitted, the Γ model is mathematically identical to the inverse-Γ and T
-models <a href="#id15"><span class="problematic" id="id2">[1]_</span></a>.</p>
+models <a class="reference internal" href="model/im/index.html#r743146ac54e0-1" id="id2">[1]</a>.</p>
 <p class="rubric">References</p>
-<aside class="footnote brackets" id="id3" role="note">
+<div role="list" class="citation-list">
+<div class="citation" id="r743146ac54e0-1" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id2">2</a>)</span>
 <p>Slemon, “Modelling of induction machines for electric drives,” IEEE
 Trans. Ind. Appl., 1989, <a class="reference external" href="https://doi.org/10.1109/28.44251">https://doi.org/10.1109/28.44251</a>.</p>
-</aside>
+</div>
+</div>
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.InductionMotor.currents">
-<span class="sig-name descname"><span class="pre">currents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_ss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_rs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotor.currents" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">currents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">psi_ss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_rs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotor.currents" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the stator and rotor currents.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -532,7 +535,7 @@ Trans. Ind. Appl., 1989, <a class="reference external" href="https://doi.org/10.
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.InductionMotor.torque">
-<span class="sig-name descname"><span class="pre">torque</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_ss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_ss</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotor.torque" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">torque</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">psi_ss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_ss</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotor.torque" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the electromagnetic torque.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -552,7 +555,7 @@ Trans. Ind. Appl., 1989, <a class="reference external" href="https://doi.org/10.
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.InductionMotor.f">
-<span class="sig-name descname"><span class="pre">f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_ss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_rs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_ss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_M</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotor.f" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">psi_ss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_rs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_ss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_M</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotor.f" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the state derivatives.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -574,7 +577,7 @@ Trans. Ind. Appl., 1989, <a class="reference external" href="https://doi.org/10.
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.InductionMotor.meas_currents">
-<span class="sig-name descname"><span class="pre">meas_currents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotor.meas_currents" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">meas_currents</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotor.meas_currents" title="Permalink to this definition"></a></dt>
 <dd><p>Measure the phase currents at the end of the sampling period.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -594,7 +597,7 @@ Trans. Ind. Appl., 1989, <a class="reference external" href="https://doi.org/10.
 <dd><p>Bases: <a class="reference internal" href="#motulator.InductionMotor" title="motulator.InductionMotor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InductionMotor</span></code></a></p>
 <p>Γ-equivalent model of an induction motor model with main-flux saturation.</p>
 <p>This extends the InductionMotor class with a main-flux magnetic saturation
-model <a href="#id16"><span class="problematic" id="id4">[2]_</span></a>:</p>
+model <a class="reference internal" href="model/im/index.html#r31fc15c1345a-2" id="id3">[2]</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">L_s</span><span class="p">(</span><span class="n">psi_ss</span><span class="p">)</span> <span class="o">=</span> <span class="n">L_su</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">beta</span><span class="o">*</span><span class="nb">abs</span><span class="p">(</span><span class="n">psi_ss</span><span class="p">)</span><span class="o">**</span><span class="n">S</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -612,16 +615,18 @@ model <a href="#id16"><span class="problematic" id="id4">[2]_</span></a>:</p>
 </dd>
 </dl>
 <p class="rubric">References</p>
-<aside class="footnote brackets" id="id5" role="note">
-<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
+<div role="list" class="citation-list">
+<div class="citation" id="r31fc15c1345a-2" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">2</a><span class="fn-bracket">]</span></span>
 <p>Qu, Ranta, Hinkkanen, Luomi, “Loss-minimizing flux level control of
 induction motor drives,” IEEE Trans. Ind. Appl., 2012,
 <a class="reference external" href="https://doi.org/10.1109/TIA.2012.2190818">https://doi.org/10.1109/TIA.2012.2190818</a></p>
-</aside>
+</div>
+</div>
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.InductionMotorSaturated.currents">
-<span class="sig-name descname"><span class="pre">currents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_ss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_rs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorSaturated.currents" title="Permalink to this definition"></a></dt>
-<dd><p>This method overrides the base class method.</p>
+<span class="sig-name descname"><span class="pre">currents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">psi_ss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_rs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorSaturated.currents" title="Permalink to this definition"></a></dt>
+<dd><p>Override the base class method.</p>
 </dd></dl>
 
 </dd></dl>
@@ -668,7 +673,7 @@ transformation in the measure_currents method.</p></li>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.SynchronousMotor.current">
-<span class="sig-name descname"><span class="pre">current</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotor.current" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">current</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">psi_s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotor.current" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the stator current.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -685,7 +690,7 @@ transformation in the measure_currents method.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.SynchronousMotor.torque">
-<span class="sig-name descname"><span class="pre">torque</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotor.torque" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">torque</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">psi_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotor.torque" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the electromagnetic torque.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -705,7 +710,7 @@ transformation in the measure_currents method.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.SynchronousMotor.f">
-<span class="sig-name descname"><span class="pre">f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_M</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotor.f" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">psi_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_M</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotor.f" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the state derivative.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -726,7 +731,7 @@ transformation in the measure_currents method.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.SynchronousMotor.meas_currents">
-<span class="sig-name descname"><span class="pre">meas_currents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotor.meas_currents" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">meas_currents</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotor.meas_currents" title="Permalink to this definition"></a></dt>
 <dd><p>Measure the phase currents at the end of the sampling period.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -746,7 +751,7 @@ transformation in the measure_currents method.</p></li>
 <dd><p>Bases: <a class="reference internal" href="#motulator.SynchronousMotor" title="motulator.SynchronousMotor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SynchronousMotor</span></code></a></p>
 <p>Model of a saturated synchronous motor.</p>
 <p>This extends the SynchronousMotor class with an analytical saturation
-model <a href="#id17"><span class="problematic" id="id6">[1]_</span></a>, <a href="#id18"><span class="problematic" id="id7">[2]_</span></a>. The permanent magnets (PMs) are assumed to be along the
+model <a class="reference internal" href="model/sm/index.html#r83c7849ec2d6-1" id="id4">[1]</a>, <a class="reference internal" href="model/sm/index.html#r83c7849ec2d6-2" id="id5">[2]</a>. The permanent magnets (PMs) are assumed to be along the
 d-axis. The default values correspond to a 6.7-kW synchronous reluctance
 motor.</p>
 <dl class="field-list simple">
@@ -777,40 +782,42 @@ transformation in the measure_currents method.</p></li>
 </dl>
 <p class="rubric">Notes</p>
 <p>The magnetomotive force (MMF) of the PMs is modeled using constant current
-source <cite>i_f</cite> on the d-axis <a class="footnote-reference brackets" href="#id12" id="id8" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>. Correspondingly, this approach assumes
+source <cite>i_f</cite> on the d-axis <a class="reference internal" href="model/sm/index.html#r83c7849ec2d6-3" id="id6">[3]</a>. Correspondingly, this approach assumes
 that the MMFs of the d-axis current and of the PMs are in series. This
-model cannot capture the desaturation phenomenon of thin iron ribs <a class="footnote-reference brackets" href="#id13" id="id9" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a>.
+model cannot capture the desaturation phenomenon of thin iron ribs <a class="reference internal" href="model/sm/index.html#r83c7849ec2d6-4" id="id7">[4]</a>.
 For such motors, look-up tables can be used (see scipy.interpolate).</p>
 <p class="rubric">References</p>
-<aside class="footnote brackets" id="id10" role="note">
-<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<div role="list" class="citation-list">
+<div class="citation" id="r83c7849ec2d6-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">1</a><span class="fn-bracket">]</span></span>
 <p>Hinkkanen, Pescetto, Mölsä, Saarakkala, Pellegrino, Bojoi,
 “Sensorless self-commissioning of synchronous reluctance motors at
 standstill without rotor locking, ”IEEE Trans. Ind. Appl., 2017,
 <a class="reference external" href="https://doi.org/10.1109/TIA.2016.2644624">https://doi.org/10.1109/TIA.2016.2644624</a></p>
-</aside>
-<aside class="footnote brackets" id="id11" role="note">
-<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
+</div>
+<div class="citation" id="r83c7849ec2d6-2" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">2</a><span class="fn-bracket">]</span></span>
 <p>Awan, Song, Saarakkala, Hinkkanen, “Optimal torque control of
 saturated synchronous motors: plug-and-play method,” IEEE Trans. Ind.
 Appl., 2018, <a class="reference external" href="https://doi.org/10.1109/TIA.2018.2862410">https://doi.org/10.1109/TIA.2018.2862410</a></p>
-</aside>
-<aside class="footnote brackets" id="id12" role="note">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">3</a><span class="fn-bracket">]</span></span>
+</div>
+<div class="citation" id="r83c7849ec2d6-3" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">3</a><span class="fn-bracket">]</span></span>
 <p>Jahns, Kliman, Neumann, “Interior permanent-magnet synchronous
 motors for adjustable-speed drives,” IEEE Trans. Ind. Appl., 1986,
 <a class="reference external" href="https://doi.org/10.1109/TIA.1986.4504786">https://doi.org/10.1109/TIA.1986.4504786</a></p>
-</aside>
-<aside class="footnote brackets" id="id13" role="note">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id9">4</a><span class="fn-bracket">]</span></span>
+</div>
+<div class="citation" id="r83c7849ec2d6-4" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">4</a><span class="fn-bracket">]</span></span>
 <p>Armando, Guglielmi, Pellegrino, Pastorelli, Vagati, “Accurate
 modeling and performance analysis of IPM-PMASR motors,” IEEE Trans. Ind.
 Appl., 2009, <a class="reference external" href="https://doi.org/10.1109/TIA.2008.2009493">https://doi.org/10.1109/TIA.2008.2009493</a></p>
-</aside>
+</div>
+</div>
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.SynchronousMotorSaturated.current">
-<span class="sig-name descname"><span class="pre">current</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotorSaturated.current" title="Permalink to this definition"></a></dt>
-<dd><p>This method overrides the base class method.</p>
+<span class="sig-name descname"><span class="pre">current</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">psi_s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotorSaturated.current" title="Permalink to this definition"></a></dt>
+<dd><p>Override the base class method.</p>
 </dd></dl>
 
 </dd></dl>
@@ -833,7 +840,7 @@ a similar template.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.InductionMotorDrive.get_initial_values">
-<span class="sig-name descname"><span class="pre">get_initial_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorDrive.get_initial_values" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_initial_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorDrive.get_initial_values" title="Permalink to this definition"></a></dt>
 <dd><p>Get the initial values.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -847,7 +854,7 @@ a similar template.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.InductionMotorDrive.set_initial_values">
-<span class="sig-name descname"><span class="pre">set_initial_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorDrive.set_initial_values" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_initial_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorDrive.set_initial_values" title="Permalink to this definition"></a></dt>
 <dd><p>Set the initial values.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -858,7 +865,7 @@ a similar template.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.InductionMotorDrive.f">
-<span class="sig-name descname"><span class="pre">f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorDrive.f" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorDrive.f" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the complete state derivative list for the solver.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -878,7 +885,7 @@ a similar template.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.InductionMotorDrive.save">
-<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorDrive.save" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorDrive.save" title="Permalink to this definition"></a></dt>
 <dd><p>Save the solution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -889,7 +896,7 @@ a similar template.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.InductionMotorDrive.post_process">
-<span class="sig-name descname"><span class="pre">post_process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorDrive.post_process" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">post_process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorDrive.post_process" title="Permalink to this definition"></a></dt>
 <dd><p>Transform the lists to the ndarray format and post-process them.</p>
 </dd></dl>
 
@@ -914,64 +921,32 @@ modeled as an inductor and a capacitor.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.InductionMotorDriveDiode.get_initial_values">
-<span class="sig-name descname"><span class="pre">get_initial_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorDriveDiode.get_initial_values" title="Permalink to this definition"></a></dt>
-<dd><p>Get the initial values.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>x0</strong> – Initial values of the state variables.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>complex list, length 4</p>
-</dd>
-</dl>
+<span class="sig-name descname"><span class="pre">get_initial_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorDriveDiode.get_initial_values" title="Permalink to this definition"></a></dt>
+<dd><p>Extend the base class.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.InductionMotorDriveDiode.set_initial_values">
-<span class="sig-name descname"><span class="pre">set_initial_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorDriveDiode.set_initial_values" title="Permalink to this definition"></a></dt>
-<dd><p>Set the initial values.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>x0</strong> (<em>complex ndarray</em>) – Initial values of the state variables.</p>
-</dd>
-</dl>
+<span class="sig-name descname"><span class="pre">set_initial_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorDriveDiode.set_initial_values" title="Permalink to this definition"></a></dt>
+<dd><p>Extend the base class.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.InductionMotorDriveDiode.f">
-<span class="sig-name descname"><span class="pre">f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorDriveDiode.f" title="Permalink to this definition"></a></dt>
-<dd><p>Compute the complete state derivative list for the solver.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>t</strong> (<em>float</em>) – Time.</p></li>
-<li><p><strong>x</strong> (<em>complex ndarray</em>) – State vector.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>State derivatives.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>complex list</p>
-</dd>
-</dl>
+<span class="sig-name descname"><span class="pre">f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorDriveDiode.f" title="Permalink to this definition"></a></dt>
+<dd><p>Override the base class.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.InductionMotorDriveDiode.save">
-<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorDriveDiode.save" title="Permalink to this definition"></a></dt>
-<dd><p>Save the solution.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>sol</strong> (<em>Bunch object</em>) – Solution from the solver.</p>
-</dd>
-</dl>
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorDriveDiode.save" title="Permalink to this definition"></a></dt>
+<dd><p>Extend the base class.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.InductionMotorDriveDiode.post_process">
-<span class="sig-name descname"><span class="pre">post_process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorDriveDiode.post_process" title="Permalink to this definition"></a></dt>
-<dd><p>Transform the lists to the ndarray format and post-process them.</p>
+<span class="sig-name descname"><span class="pre">post_process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorDriveDiode.post_process" title="Permalink to this definition"></a></dt>
+<dd><p>Extend the base class.</p>
 </dd></dl>
 
 </dd></dl>
@@ -994,7 +969,7 @@ a similar template.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.SynchronousMotorDrive.get_initial_values">
-<span class="sig-name descname"><span class="pre">get_initial_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotorDrive.get_initial_values" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_initial_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotorDrive.get_initial_values" title="Permalink to this definition"></a></dt>
 <dd><p>Get the initial values.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -1008,7 +983,7 @@ a similar template.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.SynchronousMotorDrive.set_initial_values">
-<span class="sig-name descname"><span class="pre">set_initial_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotorDrive.set_initial_values" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_initial_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotorDrive.set_initial_values" title="Permalink to this definition"></a></dt>
 <dd><p>Set the initial values.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1019,7 +994,7 @@ a similar template.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.SynchronousMotorDrive.f">
-<span class="sig-name descname"><span class="pre">f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotorDrive.f" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotorDrive.f" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the complete state derivative list for the solver.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1039,7 +1014,7 @@ a similar template.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.SynchronousMotorDrive.save">
-<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotorDrive.save" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotorDrive.save" title="Permalink to this definition"></a></dt>
 <dd><p>Save the solution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1050,7 +1025,7 @@ a similar template.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.SynchronousMotorDrive.post_process">
-<span class="sig-name descname"><span class="pre">post_process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotorDrive.post_process" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">post_process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotorDrive.post_process" title="Permalink to this definition"></a></dt>
 <dd><p>Transform the lists to the ndarray format and post-process them.</p>
 </dd></dl>
 
@@ -1067,8 +1042,8 @@ a similar template.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.InductionMotorVHzCtrl.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mdl</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorVHzCtrl.__call__" title="Permalink to this definition"></a></dt>
-<dd><p>Main control loop.</p>
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mdl</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorVHzCtrl.__call__" title="Permalink to this definition"></a></dt>
+<dd><p>Run the main control loop.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>mdl</strong> (<a class="reference internal" href="#motulator.InductionMotorDrive" title="motulator.InductionMotorDrive"><em>InductionMotorDrive</em></a>) – Continuous-time model of an induction motor drive for getting the
@@ -1086,7 +1061,7 @@ feedback signals.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.InductionMotorVHzCtrl.stator_freq">
-<span class="sig-name descname"><span class="pre">stator_freq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_s_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorVHzCtrl.stator_freq" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">stator_freq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w_s_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorVHzCtrl.stator_freq" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the dynamic stator frequency.</p>
 <p>This computes the dynamic stator frequency reference used in the
 coordinate transformations.</p>
@@ -1094,13 +1069,13 @@ coordinate transformations.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.InductionMotorVHzCtrl.voltage_reference">
-<span class="sig-name descname"><span class="pre">voltage_reference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorVHzCtrl.voltage_reference" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">voltage_reference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorVHzCtrl.voltage_reference" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the stator voltage reference.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.InductionMotorVHzCtrl.post_process">
-<span class="sig-name descname"><span class="pre">post_process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorVHzCtrl.post_process" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">post_process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorVHzCtrl.post_process" title="Permalink to this definition"></a></dt>
 <dd><p>Transform the lists to the ndarray format.</p>
 </dd></dl>
 
@@ -1175,8 +1150,8 @@ provides the interface to the solver.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.InductionMotorVectorCtrl.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mdl</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorVectorCtrl.__call__" title="Permalink to this definition"></a></dt>
-<dd><p>Main control loop.</p>
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mdl</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorVectorCtrl.__call__" title="Permalink to this definition"></a></dt>
+<dd><p>Run the main control loop.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>mdl</strong> (<a class="reference internal" href="#motulator.InductionMotorDrive" title="motulator.InductionMotorDrive"><em>InductionMotorDrive</em></a>) – Continuous-time model of an induction motor drive for getting the
@@ -1194,7 +1169,7 @@ feedback signals.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.InductionMotorVectorCtrl.post_process">
-<span class="sig-name descname"><span class="pre">post_process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorVectorCtrl.post_process" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">post_process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotorVectorCtrl.post_process" title="Permalink to this definition"></a></dt>
 <dd><p>Transform the lists to the ndarray format.</p>
 </dd></dl>
 
@@ -1299,8 +1274,8 @@ provides the interface to the solver.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.SynchronousMotorVectorCtrl.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mdl</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotorVectorCtrl.__call__" title="Permalink to this definition"></a></dt>
-<dd><p>Main control loop.</p>
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mdl</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotorVectorCtrl.__call__" title="Permalink to this definition"></a></dt>
+<dd><p>Run the main control loop.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>mdl</strong> (<a class="reference internal" href="#motulator.SynchronousMotorDrive" title="motulator.SynchronousMotorDrive"><em>SynchronousMotorDrive</em></a>) – Continuous-time model of a synchronous motor drive for getting the
@@ -1318,7 +1293,7 @@ feedback signals.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.SynchronousMotorVectorCtrl.post_process">
-<span class="sig-name descname"><span class="pre">post_process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotorVectorCtrl.post_process" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">post_process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotorVectorCtrl.post_process" title="Permalink to this definition"></a></dt>
 <dd><p>Transform the lists to the ndarray format.</p>
 </dd></dl>
 
@@ -1425,7 +1400,7 @@ feedback signals.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.SynchronousMotorVectorCtrlPars.plot_luts">
-<span class="sig-name descname"><span class="pre">plot_luts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotorVectorCtrlPars.plot_luts" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">plot_luts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotorVectorCtrlPars.plot_luts" title="Permalink to this definition"></a></dt>
 <dd><p>Plot control look-up tables.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1449,8 +1424,8 @@ provides the interface to the solver.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.SynchronousMotorFluxVectorCtrl.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mdl</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrl.__call__" title="Permalink to this definition"></a></dt>
-<dd><p>Main control loop.</p>
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mdl</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrl.__call__" title="Permalink to this definition"></a></dt>
+<dd><p>Run the main control loop.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>mdl</strong> (<a class="reference internal" href="#motulator.SynchronousMotorDrive" title="motulator.SynchronousMotorDrive"><em>SynchronousMotorDrive</em></a>) – Continuous-time model of a synchronous motor drive for getting the
@@ -1468,7 +1443,7 @@ feedback signals.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.SynchronousMotorFluxVectorCtrl.post_process">
-<span class="sig-name descname"><span class="pre">post_process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrl.post_process" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">post_process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotorFluxVectorCtrl.post_process" title="Permalink to this definition"></a></dt>
 <dd><p>Transform the lists to the ndarray format.</p>
 </dd></dl>
 
@@ -1623,8 +1598,9 @@ pairs. They can be used, e.g., for scaling the plotted waveforms.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.BaseValues.__post_init__">
-<span class="sig-name descname"><span class="pre">__post_init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.BaseValues.__post_init__" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">__post_init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#motulator.BaseValues.__post_init__" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the base values.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -1678,8 +1654,8 @@ pairs. They can be used, e.g., for scaling the plotted waveforms.</p>
 <dt class="sig sig-object py" id="motulator.Sequence">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">motulator.</span></span><span class="sig-name descname"><span class="pre">Sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">times</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">periodic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/motulator/helpers.html#Sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.Sequence" title="Permalink to this definition"></a></dt>
 <dd><p>Sequence generator.</p>
-<p>This represents a sequence generator. The time array must be increasing.
-The output values are interpolated between the data points.</p>
+<p>The time array must be increasing. The output values are interpolated
+between the data points.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1691,7 +1667,7 @@ The output values are interpolated between the data points.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.Sequence.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.Sequence.__call__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.Sequence.__call__" title="Permalink to this definition"></a></dt>
 <dd><p>Interpolate the output.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1706,12 +1682,6 @@ The output values are interpolated between the data points.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="motulator.Sequence.__str__">
-<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.Sequence.__str__" title="Permalink to this definition"></a></dt>
-<dd><p>Return str(self).</p>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="py class">
@@ -1720,7 +1690,7 @@ The output values are interpolated between the data points.</p>
 <dd><p>Step function.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.Step.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.Step.__call__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.Step.__call__" title="Permalink to this definition"></a></dt>
 <dd><p>Step function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1733,12 +1703,6 @@ The output values are interpolated between the data points.</p>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="motulator.Step.__str__">
-<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.Step.__str__" title="Permalink to this definition"></a></dt>
-<dd><p>Return str(self).</p>
 </dd></dl>
 
 </dd></dl>
