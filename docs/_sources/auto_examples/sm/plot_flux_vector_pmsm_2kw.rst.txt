@@ -131,7 +131,7 @@ Create the simulation object and simulate it.
 .. code-block:: default
 
 
-    sim = mt.Simulation(mdl, ctrl, base=base, enable_pwm=False, t_stop=1.6)
+    sim = mt.Simulation(mdl, ctrl, enable_pwm=False, t_stop=1.6)
     start_time = time()  # Start the timer
     sim.simulate()
     # Print the execution time
@@ -146,23 +146,21 @@ Create the simulation object and simulate it.
  .. code-block:: none
 
 
-    Execution time: 4.03 s
+    Execution time: 4.11 s
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 53-55
+.. GENERATED FROM PYTHON SOURCE LINES 53-54
 
-Plot results in per-unit values. By uncommenting the second line you can
-plot the results in SI units.
+Plot results in per-unit values.
 
-.. GENERATED FROM PYTHON SOURCE LINES 55-58
+.. GENERATED FROM PYTHON SOURCE LINES 54-56
 
 .. code-block:: default
 
 
-    mt.plot_pu(sim)
-    # mt.plot(sim)
+    mt.plot(sim, base=base)
 
 
 
@@ -178,7 +176,7 @@ plot the results in SI units.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  4.515 seconds)
+   **Total running time of the script:** ( 0 minutes  4.625 seconds)
 
 
 .. _sphx_glr_download_auto_examples_sm_plot_flux_vector_pmsm_2kw.py:

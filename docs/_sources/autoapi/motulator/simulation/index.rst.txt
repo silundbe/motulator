@@ -180,7 +180,7 @@ Functions
    ..
        !! processed by numpydoc !!
 
-.. py:class:: Simulation(mdl=None, ctrl=None, delay=1, enable_pwm=False, base=None, t_stop=1)
+.. py:class:: Simulation(mdl=None, ctrl=None, delay=1, enable_pwm=False, t_stop=1)
 
    
    Simulation environment.
@@ -196,8 +196,6 @@ Functions
    :type delay: int, optional
    :param enable_pwm: Enable carrier comparison. The default is False.
    :type enable_pwm: bool, optional
-   :param base: Base values for plotting figures.
-   :type base: BaseValues, optional
    :param t_stop: Simulation stop time. The default is 1.
    :type t_stop: float, optional
 

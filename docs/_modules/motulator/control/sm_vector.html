@@ -445,11 +445,10 @@
 
         <span class="c1"># Limit the q-axis current reference</span>
         <span class="n">i_sd_mtpa</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">i_sd_mtpa</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">tau_M_ref</span><span class="p">))</span>
-        <span class="n">i_sq_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span>
-            <span class="p">[</span>
-                <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">i_s_max</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">i_sd_ref</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span>
-                <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">i_s_max</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">i_sd_mtpa</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-            <span class="p">])</span>
+        <span class="n">i_sq_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">i_s_max</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">i_sd_ref</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">i_s_max</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">i_sd_mtpa</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="p">])</span>
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">i_sq_ref</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">i_sq_max</span><span class="p">:</span>
             <span class="n">i_sq_ref</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">i_sq_ref</span><span class="p">)</span><span class="o">*</span><span class="n">i_sq_max</span>
 

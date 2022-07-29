@@ -136,7 +136,7 @@ Create the simulation object and simulate it.
 .. code-block:: default
 
 
-    sim = mt.Simulation(mdl, ctrl, base=base, enable_pwm=True, t_stop=1.5)
+    sim = mt.Simulation(mdl, ctrl, enable_pwm=True, t_stop=1.5)
     start_time = time()  # Start the timer
     sim.simulate()
     # Print the execution time
@@ -151,7 +151,7 @@ Create the simulation object and simulate it.
  .. code-block:: none
 
 
-    Execution time: 13.64 s
+    Execution time: 14.12 s
 
 
 
@@ -173,8 +173,8 @@ Plot results in per-unit values.
 
 
     # sphinx_gallery_thumbnail_number = 2
-    mt.plot_pu(sim)
-    mt.plot_extra_pu(sim, t_zoom=(1.1, 1.125))
+    mt.plot(sim, base=base)
+    mt.plot_extra(sim, t_span=(1.1, 1.125), base=base)
 
 
 
@@ -209,7 +209,7 @@ Plot results in per-unit values.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  15.415 seconds)
+   **Total running time of the script:** ( 0 minutes  15.987 seconds)
 
 
 .. _sphx_glr_download_auto_examples_im_plot_vhz_ctrl_im_2kw.py:

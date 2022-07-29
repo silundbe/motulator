@@ -110,51 +110,44 @@
 <h3>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#motulator.plots.plot" title="motulator.plots.plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot</span></code></a>(sim)</p></td>
-<td><p>Plot example figures in SI units.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#motulator.plots.plot" title="motulator.plots.plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot</span></code></a>(sim[, t_span, base])</p></td>
+<td><p>Plot example figures.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#motulator.plots.plot_pu" title="motulator.plots.plot_pu"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_pu</span></code></a>(sim)</p></td>
-<td><p>Plot example figures in per units.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#motulator.plots.plot_extra_pu" title="motulator.plots.plot_extra_pu"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_extra_pu</span></code></a>(sim[, t_zoom])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#motulator.plots.plot_extra" title="motulator.plots.plot_extra"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_extra</span></code></a>(sim[, t_span, base])</p></td>
 <td><p>Plot extra waveforms for a motor drive with a diode bridge.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#motulator.plots.save_plot" title="motulator.plots.save_plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_plot</span></code></a>(name)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#motulator.plots.save_plot" title="motulator.plots.save_plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_plot</span></code></a>(name)</p></td>
 <td><p>Save figures.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py function">
 <dt class="sig sig-object py" id="motulator.plots.plot">
-<span class="sig-prename descclassname"><span class="pre">motulator.plots.</span></span><span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/motulator/plots.html#plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.plots.plot" title="Permalink to this definition"></a></dt>
-<dd><p>Plot example figures in SI units.</p>
+<span class="sig-prename descclassname"><span class="pre">motulator.plots.</span></span><span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_span</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/motulator/plots.html#plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.plots.plot" title="Permalink to this definition"></a></dt>
+<dd><p>Plot example figures.</p>
+<p>Plots figures in per-unit values, if the base values are given. Otherwise
+SI units are used.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>sim</strong> (<em>Simulation object</em>) – Should contain the simulated data.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sim</strong> (<em>Simulation object</em>) – Should contain the simulated data.</p></li>
+<li><p><strong>t_span</strong> (<em>2-tuple</em><em>, </em><em>optional</em>) – Time span. The default is (0, sim.ctrl.t[-1]).</p></li>
+<li><p><strong>base</strong> (<a class="reference internal" href="../helpers/index.html#motulator.helpers.BaseValues" title="motulator.helpers.BaseValues"><em>BaseValues</em></a><em>, </em><em>optional</em>) – Base values for scaling the waveforms.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="motulator.plots.plot_pu">
-<span class="sig-prename descclassname"><span class="pre">motulator.plots.</span></span><span class="sig-name descname"><span class="pre">plot_pu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/motulator/plots.html#plot_pu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.plots.plot_pu" title="Permalink to this definition"></a></dt>
-<dd><p>Plot example figures in per units.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>sim</strong> (<em>Simulation object</em>) – Should contain the simulated data.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="motulator.plots.plot_extra_pu">
-<span class="sig-prename descclassname"><span class="pre">motulator.plots.</span></span><span class="sig-name descname"><span class="pre">plot_extra_pu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_zoom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1.1,</span> <span class="pre">1.125)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/motulator/plots.html#plot_extra_pu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.plots.plot_extra_pu" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="motulator.plots.plot_extra">
+<span class="sig-prename descclassname"><span class="pre">motulator.plots.</span></span><span class="sig-name descname"><span class="pre">plot_extra</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_span</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1.1,</span> <span class="pre">1.125)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/motulator/plots.html#plot_extra"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.plots.plot_extra" title="Permalink to this definition"></a></dt>
 <dd><p>Plot extra waveforms for a motor drive with a diode bridge.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>sim</strong> (<em>Simulation object</em>) – Should contain the simulated data.</p></li>
-<li><p><strong>t_zoom</strong> (<em>2-tuple</em><em>, </em><em>optional</em>) – Time span. The default is (1.1, 1.125).</p></li>
+<li><p><strong>t_span</strong> (<em>2-tuple</em><em>, </em><em>optional</em>) – Time span. The default is (1.1, 1.125).</p></li>
+<li><p><strong>base</strong> (<a class="reference internal" href="../helpers/index.html#motulator.helpers.BaseValues" title="motulator.helpers.BaseValues"><em>BaseValues</em></a><em>, </em><em>optional</em>) – Base values for scaling the waveforms.</p></li>
 </ul>
 </dd>
 </dl>

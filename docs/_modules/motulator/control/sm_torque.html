@@ -244,8 +244,8 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Replace zeros with epsilon</span>
-        <span class="n">abs_psi_s</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="p">(</span><span class="n">abs_psi_s</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="n">abs_psi_s</span> <span class="o">+</span> <span class="p">(</span><span class="n">abs_psi_s</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="n">float_info</span><span class="o">.</span><span class="n">epsilon</span><span class="p">)</span>
+        <span class="n">abs_psi_s</span> <span class="o">=</span> <span class="p">((</span><span class="n">abs_psi_s</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="n">abs_psi_s</span> <span class="o">+</span>
+                     <span class="p">(</span><span class="n">abs_psi_s</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="n">float_info</span><span class="o">.</span><span class="n">epsilon</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">psi_f</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="c1"># SyRM (d-axis aligned with the maximum inductance)</span>
@@ -350,9 +350,8 @@
         <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">psi_s_min</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">psi_f</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
             <span class="c1"># Minimum d-axis current for sensorless SyRM drives</span>
             <span class="n">i_sd_min</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">psi_s_min</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">L_d</span>
-            <span class="n">i_s</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="p">(</span>
-                <span class="p">(</span><span class="n">i_s</span><span class="o">.</span><span class="n">real</span> <span class="o">&lt;</span> <span class="n">i_sd_min</span><span class="p">)</span><span class="o">*</span><span class="n">i_sd_min</span> <span class="o">+</span>
-                <span class="p">(</span><span class="n">i_s</span><span class="o">.</span><span class="n">real</span> <span class="o">&gt;=</span> <span class="n">i_sd_min</span><span class="p">)</span><span class="o">*</span><span class="n">i_s</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+            <span class="n">i_s</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="p">((</span><span class="n">i_s</span><span class="o">.</span><span class="n">real</span> <span class="o">&lt;</span> <span class="n">i_sd_min</span><span class="p">)</span><span class="o">*</span><span class="n">i_sd_min</span> <span class="o">+</span>
+                        <span class="p">(</span><span class="n">i_s</span><span class="o">.</span><span class="n">real</span> <span class="o">&gt;=</span> <span class="n">i_sd_min</span><span class="p">)</span><span class="o">*</span><span class="n">i_s</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
 
         <span class="n">psi_s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">flux</span><span class="p">(</span><span class="n">i_s</span><span class="p">)</span>
         <span class="n">tau_M</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">torque</span><span class="p">(</span><span class="n">psi_s</span><span class="p">)</span>

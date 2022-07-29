@@ -174,7 +174,6 @@ model (which makes simulation slower).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">Simulation</span><span class="p">(</span>
     <span class="n">mdl</span><span class="p">,</span>
     <span class="n">ctrl</span><span class="p">,</span>
-    <span class="n">base</span><span class="o">=</span><span class="n">base</span><span class="p">,</span>
     <span class="n">enable_pwm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># Enable PWM model</span>
     <span class="n">delay</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># Computational delay</span>
     <span class="n">t_stop</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>  <span class="c1"># Stop time</span>
@@ -184,16 +183,16 @@ model (which makes simulation slower).</p>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Execution time: </span><span class="si">{:.2f}</span><span class="s1"> s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">((</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)))</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Execution time: 2.43 s
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Execution time: 2.53 s
 </pre></div>
 </div>
 <p>Plot results in per-unit values. By uncommenting the second line you can
 plot the results in SI units.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mt</span><span class="o">.</span><span class="n">plot_pu</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="n">base</span><span class="p">)</span>
 <span class="c1"># mt.plot(sim)</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_plot_vector_ctrl_im_2kw_001.png" srcset="../../_images/sphx_glr_plot_vector_ctrl_im_2kw_001.png" alt="plot vector ctrl im 2kw" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.975 seconds)</p>
+<img src="../../_images/sphx_glr_plot_vector_ctrl_im_2kw_001.png" srcset="../../_images/sphx_glr_plot_vector_ctrl_im_2kw_001.png" alt="plot vector ctrl im 2kw" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  3.097 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-im-plot-vector-ctrl-im-2kw-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/91e0039867879464a24b73c3e7b4c06a/plot_vector_ctrl_im_2kw.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_vector_ctrl_im_2kw.py</span></code></a></p>
