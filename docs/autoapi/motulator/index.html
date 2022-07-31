@@ -265,8 +265,8 @@ Discrete-time controller.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>max_step</strong> (<em>float</em><em>, </em><em>optional</em>) – Max step size of the solver. The default is inf.</p></li>
 <li><p><strong>t_stop</strong> (<em>float</em><em>, </em><em>optional</em>) – Simulation stop time. The default is 1.</p></li>
+<li><p><strong>max_step</strong> (<em>float</em><em>, </em><em>optional</em>) – Max step size of the solver. The default is inf.</p></li>
 </ul>
 </dd>
 </dl>
@@ -484,7 +484,8 @@ inverter.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">motulator.</span></span><span class="sig-name descname"><span class="pre">InductionMotor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R_r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L_ell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.023</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.245</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/motulator/model/im.html#InductionMotor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.InductionMotor" title="Permalink to this definition"></a></dt>
 <dd><p>Γ-equivalent model of an induction motor.</p>
 <p>An induction motor is modeled using the Γ-equivalent model <a class="reference internal" href="model/im/index.html#r743146ac54e0-1" id="id1">[1]</a>. The model
-is implemented in stator coordinates.</p>
+is implemented in stator coordinates. The flux linkages are used as state
+variables.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -532,21 +533,23 @@ Trans. Ind. Appl., 1989, <a class="reference external" href="https://doi.org/10.
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="motulator.InductionMotor.torque">
-<span class="sig-name descname"><span class="pre">torque</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">psi_ss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_ss</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotor.torque" title="Permalink to this definition"></a></dt>
-<dd><p>Compute the electromagnetic torque.</p>
+<dt class="sig sig-object py" id="motulator.InductionMotor.magnetic">
+<span class="sig-name descname"><span class="pre">magnetic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">psi_ss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_rs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.InductionMotor.magnetic" title="Permalink to this definition"></a></dt>
+<dd><p>Magnetic model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>psi_ss</strong> (<em>complex</em>) – Stator flux linkage.</p></li>
-<li><p><strong>i_ss</strong> (<em>complex</em>) – Stator current.</p></li>
+<li><p><strong>psi_rs</strong> (<em>complex</em>) – Rotor flux linkage.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>tau_M</strong> – Electromagnetic torque.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>i_ss</strong> (<em>complex</em>) – Stator current.</p></li>
+<li><p><strong>i_rs</strong> (<em>complex</em>) – Rotor current.</p></li>
+<li><p><strong>tau_M</strong> (<em>float</em>) – Electromagnetic torque.</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>
@@ -565,12 +568,19 @@ Trans. Ind. Appl., 1989, <a class="reference external" href="https://doi.org/10.
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Time derivative of the state vector, [dpsi_ss, dpsi_rs]</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>complex list, length 2</p>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>complex list, length 2</em> – Time derivative of the state vector, [dpsi_ss, dpsi_rs]</p></li>
+<li><p><strong>i_ss</strong> (<em>complex</em>) – Stator current.</p></li>
+<li><p><strong>tau_M</strong> (<em>float</em>) – Electromagnetic torque.</p></li>
+</ul>
+</p>
 </dd>
 </dl>
+<p class="rubric">Notes</p>
+<p>In addition to the state derivatives, this method also returns the
+output signals (stator current <cite>i_ss</cite> and torque <cite>tau_M</cite>) needed for
+interconnection with other subsystems. This avoids overlapping
+computation in simulation.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -635,7 +645,7 @@ induction motor drives,” IEEE Trans. Ind. Appl., 2012,
 <dd><p>Bases: <a class="reference internal" href="#motulator.InductionMotor" title="motulator.InductionMotor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InductionMotor</span></code></a></p>
 <p>Inverse-Γ model of an induction motor.</p>
 <p>This extends the InductionMotor class (based on the Γ model) by providing
-the interface for the inverse-Γ model parameters. Linear magnetics are
+an interface for the inverse-Γ model parameters. Linear magnetics are
 assumed. If magnetic saturation is to be modeled, the Γ model is preferred.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -654,8 +664,9 @@ assumed. If magnetic saturation is to be modeled, the Γ model is preferred.</p>
 <dt class="sig sig-object py" id="motulator.SynchronousMotor">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">motulator.</span></span><span class="sig-name descname"><span class="pre">SynchronousMotor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L_d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.036</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L_q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.051</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi_f</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.545</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mech</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/motulator/model/sm.html#SynchronousMotor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.SynchronousMotor" title="Permalink to this definition"></a></dt>
 <dd><p>Synchronous motor model.</p>
-<p>This models a synchronous motor in rotor coordinates. The default values
-correspond to a 2.2-kW permanent-magnet synchronous motor.</p>
+<p>This models a synchronous motor in rotor coordinates. The stator flux
+linkage is the state variable. The default values correspond to a 2.2-kW
+permanent-magnet synchronous motor.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -687,28 +698,26 @@ transformation in the measure_currents method.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="motulator.SynchronousMotor.torque">
-<span class="sig-name descname"><span class="pre">torque</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">psi_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotor.torque" title="Permalink to this definition"></a></dt>
-<dd><p>Compute the electromagnetic torque.</p>
+<dt class="sig sig-object py" id="motulator.SynchronousMotor.magnetic">
+<span class="sig-name descname"><span class="pre">magnetic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">psi_s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotor.magnetic" title="Permalink to this definition"></a></dt>
+<dd><p>Magnetic model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>psi_s</strong> (<em>complex</em>) – Stator flux linkage.</p></li>
-<li><p><strong>i_s</strong> (<em>complex</em>) – Stator current.</p></li>
-</ul>
+<dd class="field-odd"><p><strong>psi_s</strong> (<em>complex</em>) – Stator flux linkage.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>tau_M</strong> – Electromagnetic torque.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>i_s</strong> (<em>complex</em>) – Stator current.</p></li>
+<li><p><strong>tau_M</strong> (<em>float</em>) – Electromagnetic torque.</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.SynchronousMotor.f">
-<span class="sig-name descname"><span class="pre">f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">psi_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_M</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotor.f" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">psi_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_M</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#motulator.SynchronousMotor.f" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the state derivative.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -719,12 +728,19 @@ transformation in the measure_currents method.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>dpsi_s</strong> – Time derivative of the stator flux linkage.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>complex</p>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>dpsi_s</strong> (<em>complex list</em>) – Time derivative of the stator flux linkage.</p></li>
+<li><p><strong>i_s</strong> (<em>complex</em>) – Stator current.</p></li>
+<li><p><strong>tau_M</strong> (<em>float</em>) – Electromagnetic torque.</p></li>
+</ul>
+</p>
 </dd>
 </dl>
+<p class="rubric">Notes</p>
+<p>In addition to the state derivative, this method also returns the
+output signals (stator current <cite>i_ss</cite> and torque <cite>tau_M</cite>) needed for
+interconnection with other subsystems. This avoids overlapping
+computation in simulation.</p>
 </dd></dl>
 
 <dl class="py method">

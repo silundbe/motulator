@@ -36,7 +36,8 @@ Classes
    Γ-equivalent model of an induction motor.
 
    An induction motor is modeled using the Γ-equivalent model [R743146ac54e0-1]_. The model
-   is implemented in stator coordinates.
+   is implemented in stator coordinates. The flux linkages are used as state
+   variables.
 
    :param p: Number of pole pairs.
    :type p: int
@@ -107,18 +108,19 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: torque(psi_ss, i_ss)
+   .. py:method:: magnetic(psi_ss, psi_rs)
 
       
-      Compute the electromagnetic torque.
+      Magnetic model.
 
       :param psi_ss: Stator flux linkage.
       :type psi_ss: complex
-      :param i_ss: Stator current.
-      :type i_ss: complex
+      :param psi_rs: Rotor flux linkage.
+      :type psi_rs: complex
 
-      :returns: **tau_M** -- Electromagnetic torque.
-      :rtype: float
+      :returns: * **i_ss** (*complex*) -- Stator current.
+                * **i_rs** (*complex*) -- Rotor current.
+                * **tau_M** (*float*) -- Electromagnetic torque.
 
 
 
@@ -151,8 +153,16 @@ Classes
       :param w_M: Rotor angular speed (in mechanical rad/s).
       :type w_M: float
 
-      :returns: Time derivative of the state vector, [dpsi_ss, dpsi_rs]
-      :rtype: complex list, length 2
+      :returns: * *complex list, length 2* -- Time derivative of the state vector, [dpsi_ss, dpsi_rs]
+                * **i_ss** (*complex*) -- Stator current.
+                * **tau_M** (*float*) -- Electromagnetic torque.
+
+      .. rubric:: Notes
+
+      In addition to the state derivatives, this method also returns the
+      output signals (stator current `i_ss` and torque `tau_M`) needed for
+      interconnection with other subsystems. This avoids overlapping
+      computation in simulation.
 
 
 
@@ -278,7 +288,7 @@ Classes
    Inverse-Γ model of an induction motor.
 
    This extends the InductionMotor class (based on the Γ model) by providing
-   the interface for the inverse-Γ model parameters. Linear magnetics are
+   an interface for the inverse-Γ model parameters. Linear magnetics are
    assumed. If magnetic saturation is to be modeled, the Γ model is preferred.
 
    :param p: Number of pole pairs.

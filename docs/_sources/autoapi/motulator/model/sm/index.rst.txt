@@ -34,8 +34,9 @@ Classes
    
    Synchronous motor model.
 
-   This models a synchronous motor in rotor coordinates. The default values
-   correspond to a 2.2-kW permanent-magnet synchronous motor.
+   This models a synchronous motor in rotor coordinates. The stator flux
+   linkage is the state variable. The default values correspond to a 2.2-kW
+   permanent-magnet synchronous motor.
 
    :param p: Number of pole pairs.
    :type p: int
@@ -95,18 +96,16 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: torque(psi_s, i_s)
+   .. py:method:: magnetic(psi_s)
 
       
-      Compute the electromagnetic torque.
+      Magnetic model.
 
       :param psi_s: Stator flux linkage.
       :type psi_s: complex
-      :param i_s: Stator current.
-      :type i_s: complex
 
-      :returns: **tau_M** -- Electromagnetic torque.
-      :rtype: float
+      :returns: * **i_s** (*complex*) -- Stator current.
+                * **tau_M** (*float*) -- Electromagnetic torque.
 
 
 
@@ -125,7 +124,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: f(psi_s, i_s, u_s, w_M)
+   .. py:method:: f(psi_s, u_s, w_M)
 
       
       Compute the state derivative.
@@ -137,8 +136,16 @@ Classes
       :param w_M: Rotor angular speed (in mechanical rad/s).
       :type w_M: float
 
-      :returns: **dpsi_s** -- Time derivative of the stator flux linkage.
-      :rtype: complex
+      :returns: * **dpsi_s** (*complex list*) -- Time derivative of the stator flux linkage.
+                * **i_s** (*complex*) -- Stator current.
+                * **tau_M** (*float*) -- Electromagnetic torque.
+
+      .. rubric:: Notes
+
+      In addition to the state derivative, this method also returns the
+      output signals (stator current `i_ss` and torque `tau_M`) needed for
+      interconnection with other subsystems. This avoids overlapping
+      computation in simulation.
 
 
 

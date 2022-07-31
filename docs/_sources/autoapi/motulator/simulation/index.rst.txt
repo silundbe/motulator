@@ -218,10 +218,10 @@ Functions
       
       Solve the continuous-time model and call the discrete-time controller.
 
-      :param max_step: Max step size of the solver. The default is inf.
-      :type max_step: float, optional
       :param t_stop: Simulation stop time. The default is 1.
       :type t_stop: float, optional
+      :param max_step: Max step size of the solver. The default is inf.
+      :type max_step: float, optional
 
       .. rubric:: Notes
 

@@ -132,10 +132,10 @@ Functions
       
       Solve the continuous-time model and call the discrete-time controller.
 
-      :param max_step: Max step size of the solver. The default is inf.
-      :type max_step: float, optional
       :param t_stop: Simulation stop time. The default is 1.
       :type t_stop: float, optional
+      :param max_step: Max step size of the solver. The default is inf.
+      :type max_step: float, optional
 
       .. rubric:: Notes
 
@@ -519,7 +519,8 @@ Functions
    Γ-equivalent model of an induction motor.
 
    An induction motor is modeled using the Γ-equivalent model [R743146ac54e0-1]_. The model
-   is implemented in stator coordinates.
+   is implemented in stator coordinates. The flux linkages are used as state
+   variables.
 
    :param p: Number of pole pairs.
    :type p: int
@@ -590,18 +591,19 @@ Functions
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: torque(psi_ss, i_ss)
+   .. py:method:: magnetic(psi_ss, psi_rs)
 
       
-      Compute the electromagnetic torque.
+      Magnetic model.
 
       :param psi_ss: Stator flux linkage.
       :type psi_ss: complex
-      :param i_ss: Stator current.
-      :type i_ss: complex
+      :param psi_rs: Rotor flux linkage.
+      :type psi_rs: complex
 
-      :returns: **tau_M** -- Electromagnetic torque.
-      :rtype: float
+      :returns: * **i_ss** (*complex*) -- Stator current.
+                * **i_rs** (*complex*) -- Rotor current.
+                * **tau_M** (*float*) -- Electromagnetic torque.
 
 
 
@@ -634,8 +636,16 @@ Functions
       :param w_M: Rotor angular speed (in mechanical rad/s).
       :type w_M: float
 
-      :returns: Time derivative of the state vector, [dpsi_ss, dpsi_rs]
-      :rtype: complex list, length 2
+      :returns: * *complex list, length 2* -- Time derivative of the state vector, [dpsi_ss, dpsi_rs]
+                * **i_ss** (*complex*) -- Stator current.
+                * **tau_M** (*float*) -- Electromagnetic torque.
+
+      .. rubric:: Notes
+
+      In addition to the state derivatives, this method also returns the
+      output signals (stator current `i_ss` and torque `tau_M`) needed for
+      interconnection with other subsystems. This avoids overlapping
+      computation in simulation.
 
 
 
@@ -761,7 +771,7 @@ Functions
    Inverse-Γ model of an induction motor.
 
    This extends the InductionMotor class (based on the Γ model) by providing
-   the interface for the inverse-Γ model parameters. Linear magnetics are
+   an interface for the inverse-Γ model parameters. Linear magnetics are
    assumed. If magnetic saturation is to be modeled, the Γ model is preferred.
 
    :param p: Number of pole pairs.
@@ -797,8 +807,9 @@ Functions
    
    Synchronous motor model.
 
-   This models a synchronous motor in rotor coordinates. The default values
-   correspond to a 2.2-kW permanent-magnet synchronous motor.
+   This models a synchronous motor in rotor coordinates. The stator flux
+   linkage is the state variable. The default values correspond to a 2.2-kW
+   permanent-magnet synchronous motor.
 
    :param p: Number of pole pairs.
    :type p: int
@@ -858,18 +869,16 @@ Functions
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: torque(psi_s, i_s)
+   .. py:method:: magnetic(psi_s)
 
       
-      Compute the electromagnetic torque.
+      Magnetic model.
 
       :param psi_s: Stator flux linkage.
       :type psi_s: complex
-      :param i_s: Stator current.
-      :type i_s: complex
 
-      :returns: **tau_M** -- Electromagnetic torque.
-      :rtype: float
+      :returns: * **i_s** (*complex*) -- Stator current.
+                * **tau_M** (*float*) -- Electromagnetic torque.
 
 
 
@@ -888,7 +897,7 @@ Functions
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: f(psi_s, i_s, u_s, w_M)
+   .. py:method:: f(psi_s, u_s, w_M)
 
       
       Compute the state derivative.
@@ -900,8 +909,16 @@ Functions
       :param w_M: Rotor angular speed (in mechanical rad/s).
       :type w_M: float
 
-      :returns: **dpsi_s** -- Time derivative of the stator flux linkage.
-      :rtype: complex
+      :returns: * **dpsi_s** (*complex list*) -- Time derivative of the stator flux linkage.
+                * **i_s** (*complex*) -- Stator current.
+                * **tau_M** (*float*) -- Electromagnetic torque.
+
+      .. rubric:: Notes
+
+      In addition to the state derivative, this method also returns the
+      output signals (stator current `i_ss` and torque `tau_M`) needed for
+      interconnection with other subsystems. This avoids overlapping
+      computation in simulation.
 
 
 

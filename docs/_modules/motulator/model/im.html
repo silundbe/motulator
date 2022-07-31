@@ -104,7 +104,8 @@
 <span class="sd">    Γ-equivalent model of an induction motor.</span>
 
 <span class="sd">    An induction motor is modeled using the Γ-equivalent model [1]_. The model</span>
-<span class="sd">    is implemented in stator coordinates.</span>
+<span class="sd">    is implemented in stator coordinates. The flux linkages are used as state</span>
+<span class="sd">    variables.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -162,27 +163,34 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">i_rs</span> <span class="o">=</span> <span class="p">(</span><span class="n">psi_rs</span> <span class="o">-</span> <span class="n">psi_ss</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">L_ell</span>
         <span class="n">i_ss</span> <span class="o">=</span> <span class="n">psi_ss</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">L_s</span> <span class="o">-</span> <span class="n">i_rs</span>
+
         <span class="k">return</span> <span class="n">i_ss</span><span class="p">,</span> <span class="n">i_rs</span></div>
 
-<div class="viewcode-block" id="InductionMotor.torque"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.InductionMotor.torque">[docs]</a>    <span class="k">def</span> <span class="nf">torque</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psi_ss</span><span class="p">,</span> <span class="n">i_ss</span><span class="p">):</span>
+<div class="viewcode-block" id="InductionMotor.magnetic"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.InductionMotor.magnetic">[docs]</a>    <span class="k">def</span> <span class="nf">magnetic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psi_ss</span><span class="p">,</span> <span class="n">psi_rs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Compute the electromagnetic torque.</span>
+<span class="sd">        Magnetic model.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        psi_ss : complex</span>
 <span class="sd">            Stator flux linkage.</span>
-<span class="sd">        i_ss : complex</span>
-<span class="sd">            Stator current.</span>
+<span class="sd">        psi_rs : complex</span>
+<span class="sd">            Rotor flux linkage.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
+<span class="sd">        i_ss : complex</span>
+<span class="sd">            Stator current.</span>
+<span class="sd">        i_rs : complex</span>
+<span class="sd">            Rotor current.</span>
 <span class="sd">        tau_M : float</span>
 <span class="sd">            Electromagnetic torque.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">i_ss</span><span class="p">,</span> <span class="n">i_rs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">currents</span><span class="p">(</span><span class="n">psi_ss</span><span class="p">,</span> <span class="n">psi_rs</span><span class="p">)</span>
         <span class="n">tau_M</span> <span class="o">=</span> <span class="mf">1.5</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">i_ss</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">psi_ss</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">tau_M</span></div>
+
+        <span class="k">return</span> <span class="n">i_ss</span><span class="p">,</span> <span class="n">i_rs</span><span class="p">,</span> <span class="n">tau_M</span></div>
 
 <div class="viewcode-block" id="InductionMotor.f"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.InductionMotor.f">[docs]</a>    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psi_ss</span><span class="p">,</span> <span class="n">psi_rs</span><span class="p">,</span> <span class="n">u_ss</span><span class="p">,</span> <span class="n">w_M</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -203,12 +211,24 @@
 <span class="sd">        -------</span>
 <span class="sd">        complex list, length 2</span>
 <span class="sd">            Time derivative of the state vector, [dpsi_ss, dpsi_rs]</span>
+<span class="sd">        i_ss : complex</span>
+<span class="sd">            Stator current.</span>
+<span class="sd">        tau_M : float</span>
+<span class="sd">            Electromagnetic torque.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        In addition to the state derivatives, this method also returns the</span>
+<span class="sd">        output signals (stator current `i_ss` and torque `tau_M`) needed for</span>
+<span class="sd">        interconnection with other subsystems. This avoids overlapping</span>
+<span class="sd">        computation in simulation.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">i_ss</span><span class="p">,</span> <span class="n">i_rs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">currents</span><span class="p">(</span><span class="n">psi_ss</span><span class="p">,</span> <span class="n">psi_rs</span><span class="p">)</span>
+        <span class="n">i_ss</span><span class="p">,</span> <span class="n">i_rs</span><span class="p">,</span> <span class="n">tau_M</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">magnetic</span><span class="p">(</span><span class="n">psi_ss</span><span class="p">,</span> <span class="n">psi_rs</span><span class="p">)</span>
         <span class="n">dpsi_ss</span> <span class="o">=</span> <span class="n">u_ss</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">R_s</span><span class="o">*</span><span class="n">i_ss</span>
         <span class="n">dpsi_rs</span> <span class="o">=</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">R_r</span><span class="o">*</span><span class="n">i_rs</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">*</span><span class="n">w_M</span><span class="o">*</span><span class="n">psi_rs</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">dpsi_ss</span><span class="p">,</span> <span class="n">dpsi_rs</span><span class="p">]</span></div>
+
+        <span class="k">return</span> <span class="p">[</span><span class="n">dpsi_ss</span><span class="p">,</span> <span class="n">dpsi_rs</span><span class="p">],</span> <span class="n">i_ss</span><span class="p">,</span> <span class="n">tau_M</span></div>
 
 <div class="viewcode-block" id="InductionMotor.meas_currents"><a class="viewcode-back" href="../../../autoapi/motulator/model/im/index.html#motulator.InductionMotor.meas_currents">[docs]</a>    <span class="k">def</span> <span class="nf">meas_currents</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -285,7 +305,7 @@
 <span class="sd">    Inverse-Γ model of an induction motor.</span>
 
 <span class="sd">    This extends the InductionMotor class (based on the Γ model) by providing</span>
-<span class="sd">    the interface for the inverse-Γ model parameters. Linear magnetics are</span>
+<span class="sd">    an interface for the inverse-Γ model parameters. Linear magnetics are</span>
 <span class="sd">    assumed. If magnetic saturation is to be modeled, the Γ model is preferred.</span>
 
 <span class="sd">    Parameters</span>

@@ -104,8 +104,9 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Synchronous motor model.</span>
 
-<span class="sd">    This models a synchronous motor in rotor coordinates. The default values</span>
-<span class="sd">    correspond to a 2.2-kW permanent-magnet synchronous motor.</span>
+<span class="sd">    This models a synchronous motor in rotor coordinates. The stator flux</span>
+<span class="sd">    linkage is the state variable. The default values correspond to a 2.2-kW</span>
+<span class="sd">    permanent-magnet synchronous motor.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -153,27 +154,28 @@
         <span class="n">i_s</span> <span class="o">=</span> <span class="p">(</span><span class="n">psi_s</span><span class="o">.</span><span class="n">real</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">psi_f</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">L_d</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">psi_s</span><span class="o">.</span><span class="n">imag</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">L_q</span>
         <span class="k">return</span> <span class="n">i_s</span></div>
 
-<div class="viewcode-block" id="SynchronousMotor.torque"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.SynchronousMotor.torque">[docs]</a>    <span class="k">def</span> <span class="nf">torque</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psi_s</span><span class="p">,</span> <span class="n">i_s</span><span class="p">):</span>
+<div class="viewcode-block" id="SynchronousMotor.magnetic"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.SynchronousMotor.magnetic">[docs]</a>    <span class="k">def</span> <span class="nf">magnetic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psi_s</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Compute the electromagnetic torque.</span>
+<span class="sd">        Magnetic model.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        psi_s : complex</span>
 <span class="sd">            Stator flux linkage.</span>
-<span class="sd">        i_s : complex</span>
-<span class="sd">            Stator current.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
+<span class="sd">        i_s : complex</span>
+<span class="sd">            Stator current.</span>
 <span class="sd">        tau_M : float</span>
 <span class="sd">            Electromagnetic torque.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">i_s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current</span><span class="p">(</span><span class="n">psi_s</span><span class="p">)</span>
         <span class="n">tau_M</span> <span class="o">=</span> <span class="mf">1.5</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">i_s</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">psi_s</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">tau_M</span></div>
+        <span class="k">return</span> <span class="n">i_s</span><span class="p">,</span> <span class="n">tau_M</span></div>
 
-<div class="viewcode-block" id="SynchronousMotor.f"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.SynchronousMotor.f">[docs]</a>    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psi_s</span><span class="p">,</span> <span class="n">i_s</span><span class="p">,</span> <span class="n">u_s</span><span class="p">,</span> <span class="n">w_M</span><span class="p">):</span>
+<div class="viewcode-block" id="SynchronousMotor.f"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.SynchronousMotor.f">[docs]</a>    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psi_s</span><span class="p">,</span> <span class="n">u_s</span><span class="p">,</span> <span class="n">w_M</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute the state derivative.</span>
 
@@ -188,12 +190,24 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        dpsi_s : complex</span>
+<span class="sd">        dpsi_s : complex list</span>
 <span class="sd">            Time derivative of the stator flux linkage.</span>
+<span class="sd">        i_s : complex</span>
+<span class="sd">            Stator current.</span>
+<span class="sd">        tau_M : float</span>
+<span class="sd">            Electromagnetic torque.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        In addition to the state derivative, this method also returns the</span>
+<span class="sd">        output signals (stator current `i_ss` and torque `tau_M`) needed for</span>
+<span class="sd">        interconnection with other subsystems. This avoids overlapping</span>
+<span class="sd">        computation in simulation.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">i_s</span><span class="p">,</span> <span class="n">tau_M</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">magnetic</span><span class="p">(</span><span class="n">psi_s</span><span class="p">)</span>
         <span class="n">dpsi_s</span> <span class="o">=</span> <span class="n">u_s</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">R_s</span><span class="o">*</span><span class="n">i_s</span> <span class="o">-</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="o">*</span><span class="n">w_M</span><span class="o">*</span><span class="n">psi_s</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">dpsi_s</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="p">[</span><span class="n">dpsi_s</span><span class="p">],</span> <span class="n">i_s</span><span class="p">,</span> <span class="n">tau_M</span></div>
 
 <div class="viewcode-block" id="SynchronousMotor.meas_currents"><a class="viewcode-back" href="../../../autoapi/motulator/model/sm/index.html#motulator.SynchronousMotor.meas_currents">[docs]</a>    <span class="k">def</span> <span class="nf">meas_currents</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
