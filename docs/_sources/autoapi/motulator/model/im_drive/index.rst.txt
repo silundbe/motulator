@@ -29,7 +29,7 @@ Classes
 
 
 
-.. py:class:: InductionMotorDrive(motor=InductionMotor(), mech=Mechanics(), conv=Inverter())
+.. py:class:: InductionMotorDrive(motor=None, mech=None, conv=None)
 
    
    Continuous-time model for an induction motor drive.
@@ -190,7 +190,7 @@ Classes
           !! processed by numpydoc !!
 
 
-.. py:class:: InductionMotorDriveDiode(motor=InductionMotor(), mech=Mechanics(), conv=FrequencyConverter())
+.. py:class:: InductionMotorDriveDiode(motor=None, mech=None, conv=None)
 
    Bases: :py:obj:`InductionMotorDrive`
 

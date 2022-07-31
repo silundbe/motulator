@@ -94,7 +94,7 @@ Functions
 
 
 
-.. py:class:: Simulation(mdl=None, ctrl=None, delay=1, enable_pwm=False, t_stop=1)
+.. py:class:: Simulation(mdl=None, ctrl=None, delay=1, enable_pwm=False)
 
    
    Simulation environment.
@@ -110,8 +110,6 @@ Functions
    :type delay: int, optional
    :param enable_pwm: Enable carrier comparison. The default is False.
    :type enable_pwm: bool, optional
-   :param t_stop: Simulation stop time. The default is 1.
-   :type t_stop: float, optional
 
 
 
@@ -129,13 +127,15 @@ Functions
 
    ..
        !! processed by numpydoc !!
-   .. py:method:: simulate(max_step=np.inf)
+   .. py:method:: simulate(t_stop=1, max_step=np.inf)
 
       
       Solve the continuous-time model and call the discrete-time controller.
 
       :param max_step: Max step size of the solver. The default is inf.
       :type max_step: float, optional
+      :param t_stop: Simulation stop time. The default is 1.
+      :type t_stop: float, optional
 
       .. rubric:: Notes
 
@@ -792,7 +792,7 @@ Functions
    ..
        !! processed by numpydoc !!
 
-.. py:class:: SynchronousMotor(p=3, R_s=3.6, L_d=0.036, L_q=0.051, psi_f=0.545, mech=Mechanics())
+.. py:class:: SynchronousMotor(p=3, R_s=3.6, L_d=0.036, L_q=0.051, psi_f=0.545, mech=None)
 
    
    Synchronous motor model.
@@ -946,7 +946,7 @@ Functions
           !! processed by numpydoc !!
 
 
-.. py:class:: SynchronousMotorSaturated(p=2, R_s=0.54, i_f=0, a_d0=17.4, a_q0=52.1, a_dd=373.0, a_qq=658.0, a_dq=1120.0, S=5, T=1, U=1, V=0, mech=Mechanics())
+.. py:class:: SynchronousMotorSaturated(p=2, R_s=0.54, i_f=0, a_d0=17.4, a_q0=52.1, a_dd=373.0, a_qq=658.0, a_dq=1120.0, S=5, T=1, U=1, V=0, mech=None)
 
    Bases: :py:obj:`SynchronousMotor`
 
@@ -1059,7 +1059,7 @@ Functions
           !! processed by numpydoc !!
 
 
-.. py:class:: InductionMotorDrive(motor=InductionMotor(), mech=Mechanics(), conv=Inverter())
+.. py:class:: InductionMotorDrive(motor=None, mech=None, conv=None)
 
    
    Continuous-time model for an induction motor drive.
@@ -1220,7 +1220,7 @@ Functions
           !! processed by numpydoc !!
 
 
-.. py:class:: InductionMotorDriveDiode(motor=InductionMotor(), mech=Mechanics(), conv=FrequencyConverter())
+.. py:class:: InductionMotorDriveDiode(motor=None, mech=None, conv=None)
 
    Bases: :py:obj:`InductionMotorDrive`
 
@@ -1370,7 +1370,7 @@ Functions
           !! processed by numpydoc !!
 
 
-.. py:class:: SynchronousMotorDrive(motor=SynchronousMotor(), mech=Mechanics(), conv=Inverter())
+.. py:class:: SynchronousMotorDrive(motor=None, mech=None, conv=None)
 
    
    Continuous-time model for a synchronous motor drive.
@@ -1533,6 +1533,8 @@ Functions
 
 .. py:class:: InductionMotorVHzCtrl(pars)
 
+   Bases: :py:obj:`motulator.control.common.Ctrl`
+
    
    V/Hz control with the stator current feedback.
 
@@ -1632,29 +1634,6 @@ Functions
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: post_process()
-
-      
-      Transform the lists to the ndarray format.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
 
 .. py:class:: InductionMotorVHzCtrlPars
 
@@ -1729,7 +1708,9 @@ Functions
       
 
 
-.. py:class:: InductionMotorVectorCtrl(pars=InductionMotorVectorCtrlPars())
+.. py:class:: InductionMotorVectorCtrl(pars)
+
+   Bases: :py:obj:`motulator.control.common.Ctrl`
 
    
    Vector control for an induction motor drive.
@@ -1785,34 +1766,11 @@ Functions
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: post_process()
-
-      
-      Transform the lists to the ndarray format.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
 
 .. py:class:: InductionMotorVectorCtrlPars
 
    
-   Vector control parameters for an induction motor drive.
+   Vector control parameters for induction motor drives.
 
 
 
@@ -1912,7 +1870,9 @@ Functions
       
 
 
-.. py:class:: SynchronousMotorVectorCtrl(pars=SynchronousMotorVectorCtrlPars())
+.. py:class:: SynchronousMotorVectorCtrl(pars)
+
+   Bases: :py:obj:`motulator.control.common.Ctrl`
 
    
    Vector control for a synchronous motor drive.
@@ -1950,29 +1910,6 @@ Functions
 
       :returns: * **T_s** (*float*) -- Sampling period.
                 * **d_abc_ref** (*ndarray, shape (3,)*) -- Duty ratio references.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-   .. py:method:: post_process()
-
-      
-      Transform the lists to the ndarray format.
-
 
 
 
@@ -2135,7 +2072,9 @@ Functions
           !! processed by numpydoc !!
 
 
-.. py:class:: SynchronousMotorFluxVectorCtrl(pars=SynchronousMotorFluxVectorCtrlPars())
+.. py:class:: SynchronousMotorFluxVectorCtrl(pars)
+
+   Bases: :py:obj:`motulator.control.common.Ctrl`
 
    
    Flux-vector control for synchronous motor drives.
@@ -2173,29 +2112,6 @@ Functions
 
       :returns: * **T_s** (*float*) -- Sampling period.
                 * **d_abc_ref** (*ndarray, shape (3,)*) -- Duty ratio references.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-   .. py:method:: post_process()
-
-      
-      Transform the lists to the ndarray format.
-
 
 
 

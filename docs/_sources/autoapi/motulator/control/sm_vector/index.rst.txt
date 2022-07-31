@@ -171,7 +171,9 @@ Classes
           !! processed by numpydoc !!
 
 
-.. py:class:: SynchronousMotorVectorCtrl(pars=SynchronousMotorVectorCtrlPars())
+.. py:class:: SynchronousMotorVectorCtrl(pars)
+
+   Bases: :py:obj:`motulator.control.common.Ctrl`
 
    
    Vector control for a synchronous motor drive.
@@ -209,29 +211,6 @@ Classes
 
       :returns: * **T_s** (*float*) -- Sampling period.
                 * **d_abc_ref** (*ndarray, shape (3,)*) -- Duty ratio references.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-   .. py:method:: post_process()
-
-      
-      Transform the lists to the ndarray format.
-
 
 
 

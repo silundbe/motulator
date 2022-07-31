@@ -22,6 +22,7 @@ Classes
    motulator.control.common.PWM
    motulator.control.common.SpeedCtrl
    motulator.control.common.RateLimiter
+   motulator.control.common.Ctrl
 
 
 
@@ -294,6 +295,134 @@ Classes
       In this implementation, the falling rate limit equals the (negative)
       rising rate limit. If needed, these limits can be separated with minor
       modifications in the class.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+.. py:class:: Ctrl
+
+   
+   Base class for main control loops.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+   .. py:method:: __call__(mdl)
+      :abstractmethod:
+
+      
+      Run the main control loop.
+
+      The main control loop is callable that returns the sampling
+      period `T_s` (float)  and the duty ratio references `d_abc_ref`
+      (ndarray, shape (3,)) for the next sampling period.
+
+      :param mdl: System model containing methods for getting the feedback signals.
+      :type mdl: Model
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: update_clock(T_s)
+
+      
+      Update the digital clock.
+
+      :param T_s: Sampling period.
+      :type T_s: float
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: save(data)
+
+      
+      Save the internal controller data.
+
+      :param data: Contains the data to be saved.
+      :type data: bunch or dict
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+   .. py:method:: post_process()
+
+      
+      Transform the lists to the ndarray format.
+
+      This can be run after the simulation has been completed in order to
+      spimplify plotting and analysis of the stored data.
 
 
 

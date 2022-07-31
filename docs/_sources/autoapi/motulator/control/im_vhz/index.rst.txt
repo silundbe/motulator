@@ -118,6 +118,8 @@ Classes
 
 .. py:class:: InductionMotorVHzCtrl(pars)
 
+   Bases: :py:obj:`motulator.control.common.Ctrl`
+
    
    V/Hz control with the stator current feedback.
 
@@ -198,29 +200,6 @@ Classes
 
       
       Compute the stator voltage reference.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ..
-          !! processed by numpydoc !!
-
-   .. py:method:: post_process()
-
-      
-      Transform the lists to the ndarray format.
 
 
 

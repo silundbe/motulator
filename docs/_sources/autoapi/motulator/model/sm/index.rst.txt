@@ -29,7 +29,7 @@ Classes
 
 
 
-.. py:class:: SynchronousMotor(p=3, R_s=3.6, L_d=0.036, L_q=0.051, psi_f=0.545, mech=Mechanics())
+.. py:class:: SynchronousMotor(p=3, R_s=3.6, L_d=0.036, L_q=0.051, psi_f=0.545, mech=None)
 
    
    Synchronous motor model.
@@ -183,7 +183,7 @@ Classes
           !! processed by numpydoc !!
 
 
-.. py:class:: SynchronousMotorSaturated(p=2, R_s=0.54, i_f=0, a_d0=17.4, a_q0=52.1, a_dd=373.0, a_qq=658.0, a_dq=1120.0, S=5, T=1, U=1, V=0, mech=Mechanics())
+.. py:class:: SynchronousMotorSaturated(p=2, R_s=0.54, i_f=0, a_d0=17.4, a_q0=52.1, a_dd=373.0, a_qq=658.0, a_dq=1120.0, S=5, T=1, U=1, V=0, mech=None)
 
    Bases: :py:obj:`SynchronousMotor`
 

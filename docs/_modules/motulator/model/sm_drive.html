@@ -92,13 +92,9 @@
 <span class="sd">2.2-kW permanent-magnet synchronous motor.</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">from</span> <span class="nn">motulator.helpers</span> <span class="kn">import</span> <span class="n">Bunch</span>
-<span class="kn">from</span> <span class="nn">motulator.model.sm</span> <span class="kn">import</span> <span class="n">SynchronousMotor</span>
-<span class="kn">from</span> <span class="nn">motulator.model.mech</span> <span class="kn">import</span> <span class="n">Mechanics</span>
-<span class="kn">from</span> <span class="nn">motulator.model.converter</span> <span class="kn">import</span> <span class="n">Inverter</span>
 
 
 <span class="c1"># %%</span>
@@ -121,12 +117,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span>
-            <span class="n">motor</span><span class="o">=</span><span class="n">SynchronousMotor</span><span class="p">(),</span>
-            <span class="n">mech</span><span class="o">=</span><span class="n">Mechanics</span><span class="p">(),</span>
-            <span class="n">conv</span><span class="o">=</span><span class="n">Inverter</span><span class="p">(),</span>
-    <span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">motor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mech</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">conv</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">motor</span> <span class="o">=</span> <span class="n">motor</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">motor</span><span class="o">.</span><span class="n">_mech</span> <span class="o">=</span> <span class="n">mech</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mech</span> <span class="o">=</span> <span class="n">mech</span>

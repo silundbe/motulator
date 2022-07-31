@@ -112,7 +112,7 @@
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#motulator.control.im_vector.InductionMotorVectorCtrlPars" title="motulator.control.im_vector.InductionMotorVectorCtrlPars"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InductionMotorVectorCtrlPars</span></code></a></p></td>
-<td><p>Vector control parameters for an induction motor drive.</p></td>
+<td><p>Vector control parameters for induction motor drives.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#motulator.control.im_vector.InductionMotorVectorCtrl" title="motulator.control.im_vector.InductionMotorVectorCtrl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InductionMotorVectorCtrl</span></code></a></p></td>
 <td><p>Vector control for an induction motor drive.</p></td>
@@ -134,7 +134,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="motulator.control.im_vector.InductionMotorVectorCtrlPars">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">motulator.control.im_vector.</span></span><span class="sig-name descname"><span class="pre">InductionMotorVectorCtrlPars</span></span><a class="reference internal" href="../../../../_modules/motulator/control/im_vector.html#InductionMotorVectorCtrlPars"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.im_vector.InductionMotorVectorCtrlPars" title="Permalink to this definition"></a></dt>
-<dd><p>Vector control parameters for an induction motor drive.</p>
+<dd><p>Vector control parameters for induction motor drives.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="motulator.control.im_vector.InductionMotorVectorCtrlPars.w_m_ref">
 <span class="sig-name descname"><span class="pre">w_m_ref</span></span><em class="property"><span class="w"> </span><span class="pre">:collections.abc.Callable[[float],</span> <span class="pre">float]</span></em><a class="reference internal" href="../../../../_modules/motulator/control/im_vector.html#InductionMotorVectorCtrlPars.w_m_ref"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.im_vector.InductionMotorVectorCtrlPars.w_m_ref" title="Permalink to this definition"></a></dt>
@@ -219,8 +219,9 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="motulator.control.im_vector.InductionMotorVectorCtrl">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">motulator.control.im_vector.</span></span><span class="sig-name descname"><span class="pre">InductionMotorVectorCtrl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">InductionMotorVectorCtrlPars()</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/im_vector.html#InductionMotorVectorCtrl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.im_vector.InductionMotorVectorCtrl" title="Permalink to this definition"></a></dt>
-<dd><p>Vector control for an induction motor drive.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">motulator.control.im_vector.</span></span><span class="sig-name descname"><span class="pre">InductionMotorVectorCtrl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/im_vector.html#InductionMotorVectorCtrl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.im_vector.InductionMotorVectorCtrl" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../common/index.html#motulator.control.common.Ctrl" title="motulator.control.common.Ctrl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">motulator.control.common.Ctrl</span></code></a></p>
+<p>Vector control for an induction motor drive.</p>
 <p>This class interconnects the subsystems of the control system and
 provides the interface to the solver.</p>
 <dl class="field-list simple">
@@ -247,12 +248,6 @@ feedback signals.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="motulator.control.im_vector.InductionMotorVectorCtrl.post_process">
-<span class="sig-name descname"><span class="pre">post_process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/motulator/control/im_vector.html#InductionMotorVectorCtrl.post_process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.im_vector.InductionMotorVectorCtrl.post_process" title="Permalink to this definition"></a></dt>
-<dd><p>Transform the lists to the ndarray format.</p>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="py class">
@@ -264,7 +259,7 @@ voltage reference feedback. The breakdown torque and current limits are
 taken into account.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>pars</strong> (<a class="reference internal" href="#motulator.control.im_vector.InductionMotorVectorCtrlPars" title="motulator.control.im_vector.InductionMotorVectorCtrlPars"><em>InductionMotorVectorCtrlPars</em></a><em> (or </em><em>its subset</em><em>)</em>) – Control parameters.</p>
+<dd class="field-odd"><p><strong>pars</strong> (<a class="reference internal" href="#motulator.control.im_vector.InductionMotorVectorCtrlPars" title="motulator.control.im_vector.InductionMotorVectorCtrlPars"><em>InductionMotorVectorCtrlPars</em></a>) – Control parameters.</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -325,7 +320,7 @@ considered as a quasi-constant disturbance. This design could be
 equivalently presented as a 2DOF PI controller.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>pars</strong> (<a class="reference internal" href="#motulator.control.im_vector.InductionMotorVectorCtrlPars" title="motulator.control.im_vector.InductionMotorVectorCtrlPars"><em>InductionMotorVectorCtrlPars</em></a><em> (or </em><em>its subset</em><em>)</em>) – Control parameters.</p>
+<dd class="field-odd"><p><strong>pars</strong> (<a class="reference internal" href="#motulator.control.im_vector.InductionMotorVectorCtrlPars" title="motulator.control.im_vector.InductionMotorVectorCtrlPars"><em>InductionMotorVectorCtrlPars</em></a>) – Control parameters.</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -385,7 +380,7 @@ corresponding linearized estimation error dynamics. This implementation
 operates in estimated rotor flux coordinates.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>pars</strong> (<a class="reference internal" href="#motulator.control.im_vector.InductionMotorVectorCtrlPars" title="motulator.control.im_vector.InductionMotorVectorCtrlPars"><em>InductionMotorVectorCtrlPars</em></a><em> (or </em><em>its subset</em><em>)</em>) – Control parameters.</p>
+<dd class="field-odd"><p><strong>pars</strong> (<a class="reference internal" href="#motulator.control.im_vector.InductionMotorVectorCtrlPars" title="motulator.control.im_vector.InductionMotorVectorCtrlPars"><em>InductionMotorVectorCtrlPars</em></a>) – Control parameters.</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -440,7 +435,7 @@ selected default gain allows smooth transition from the current model at
 zero speed to the (damped) voltage model at higher speeds.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>pars</strong> (<a class="reference internal" href="#motulator.control.im_vector.InductionMotorVectorCtrlPars" title="motulator.control.im_vector.InductionMotorVectorCtrlPars"><em>InductionMotorVectorCtrlPars</em></a><em> (or </em><em>its subset</em><em>)</em>) – Control parameters.</p>
+<dd class="field-odd"><p><strong>pars</strong> (<a class="reference internal" href="#motulator.control.im_vector.InductionMotorVectorCtrlPars" title="motulator.control.im_vector.InductionMotorVectorCtrlPars"><em>InductionMotorVectorCtrlPars</em></a>) – Control parameters.</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>

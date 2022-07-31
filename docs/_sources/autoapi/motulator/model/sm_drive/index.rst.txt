@@ -27,7 +27,7 @@ Classes
 
 
 
-.. py:class:: SynchronousMotorDrive(motor=SynchronousMotor(), mech=Mechanics(), conv=Inverter())
+.. py:class:: SynchronousMotorDrive(motor=None, mech=None, conv=None)
 
    
    Continuous-time model for a synchronous motor drive.

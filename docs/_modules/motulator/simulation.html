@@ -247,24 +247,19 @@
 <span class="sd">        Amount of computational delays. The default is 1.</span>
 <span class="sd">    enable_pwm : bool, optional</span>
 <span class="sd">        Enable carrier comparison. The default is False.</span>
-<span class="sd">    t_stop : float, optional</span>
-<span class="sd">        Simulation stop time. The default is 1.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span> <span class="n">mdl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ctrl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">enable_pwm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">t_stop</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-        <span class="c1"># pylint: disable=too-many-arguments</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mdl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ctrl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">enable_pwm</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mdl</span> <span class="o">=</span> <span class="n">mdl</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ctrl</span> <span class="o">=</span> <span class="n">ctrl</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">delay</span> <span class="o">=</span> <span class="n">Delay</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">t_stop</span> <span class="o">=</span> <span class="n">t_stop</span>
         <span class="k">if</span> <span class="n">enable_pwm</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">pwm</span> <span class="o">=</span> <span class="n">CarrierCmp</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">pwm</span> <span class="o">=</span> <span class="n">zoh</span>
 
-<div class="viewcode-block" id="Simulation.simulate"><a class="viewcode-back" href="../../autoapi/motulator/simulation/index.html#motulator.Simulation.simulate">[docs]</a>    <span class="k">def</span> <span class="nf">simulate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_step</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">):</span>
+<div class="viewcode-block" id="Simulation.simulate"><a class="viewcode-back" href="../../autoapi/motulator/simulation/index.html#motulator.Simulation.simulate">[docs]</a>    <span class="k">def</span> <span class="nf">simulate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t_stop</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_step</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Solve the continuous-time model and call the discrete-time controller.</span>
 
@@ -272,6 +267,8 @@
 <span class="sd">        ----------</span>
 <span class="sd">        max_step : float, optional</span>
 <span class="sd">            Max step size of the solver. The default is inf.</span>
+<span class="sd">        t_stop : float, optional</span>
+<span class="sd">            Simulation stop time. The default is 1.</span>
 
 <span class="sd">        Notes</span>
 <span class="sd">        -----</span>
@@ -280,7 +277,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Simulation loop</span>
-        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">t0</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_stop</span><span class="p">:</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="o">.</span><span class="n">t0</span> <span class="o">&lt;=</span> <span class="n">t_stop</span><span class="p">:</span>
 
             <span class="c1"># Run the digital controller</span>
             <span class="n">T_s</span><span class="p">,</span> <span class="n">d_abc_ref</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ctrl</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mdl</span><span class="p">)</span>

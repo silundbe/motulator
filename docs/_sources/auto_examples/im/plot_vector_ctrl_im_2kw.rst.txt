@@ -28,12 +28,11 @@ drive.
 
 Import the packages.
 
-.. GENERATED FROM PYTHON SOURCE LINES 12-17
+.. GENERATED FROM PYTHON SOURCE LINES 12-16
 
 .. code-block:: default
 
 
-    from time import time
     import numpy as np
     import motulator as mt
 
@@ -44,11 +43,11 @@ Import the packages.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 18-19
+.. GENERATED FROM PYTHON SOURCE LINES 17-18
 
 Compute base values based on the nominal values (just for figures).
 
-.. GENERATED FROM PYTHON SOURCE LINES 19-28
+.. GENERATED FROM PYTHON SOURCE LINES 18-27
 
 .. code-block:: default
 
@@ -68,11 +67,11 @@ Compute base values based on the nominal values (just for figures).
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 29-30
+.. GENERATED FROM PYTHON SOURCE LINES 28-29
 
 Configure the system model.
 
-.. GENERATED FROM PYTHON SOURCE LINES 30-39
+.. GENERATED FROM PYTHON SOURCE LINES 29-38
 
 .. code-block:: default
 
@@ -92,13 +91,13 @@ Configure the system model.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 40-43
+.. GENERATED FROM PYTHON SOURCE LINES 39-42
 
 Configure the control system. You may also try to change the parameters.
 Notice that the drive may become unstable if you for example have too large
 parameter errors. This may happen in real drives as well.
 
-.. GENERATED FROM PYTHON SOURCE LINES 43-62
+.. GENERATED FROM PYTHON SOURCE LINES 42-61
 
 .. code-block:: default
 
@@ -128,13 +127,13 @@ parameter errors. This may happen in real drives as well.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 63-66
+.. GENERATED FROM PYTHON SOURCE LINES 62-65
 
 Set the speed reference and the external load torque. You may also try to
 uncomment the field-weakening sequence. More complicated sequences could be
 created as functions.
 
-.. GENERATED FROM PYTHON SOURCE LINES 66-75
+.. GENERATED FROM PYTHON SOURCE LINES 65-74
 
 .. code-block:: default
 
@@ -154,53 +153,38 @@ created as functions.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 76-78
+.. GENERATED FROM PYTHON SOURCE LINES 75-78
 
 Create the simulation object and simulate it. You can also enable the PWM
-model (which makes simulation slower).
+model (which makes simulation slower). One-sampling-period computational
+delay is modeled.
 
-.. GENERATED FROM PYTHON SOURCE LINES 78-90
+.. GENERATED FROM PYTHON SOURCE LINES 78-82
 
 .. code-block:: default
 
 
-    sim = mt.Simulation(
-        mdl,
-        ctrl,
-        enable_pwm=False,  # Enable PWM model
-        delay=1,  # Computational delay
-        t_stop=1.5)  # Stop time
-    start_time = time()  # Start the timer
-    sim.simulate()
-    # Print the execution time
-    print('\nExecution time: {:.2f} s'.format((time() - start_time)))
+    sim = mt.Simulation(mdl, ctrl, enable_pwm=False, delay=1)
+    sim.simulate(t_stop=1.5)
 
 
 
 
 
-.. rst-class:: sphx-glr-script-out
-
- .. code-block:: none
-
-
-    Execution time: 2.53 s
 
 
 
+.. GENERATED FROM PYTHON SOURCE LINES 83-85
 
-.. GENERATED FROM PYTHON SOURCE LINES 91-93
+Plot results in per-unit values. By omitting the argument `base` you can plot
+the results in SI units.
 
-Plot results in per-unit values. By uncommenting the second line you can
-plot the results in SI units.
-
-.. GENERATED FROM PYTHON SOURCE LINES 93-96
+.. GENERATED FROM PYTHON SOURCE LINES 85-87
 
 .. code-block:: default
 
 
     mt.plot(sim, base=base)
-    # mt.plot(sim)
 
 
 
@@ -216,7 +200,7 @@ plot the results in SI units.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.097 seconds)
+   **Total running time of the script:** ( 0 minutes  2.853 seconds)
 
 
 .. _sphx_glr_download_auto_examples_im_plot_vector_ctrl_im_2kw.py:

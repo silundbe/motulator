@@ -180,7 +180,7 @@ Functions
    ..
        !! processed by numpydoc !!
 
-.. py:class:: Simulation(mdl=None, ctrl=None, delay=1, enable_pwm=False, t_stop=1)
+.. py:class:: Simulation(mdl=None, ctrl=None, delay=1, enable_pwm=False)
 
    
    Simulation environment.
@@ -196,8 +196,6 @@ Functions
    :type delay: int, optional
    :param enable_pwm: Enable carrier comparison. The default is False.
    :type enable_pwm: bool, optional
-   :param t_stop: Simulation stop time. The default is 1.
-   :type t_stop: float, optional
 
 
 
@@ -215,13 +213,15 @@ Functions
 
    ..
        !! processed by numpydoc !!
-   .. py:method:: simulate(max_step=np.inf)
+   .. py:method:: simulate(t_stop=1, max_step=np.inf)
 
       
       Solve the continuous-time model and call the discrete-time controller.
 
       :param max_step: Max step size of the solver. The default is inf.
       :type max_step: float, optional
+      :param t_stop: Simulation stop time. The default is 1.
+      :type t_stop: float, optional
 
       .. rubric:: Notes
 
