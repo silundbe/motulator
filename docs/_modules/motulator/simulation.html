@@ -140,19 +140,60 @@
 
 <span class="sd">    This computes the the switching states and their durations based on the</span>
 <span class="sd">    duty ratios. Instead of searching for zero crossings, the switching</span>
-<span class="sd">    instants are explicilty computed in the begininning of each sampling</span>
-<span class="sd">    period, allowing faster simulations.</span>
+<span class="sd">    instants are explicilty computed in the beginning of each sampling period,</span>
+<span class="sd">    allowing faster simulations.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    N : int, optional</span>
 <span class="sd">        Amount of the counter quantization levels. The default is 2**12.</span>
+<span class="sd">    return_complex : bool, optional</span>
+<span class="sd">        Complex switching state space vectors are returned if True. Otherwise</span>
+<span class="sd">        phase switching states are returned. The default is True.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from motulator.simulation import CarrierCmp</span>
+<span class="sd">    &gt;&gt;&gt; carrier_cmp = CarrierCmp(return_complex=False)</span>
+<span class="sd">    &gt;&gt;&gt; # First call gives rising edges</span>
+<span class="sd">    &gt;&gt;&gt; t_steps, q_abc = carrier_cmp(1e-3, [.4, .2, .8])</span>
+<span class="sd">    &gt;&gt;&gt; # Durations of the switching states</span>
+<span class="sd">    &gt;&gt;&gt; t_steps</span>
+<span class="sd">    array([0.00019995, 0.00040015, 0.00019995, 0.00019995])</span>
+<span class="sd">    &gt;&gt;&gt; # Switching states</span>
+<span class="sd">    &gt;&gt;&gt; q_abc</span>
+<span class="sd">    array([[0, 0, 0],</span>
+<span class="sd">           [0, 0, 1],</span>
+<span class="sd">           [1, 0, 1],</span>
+<span class="sd">           [1, 1, 1]])</span>
+<span class="sd">    &gt;&gt;&gt; # Second call gives falling edges</span>
+<span class="sd">    &gt;&gt;&gt; t_steps, q_abc = carrier_cmp(.001, [.4, .2, .8])</span>
+<span class="sd">    &gt;&gt;&gt; t_steps</span>
+<span class="sd">    array([0.00019995, 0.00019995, 0.00040015, 0.00019995])</span>
+<span class="sd">    &gt;&gt;&gt; q_abc</span>
+<span class="sd">    array([[1, 1, 1],</span>
+<span class="sd">           [1, 0, 1],</span>
+<span class="sd">           [0, 0, 1],</span>
+<span class="sd">           [0, 0, 0]])</span>
+<span class="sd">    &gt;&gt;&gt; # Sum of the step times equals T_s</span>
+<span class="sd">    &gt;&gt;&gt; np.sum(t_steps)</span>
+<span class="sd">    0.001</span>
+<span class="sd">    &gt;&gt;&gt; # 50% duty ratios in all phases</span>
+<span class="sd">    &gt;&gt;&gt; t_steps, q_abc = carrier_cmp(1e-3, [.5, .5, .5])</span>
+<span class="sd">    &gt;&gt;&gt; t_steps</span>
+<span class="sd">    array([0.0005, 0.    , 0.    , 0.0005])</span>
+<span class="sd">    &gt;&gt;&gt; q_abc</span>
+<span class="sd">    array([[0, 0, 0],</span>
+<span class="sd">           [0, 0, 0],</span>
+<span class="sd">           [0, 0, 0],</span>
+<span class="sd">           [1, 1, 1]])</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># pylint: disable=too-few-public-methods</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">2</span><span class="o">**</span><span class="mi">12</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">2</span><span class="o">**</span><span class="mi">12</span><span class="p">,</span> <span class="n">return_complex</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="n">N</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">return_complex</span> <span class="o">=</span> <span class="n">return_complex</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rising_edge</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># Stores the carrier direction</span>
 
 <div class="viewcode-block" id="CarrierCmp.__call__"><a class="viewcode-back" href="../../autoapi/motulator/simulation/index.html#motulator.CarrierCmp.__call__">[docs]</a>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">T_s</span><span class="p">,</span> <span class="n">d_abc</span><span class="p">):</span>
@@ -162,7 +203,7 @@
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        T_s : float</span>
-<span class="sd">            Sampling period (either half or full carrier period).</span>
+<span class="sd">            Half carrier period.</span>
 <span class="sd">        d_abc : array_like of floats, shape (3,)</span>
 <span class="sd">            Duty ratios in the range [0, 1].</span>
 
@@ -171,36 +212,36 @@
 <span class="sd">        t_steps : ndarray, shape (4,)</span>
 <span class="sd">            Switching state durations, `[t0, t1, t2, t3]`.</span>
 <span class="sd">        q : complex ndarray, shape (4,)</span>
-<span class="sd">            Switching state vectors, `[0, q1, q2, 0]`, where `q1` and `q2` are</span>
-<span class="sd">            active vectors.</span>
+<span class="sd">            Switching state vectors, `[q0, q1, q2, q3]`, where `q1` and `q2`</span>
+<span class="sd">            are active vectors.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        No switching (e.g. `d_a == 0` or `d_a == 1`) or simultaneous switchings</span>
+<span class="sd">        (e.g. `d_a == d_b`) lead to zeroes in `t_steps`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Quantize the duty ratios to N levels</span>
         <span class="n">d_abc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">d_abc</span><span class="p">))</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span>
 
-        <span class="c1"># Normalized switching instants and switching states</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rising_edge</span><span class="p">:</span>
-            <span class="c1"># Normalized switching instants: t_n = [0, t_n1, t_n2, t_n3]</span>
-            <span class="n">t_n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">d_abc</span><span class="p">))</span>
-            <span class="c1"># States: q_abc = [[0, 0, 0], [q_abc1], [q_abc2], [1, 1, 1]]</span>
-            <span class="n">q_abc</span> <span class="o">=</span> <span class="p">(</span><span class="n">t_n</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">d_abc</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">t_n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">d_abc</span><span class="p">))</span>
-            <span class="n">q_abc</span> <span class="o">=</span> <span class="p">(</span><span class="n">t_n</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">d_abc</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="c1"># Assume falling edge and compute the normalized switching instants:</span>
+        <span class="n">t_n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">d_abc</span><span class="p">))</span>
+        <span class="c1"># Compute the correponding switching states:</span>
+        <span class="n">q_abc</span> <span class="o">=</span> <span class="p">(</span><span class="n">t_n</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">d_abc</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 
-        <span class="c1"># Durations of switching states: t_steps = [t0, t1, t2, t3]</span>
+        <span class="c1"># Durations of switching states</span>
         <span class="n">t_steps</span> <span class="o">=</span> <span class="n">T_s</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">t_n</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="c1"># Note: No switching (e.g. d_a == 0 or d_a == 1) or simultaneous</span>
-        <span class="c1"># switchings (e.g d_a == d_b) lead to some zero steps.</span>
 
-        <span class="c1"># Array of the switching state space vectors: q = [0, q1, q2, 0]</span>
-        <span class="n">q</span> <span class="o">=</span> <span class="n">abc2complex</span><span class="p">(</span><span class="n">q_abc</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+        <span class="c1"># Flip the sequence if rising edge</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rising_edge</span><span class="p">:</span>
+            <span class="n">t_steps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">t_steps</span><span class="p">)</span>
+            <span class="n">q_abc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flipud</span><span class="p">(</span><span class="n">q_abc</span><span class="p">)</span>
 
         <span class="c1"># Change the carrier direction for the next call</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rising_edge</span> <span class="o">=</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">rising_edge</span>
 
-        <span class="c1"># If needed, alternatively q_abc could be returned</span>
-        <span class="k">return</span> <span class="n">t_steps</span><span class="p">,</span> <span class="n">q</span></div></div>
+        <span class="k">return</span> <span class="p">((</span><span class="n">t_steps</span><span class="p">,</span> <span class="n">abc2complex</span><span class="p">(</span><span class="n">q_abc</span><span class="o">.</span><span class="n">T</span><span class="p">))</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_complex</span> <span class="k">else</span>
+                <span class="p">(</span><span class="n">t_steps</span><span class="p">,</span> <span class="n">q_abc</span><span class="p">))</span></div></div>
 
 
 <span class="c1"># %%</span>
@@ -240,8 +281,7 @@
 <span class="sd">    ----------</span>
 <span class="sd">    mdl : InductionMotorDrive | SynchronousMotorDrive</span>
 <span class="sd">        Continuous-time system model.</span>
-<span class="sd">    ctrl : SynchronousMotorVectorCtrl | InductionMotorVectorCtrl |</span>
-<span class="sd">        InductionMotorVHzCtrl</span>
+<span class="sd">    ctrl : Ctrl</span>
 <span class="sd">        Discrete-time controller.</span>
 <span class="sd">    delay : int, optional</span>
 <span class="sd">        Amount of computational delays. The default is 1.</span>

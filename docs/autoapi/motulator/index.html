@@ -251,8 +251,7 @@
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>mdl</strong> (<a class="reference internal" href="#motulator.InductionMotorDrive" title="motulator.InductionMotorDrive"><em>InductionMotorDrive</em></a><em> | </em><a class="reference internal" href="#motulator.SynchronousMotorDrive" title="motulator.SynchronousMotorDrive"><em>SynchronousMotorDrive</em></a>) – Continuous-time system model.</p></li>
-<li><p><strong>ctrl</strong> (<a class="reference internal" href="#motulator.SynchronousMotorVectorCtrl" title="motulator.SynchronousMotorVectorCtrl"><em>SynchronousMotorVectorCtrl</em></a><em> | </em><a class="reference internal" href="#motulator.InductionMotorVectorCtrl" title="motulator.InductionMotorVectorCtrl"><em>InductionMotorVectorCtrl</em></a><em> |</em>) – InductionMotorVHzCtrl
-Discrete-time controller.</p></li>
+<li><p><strong>ctrl</strong> (<a class="reference internal" href="control/common/index.html#motulator.control.common.Ctrl" title="motulator.control.common.Ctrl"><em>Ctrl</em></a>) – Discrete-time controller.</p></li>
 <li><p><strong>delay</strong> (<em>int</em><em>, </em><em>optional</em>) – Amount of computational delays. The default is 1.</p></li>
 <li><p><strong>enable_pwm</strong> (<em>bool</em><em>, </em><em>optional</em>) – Enable carrier comparison. The default is False.</p></li>
 </ul>
@@ -1614,7 +1613,8 @@ pairs. They can be used, e.g., for scaling the plotted waveforms.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">abc2complex</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">motulator</span> <span class="kn">import</span> <span class="n">abc2complex</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">abc2complex</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span>
 <span class="go">(-1-0.5773502691896258j)</span>
 </pre></div>
@@ -1637,7 +1637,8 @@ pairs. They can be used, e.g., for scaling the plotted waveforms.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">complex2abc</span><span class="p">(</span><span class="mi">1</span><span class="o">-.</span><span class="mi">5</span><span class="n">j</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">motulator</span> <span class="kn">import</span> <span class="n">complex2abc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">complex2abc</span><span class="p">(</span><span class="mi">1</span><span class="o">-.</span><span class="mi">5</span><span class="n">j</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span>
 <span class="go">array([ 1.       , -0.9330127, -0.0669873])</span>
 </pre></div>
