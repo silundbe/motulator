@@ -91,7 +91,7 @@ Configure the control system.
 .. code-block:: default
 
 
-    pars = mt.SynchronousMotorFluxVectorCtrlPars(sensorless=True)
+    pars = mt.SynchronousMotorFluxVectorCtrlPars(sensorless=True, T_s=250e-6)
     ctrl = mt.SynchronousMotorFluxVectorCtrl(pars)
 
 
@@ -130,7 +130,7 @@ Create the simulation object and simulate it.
 .. code-block:: default
 
 
-    sim = mt.Simulation(mdl, ctrl, enable_pwm=False)
+    sim = mt.Simulation(mdl, ctrl, pwm=False)
     sim.simulate(t_stop=1.6)
 
 
@@ -165,7 +165,7 @@ Plot results in per-unit values.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  4.184 seconds)
+   **Total running time of the script:** ( 0 minutes  4.600 seconds)
 
 
 .. _sphx_glr_download_auto_examples_sm_plot_flux_vector_pmsm_2kw.py:

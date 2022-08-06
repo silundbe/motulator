@@ -140,7 +140,7 @@
 
 <span class="sd">    This computes the the switching states and their durations based on the</span>
 <span class="sd">    duty ratios. Instead of searching for zero crossings, the switching</span>
-<span class="sd">    instants are explicilty computed in the beginning of each sampling period,</span>
+<span class="sd">    instants are explicitly computed in the beginning of each sampling period,</span>
 <span class="sd">    allowing faster simulations.</span>
 
 <span class="sd">    Parameters</span>
@@ -198,7 +198,7 @@
 
 <div class="viewcode-block" id="CarrierCmp.__call__"><a class="viewcode-back" href="../../autoapi/motulator/simulation/index.html#motulator.CarrierCmp.__call__">[docs]</a>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">T_s</span><span class="p">,</span> <span class="n">d_abc</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Carrier comparison.</span>
+<span class="sd">        Compute the switching state durations and vectors.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -285,16 +285,16 @@
 <span class="sd">        Discrete-time controller.</span>
 <span class="sd">    delay : int, optional</span>
 <span class="sd">        Amount of computational delays. The default is 1.</span>
-<span class="sd">    enable_pwm : bool, optional</span>
+<span class="sd">    pwm : bool, optional</span>
 <span class="sd">        Enable carrier comparison. The default is False.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mdl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ctrl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">enable_pwm</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mdl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ctrl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">pwm</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mdl</span> <span class="o">=</span> <span class="n">mdl</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ctrl</span> <span class="o">=</span> <span class="n">ctrl</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">delay</span> <span class="o">=</span> <span class="n">Delay</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">enable_pwm</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">pwm</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">pwm</span> <span class="o">=</span> <span class="n">CarrierCmp</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">pwm</span> <span class="o">=</span> <span class="n">zoh</span>

@@ -166,7 +166,7 @@
 <dd><p>Carrier comparison.</p>
 <p>This computes the the switching states and their durations based on the
 duty ratios. Instead of searching for zero crossings, the switching
-instants are explicilty computed in the beginning of each sampling period,
+instants are explicitly computed in the beginning of each sampling period,
 allowing faster simulations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -217,7 +217,7 @@ phase switching states are returned. The default is True.</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="motulator.simulation.CarrierCmp.__call__">
 <span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_abc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/motulator/simulation.html#CarrierCmp.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.simulation.CarrierCmp.__call__" title="Permalink to this definition"></a></dt>
-<dd><p>Carrier comparison.</p>
+<dd><p>Compute the switching state durations and vectors.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -264,7 +264,7 @@ are active vectors.</p></li>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="motulator.simulation.Simulation">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">motulator.simulation.</span></span><span class="sig-name descname"><span class="pre">Simulation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mdl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ctrl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_pwm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/motulator/simulation.html#Simulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.simulation.Simulation" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">motulator.simulation.</span></span><span class="sig-name descname"><span class="pre">Simulation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mdl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ctrl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pwm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/motulator/simulation.html#Simulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.simulation.Simulation" title="Permalink to this definition"></a></dt>
 <dd><p>Simulation environment.</p>
 <p>Each simulation object has a system model object and a controller object.</p>
 <dl class="field-list simple">
@@ -273,7 +273,7 @@ are active vectors.</p></li>
 <li><p><strong>mdl</strong> (<a class="reference internal" href="../index.html#motulator.InductionMotorDrive" title="motulator.InductionMotorDrive"><em>InductionMotorDrive</em></a><em> | </em><a class="reference internal" href="../index.html#motulator.SynchronousMotorDrive" title="motulator.SynchronousMotorDrive"><em>SynchronousMotorDrive</em></a>) – Continuous-time system model.</p></li>
 <li><p><strong>ctrl</strong> (<a class="reference internal" href="../control/common/index.html#motulator.control.common.Ctrl" title="motulator.control.common.Ctrl"><em>Ctrl</em></a>) – Discrete-time controller.</p></li>
 <li><p><strong>delay</strong> (<em>int</em><em>, </em><em>optional</em>) – Amount of computational delays. The default is 1.</p></li>
-<li><p><strong>enable_pwm</strong> (<em>bool</em><em>, </em><em>optional</em>) – Enable carrier comparison. The default is False.</p></li>
+<li><p><strong>pwm</strong> (<em>bool</em><em>, </em><em>optional</em>) – Enable carrier comparison. The default is False.</p></li>
 </ul>
 </dd>
 </dl>

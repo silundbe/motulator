@@ -83,6 +83,11 @@ Classes
 
       
 
+   .. py:attribute:: g
+      :annotation: = 0.2
+
+      
+
    .. py:attribute:: tau_M_max
       :annotation: :float
 
@@ -498,11 +503,7 @@ Classes
 
    This implementation places the pole in synchronous coordinates at::
 
-       s = -R_R/L_M - g*abs(w_m) - 1j*w_s
-
-   The current model would be obtained using k = 1, resulting in the pole at
-   s = -R_R/L_M - 1j*(w_s - w_m). The pure voltage model corresponds to k = 0,
-   resulting in the marginally stable pole at s = -1j*w_s.
+       s = -R_R/L_M - g*abs(w_m) - 1j*(w_s - w_m)
 
    .. rubric:: References
 

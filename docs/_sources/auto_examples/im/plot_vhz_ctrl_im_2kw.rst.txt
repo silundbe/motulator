@@ -127,16 +127,17 @@ signals could be defined as functions.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 48-49
+.. GENERATED FROM PYTHON SOURCE LINES 48-50
 
-Create the simulation object and simulate it.
+Create the simulation object and simulate it. The option `pwm=True` enables
+the model for the carrier comparison.
 
-.. GENERATED FROM PYTHON SOURCE LINES 49-55
+.. GENERATED FROM PYTHON SOURCE LINES 50-56
 
 .. code-block:: default
 
 
-    sim = mt.Simulation(mdl, ctrl, enable_pwm=True)
+    sim = mt.Simulation(mdl, ctrl, pwm=True)
     t_start = time()  # Start the timer
     sim.simulate(t_stop=1.5)
     print('\nExecution time: {:.2f} s'.format((time() - t_start)))
@@ -150,12 +151,12 @@ Create the simulation object and simulate it.
  .. code-block:: none
 
 
-    Execution time: 12.98 s
+    Execution time: 13.61 s
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 56-64
+.. GENERATED FROM PYTHON SOURCE LINES 57-65
 
 Plot results in per-unit values.
 
@@ -163,10 +164,10 @@ Plot results in per-unit values.
    The DC link of this particular example is actually unstable at 1-p.u.
    speed at the rated load torque, since the inverter looks like a negative
    resistance to the DC link. You could notice this instability if simulating
-   a longer period (e.g. set t_stop=2). For more information, see e.g.
+   a longer period (e.g. set `t_stop=2`). For more information, see e.g.
    https://doi.org/10.1109/EPE.2007.4417763
 
-.. GENERATED FROM PYTHON SOURCE LINES 64-68
+.. GENERATED FROM PYTHON SOURCE LINES 65-69
 
 .. code-block:: default
 
@@ -208,7 +209,7 @@ Plot results in per-unit values.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  14.783 seconds)
+   **Total running time of the script:** ( 0 minutes  15.441 seconds)
 
 
 .. _sphx_glr_download_auto_examples_im_plot_vhz_ctrl_im_2kw.py:

@@ -152,8 +152,7 @@ account in the control method (only in the system model).</p>
     <span class="n">psi_f</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
     <span class="n">p</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
     <span class="n">J</span><span class="o">=.</span><span class="mi">015</span><span class="p">,</span>
-    <span class="n">w_o</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">40</span><span class="p">,</span>
-    <span class="n">zeta_inf</span><span class="o">=.</span><span class="mi">2</span><span class="p">)</span>
+<span class="p">)</span>
 <span class="n">ctrl</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">SynchronousMotorFluxVectorCtrl</span><span class="p">(</span><span class="n">pars</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -169,7 +168,7 @@ account in the control method (only in the system model).</p>
 </pre></div>
 </div>
 <p>Create the simulation object and simulate it.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">Simulation</span><span class="p">(</span><span class="n">mdl</span><span class="p">,</span> <span class="n">ctrl</span><span class="p">,</span> <span class="n">enable_pwm</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">Simulation</span><span class="p">(</span><span class="n">mdl</span><span class="p">,</span> <span class="n">ctrl</span><span class="p">,</span> <span class="n">pwm</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span><span class="n">t_stop</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -177,7 +176,7 @@ account in the control method (only in the system model).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="n">base</span><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_plot_flux_vector_syrm_7kw_001.png" srcset="../../_images/sphx_glr_plot_flux_vector_syrm_7kw_001.png" alt="plot flux vector syrm 7kw" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  10.224 seconds)</p>
+<img src="../../_images/sphx_glr_plot_flux_vector_syrm_7kw_001.png" srcset="../../_images/sphx_glr_plot_flux_vector_syrm_7kw_001.png" alt="plot flux vector syrm 7kw" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  11.258 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-sm-plot-flux-vector-syrm-7kw-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/5edc462ee495e32dedfd8cea2ed2b40b/plot_flux_vector_syrm_7kw.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_flux_vector_syrm_7kw.py</span></code></a></p>

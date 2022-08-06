@@ -244,7 +244,7 @@
 </table>
 <dl class="py class">
 <dt class="sig sig-object py" id="motulator.Simulation">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">motulator.</span></span><span class="sig-name descname"><span class="pre">Simulation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mdl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ctrl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_pwm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/motulator/simulation.html#Simulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.Simulation" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">motulator.</span></span><span class="sig-name descname"><span class="pre">Simulation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mdl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ctrl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pwm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/motulator/simulation.html#Simulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.Simulation" title="Permalink to this definition"></a></dt>
 <dd><p>Simulation environment.</p>
 <p>Each simulation object has a system model object and a controller object.</p>
 <dl class="field-list simple">
@@ -253,7 +253,7 @@
 <li><p><strong>mdl</strong> (<a class="reference internal" href="#motulator.InductionMotorDrive" title="motulator.InductionMotorDrive"><em>InductionMotorDrive</em></a><em> | </em><a class="reference internal" href="#motulator.SynchronousMotorDrive" title="motulator.SynchronousMotorDrive"><em>SynchronousMotorDrive</em></a>) – Continuous-time system model.</p></li>
 <li><p><strong>ctrl</strong> (<a class="reference internal" href="control/common/index.html#motulator.control.common.Ctrl" title="motulator.control.common.Ctrl"><em>Ctrl</em></a>) – Discrete-time controller.</p></li>
 <li><p><strong>delay</strong> (<em>int</em><em>, </em><em>optional</em>) – Amount of computational delays. The default is 1.</p></li>
-<li><p><strong>enable_pwm</strong> (<em>bool</em><em>, </em><em>optional</em>) – Enable carrier comparison. The default is False.</p></li>
+<li><p><strong>pwm</strong> (<em>bool</em><em>, </em><em>optional</em>) – Enable carrier comparison. The default is False.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1210,6 +1210,11 @@ feedback signals.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="motulator.InductionMotorVectorCtrlPars.alpha_s">
 <span class="sig-name descname"><span class="pre">alpha_s</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#motulator.InductionMotorVectorCtrlPars.alpha_s" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="motulator.InductionMotorVectorCtrlPars.g">
+<span class="sig-name descname"><span class="pre">g</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">0.2</span></em><a class="headerlink" href="#motulator.InductionMotorVectorCtrlPars.g" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">

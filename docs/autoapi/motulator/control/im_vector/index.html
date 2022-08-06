@@ -166,6 +166,11 @@
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="motulator.control.im_vector.InductionMotorVectorCtrlPars.g">
+<span class="sig-name descname"><span class="pre">g</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">0.2</span></em><a class="reference internal" href="../../../../_modules/motulator/control/im_vector.html#InductionMotorVectorCtrlPars.g"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.im_vector.InductionMotorVectorCtrlPars.g" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="motulator.control.im_vector.InductionMotorVectorCtrlPars.tau_M_max">
 <span class="sig-name descname"><span class="pre">tau_M_max</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="reference internal" href="../../../../_modules/motulator/control/im_vector.html#InductionMotorVectorCtrlPars.tau_M_max"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#motulator.control.im_vector.InductionMotorVectorCtrlPars.tau_M_max" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -440,12 +445,9 @@ zero speed to the (damped) voltage model at higher speeds.</p>
 </dl>
 <p class="rubric">Notes</p>
 <p>This implementation places the pole in synchronous coordinates at:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="o">-</span><span class="n">R_R</span><span class="o">/</span><span class="n">L_M</span> <span class="o">-</span> <span class="n">g</span><span class="o">*</span><span class="nb">abs</span><span class="p">(</span><span class="n">w_m</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">w_s</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="o">-</span><span class="n">R_R</span><span class="o">/</span><span class="n">L_M</span> <span class="o">-</span> <span class="n">g</span><span class="o">*</span><span class="nb">abs</span><span class="p">(</span><span class="n">w_m</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="p">(</span><span class="n">w_s</span> <span class="o">-</span> <span class="n">w_m</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The current model would be obtained using k = 1, resulting in the pole at
-s = -R_R/L_M - 1j*(w_s - w_m). The pure voltage model corresponds to k = 0,
-resulting in the marginally stable pole at s = -1j*w_s.</p>
 <p class="rubric">References</p>
 <div role="list" class="citation-list">
 <div class="citation" id="rf20b6db00950-4" role="doc-biblioentry">

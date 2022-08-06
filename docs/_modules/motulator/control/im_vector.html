@@ -117,6 +117,8 @@
 <div class="viewcode-block" id="InductionMotorVectorCtrlPars.alpha_c"><a class="viewcode-back" href="../../../autoapi/motulator/control/im_vector/index.html#motulator.control.im_vector.InductionMotorVectorCtrlPars.alpha_c">[docs]</a>    <span class="n">alpha_c</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">200</span></div>
 <div class="viewcode-block" id="InductionMotorVectorCtrlPars.alpha_o"><a class="viewcode-back" href="../../../autoapi/motulator/control/im_vector/index.html#motulator.control.im_vector.InductionMotorVectorCtrlPars.alpha_o">[docs]</a>    <span class="n">alpha_o</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">40</span>  <span class="c1"># Used only in the sensorless mode</span></div>
 <div class="viewcode-block" id="InductionMotorVectorCtrlPars.alpha_s"><a class="viewcode-back" href="../../../autoapi/motulator/control/im_vector/index.html#motulator.control.im_vector.InductionMotorVectorCtrlPars.alpha_s">[docs]</a>    <span class="n">alpha_s</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">4</span></div>
+    <span class="c1"># Sensored observer</span>
+<div class="viewcode-block" id="InductionMotorVectorCtrlPars.g"><a class="viewcode-back" href="../../../autoapi/motulator/control/im_vector/index.html#motulator.control.im_vector.InductionMotorVectorCtrlPars.g">[docs]</a>    <span class="n">g</span> <span class="o">=</span> <span class="o">.</span><span class="mi">2</span>  <span class="c1"># Used only in the sensored mode</span></div>
     <span class="c1"># Maximum values</span>
 <div class="viewcode-block" id="InductionMotorVectorCtrlPars.tau_M_max"><a class="viewcode-back" href="../../../autoapi/motulator/control/im_vector/index.html#motulator.control.im_vector.InductionMotorVectorCtrlPars.tau_M_max">[docs]</a>    <span class="n">tau_M_max</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.5</span><span class="o">*</span><span class="mf">14.6</span></div>
 <div class="viewcode-block" id="InductionMotorVectorCtrlPars.i_s_max"><a class="viewcode-back" href="../../../autoapi/motulator/control/im_vector/index.html#motulator.control.im_vector.InductionMotorVectorCtrlPars.i_s_max">[docs]</a>    <span class="n">i_s_max</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">5</span></div>
@@ -541,11 +543,7 @@
 <span class="sd">    -----</span>
 <span class="sd">    This implementation places the pole in synchronous coordinates at::</span>
 
-<span class="sd">        s = -R_R/L_M - g*abs(w_m) - 1j*w_s</span>
-
-<span class="sd">    The current model would be obtained using k = 1, resulting in the pole at</span>
-<span class="sd">    s = -R_R/L_M - 1j*(w_s - w_m). The pure voltage model corresponds to k = 0,</span>
-<span class="sd">    resulting in the marginally stable pole at s = -1j*w_s.</span>
+<span class="sd">        s = -R_R/L_M - g*abs(w_m) - 1j*(w_s - w_m)</span>
 
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
@@ -561,9 +559,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">R_s</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">R_s</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">R_R</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">R_R</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">L_sgm</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">L_sgm</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">L_M</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">L_M</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">R_R</span><span class="o">/</span><span class="n">pars</span><span class="o">.</span><span class="n">L_M</span>
         <span class="c1"># Nonnegative gain for damping</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">g</span> <span class="o">=</span> <span class="o">.</span><span class="mi">5</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">g</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">g</span>
         <span class="c1"># Initial states</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">theta_s</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">psi_R</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">i_s_old</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
         <span class="c1"># Store for the update method to avoid recalculation</span>
@@ -588,19 +586,19 @@
 <span class="sd">            Angular frequency of the rotor flux.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">alpha</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">R_R</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">L_M</span>
-
         <span class="c1"># The observer pole could be placed arbitrarily by means of the</span>
-        <span class="c1"># observer gain k. The following choice places the pole at</span>
-        <span class="c1"># s = -sigma - 1j*w_s, where sigma = alpha + g*abs(w_m). This allows</span>
-        <span class="c1"># smooth transition from the current model (at zero speed to the</span>
-        <span class="c1"># (damped) voltage model (at higher speeds).</span>
-        <span class="n">k</span> <span class="o">=</span> <span class="p">(</span><span class="n">alpha</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">w_m</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">alpha</span> <span class="o">-</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">w_m</span><span class="p">)</span>
+        <span class="c1"># observer gain k. The current model would be obtained using k = 1,</span>
+        <span class="c1"># resulting in the pole at s = -R_R/L_M - 1j*(w_s - w_m). The pure</span>
+        <span class="c1"># voltage model corresponds to k = 0, resulting in the marginally</span>
+        <span class="c1"># stable pole at s = -1j*w_s.</span>
+
+        <span class="c1"># This gain leads to s = -alpha - g*abs(w_m) - 1j*(w_s - w_m)</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">w_m</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">-</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">w_m</span><span class="p">)</span>
 
         <span class="c1"># Induced voltage from the stator quantities</span>
         <span class="n">e_s</span> <span class="o">=</span> <span class="n">u_s</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">R_s</span><span class="o">*</span><span class="n">i_s</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">L_sgm</span><span class="o">*</span><span class="p">(</span><span class="n">i_s</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">i_s_old</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">T_s</span>
         <span class="c1"># Induced voltage from the rotor quantities</span>
-        <span class="n">e_r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">R_R</span><span class="o">*</span><span class="n">i_s</span> <span class="o">-</span> <span class="p">(</span><span class="n">alpha</span> <span class="o">-</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">w_m</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">psi_R</span>
+        <span class="n">e_r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">R_R</span><span class="o">*</span><span class="n">i_s</span> <span class="o">-</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">-</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">w_m</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">psi_R</span>
 
         <span class="c1"># Angular frequency of the rotor flux vector</span>
         <span class="n">den</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">psi_R</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">L_sgm</span><span class="o">*</span><span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span><span class="o">*</span><span class="n">i_s</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>

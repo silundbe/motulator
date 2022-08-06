@@ -94,7 +94,7 @@ Functions
 
 
 
-.. py:class:: Simulation(mdl=None, ctrl=None, delay=1, enable_pwm=False)
+.. py:class:: Simulation(mdl=None, ctrl=None, delay=1, pwm=False)
 
    
    Simulation environment.
@@ -107,8 +107,8 @@ Functions
    :type ctrl: Ctrl
    :param delay: Amount of computational delays. The default is 1.
    :type delay: int, optional
-   :param enable_pwm: Enable carrier comparison. The default is False.
-   :type enable_pwm: bool, optional
+   :param pwm: Enable carrier comparison. The default is False.
+   :type pwm: bool, optional
 
 
 
@@ -1832,6 +1832,11 @@ Functions
 
    .. py:attribute:: alpha_s
       :annotation: :float
+
+      
+
+   .. py:attribute:: g
+      :annotation: = 0.2
 
       
 

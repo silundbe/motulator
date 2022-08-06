@@ -165,7 +165,7 @@ delay is modeled.
 .. code-block:: default
 
 
-    sim = mt.Simulation(mdl, ctrl, enable_pwm=False, delay=1)
+    sim = mt.Simulation(mdl, ctrl, pwm=False, delay=1)
     sim.simulate(t_stop=1.5)
 
 
@@ -201,7 +201,7 @@ the results in SI units.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.854 seconds)
+   **Total running time of the script:** ( 0 minutes  3.196 seconds)
 
 
 .. _sphx_glr_download_auto_examples_im_plot_vector_ctrl_im_2kw.py:
