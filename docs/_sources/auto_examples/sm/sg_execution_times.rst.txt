@@ -5,14 +5,14 @@
 
 Computation times
 =================
-**00:40.727** total execution time for **auto_examples_sm** files:
+**01:12.587** total execution time for **auto_examples_sm** files:
 
 +--------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_sm_plot_vector_ctrl_pmsm_2kw.py` (``plot_vector_ctrl_pmsm_2kw.py``) | 00:12.808 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_sm_plot_vector_ctrl_pmsm_2kw.py` (``plot_vector_ctrl_pmsm_2kw.py``) | 00:22.912 | 0.0 MB |
 +--------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_sm_plot_vector_ctrl_syrm_7kw.py` (``plot_vector_ctrl_syrm_7kw.py``) | 00:12.079 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_sm_plot_vector_ctrl_syrm_7kw.py` (``plot_vector_ctrl_syrm_7kw.py``) | 00:21.619 | 0.0 MB |
 +--------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_sm_plot_flux_vector_syrm_7kw.py` (``plot_flux_vector_syrm_7kw.py``) | 00:11.243 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_sm_plot_flux_vector_syrm_7kw.py` (``plot_flux_vector_syrm_7kw.py``) | 00:19.979 | 0.0 MB |
 +--------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_sm_plot_flux_vector_pmsm_2kw.py` (``plot_flux_vector_pmsm_2kw.py``) | 00:04.597 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_sm_plot_flux_vector_pmsm_2kw.py` (``plot_flux_vector_pmsm_2kw.py``) | 00:08.078 | 0.0 MB |
 +--------------------------------------------------------------------------------------------------+-----------+--------+
